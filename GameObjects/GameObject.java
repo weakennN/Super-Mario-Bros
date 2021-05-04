@@ -3,7 +3,6 @@ package GameObjects;
 import CollisionInfo.Collision;
 import Components.Component;
 import Rigidbody.Position;
-import Rigidbody.RigidBody;
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
@@ -66,10 +65,16 @@ public abstract class GameObject {
 
     protected void updateComponents() {
 
-        for (Component c : this.components) {
+        try {
 
-            c.update();
+            for (Component c : this.components) {
+
+                c.update();
+            }
+        }catch (Exception e){
+
         }
+
     }
 
     public void addComponent(Component component) {
@@ -88,5 +93,10 @@ public abstract class GameObject {
         }
 
         return null;
+    }
+
+    public void removeComponent(String componentTag) {
+
+        this.components.removeIf(c -> c.getTag().equals(componentTag));
     }
 }

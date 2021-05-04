@@ -42,12 +42,21 @@ public class Ground extends GameObject {
 
         Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
 
-        if (rigidbody != null) {
+        if (collision.getHitDirection().x == 1) {
 
-            rigidbody.getAcc().y = 0;
-            rigidbody.getVel().y = 0;
-            other.getPosition().getPos().y = this.getPosition().getPos().y - 50;
+            if (rigidbody != null) {
 
+                other.getPosition().getPos().y = this.getPosition().getPos().y - 50;
+                rigidbody.getAcc().y = 0;
+                rigidbody.getVel().y = 0;
+
+
+                if (other.getTag().equals(GlobalVariables.marioTag)){
+
+                    Mario mario = (Mario) other;
+                    mario.setJumping(false);
+                }
+            }
         }
 
     }

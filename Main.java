@@ -1,8 +1,5 @@
 import Designer.Designer;
-import Designer.Camera;
 import GameEngine.GameEngine;
-import GameObjects.Mario;
-import Rigidbody.Position;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

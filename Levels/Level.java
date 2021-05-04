@@ -5,11 +5,8 @@ import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
 import Designer.Camera;
+import GameObjects.*;
 import GameObjects.AI.Goomba;
-import GameObjects.BrickBox;
-import GameObjects.GameObject;
-import GameObjects.Ground;
-import GameObjects.Mario;
 import RenderEngine.RenderEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
@@ -137,7 +134,6 @@ public abstract class Level {
 
                 if (words[0].equals("Mario")) {
 
-
                     gameObject = new Mario(position, GlobalVariables.marioTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 53, 53, gameObject));
@@ -148,6 +144,9 @@ public abstract class Level {
                     gameObject = new Goomba(position, GlobalVariables.goombaTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 53, 53, gameObject));
+                } else if (words[0].equals("ItemBox")) {
+
+                    gameObject = new ItemBox(position, GlobalVariables.itemBoxTag);
                 }
 
                 this.addGameObject(gameObject);

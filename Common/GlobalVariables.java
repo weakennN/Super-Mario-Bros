@@ -9,4 +9,5 @@ public class GlobalVariables {
     public final static String rigidbodyTag = "Rigidbody";
     public final static String colliderTag = "collider";
     public final static String groundTag = "ground";
+    public final static String itemBoxTag = "itemBox";
 }

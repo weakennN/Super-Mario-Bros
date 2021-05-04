@@ -3,9 +3,7 @@ package Animator;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import Designer.Designer;
-import GameEngine.GameEngine;
 import GameObjects.Mario;
-import Rigidbody.RigidBody;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
@@ -29,6 +27,8 @@ public class Animator {
     public final static String brickBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\box.png";
     public final static String marioDead = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\marioDead.png";
     public final static String ground = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\ground.png";
+    public final static String coin = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\coin.gif";
+    public final static String itemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\itemBox.gif";
 
     public static void marioGrowingAnimation(Mario mario) {
 
@@ -61,18 +61,14 @@ public class Animator {
         animator.start();
     }
 
-    public static void marioDeadAnimation(Mario mario) {
+    public static void marioDeadAnimation() {
 
         SoundManager.playSound(Sounds.marioLosesLifeSound);
+
         Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
 
-        mario.changeImage(marioDead);
-
-        mario.setDead(true);
-        mario.getRigidbody().getVel().x = 0;
-        mario.getRigidbody().getVel().y = 1;
-        RigidBody.rigidBodies.remove(mario.getRigidbody());
+        // RigidBody.rigidBodies.remove(mario.getRigidbody());
 
         animator = new AnimationTimer() {
 

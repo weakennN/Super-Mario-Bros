@@ -3,13 +3,13 @@ package GameObjects;
 import Animator.Animator;
 import CollisionInfo.Collision;
 import Common.GlobalVariables;
+import Components.Collider;
 import Components.Rigidbody;
 import Designer.Designer;
 import GameEngine.GameEngine;
 import GameObjects.AI.Goomba;
 import Helpers.MarioDir;
 import Rigidbody.Position;
-import Rigidbody.RigidBody;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.scene.image.Image;
@@ -178,12 +178,22 @@ public class Mario extends GameObject {
                 || collision.getHitDirection().x < 0) {
 
             MarioLivesListener.decreaseLives();
-            Animator.marioDeadAnimation(this);
+            this.isDead = true;
+            this.changeImage(Animator.marioDead);
+            this.getRigidbody().getVel().x = 0;
+            this.getRigidbody().getVel().y = 1;
+            Animator.marioDeadAnimation();
+            Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+            Collider.removeCollider(collider);
+            this.removeComponent(GlobalVariables.colliderTag);
 
         } else if (collision.getHitDirection().y == -1) {
 
             GameEngine.gameObjects.remove(goomba);
-            RigidBody.rigidBodies.remove(goomba.getRigidbody());
+
+            Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
+            goomba.removeComponent(GlobalVariables.colliderTag);
+
             goomba = null;
         }
     }
@@ -192,7 +202,7 @@ public class Mario extends GameObject {
 
         this.getPowerUp().powerUpMarioWithMushroom(this);
         GameEngine.gameObjects.remove(mushroom);
-        RigidBody.rigidBodies.remove(mushroom.getRigidbody());
+
         mushroom = null;
 
     }

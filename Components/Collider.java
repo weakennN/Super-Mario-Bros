@@ -1,7 +1,6 @@
 package Components;
 
 import CollisionInfo.Collision;
-import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -21,7 +20,7 @@ public class Collider extends Component {
     public static List<Collider> colliders = new ArrayList<>();
 
     public Collider(String tag, Position position, double sizeX,
-                       double sizeY, GameObject gameObject) {
+                    double sizeY, GameObject gameObject) {
         super(tag);
 
         this.gameObject = gameObject;
@@ -77,7 +76,6 @@ public class Collider extends Component {
                         this.collision.setHitDirection(new Vector2(1, 0));
                     }
 
-
                 } else if (dy < 0) {
 
                     if (-dy > Math.abs(dx)) {
@@ -109,6 +107,11 @@ public class Collider extends Component {
     protected void calculateCenter() {
 
         this.center = new Vector2(this.pos.x + this.halfSize.x, this.pos.y + this.halfSize.y);
+    }
+
+    public static void removeCollider(Collider collider) {
+
+        colliders.remove(collider);
     }
 
 

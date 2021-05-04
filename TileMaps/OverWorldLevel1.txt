@@ -1,5 +1,7 @@
 GameObjects
 Mario 300 400
+Goomba 500 400
+ItemBox 450 300
 end
 Ground
 0 500

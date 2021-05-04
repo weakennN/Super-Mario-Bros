@@ -2,21 +2,16 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import Common.GlobalVariables;
+import GameEngine.GameEngine;
 import Rigidbody.Position;
+import Score.ScoreKeeper;
 import javafx.scene.image.Image;
 
-public class ItemBox extends GameObject {
+public class Coin extends GameObject {
 
-    public ItemBox(Position position, String tag) {
+    public Coin(Position position, String tag) {
         super(position, tag);
-
-
-    }
-
-    @Override
-    public void start() {
-
-        super.changeImage(Animator.itemBox);
     }
 
     @Override
@@ -32,7 +27,19 @@ public class ItemBox extends GameObject {
     }
 
     @Override
+    public void start() {
+
+        super.changeImage(Animator.coin);
+    }
+
+    @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
+        if (other.getTag().equals(GlobalVariables.marioTag)) {
+
+            ScoreKeeper.coins++;
+            //remove components
+            GameEngine.gameObjects.remove(this);
+        }
     }
 }

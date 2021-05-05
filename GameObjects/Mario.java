@@ -209,14 +209,6 @@ public class Mario extends GameObject {
 
         } else if (collision.getHitDirection().y == 1) {
 
-          /*  GameEngine.gameObjects.remove(goomba);
-
-            Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
-            goomba.removeComponent(GlobalVariables.colliderTag);
-
-            goomba = null;
-
-           */
             goomba.destroy();
         }
     }

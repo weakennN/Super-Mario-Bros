@@ -38,7 +38,7 @@ public class Coin extends GameObject {
         if (other.getTag().equals(GlobalVariables.marioTag)) {
 
             ScoreKeeper.coins++;
-            //remove components
+            // remove components
             this.destroy();
         }
     }

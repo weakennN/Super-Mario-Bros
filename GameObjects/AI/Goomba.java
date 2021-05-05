@@ -44,12 +44,15 @@ public class Goomba extends GameObject {
             if (collision.getHitDirection().x == 1) {
 
                 this.getPosition().getPos().x += GlobalVariables.defaultColliderSize;
+                Rigidbody rigidbody = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+                rigidbody.getVel().x = 2;
             } else {
 
                 this.getPosition().getPos().x -= GlobalVariables.defaultColliderSize;
+                Rigidbody rigidbody = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+                rigidbody.getVel().x = -2;
             }
 
-            this.getRigidbody().getVel().x *= -1;
 
         }
     }

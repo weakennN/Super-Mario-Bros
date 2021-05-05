@@ -137,7 +137,7 @@ public abstract class Level {
                 if (words[0].equals("Mario")) {
 
                     gameObject = new Mario(position, GlobalVariables.marioTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
@@ -146,17 +146,20 @@ public abstract class Level {
                 } else if (words[0].equals("Goomba")) {
 
                     gameObject = new Goomba(position, GlobalVariables.goombaTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
                 } else if (words[0].equals("ItemBox")) {
 
                     gameObject = new ItemBox(position, GlobalVariables.itemBoxTag);
+                    gameObject.addComponent(new Collider(GlobalVariables.itemBoxTag, position,
+                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+
                 } else if (words[0].equals("Mushroom")) {
 
                     gameObject = new Mushroom(position, GlobalVariables.mushroomTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
@@ -165,6 +168,7 @@ public abstract class Level {
                     gameObject = new BrickBox(position, GlobalVariables.brickBoxTag);
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                    
                 }
 
                 this.addGameObject(gameObject);

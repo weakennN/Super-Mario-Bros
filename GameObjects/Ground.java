@@ -14,10 +14,6 @@ public class Ground extends GameObject {
 
         super(position, tag);
 
-        /*super.getRigidbody().setGameObject(this);
-        super.getRigidbody().setCollider(new GroundCollider(position, 10, 1080));
-
-         */
     }
 
     @Override

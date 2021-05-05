@@ -1,6 +1,7 @@
 GameObjects
 Mario 300 400
-Mushroom 600 400
+ItemBox 500 350
+BrickBox 550 350
 end
 Ground
 0 500
@@ -24,3 +25,8 @@ Ground
 900 500
 end
 0 500 950 50
+Ground
+1000 500
+1050 500
+end
+1000 500 100 50

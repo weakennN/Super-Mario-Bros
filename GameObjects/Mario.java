@@ -27,11 +27,7 @@ public class Mario extends GameObject {
     public Mario(Position position, String tag) {
 
         super(position, tag);
-      /*  super.getRigidbody().setCollider(new MarioCollider(position, 53, 53));
-        super.getRigidbody().setGameObject(this);
-        super.getRigidbody().setGravity(true);
 
-       */
         this.powerUp = new PowerUp();
         this.bigMario = false;
         super.changeImage(Animator.marioIdleFacingRight);
@@ -42,6 +38,12 @@ public class Mario extends GameObject {
 
     @Override
     public void update() {
+
+        if (bigMario){
+
+            Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+            collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
+        }
 
         super.updateComponents();
 
@@ -63,10 +65,10 @@ public class Mario extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals("Mushroom")) {
+        if (other.getTag().equals(GlobalVariables.mushroomTag)) {
 
             this.marioAndMushroomCollision((Mushroom) other);
-        } else if (other.getTag().equals("Goomba")) {
+        } else if (other.getTag().equals(GlobalVariables.goombaTag)) {
 
             this.marioAndGoombaCollision((Goomba) other, collision);
         }
@@ -202,6 +204,9 @@ public class Mario extends GameObject {
 
         this.getPowerUp().powerUpMarioWithMushroom(this);
         GameEngine.gameObjects.remove(mushroom);
+        Collider.removeCollider((Collider) mushroom.getComponent(GlobalVariables.colliderTag));
+        mushroom.removeComponent(GlobalVariables.colliderTag);
+        mushroom.removeComponent(GlobalVariables.rigidbodyTag);
 
         mushroom = null;
 

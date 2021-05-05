@@ -109,7 +109,7 @@ public abstract class Level {
             Position position = new Position(posX, posY);
             Ground ground = new Ground(position, GlobalVariables.groundTag);
             ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
-            BrickBox brickBox = new BrickBox(new Position(posX, posY), GlobalVariables.brickBoxTag, sizeX, sizeY);
+
             this.addGameObject(ground);
         } catch (IOException e) {
             e.printStackTrace();
@@ -136,17 +136,22 @@ public abstract class Level {
 
                     gameObject = new Mario(position, GlobalVariables.marioTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
-                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 53, 53, gameObject));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
                     this.camera = new Camera((Mario) gameObject);
 
                 } else if (words[0].equals("Goomba")) {
 
                     gameObject = new Goomba(position, GlobalVariables.goombaTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
-                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 53, 53, gameObject));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
                 } else if (words[0].equals("ItemBox")) {
 
                     gameObject = new ItemBox(position, GlobalVariables.itemBoxTag);
+                } else if (words[0].equals("Mushroom")) {
+
+                    gameObject = new Mushroom(position, GlobalVariables.mushroomTag);
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
                 }
 
                 this.addGameObject(gameObject);

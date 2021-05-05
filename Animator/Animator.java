@@ -1,6 +1,7 @@
 package Animator;
 
 import Common.GlobalVariables;
+import Components.Collider;
 import Components.Rigidbody;
 import Designer.Designer;
 import GameObjects.Mario;
@@ -45,7 +46,7 @@ public class Animator {
             public void handle(long l) {
 
 
-                if (currentTime == 175) {
+                if (currentTime++ == 175) {
 
                     mario.initializeActions((Rigidbody) mario.getComponent(GlobalVariables.rigidbodyTag));
                     mario.changeImage(Animator.bigMarioFacingRight);
@@ -54,7 +55,6 @@ public class Animator {
                     return;
                 }
 
-                this.currentTime++;
             }
         };
 
@@ -67,8 +67,6 @@ public class Animator {
 
         Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
-
-        // RigidBody.rigidBodies.remove(mario.getRigidbody());
 
         animator = new AnimationTimer() {
 

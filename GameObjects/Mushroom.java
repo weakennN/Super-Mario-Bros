@@ -12,12 +12,6 @@ public class Mushroom extends GameObject {
     public Mushroom(Position position, String tag) {
         super(position, tag);
 
-    /*    super.getRigidbody().setCollider(new MushroomCollider(position, 75, 75));
-        super.getRigidbody().setGameObject(this);
-        super.getRigidbody().getVel().x = -2;
-
-     */
-        super.changeImage(Animator.superMushroom);
     }
 
     @Override
@@ -35,6 +29,10 @@ public class Mushroom extends GameObject {
     @Override
     public void start() {
 
+        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        rigidbody.getVel().x = -2;
+
+        super.changeImage(Animator.superMushroom);
     }
 
     @Override

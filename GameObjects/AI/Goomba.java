@@ -14,11 +14,6 @@ public class Goomba extends GameObject {
 
         super(position, tag);
 
-      /*  super.getRigidbody().setCollider(new GoombaCollider(position, 53, 53));
-        super.getRigidbody().setGameObject(this);
-        super.getRigidbody().getVel().x = -2;
-
-       */
         super.changeImage(Animator.goomba);
     }
 

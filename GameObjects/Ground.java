@@ -3,6 +3,7 @@ package GameObjects;
 import Animator.Animator;
 import CollisionInfo.Collision;
 import Common.GlobalVariables;
+import Components.Collider;
 import Components.Rigidbody;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
@@ -46,10 +47,10 @@ public class Ground extends GameObject {
 
             if (rigidbody != null) {
 
-                other.getPosition().getPos().y = this.getPosition().getPos().y - 50;
+                Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
+                other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
                 rigidbody.getAcc().y = 0;
                 rigidbody.getVel().y = 0;
-
 
                 if (other.getTag().equals(GlobalVariables.marioTag)){
 

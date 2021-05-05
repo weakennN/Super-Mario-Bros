@@ -1,6 +1,7 @@
 package Components;
 
 import CollisionInfo.Collision;
+import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -28,10 +29,11 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.collision = new Collision();
+        this.calculateCenter();
         colliders.add(this);
-
     }
 
+    //TODO: make a resize method that changes the size the center and the half size of a collider
     @Override
     public void update() {
 
@@ -112,6 +114,18 @@ public class Collider extends Component {
     public static void removeCollider(Collider collider) {
 
         colliders.remove(collider);
+    }
+
+    public void resize(double sizeX, double sizeY) {
+
+        this.size = new Vector2(sizeX, sizeY);
+        this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
+        this.calculateCenter();
+    }
+
+    public Vector2 getSize(){
+
+        return this.size;
     }
 
 

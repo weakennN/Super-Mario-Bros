@@ -10,4 +10,6 @@ public class GlobalVariables {
     public final static String colliderTag = "collider";
     public final static String groundTag = "ground";
     public final static String itemBoxTag = "itemBox";
+    public final static double defaultColliderSize = 50;
+    public final static double defaultBigMarioColliderSize = 85;
 }

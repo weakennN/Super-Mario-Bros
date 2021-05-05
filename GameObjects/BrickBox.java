@@ -50,7 +50,7 @@ public class BrickBox extends GameObject {
 
     }
 
-    public static void drawBox(double x, double y) {
+   /* public static void drawBox(double x, double y) {
 
         try {
             Designer.gc.drawImage(new Image(new FileInputStream(Animator.brickBox)), x, y);
@@ -59,4 +59,6 @@ public class BrickBox extends GameObject {
         }
 
     }
+
+    */
 }

@@ -100,6 +100,8 @@ public class Animator {
 
                 if (this.currentTime++ >= 175) {
 
+                    mario.changeImage(Animator.marioIdleFacingRight);
+                    mario.setImmune(false);
                     this.stop();
                 }
 

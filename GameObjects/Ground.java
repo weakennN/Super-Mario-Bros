@@ -43,7 +43,7 @@ public class Ground extends GameObject {
 
         Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
 
-        if (collision.getHitDirection().x == 1) {
+        if (collision.getHitDirection().y == -1) {
 
             if (rigidbody != null) {
 

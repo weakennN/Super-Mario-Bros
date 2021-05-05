@@ -1,5 +1,6 @@
 package Components;
 
+import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
 
@@ -13,8 +14,8 @@ public class Rigidbody extends Component {
 
     //   public static List<Rigidbody> rigidbodies = new ArrayList<>();
 
-    public Rigidbody(String tag, Position position) {
-        super(tag);
+    public Rigidbody(String tag, Position position, GameObject gameObject) {
+        super(tag, gameObject);
 
         this.pos = position.getPos();
         this.vel = new Vector2();

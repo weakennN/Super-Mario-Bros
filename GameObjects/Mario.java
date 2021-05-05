@@ -21,8 +21,9 @@ public class Mario extends GameObject {
     private boolean bigMario;
     private boolean isDead;
     private boolean jumping;
+    private boolean immune;
 
-    //TODO: crop the images.
+    // TODO: crop the images.
 
     public Mario(Position position, String tag) {
 
@@ -33,6 +34,7 @@ public class Mario extends GameObject {
         super.changeImage(Animator.marioIdleFacingRight);
         this.isDead = false;
         this.jumping = false;
+        this.immune = false;
 
     }
 
@@ -173,6 +175,11 @@ public class Mario extends GameObject {
         return (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
     }
 
+    public void setImmune(boolean b) {
+
+        this.immune = b;
+    }
+
     private void marioAndGoombaCollision(Goomba goomba, Collision collision) {
 
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
@@ -181,22 +188,26 @@ public class Mario extends GameObject {
             this.getRigidbody().getVel().x = 0;
             this.getRigidbody().getVel().y = 1;
 
-            if (!bigMario) {
+            if (!this.immune) {
 
-                MarioLivesListener.decreaseLives();
-                this.isDead = true;
-                this.changeImage(Animator.marioDead);
-                Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-                Collider.removeCollider(collider);
-                this.removeComponent(GlobalVariables.colliderTag);
-                Animator.marioDeadAnimation();
-            } else {
+                if (!bigMario) {
 
-                this.decreaseMario();
+                    MarioLivesListener.decreaseLives();
+                    this.isDead = true;
+                    this.changeImage(Animator.marioDead);
+                    Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+                    Collider.removeCollider(collider);
+                    this.removeComponent(GlobalVariables.colliderTag);
+                    Animator.marioDeadAnimation();
+                } else {
+
+                    this.immune = true;
+                    this.decreaseMario();
+                }
             }
 
 
-        } else if (collision.getHitDirection().y == -1) {
+        } else if (collision.getHitDirection().y == 1) {
 
           /*  GameEngine.gameObjects.remove(goomba);
 
@@ -231,11 +242,10 @@ public class Mario extends GameObject {
     private void decreaseMario() {
 
         this.bigMario = false;
+        Animator.marioDecreasingAnimation(this);
         Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
         collider.resize(GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize);
 
-        this.removeComponent(GlobalVariables.colliderTag);
-        Collider.removeCollider(collider);
     }
 
 }

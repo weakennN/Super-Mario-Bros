@@ -39,7 +39,7 @@ public class Coin extends GameObject {
 
             ScoreKeeper.coins++;
             //remove components
-            GameEngine.gameObjects.remove(this);
+            this.destroy();
         }
     }
 }

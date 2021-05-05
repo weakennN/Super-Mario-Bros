@@ -60,21 +60,21 @@ public class BrickBox extends GameObject {
             return;
         }
 
-        if (collision.getHitDirection().y == 1) {
+        if (collision.getHitDirection().y == -1) {
 
             Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
             other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
             rigidbody.getVel().y = 0;
-            
+
             if (other.getTag().equals(GlobalVariables.marioTag)) {
 
                 Mario mario = (Mario) other;
                 mario.setJumping(false);
 
             }
-        } else if (collision.getHitDirection().y == -1) {
+        } else if (collision.getHitDirection().y == 1) {
 
-            rigidbody.getVel().y = 0;
+            rigidbody.getVel().y = 1;
 
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 

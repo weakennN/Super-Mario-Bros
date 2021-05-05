@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 
 public class ItemBox extends GameObject {
 
+    GameObject gameObject;
+
     public ItemBox(Position position, String tag) {
         super(position, tag);
 
@@ -33,6 +35,7 @@ public class ItemBox extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
+
 
     }
 }

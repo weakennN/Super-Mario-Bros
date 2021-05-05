@@ -1,11 +1,9 @@
 package CollisionInfo;
 
-import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 
 public class Collision {
 
-    private GameObject hit;
     private Vector2 hitDirection;
 
 

@@ -1,7 +1,6 @@
 package Components;
 
 import CollisionInfo.Collision;
-import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -11,7 +10,6 @@ import java.util.List;
 
 public class Collider extends Component {
 
-    private GameObject gameObject;
     private Vector2 pos;
     private Vector2 size;
     private Vector2 center;
@@ -22,16 +20,14 @@ public class Collider extends Component {
 
     public Collider(String tag, Position position, double sizeX,
                     double sizeY, GameObject gameObject) {
-        super(tag);
+        super(tag, gameObject);
 
-        this.gameObject = gameObject;
         this.pos = position.getPos();
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.collision = new Collision();
         this.calculateCenter();
         colliders.add(this);
-        Designer.gc.strokeRect(this.pos.x,this.pos.y,sizeX,sizeY);
     }
 
     //TODO: make a resize method that changes the size the center and the half size of a collider
@@ -47,7 +43,7 @@ public class Collider extends Component {
 
             if (this.checkCollision(c)) {
 
-                this.gameObject.onCollisionEnter(c.gameObject, this.collision);
+                super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
             }
         }
 
@@ -65,7 +61,49 @@ public class Collider extends Component {
         double combinedHalfWidths = this.halfSize.x + collider.getHalfSize().x;
         double combinedHalfHeights = this.halfSize.y + collider.getHalfSize().y;
 
-        if (Math.abs(dx) <= combinedHalfWidths) {
+
+        if (Math.abs(dx) <= combinedHalfWidths && Math.abs(dy) <= combinedHalfHeights) {
+
+            double overLapX = combinedHalfWidths - Math.abs(dx);
+            double overLapY = combinedHalfHeights - Math.abs(dy);
+
+            if (overLapX >= overLapY) {
+
+                if (dy > 0) {
+
+                    // top
+                    this.collision.setHitDirection(new Vector2(0, -1));
+
+                } else if (dy < 0) {
+
+                    // bottom
+                    this.collision.setHitDirection(new Vector2(0, 1));
+
+                }
+
+            } else {
+
+                if (dx < 0) {
+
+                    //left
+                    this.collision.setHitDirection(new Vector2(-1, 0));
+
+                } else if (dx > 0) {
+
+                    //right
+                    this.collision.setHitDirection(new Vector2(1, 0));
+
+                }
+
+            }
+
+            return true;
+        }
+
+
+
+
+      /*  if (Math.abs(dx) <= combinedHalfWidths) {
 
             if (Math.abs(dy) <= combinedHalfHeights) {
 
@@ -93,6 +131,8 @@ public class Collider extends Component {
                 return true;
             }
         }
+
+       */
 
         return false;
     }
@@ -128,9 +168,6 @@ public class Collider extends Component {
 
         return this.size;
     }
-
-
-
 
   /*  public GameObject getGameObject() {
 

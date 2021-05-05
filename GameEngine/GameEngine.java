@@ -26,7 +26,7 @@ public class GameEngine {
         this.camera = this.world.getCurrentLevel().getCamera();
         SoundManager.playMarioBackgroundTheme();
         // only the background is getting translated by the gc fix this.
-        //TODO: fix the marioGrowingAnimation
+        // TODO: fix the marioGrowingAnimation
     }
 
     public void start() {
@@ -38,7 +38,7 @@ public class GameEngine {
             @Override
             public void handle(long l) {
 
-            //    Designer.gc.drawImage(Designer.background, 0, 0, 3392, 500);
+                Designer.gc.drawImage(world.getBackGround(), 0, 0, 3392, 500);
 
                 for (int i = 0; i < gameObjects.size(); i++) {
 

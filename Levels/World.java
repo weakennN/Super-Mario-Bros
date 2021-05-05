@@ -36,4 +36,9 @@ public abstract class World {
         this.currentLevel++;
     }
 
+    public Image getBackGround() {
+
+        return this.backGround;
+    }
+
 }

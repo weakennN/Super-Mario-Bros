@@ -5,6 +5,7 @@ import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
 import Designer.Camera;
+import GameEngine.GameEngine;
 import GameObjects.*;
 import GameObjects.AI.Goomba;
 import RenderEngine.RenderEngine;
@@ -111,6 +112,7 @@ public abstract class Level {
             ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
 
             this.addGameObject(ground);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,15 +137,16 @@ public abstract class Level {
                 if (words[0].equals("Mario")) {
 
                     gameObject = new Mario(position, GlobalVariables.marioTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+
                     this.camera = new Camera((Mario) gameObject);
 
                 } else if (words[0].equals("Goomba")) {
 
                     gameObject = new Goomba(position, GlobalVariables.goombaTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
@@ -153,7 +156,7 @@ public abstract class Level {
                 } else if (words[0].equals("Mushroom")) {
 
                     gameObject = new Mushroom(position, GlobalVariables.mushroomTag);
-                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position));
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position,gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
@@ -168,6 +171,7 @@ public abstract class Level {
 
                 word = bufferedReader.readLine();
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -39,6 +39,19 @@ public class Goomba extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
+        if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
+
+            if (collision.getHitDirection().x == 1) {
+
+                this.getPosition().getPos().x += GlobalVariables.defaultColliderSize;
+            } else {
+
+                this.getPosition().getPos().x -= GlobalVariables.defaultColliderSize;
+            }
+
+            this.getRigidbody().getVel().x *= -1;
+
+        }
     }
 
     public Rigidbody getRigidbody() {

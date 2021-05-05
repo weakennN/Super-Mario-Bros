@@ -1,11 +1,15 @@
 package Components;
 
+import GameObjects.GameObject;
+
 public abstract class Component {
 
+    private GameObject gameObject;
     private String tag;
 
-    protected Component(String tag) {
+    protected Component(String tag, GameObject gameObject) {
 
+        this.gameObject = gameObject;
         this.tag = tag;
     }
 
@@ -14,5 +18,10 @@ public abstract class Component {
     public String getTag() {
 
         return this.tag;
+    }
+
+    public GameObject getGameObject() {
+
+        return this.gameObject;
     }
 }

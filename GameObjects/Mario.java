@@ -39,10 +39,9 @@ public class Mario extends GameObject {
     @Override
     public void update() {
 
-        if (bigMario){
+        if (bigMario) {
 
-            Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-            collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
+            this.growMario();
         }
 
         super.updateComponents();
@@ -179,24 +178,35 @@ public class Mario extends GameObject {
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
                 || collision.getHitDirection().x < 0) {
 
-            MarioLivesListener.decreaseLives();
-            this.isDead = true;
-            this.changeImage(Animator.marioDead);
             this.getRigidbody().getVel().x = 0;
             this.getRigidbody().getVel().y = 1;
-            Animator.marioDeadAnimation();
-            Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-            Collider.removeCollider(collider);
-            this.removeComponent(GlobalVariables.colliderTag);
+
+            if (!bigMario) {
+
+                MarioLivesListener.decreaseLives();
+                this.isDead = true;
+                this.changeImage(Animator.marioDead);
+                Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+                Collider.removeCollider(collider);
+                this.removeComponent(GlobalVariables.colliderTag);
+                Animator.marioDeadAnimation();
+            } else {
+
+                this.decreaseMario();
+            }
+
 
         } else if (collision.getHitDirection().y == -1) {
 
-            GameEngine.gameObjects.remove(goomba);
+          /*  GameEngine.gameObjects.remove(goomba);
 
             Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
             goomba.removeComponent(GlobalVariables.colliderTag);
 
             goomba = null;
+
+           */
+            goomba.destroy();
         }
     }
 
@@ -211,4 +221,21 @@ public class Mario extends GameObject {
         mushroom = null;
 
     }
+
+    private void growMario() {
+
+        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+        collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
+    }
+
+    private void decreaseMario() {
+
+        this.bigMario = false;
+        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+        collider.resize(GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize);
+
+        this.removeComponent(GlobalVariables.colliderTag);
+        Collider.removeCollider(collider);
+    }
+
 }

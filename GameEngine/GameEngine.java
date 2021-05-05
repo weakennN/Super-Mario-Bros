@@ -38,7 +38,7 @@ public class GameEngine {
             @Override
             public void handle(long l) {
 
-                Designer.gc.drawImage(Designer.background, 0, 0, 3392, 500);
+            //    Designer.gc.drawImage(Designer.background, 0, 0, 3392, 500);
 
                 for (int i = 0; i < gameObjects.size(); i++) {
 

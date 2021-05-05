@@ -2,6 +2,9 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import Common.GlobalVariables;
+import Components.Collider;
+import Components.Rigidbody;
 import Designer.Designer;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
@@ -48,17 +51,37 @@ public class BrickBox extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-    }
+        //TODO : make it look cleaner you always copy the rigidbody cast and check
 
-   /* public static void drawBox(double x, double y) {
+        Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
 
-        try {
-            Designer.gc.drawImage(new Image(new FileInputStream(Animator.brickBox)), x, y);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (rigidbody == null) {
+
+            return;
+        }
+
+        if (collision.getHitDirection().y == 1) {
+
+            Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
+            other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
+            rigidbody.getVel().y = 0;
+            
+            if (other.getTag().equals(GlobalVariables.marioTag)) {
+
+                Mario mario = (Mario) other;
+                mario.setJumping(false);
+
+            }
+        } else if (collision.getHitDirection().y == -1) {
+
+            rigidbody.getVel().y = 0;
+
+        } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
+
+            rigidbody.getVel().x = 0;
         }
 
     }
 
-    */
+
 }

@@ -1,7 +1,10 @@
 package GameObjects;
 
 import CollisionInfo.Collision;
+import Common.GlobalVariables;
+import Components.Collider;
 import Components.Component;
+import GameEngine.GameEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
 
@@ -71,7 +74,7 @@ public abstract class GameObject {
 
                 c.update();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -98,5 +101,13 @@ public abstract class GameObject {
     public void removeComponent(String componentTag) {
 
         this.components.removeIf(c -> c.getTag().equals(componentTag));
+    }
+
+    public void destroy() {
+
+        GameEngine.gameObjects.remove(this);
+        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+        Collider.removeCollider(collider);
+        this.components.clear();
     }
 }

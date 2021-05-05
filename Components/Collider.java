@@ -31,6 +31,7 @@ public class Collider extends Component {
         this.collision = new Collision();
         this.calculateCenter();
         colliders.add(this);
+        Designer.gc.strokeRect(this.pos.x,this.pos.y,sizeX,sizeY);
     }
 
     //TODO: make a resize method that changes the size the center and the half size of a collider
@@ -123,10 +124,12 @@ public class Collider extends Component {
         this.calculateCenter();
     }
 
-    public Vector2 getSize(){
+    public Vector2 getSize() {
 
         return this.size;
     }
+
+
 
 
   /*  public GameObject getGameObject() {

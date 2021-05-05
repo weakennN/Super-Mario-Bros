@@ -30,6 +30,7 @@ public class Animator {
     public final static String ground = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\ground.png";
     public final static String coin = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\coin.gif";
     public final static String itemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\itemBox.gif";
+    public final static String emptyItemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\emptyItemBox.png";
 
     public static void marioGrowingAnimation(Mario mario) {
 
@@ -80,6 +81,26 @@ public class Animator {
                     // restart mario at default position
                     this.stop();
                     return;
+                }
+
+            }
+        };
+
+        animator.start();
+    }
+
+    public static void marioDecreasingAnimation(Mario mario) {
+
+        animator = new AnimationTimer() {
+
+            private int currentTime = 0;
+
+            @Override
+            public void handle(long l) {
+
+                if (this.currentTime++ >= 175) {
+
+                    this.stop();
                 }
 
             }

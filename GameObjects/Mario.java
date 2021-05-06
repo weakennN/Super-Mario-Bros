@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 
 public class Mario extends GameObject {
 
-    private PowerUp powerUp;
+    private MarioManager marioManager;
     private boolean bigMario;
     private boolean isDead;
     private boolean jumping;
@@ -29,13 +29,12 @@ public class Mario extends GameObject {
 
         super(position, tag);
 
-        this.powerUp = new PowerUp();
         this.bigMario = false;
         super.changeImage(Animator.marioIdleFacingRight);
         this.isDead = false;
         this.jumping = false;
         this.immune = false;
-
+        this.marioManager = new MarioManager(this);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class Mario extends GameObject {
 
         if (bigMario) {
 
-            this.growMario();
+            this.marioManager.growMario();
         }
 
         super.updateComponents();
@@ -59,8 +58,8 @@ public class Mario extends GameObject {
     @Override
     public void start() {
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
-        this.initializeActions(rigidbody);
+        // Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        this.initializeActions(this.getRigidbody());
     }
 
     @Override
@@ -76,9 +75,9 @@ public class Mario extends GameObject {
 
     }
 
-    public PowerUp getPowerUp() {
+    public MarioManager getMarioManager() {
 
-        return this.powerUp;
+        return this.marioManager;
     }
 
     public void setDead(boolean dead) {
@@ -202,7 +201,7 @@ public class Mario extends GameObject {
                 } else {
 
                     this.immune = true;
-                    this.decreaseMario();
+                    this.marioManager.decreaseMario();
                 }
             }
 
@@ -215,7 +214,7 @@ public class Mario extends GameObject {
 
     private void marioAndMushroomCollision(Mushroom mushroom) {
 
-        this.getPowerUp().powerUpMarioWithMushroom(this);
+        this.getMarioManager().powerUpMarioWithMushroom(this);
         GameEngine.gameObjects.remove(mushroom);
         Collider.removeCollider((Collider) mushroom.getComponent(GlobalVariables.colliderTag));
         mushroom.removeComponent(GlobalVariables.colliderTag);
@@ -225,19 +224,5 @@ public class Mario extends GameObject {
 
     }
 
-    private void growMario() {
-
-        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-        collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
-    }
-
-    private void decreaseMario() {
-
-        this.bigMario = false;
-        Animator.marioDecreasingAnimation(this);
-        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-        collider.resize(GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize);
-
-    }
 
 }

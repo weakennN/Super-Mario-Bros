@@ -12,7 +12,7 @@ public class RenderEngine {
 
     public static void render(Image image, Position position) {
 
-        // TODO: add a condition t check the position and see if its close to Mario so to be rendered
+        // TODO: add a condition to check the position and see if its close to Mario so to be rendered
 
         Vector2 pos = position.getPos();
 

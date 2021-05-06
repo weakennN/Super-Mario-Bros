@@ -1,6 +1,7 @@
 package Components;
 
 import CollisionInfo.Collision;
+import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;

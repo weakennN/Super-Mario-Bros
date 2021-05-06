@@ -114,6 +114,7 @@ public abstract class Level {
             this.addGameObject(ground);
 
         } catch (IOException e) {
+
             e.printStackTrace();
         }
 
@@ -168,7 +169,7 @@ public abstract class Level {
                     gameObject = new BrickBox(position, GlobalVariables.brickBoxTag);
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
-                    
+
                 }
 
                 this.addGameObject(gameObject);

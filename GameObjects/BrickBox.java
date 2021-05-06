@@ -5,23 +5,13 @@ import CollisionInfo.Collision;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
-import Designer.Designer;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class BrickBox extends GameObject {
 
     public BrickBox(Position position, String tag, double sizeX, double sizeY) {
         super(position, tag);
-
-      /*  super.getRigidbody().setCollider(new BrickBoxCollider(position, sizeX, sizeY));
-        super.getRigidbody().setGameObject(this);
-
-       */
-
 
     }
 
@@ -51,8 +41,6 @@ public class BrickBox extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        //TODO : make it look cleaner you always copy the rigidbody cast and check
-
         Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
 
         if (rigidbody == null) {
@@ -65,6 +53,7 @@ public class BrickBox extends GameObject {
             Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
             other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
             rigidbody.getVel().y = 0;
+            rigidbody.getAcc().y = 0;
 
             if (other.getTag().equals(GlobalVariables.marioTag)) {
 
@@ -78,7 +67,19 @@ public class BrickBox extends GameObject {
 
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 
+            if (collision.getHitDirection().x == 1) {
+
+                other.getPosition().getPos().x -= 10;
+            } /*else {
+
+                other.getPosition().getPos().x += 10;
+            }
+            */
+
+            // TODO: fix this and fix the reposition of the game object after he hits the top of the brick box collider
+
             rigidbody.getVel().x = 0;
+
         }
 
     }

@@ -12,8 +12,6 @@ public class Rigidbody extends Component {
     private Vector2 gravity;
     private boolean applyGravity;
 
-    //   public static List<Rigidbody> rigidbodies = new ArrayList<>();
-
     public Rigidbody(String tag, Position position, GameObject gameObject) {
         super(tag, gameObject);
 
@@ -22,8 +20,6 @@ public class Rigidbody extends Component {
         this.acc = new Vector2();
         this.gravity = new Vector2(0, 0.001);
         this.applyGravity = true;
-
-        // rigidbodies.add(this);
 
     }
 
@@ -34,10 +30,12 @@ public class Rigidbody extends Component {
     }
 
     public Vector2 getVel() {
+
         return vel;
     }
 
     public Vector2 getAcc() {
+
         return acc;
     }
 

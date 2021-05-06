@@ -153,7 +153,18 @@ public abstract class Level {
 
                 } else if (words[0].equals("ItemBox")) {
 
-                    gameObject = new ItemBox(position, GlobalVariables.itemBoxTag);
+                    GameObject itemBoxObject = null;
+                    Position position1 = new Position(position.getPos().x, position.getPos().y - 50);
+                    if (words[3].equals("Mushroom")) {
+
+                        itemBoxObject = new Mushroom(position1, GlobalVariables.mushroomTag);
+                    } else if (words[3].equals("Coin")) {
+
+                        itemBoxObject = new Coin(position1, GlobalVariables.coinTag);
+
+                    }
+
+                    gameObject = new ItemBox(position, GlobalVariables.itemBoxTag, itemBoxObject);
                     gameObject.addComponent(new Collider(GlobalVariables.itemBoxTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 

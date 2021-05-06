@@ -4,10 +4,21 @@ import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
 import Designer.Designer;
+import GameObjects.GameObject;
 import GameObjects.Mario;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Animator {
 
@@ -109,5 +120,40 @@ public class Animator {
         };
 
         animator.start();
+    }
+
+    public static void marioGettingCoinFromItemBoxAnimation(GameObject gameObject) {
+
+        double x = gameObject.getPosition().getPos().x;
+        double y = gameObject.getPosition().getPos().y;
+
+        double[] arr = new double[2];
+        arr[0] = x;
+        arr[1] = y - 50;
+
+        animator = new AnimationTimer() {
+
+            private int currentTime = 0;
+
+            @Override
+            public void handle(long l) {
+
+                try {
+                    Designer.gc.drawImage(new Image(new FileInputStream(Animator.coin)), arr[0], arr[1]--);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+                if (this.currentTime++ == 110) {
+
+                    this.stop();
+                }
+            }
+        };
+
+
+        animator.start();
+
     }
 }

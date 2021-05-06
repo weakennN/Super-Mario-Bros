@@ -13,6 +13,9 @@ public class MarioManager {
         this.mario = mario;
     }
 
+    // TODO: create changeImage method here so it change mario image
+    // TODO: move the mario initializeActions method here
+
     public void powerUpMarioWithMushroom(Mario mario) {
 
         mario.getRigidbody().getVel().x = 0;

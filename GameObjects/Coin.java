@@ -2,10 +2,7 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
-import Common.GlobalVariables;
-import GameEngine.GameEngine;
 import Rigidbody.Position;
-import Score.ScoreKeeper;
 import javafx.scene.image.Image;
 
 public class Coin extends GameObject {
@@ -35,11 +32,13 @@ public class Coin extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals(GlobalVariables.marioTag)) {
+       /* if (other.getTag().equals(GlobalVariables.marioTag)) {
 
             ScoreKeeper.coins++;
             // remove components
             this.destroy();
         }
+
+        */
     }
 }

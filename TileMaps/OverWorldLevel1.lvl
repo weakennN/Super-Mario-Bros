@@ -1,8 +1,6 @@
 GameObjects
 Mario 300 400
-BrickBox 500 350
-BrickBox 550 350
-BrickBox 550 300
+BrickBox 400 350
 end
 Ground
 0 500

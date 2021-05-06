@@ -59,7 +59,7 @@ public class BrickBox extends GameObject {
 
                 Mario mario = (Mario) other;
                 mario.setJumping(false);
-
+                mario.getMarioManager().setMarioAnimationAfterJump();
             }
         } else if (collision.getHitDirection().y == 1) {
 
@@ -72,6 +72,7 @@ public class BrickBox extends GameObject {
             if (collision.getHitDirection().x == 1) {
 
                 other.getPosition().getPos().x = this.getPosition().getPos().x - collider.getSize().x;
+
             } else {
 
                // other.getPosition().getPos().x += 10;

@@ -87,76 +87,7 @@ public class Mario extends GameObject {
 
     public void initializeActions(Rigidbody rigidbody) {
 
-        Designer.scene.setOnKeyPressed(e -> {
-
-            if (e.getCode() == KeyCode.D) {
-
-                rigidbody.getVel().x = 3.5;
-                if (!MarioDir.marioRunningRight) {
-
-                    if (!bigMario) {
-                        super.changeImage(Animator.marioRunningRight);
-
-                    } else {
-                        super.changeImage(Animator.bigMarioRunningRight);
-
-                    }
-
-                    MarioDir.marioRunningRight = true;
-                }
-
-            } else if (e.getCode() == KeyCode.A) {
-
-                rigidbody.getVel().x = -3.5;
-                if (!MarioDir.marioRunningLeft) {
-
-                    if (!bigMario) {
-                        super.changeImage(Animator.marioRunningLeft);
-
-                    } else {
-                        super.changeImage(Animator.bigMarioRunningLeft);
-
-                    }
-
-                    MarioDir.marioRunningLeft = true;
-                }
-
-            } else if (e.getCode() == KeyCode.W) {
-
-                if (!this.jumping) {
-                    rigidbody.getVel().y = -3.8;
-                    SoundManager.playSound(Sounds.marioJumpingSound);
-                }
-                this.jumping = true;
-            }
-        });
-
-        Designer.scene.setOnKeyReleased(e -> {
-
-            if (e.getCode() == KeyCode.A) {
-
-                rigidbody.getVel().x = 0;
-                if (!bigMario) {
-                    super.changeImage(Animator.marioIdleFacingLeft);
-                } else if (bigMario) {
-                    super.changeImage(Animator.bigMarioFacingLeft);
-                }
-                MarioDir.marioRunningLeft = false;
-                rigidbody.getAcc().x = 0;
-                rigidbody.getAcc().y = 0;
-            } else if (e.getCode() == KeyCode.D) {
-
-                rigidbody.getVel().x = 0;
-                if (!bigMario) {
-                    super.changeImage(Animator.marioIdleFacingRight);
-                } else if (bigMario) {
-                    super.changeImage(Animator.bigMarioFacingRight);
-                }
-                MarioDir.marioRunningRight = false;
-                rigidbody.getAcc().x = 0;
-                rigidbody.getAcc().y = 0;
-            }
-        });
+        this.marioManager.initializeActions(rigidbody);
     }
 
     public void setBigMario(boolean b) {
@@ -177,6 +108,14 @@ public class Mario extends GameObject {
     public void setImmune(boolean b) {
 
         this.immune = b;
+    }
+
+    public boolean isBigMario() {
+        return bigMario;
+    }
+
+    public boolean isJumping() {
+        return jumping;
     }
 
     private void marioAndGoombaCollision(Goomba goomba, Collision collision) {
@@ -224,5 +163,13 @@ public class Mario extends GameObject {
 
     }
 
+    @Override
+    public void changeImage(String image){
+
+        if (!this.isJumping()){
+
+            super.changeImage(image);
+        }
+    }
 
 }

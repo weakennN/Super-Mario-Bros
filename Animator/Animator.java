@@ -42,6 +42,8 @@ public class Animator {
     public final static String coin = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\coin.gif";
     public final static String itemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\itemBox.gif";
     public final static String emptyItemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\emptyItemBox.png";
+    public final static String marioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\marioJumpingRight.png";
+    public final static String marioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\marioJumpingLeft.png";
 
     public static void marioGrowingAnimation(Mario mario) {
 

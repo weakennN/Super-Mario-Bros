@@ -5,6 +5,7 @@ import CollisionInfo.Collision;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
+import Helpers.MarioDir;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
 
@@ -47,11 +48,12 @@ public class Ground extends GameObject {
                 other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
                 rigidbody.getAcc().y = 0;
                 rigidbody.getVel().y = 0;
-
-                if (other.getTag().equals(GlobalVariables.marioTag)){
+                // TODO: make this a method
+                if (other.getTag().equals(GlobalVariables.marioTag)) {
 
                     Mario mario = (Mario) other;
                     mario.setJumping(false);
+                   mario.getMarioManager().setMarioAnimationAfterJump();
                 }
             }
         }

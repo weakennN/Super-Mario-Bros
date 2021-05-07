@@ -53,7 +53,6 @@ public class Goomba extends GameObject {
                 rigidbody.getVel().x = -2;
             }
 
-
         }
     }
 

@@ -24,6 +24,7 @@ public class MarioManager {
     }
 
     // TODO: create changeImage method here so it change mario image
+    // TODO: bring back the boolean keyOnPressed and KeyReleased arrays
 
     public void powerUpMarioWithMushroom(Mario mario) {
 
@@ -75,7 +76,6 @@ public class MarioManager {
 
             } else if (e.getCode() == KeyCode.A) {
 
-
                 rigidbody.getVel().x = -3.5;
                 if (!MarioDir.marioRunningLeft) {
 
@@ -103,6 +103,7 @@ public class MarioManager {
                     } else {
 
                         mario.changeImage(Animator.marioJumpingLeft);
+                        MarioDir.marioJumpingLeft = true;
                     }
                 }
 
@@ -147,10 +148,22 @@ public class MarioManager {
 
             if (this.mario.isBigMario()) {
 
-                this.mario.changeImage(Animator.bigMarioFacingRight);
-            } else {
+                if (mario.getRigidbody().getVel().x > 0) {
 
-                this.mario.changeImage(Animator.marioIdleFacingRight);
+                    this.mario.changeImage(Animator.bigMarioRunningRight);
+                } else {
+
+                    this.mario.changeImage(Animator.bigMarioFacingRight);
+                }
+            } else {
+// TODO: make a method for these if checks because there is a lot of copy paste
+                if (mario.getRigidbody().getVel().x > 0) {
+
+                    this.mario.changeImage(Animator.marioRunningRight);
+                } else {
+
+                    this.mario.changeImage(Animator.marioIdleFacingRight);
+                }
             }
 
             MarioDir.marioJumpingRight = false;
@@ -158,10 +171,24 @@ public class MarioManager {
 
             if (this.mario.isBigMario()) {
 
-                this.mario.changeImage(Animator.bigMarioFacingLeft);
+                if (mario.getRigidbody().getVel().x < 0) {
+
+                    this.mario.changeImage(Animator.bigMarioRunningLeft);
+                } else {
+
+                    this.mario.changeImage(Animator.bigMarioFacingLeft);
+                }
+
             } else {
 
-                this.mario.changeImage(Animator.marioIdleFacingLeft);
+                if (mario.getRigidbody().getVel().x < 0) {
+
+                    this.mario.changeImage(Animator.marioRunningLeft);
+                } else {
+
+                    this.mario.changeImage(Animator.marioIdleFacingLeft);
+                }
+
             }
 
             MarioDir.marioJumpingLeft = false;

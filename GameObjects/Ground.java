@@ -53,7 +53,7 @@ public class Ground extends GameObject {
 
                     Mario mario = (Mario) other;
                     mario.setJumping(false);
-                   mario.getMarioManager().setMarioAnimationAfterJump();
+                    mario.getMarioManager().setMarioAnimationAfterJump();
                 }
             }
         }

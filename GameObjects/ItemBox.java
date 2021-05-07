@@ -10,8 +10,6 @@ import Rigidbody.Position;
 import Score.ScoreKeeper;
 import javafx.scene.image.Image;
 
-import java.io.FileNotFoundException;
-
 public class ItemBox extends GameObject {
 
     GameObject gameObject;

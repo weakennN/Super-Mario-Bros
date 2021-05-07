@@ -5,15 +5,10 @@ import CollisionInfo.Collision;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
-import Designer.Designer;
 import GameEngine.GameEngine;
 import GameObjects.AI.Goomba;
-import Helpers.MarioDir;
 import Rigidbody.Position;
-import SoundEffects.SoundManager;
-import SoundEffects.Sounds;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 
 public class Mario extends GameObject {
 
@@ -22,6 +17,7 @@ public class Mario extends GameObject {
     private boolean isDead;
     private boolean jumping;
     private boolean immune;
+    private boolean onGround;
 
     // TODO: crop the images.
 
@@ -34,6 +30,7 @@ public class Mario extends GameObject {
         this.isDead = false;
         this.jumping = false;
         this.immune = false;
+        this.onGround = false;
         this.marioManager = new MarioManager(this);
     }
 
@@ -164,12 +161,17 @@ public class Mario extends GameObject {
     }
 
     @Override
-    public void changeImage(String image){
+    public void changeImage(String image) {
 
-        if (!this.isJumping()){
+        if (!this.isJumping()) {
 
             super.changeImage(image);
         }
+    }
+
+    public void setOnGround(boolean b) {
+
+        this.onGround = b;
     }
 
 }

@@ -2,6 +2,7 @@ package RenderEngine;
 
 import Designer.Designer;
 import Rigidbody.Position;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
@@ -27,5 +28,30 @@ public class RenderEngine {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void showScore(int score, int coins, int world,
+                                 int level, int time, int lives) {
+
+        Designer.score.setText(score + "");
+        Designer.score.setLayoutX(Designer.scoreLabel.getLayoutX() + (Designer.scoreLabel.getFont().getSize()));
+        Designer.score.setLayoutY(50);
+
+        Designer.coins.setText(coins + "");
+        Designer.coins.setLayoutX(Designer.coinsLabel.getLayoutX() + (Designer.coinsLabel.getFont().getSize()));
+        Designer.coins.setLayoutY(50);
+
+        Designer.world.setText(world + "-" + level);
+        Designer.world.setLayoutX(Designer.worldLabel.getLayoutX() + (Designer.worldLabel.getFont().getSize()));
+        Designer.world.setLayoutY(50);
+
+        Designer.time.setText(time + "");
+        Designer.time.setLayoutX(Designer.timeLabel.getLayoutX() + (Designer.timeLabel.getFont().getSize()));
+        Designer.time.setLayoutY(50);
+
+        Designer.lives.setText(lives + "");
+        Designer.lives.setLayoutX(Designer.livesLabel.getLayoutX() + (Designer.livesLabel.getFont().getSize()));
+        Designer.lives.setLayoutY(50);
+
     }
 }

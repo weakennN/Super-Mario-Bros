@@ -5,6 +5,7 @@ import GameObjects.GameObject;
 import Levels.Overworld;
 import Levels.World;
 import RenderEngine.RenderEngine;
+import Score.ScoreKeeper;
 import SoundEffects.SoundManager;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -38,6 +39,7 @@ public class GameEngine {
             @Override
             public void handle(long l) {
 
+                ScoreKeeper.updateScore();
                 Designer.gc.drawImage(world.getBackGround(), 0, 0, 3392, 500);
 
                 for (int i = 0; i < gameObjects.size(); i++) {

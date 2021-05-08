@@ -2,6 +2,7 @@ package GameObjects.AI;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import GameObjects.GameObject;
@@ -39,20 +40,9 @@ public class Goomba extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
+        if (other.getTag().equals(GlobalVariables.brickBoxTag)) {// TODO: later on add for more game objects to collide with
 
-            if (collision.getHitDirection().x == 1) {
-
-                this.getPosition().getPos().x += GlobalVariables.defaultColliderSize;
-                Rigidbody rigidbody = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
-                rigidbody.getVel().x = 2;
-            } else {
-
-                this.getPosition().getPos().x -= GlobalVariables.defaultColliderSize;
-                Rigidbody rigidbody = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
-                rigidbody.getVel().x = -2;
-            }
-
+            Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
         }
     }
 

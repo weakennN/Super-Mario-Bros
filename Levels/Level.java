@@ -8,6 +8,7 @@ import Designer.Camera;
 import GameEngine.GameEngine;
 import GameObjects.*;
 import GameObjects.AI.Goomba;
+import GameObjects.AI.Koopa;
 import RenderEngine.RenderEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
@@ -181,6 +182,17 @@ public abstract class Level {
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
+                } else if (words[0].equals("Pipe")) {
+
+                    gameObject = new Pipe(position, GlobalVariables.pipeTag);
+                    // TODO: make sure to add width and height in the text file where you create the level
+                    //gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,,,gameObject));
+                } else if (words[0].equals("Koopa")) {
+
+                    gameObject = new Koopa(position, GlobalVariables.koopaTag);
+                    gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
+                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
                 }
 
                 this.addGameObject(gameObject);

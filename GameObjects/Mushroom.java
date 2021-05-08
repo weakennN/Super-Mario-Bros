@@ -2,6 +2,7 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import Rigidbody.Position;
@@ -38,6 +39,10 @@ public class Mushroom extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
+        if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
+
+            Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
+        }
     }
 
     public Rigidbody getRigidbody() {

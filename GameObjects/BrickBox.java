@@ -2,6 +2,7 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
@@ -10,14 +11,9 @@ import javafx.scene.image.Image;
 
 public class BrickBox extends GameObject {
 
-    public BrickBox(Position position, String tag, double sizeX, double sizeY) {
-        super(position, tag);
-
-    }
-
     public BrickBox(Position position, String tag) {
 
-        this(position, tag, 50, 50);
+        super(position, tag);
     }
 
     @Override
@@ -50,20 +46,22 @@ public class BrickBox extends GameObject {
 
         if (collision.getHitDirection().y == -1) {
 
-            Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
-            other.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
-            rigidbody.getVel().y = 0;
-            rigidbody.getAcc().y = 0;
+            Collisions.defaultOnGroundCollision(this, other, collision);
+
+        } else if (collision.getHitDirection().y == 1) {
+
+            rigidbody.getVel().y = 1;
 
             if (other.getTag().equals(GlobalVariables.marioTag)) {
 
                 Mario mario = (Mario) other;
-                mario.setJumping(false);
-                mario.getMarioManager().setMarioAnimationAfterJump();
-            }
-        } else if (collision.getHitDirection().y == 1) {
 
-            rigidbody.getVel().y = 1;
+                if (mario.isBigMario()) {
+
+                    this.destroy();
+                }
+
+            }
 
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 
@@ -73,9 +71,20 @@ public class BrickBox extends GameObject {
 
                 other.getPosition().getPos().x = this.getPosition().getPos().x - collider.getSize().x;
 
+             /*  if (other.getTag().equals(GlobalVariables.marioTag)){
+
+                    Mario mario = (Mario) other;
+                    if (mario.isOnGround()){
+
+                        mario.changeImage(Animator.marioIdleFacingRight);
+                    }
+                }
+
+              */
+
             } else {
 
-               // other.getPosition().getPos().x += 10;
+                // other.getPosition().getPos().x += 10;
 
                 other.getPosition().getPos().x = this.getPosition().getPos().x + collider.getSize().x;
             }
@@ -83,10 +92,6 @@ public class BrickBox extends GameObject {
 
             // TODO: fix this and fix the reposition of the game object after he hits the top of the brick box collider
             // TODO: Fix this method
-            
-            if (other.getTag().equals(GlobalVariables.marioTag)) {
-                rigidbody.getVel().x = 0;
-            }
 
         }
 

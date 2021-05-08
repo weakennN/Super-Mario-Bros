@@ -1,7 +1,6 @@
 package Animator;
 
 import Common.GlobalVariables;
-import Components.Collider;
 import Components.Rigidbody;
 import Designer.Designer;
 import GameObjects.GameObject;
@@ -9,13 +8,7 @@ import GameObjects.Mario;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -44,6 +37,11 @@ public class Animator {
     public final static String emptyItemBox = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\emptyItemBox.png";
     public final static String marioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\marioJumpingRight.png";
     public final static String marioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\marioJumpingLeft.png";
+    public final static String pipe = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\pipe.png";
+    public final static String bigMarioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\bigMarioJumpingRight.png";
+    public final static String bigMarioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\bigMarioJumpingLeft.png";
+    public final static String koopaFacingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\koopaFacingRight.png";
+    public final static String koopaFacingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\koopaFacingLeft.png";
 
     public static void marioGrowingAnimation(Mario mario) {
 

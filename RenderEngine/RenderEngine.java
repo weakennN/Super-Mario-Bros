@@ -54,4 +54,9 @@ public class RenderEngine {
         Designer.lives.setLayoutY(50);
 
     }
+
+    public static void renderBackGround(Image image, double sizeX, double sizeY) {
+
+        Designer.gc.drawImage(image, 0, 0, sizeX, sizeY);
+    }
 }

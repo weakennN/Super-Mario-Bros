@@ -1,7 +1,6 @@
 GameObjects
 Mario 300 350
-Goomba 850 450
-BrickBox 2000 400
+Cloud 300 200
 end
 Ground
 0 930

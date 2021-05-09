@@ -22,8 +22,6 @@ public class Mario extends GameObject {
     private boolean fireMario;
     private boolean isFalling;
 
-    // TODO: crop the images.
-
     public Mario(Position position, String tag) {
 
         super(position, tag);
@@ -35,7 +33,7 @@ public class Mario extends GameObject {
         this.immune = false;
         this.onGround = false;
         this.isFalling = false;
-        this.fireMario = true;
+        this.fireMario = false;
         this.marioManager = new MarioManager(this);
     }
 
@@ -145,20 +143,18 @@ public class Mario extends GameObject {
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
                 || collision.getHitDirection().x < 0) {
 
-            this.getRigidbody().getVel().x = 0;
-            this.getRigidbody().getVel().y = 1;
-
             if (!this.immune) {
 
                 if (!bigMario) {
 
+                    this.getRigidbody().getVel().x = 0;
+                    this.getRigidbody().getVel().y = 1;
                     ScoreKeeper.decreaseLives();
-                    this.isDead = true;
                     this.changeImage(Animator.marioDead);
                     Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
                     Collider.removeCollider(collider);
                     this.removeComponent(GlobalVariables.colliderTag);
-                    Animator.marioDeadAnimation();
+                    Animator.marioDeadAnimation(this.marioManager);
 
                 } else {
 

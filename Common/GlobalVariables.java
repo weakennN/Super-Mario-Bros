@@ -14,6 +14,8 @@ public class GlobalVariables {
     public final static String pipeTag = "pipe";
     public final static String koopaTag = "koopa";
     public final static String explosiveTag = "explosive";
+    public final static String fireFlowerTag = "fireFlower";
+    public final static String cloudTag = "cloud";
     public final static double defaultColliderSize = 50;
     public final static double defaultBigMarioColliderSize = 85;
 }

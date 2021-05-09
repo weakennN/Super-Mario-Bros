@@ -170,6 +170,10 @@ public abstract class Level {
 
                         itemBoxObject = new Coin(position1, GlobalVariables.coinTag);
 
+                    } else if (words[3].equals("FireFlower")) {
+
+                        Position position2 = new Position(position.getPos().x, position.getPos().y - 50);
+                        itemBoxObject = new Flower(position2, GlobalVariables.fireFlowerTag);
                     }
 
                     gameObject = new ItemBox(position, GlobalVariables.itemBoxTag, itemBoxObject);
@@ -200,6 +204,9 @@ public abstract class Level {
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                } else if (words[0].equals("Cloud")) {
+
+                    gameObject = new Cloud(position, GlobalVariables.cloudTag);
                 }
 
                 this.addGameObject(gameObject);

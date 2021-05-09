@@ -44,6 +44,16 @@ public class MarioManager {
         collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
     }
 
+    public Mario getMario() {
+
+        return this.mario;
+    }
+
+    public void setMarioDead(boolean b){
+
+        this.mario.setDead(b);
+    }
+
     public void decreaseMario() {
 
         mario.setBigMario(false);

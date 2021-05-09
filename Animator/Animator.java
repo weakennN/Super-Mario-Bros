@@ -5,6 +5,7 @@ import Components.Rigidbody;
 import Designer.Designer;
 import GameObjects.GameObject;
 import GameObjects.Mario;
+import GameObjects.MarioManager;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
@@ -44,6 +45,8 @@ public class Animator {
     public final static String koopaFacingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\koopaFacingLeft.png";
     public final static String flower = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\flower.png";
     public final static String explosive = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\explosive.png";
+    public final static String castle = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\castle.png";
+    public final static String cloud = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\cloud.png";
 
     public static void marioGrowingAnimation(Mario mario) {
 
@@ -75,7 +78,7 @@ public class Animator {
         animator.start();
     }
 
-    public static void marioDeadAnimation() {
+    public static void marioDeadAnimation(MarioManager marioManager) {
 
         SoundManager.playSound(Sounds.marioLosesLifeSound);
 
@@ -92,6 +95,7 @@ public class Animator {
                 if (currentTime++ == 300) {
 
                     // restart mario at default position
+                    marioManager.setMarioDead(true);
                     this.stop();
                     return;
                 }

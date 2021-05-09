@@ -47,7 +47,15 @@ public class Explosive extends GameObject {
                 Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
                 this.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
                 Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
-                rigidbody.getVel().x = 3;
+
+                if (rigidbody.getVel().x >= 0) {
+
+                    rigidbody.getVel().x = 3.5;
+                } else {
+
+                    rigidbody.getVel().x = -3.5;
+                }
+
                 rigidbody.getVel().y = -3.5;
             }
 

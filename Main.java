@@ -18,6 +18,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
         engine.start();
+
     }
 
     public static void main(String[] args) {

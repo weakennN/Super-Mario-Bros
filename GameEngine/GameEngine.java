@@ -1,6 +1,6 @@
 package GameEngine;
 
-import Designer.Designer;
+import Components.Collider;
 import GameObjects.GameObject;
 import GameObjects.Mario;
 import Levels.Overworld;
@@ -29,7 +29,7 @@ public class GameEngine {
         this.camera = this.world.getCurrentLevel().getCamera();
         this.mario = this.world.getCurrentLevel().getMario();
         SoundManager.playMarioBackgroundTheme();
-        // TODO: fix the marioGrowingAnimation
+
     }
 
     public void start() {
@@ -41,20 +41,21 @@ public class GameEngine {
             @Override
             public void handle(long l) {
 
+                RenderEngine.renderBackGround(world.getBackGround().getImage(),
+                        world.getBackGround().getSizeX(), world.getBackGround().getSizeY());
                 ScoreKeeper.updateScore();
-                Designer.gc.drawImage(world.getBackGround(), 0, 0, 5760, 1080);
+
 
                 for (int i = 0; i < gameObjects.size(); i++) {
 
                     GameObject gameObject = gameObjects.get(i);
-
                     camera.follow();
                     gameObject.update();
                     Image gameObjectImage = gameObject.render();
                     RenderEngine.render(gameObjectImage, gameObject.getPosition());
                 }
 
-                if (mario.isDead()) {
+                if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 
                     // restart
                     restartLevel();
@@ -80,16 +81,21 @@ public class GameEngine {
 
     public void restartLevel() {
 
-        for (GameObject gameObject : gameObjects) {
+        while (!gameObjects.isEmpty()) {
 
+            GameObject gameObject = gameObjects.get(0);
+            System.out.println(Collider.colliders.size());
+            System.out.println(gameObjects.size());
             gameObject.destroy();
         }
+
 
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
         gameObjects = this.world.getCurrentLevel().getGameObjects();
         this.mario = this.world.getCurrentLevel().getMario();
         this.camera.setMario(this.mario);
+        ScoreKeeper.restartTimer();
         this.start();
     }
 

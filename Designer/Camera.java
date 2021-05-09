@@ -2,19 +2,20 @@ package Designer;
 
 import GameObjects.Mario;
 import javafx.scene.PerspectiveCamera;
-import javafx.scene.transform.Translate;
 import mikera.vectorz.Vector2;
 
 public class Camera {
 
     private double sceneWidth;
     private Vector2 pos;
+    private Vector2 vel;
     private Mario mario;
     private PerspectiveCamera camera;
 
     public Camera(Mario mario) {
 
         this.pos = new Vector2(0, 0);
+        this.vel = new Vector2(-5, 0);
         this.mario = mario;
         this.sceneWidth = Designer.scene.getWidth();
         Designer.gc.translate(this.pos.x, this.pos.y);
@@ -31,11 +32,9 @@ public class Camera {
             if (this.mario.getRigidbody().getPos().x >= sceneWidth / 2) {
 
                 this.sceneWidth += 150;
-                this.pos.x -= 5;
-                //Designer.gc.getTransform().append(new Translate(-this.pos.x,-this.pos.y));
-                //  Designer.gc.setTransform(this.pos.x,this.pos.y,1,1,1,1); google the setTransform method tomorrow
-                 Designer.gc.translate(this.pos.x, this.pos.y);
-                // this.camera.getTransforms().add(new Translate(this.pos.x,this.pos.y));
+
+                this.pos.add(this.vel);
+                Designer.gc.translate(this.pos.x, this.pos.y);
             }
         }
 

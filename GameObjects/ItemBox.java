@@ -2,6 +2,7 @@ package GameObjects;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
@@ -68,6 +69,14 @@ public class ItemBox extends GameObject {
 
                     ScoreKeeper.coins++;
                     super.changeImage(Animator.emptyItemBox);
+                } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
+
+                    this.gameObject.addComponent(new Collider(GlobalVariables.colliderTag, this.gameObject.getPosition(),
+                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
+
+                    GameEngine.gameObjects.add(this.gameObject);
+                    this.gameObject.start();
+                    super.changeImage(Animator.emptyItemBox);
                 }
 
                 this.isEmpty = true;
@@ -78,10 +87,7 @@ public class ItemBox extends GameObject {
 
         } else if (collision.getHitDirection().y == -1) {
 
-            Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
-            other.getPosition().getPos().y = this.getPosition().getPos().y - 50;
-            rigidbody.getVel().y = 0;
-            rigidbody.getAcc().y = 0;
+            Collisions.defaultOnGroundCollision(this, other, collision);
         }
     }
 }

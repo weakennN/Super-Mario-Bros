@@ -1,13 +1,11 @@
 package Levels;
 
-import javafx.scene.image.Image;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class World {
 
-    private Image backGround;
+    private WorldBackground backGround;
     private List<Level> levels;
     private int currentLevel;
 
@@ -16,9 +14,9 @@ public abstract class World {
         this.levels = new ArrayList<>();
     }
 
-    protected void setBackGround(Image backGround) {
+    protected void setBackGround(String backGround, double sizeX, double sizeY) {
 
-        this.backGround = backGround;
+        this.backGround = new WorldBackground(backGround, sizeX, sizeY);
     }
 
     public Level getCurrentLevel() {
@@ -36,7 +34,7 @@ public abstract class World {
         this.currentLevel++;
     }
 
-    public Image getBackGround() {
+    public WorldBackground getBackGround() {
 
         return this.backGround;
     }

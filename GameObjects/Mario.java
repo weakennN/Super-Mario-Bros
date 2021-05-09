@@ -19,6 +19,7 @@ public class Mario extends GameObject {
     private boolean jumping;
     private boolean immune;
     private boolean onGround;
+    private boolean fireMario;
     private boolean isFalling;
 
     // TODO: crop the images.
@@ -34,6 +35,7 @@ public class Mario extends GameObject {
         this.immune = false;
         this.onGround = false;
         this.isFalling = false;
+        this.fireMario = true;
         this.marioManager = new MarioManager(this);
     }
 
@@ -95,6 +97,16 @@ public class Mario extends GameObject {
         this.bigMario = b;
     }
 
+    public boolean isFireMario() {
+
+        return this.fireMario;
+    }
+
+    public void setFireMario(boolean b) {
+
+        this.fireMario = b;
+    }
+
     public void setJumping(boolean jumping) {
 
         this.jumping = jumping;
@@ -123,6 +135,11 @@ public class Mario extends GameObject {
         return this.onGround;
     }
 
+    public boolean isDead() {
+
+        return this.isDead;
+    }
+
     private void marioAndGoombaCollision(Goomba goomba, Collision collision) {
 
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
@@ -142,6 +159,7 @@ public class Mario extends GameObject {
                     Collider.removeCollider(collider);
                     this.removeComponent(GlobalVariables.colliderTag);
                     Animator.marioDeadAnimation();
+
                 } else {
 
                     this.immune = true;

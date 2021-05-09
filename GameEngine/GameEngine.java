@@ -2,6 +2,7 @@ package GameEngine;
 
 import Designer.Designer;
 import GameObjects.GameObject;
+import GameObjects.Mario;
 import Levels.Overworld;
 import Levels.World;
 import RenderEngine.RenderEngine;
@@ -18,6 +19,7 @@ public class GameEngine {
     public static List<GameObject> gameObjects;
     private AnimationTimer gameLoop;
     private Camera camera;
+    private Mario mario;
     private World world;
 
     public GameEngine() {
@@ -25,8 +27,8 @@ public class GameEngine {
         this.world = new Overworld();
         gameObjects = this.world.getCurrentLevel().getGameObjects();
         this.camera = this.world.getCurrentLevel().getCamera();
+        this.mario = this.world.getCurrentLevel().getMario();
         SoundManager.playMarioBackgroundTheme();
-        // only the background is getting translated by the gc fix this.
         // TODO: fix the marioGrowingAnimation
     }
 
@@ -40,7 +42,7 @@ public class GameEngine {
             public void handle(long l) {
 
                 ScoreKeeper.updateScore();
-                Designer.gc.drawImage(world.getBackGround(), 0, 0, 3392, 500);
+                Designer.gc.drawImage(world.getBackGround(), 0, 0, 5760, 1080);
 
                 for (int i = 0; i < gameObjects.size(); i++) {
 
@@ -51,6 +53,14 @@ public class GameEngine {
                     Image gameObjectImage = gameObject.render();
                     RenderEngine.render(gameObjectImage, gameObject.getPosition());
                 }
+
+                if (mario.isDead()) {
+
+                    // restart
+                    restartLevel();
+                    this.stop();
+                }
+
 
             }
 
@@ -66,6 +76,21 @@ public class GameEngine {
 
             gm.start();
         }
+    }
+
+    public void restartLevel() {
+
+        for (GameObject gameObject : gameObjects) {
+
+            gameObject.destroy();
+        }
+
+        this.mario = null;
+        this.world.getCurrentLevel().initLevel();
+        gameObjects = this.world.getCurrentLevel().getGameObjects();
+        this.mario = this.world.getCurrentLevel().getMario();
+        this.camera.setMario(this.mario);
+        this.start();
     }
 
 

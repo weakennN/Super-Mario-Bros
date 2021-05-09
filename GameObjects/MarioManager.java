@@ -5,10 +5,12 @@ import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
 import Designer.Designer;
+import GameEngine.GameEngine;
 import Helpers.MarioDir;
 import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.scene.input.KeyCode;
+import Rigidbody.Position;
 
 public class MarioManager {
 
@@ -24,7 +26,6 @@ public class MarioManager {
     }
 
     // TODO: create changeImage method here so it change mario image
-    // TODO: bring back the boolean keyOnPressed and KeyReleased arrays
 
     public void powerUpMarioWithMushroom(Mario mario) {
 
@@ -58,13 +59,13 @@ public class MarioManager {
 
             if (e.getCode() == KeyCode.D) {
 
-                // TODO: try to fix this
                 // TODO: add a big mario jumping animation
-                // theres is a bug in mario running right animation
+                // TODO: create shootFireBall in MarioManager class and checks what direction Mario is facing to know with what velocity to create the fireBall
+
                 if (!MarioDir.marioRunningRight) {
 
                     if (!MarioDir.marioJumpingLeft) {
-                        rigidbody.getVel().x = 3.5;
+                        rigidbody.getVel().x = 2.5;
                     } else {
 
                         rigidbody.getVel().x = 0.5;
@@ -77,6 +78,7 @@ public class MarioManager {
 
                     }
 
+                    MarioDir.marioIdleFacingLeft = false;
                     MarioDir.marioRunningRight = true;
                 }
 
@@ -87,7 +89,7 @@ public class MarioManager {
 
                     if (!MarioDir.marioJumpingRight) {
 
-                        rigidbody.getVel().x = -3.5;
+                        rigidbody.getVel().x = -2.5;
                     } else {
 
                         rigidbody.getVel().x = -0.5;
@@ -101,6 +103,7 @@ public class MarioManager {
 
                     }
 
+                    MarioDir.marioIdleFacingRight = false;
                     MarioDir.marioRunningLeft = true;
                 }
 
@@ -110,7 +113,7 @@ public class MarioManager {
                     rigidbody.getVel().y = -3.8;
                     SoundManager.playSound(Sounds.marioJumpingSound);
 
-                    if (rigidbody.getVel().x >= 0) {
+                    if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight) {
 
                         if (this.mario.isBigMario()) {
 
@@ -130,6 +133,7 @@ public class MarioManager {
 
                             mario.changeImage(Animator.marioJumpingLeft);
                         }
+
                         MarioDir.marioJumpingLeft = true;
                     }
 
@@ -137,6 +141,12 @@ public class MarioManager {
                     this.mario.setJumping(true);
                 }
 
+            } else if (e.getCode() == KeyCode.SHIFT) {
+
+                if (this.mario.isFireMario()) {
+
+                    this.shootFireBall();
+                }
             }
         });
 
@@ -235,6 +245,37 @@ public class MarioManager {
 
             MarioDir.marioJumpingLeft = false;
         }
+
+    }
+
+    public void shootFireBall() {
+
+        if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight
+                || MarioDir.marioJumpingRight) {
+
+            // vel.x = 1 vel.y = 1
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 1);
+        } else {
+
+            // vel.x = -1 vel.y = 1
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -1);
+        }
+    }
+
+    private void createExplosive(double xPos, double yPos, double xVel) {
+
+        Position position = new Position(xPos, yPos);
+        Explosive explosive = new Explosive(position, GlobalVariables.explosiveTag);
+        explosive.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag,
+                position, explosive));
+        explosive.addComponent(new Collider(GlobalVariables.colliderTag, position,
+                20, 20, explosive));
+        Rigidbody rigidbody = (Rigidbody) explosive.getComponent(GlobalVariables.rigidbodyTag);
+        rigidbody.getVel().x = xVel;
+        rigidbody.getVel().y = 1;
+        GameEngine.gameObjects.add(explosive);
+        explosive.start();
+
     }
 
 }

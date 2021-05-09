@@ -5,7 +5,6 @@ import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
 import Designer.Camera;
-import GameEngine.GameEngine;
 import GameObjects.*;
 import GameObjects.AI.Goomba;
 import GameObjects.AI.Koopa;
@@ -24,6 +23,7 @@ public abstract class Level {
     private List<GameObject> gameObjects;
     private Image backGround;
     private Camera camera;
+    private Mario mario;
 
     public Level() {
 
@@ -55,6 +55,11 @@ public abstract class Level {
     public Camera getCamera() {
 
         return this.camera;
+    }
+
+    public Mario getMario() {
+
+        return this.mario;
     }
 
     protected void initLevelObjects(String level) {
@@ -143,6 +148,7 @@ public abstract class Level {
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
+                    this.mario = (Mario) gameObject;
                     this.camera = new Camera((Mario) gameObject);
 
                 } else if (words[0].equals("Goomba")) {
@@ -159,6 +165,7 @@ public abstract class Level {
                     if (words[3].equals("Mushroom")) {
 
                         itemBoxObject = new Mushroom(position1, GlobalVariables.mushroomTag);
+
                     } else if (words[3].equals("Coin")) {
 
                         itemBoxObject = new Coin(position1, GlobalVariables.coinTag);

@@ -41,12 +41,12 @@ public class Collisions {
         if (collision.getHitDirection().x == 1) {
 
             first.getPosition().getPos().x += collider.getSize().x;
-            rigidbody.getVel().x = 2;
+            rigidbody.getVel().x = 1;
 
         } else if (collision.getHitDirection().x == -1) {
 
             first.getPosition().getPos().x -= collider.getSize().x;
-            rigidbody.getVel().x = -2;
+            rigidbody.getVel().x = -1;
 
         }
 

@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -19,7 +20,7 @@ public class Designer {
     public static Scene scene;
     public static Canvas canvas;
     public static GraphicsContext gc;
-    public static Group root;
+    public static Pane root;
     public static Image background;
     public static Font font;
     public static Label scoreLabel;
@@ -48,7 +49,7 @@ public class Designer {
         // gc.translate(2000,0);
         gc.setFont(font);
         gc.setFill(Color.WHITE);
-        root = new Group();
+        root = new Pane();
         root.getChildren().add(canvas);
 
         initLabels();

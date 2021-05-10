@@ -18,6 +18,7 @@ public abstract class GameObject {
     private Position position;
     private Image currentAnimation;
     private String tag;
+    private boolean active;
     List<Component> components;
 
     public GameObject(Position position, String tag) {
@@ -26,6 +27,7 @@ public abstract class GameObject {
         this.currentAnimation = null;
         this.tag = tag;
         this.components = new ArrayList<>();
+        this.active = false;
     }
 
     public abstract void update();
@@ -64,6 +66,16 @@ public abstract class GameObject {
     public String getTag() {
 
         return tag;
+    }
+
+    public void setActive(boolean b) {
+
+        this.active = true;
+    }
+
+    public boolean isActive() {
+
+        return this.active;
     }
 
     protected void updateComponents() {

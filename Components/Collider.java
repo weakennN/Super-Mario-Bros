@@ -1,7 +1,6 @@
 package Components;
 
 import CollisionInfo.Collision;
-import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -31,7 +30,6 @@ public class Collider extends Component {
         colliders.add(this);
     }
 
-    //TODO: make a resize method that changes the size the center and the half size of a collider
     @Override
     public void update() {
 
@@ -54,14 +52,12 @@ public class Collider extends Component {
 
         this.calculateCenter();
         collider.calculateCenter();
-        this.collision.setHitDirection(new Vector2(1, 0));
 
         double dx = this.center.x - collider.getCenter().x;
         double dy = this.center.y - collider.getCenter().y;
 
         double combinedHalfWidths = this.halfSize.x + collider.getHalfSize().x;
         double combinedHalfHeights = this.halfSize.y + collider.getHalfSize().y;
-
 
         if (Math.abs(dx) <= combinedHalfWidths && Math.abs(dy) <= combinedHalfHeights) {
 
@@ -72,12 +68,10 @@ public class Collider extends Component {
 
                 if (dy > 0) {
 
-                    // top
                     this.collision.setHitDirection(new Vector2(0, -1));
 
                 } else if (dy < 0) {
 
-                    // bottom
                     this.collision.setHitDirection(new Vector2(0, 1));
 
                 }
@@ -86,12 +80,10 @@ public class Collider extends Component {
 
                 if (dx < 0) {
 
-                    //left
                     this.collision.setHitDirection(new Vector2(-1, 0));
 
                 } else if (dx > 0) {
 
-                    //right
                     this.collision.setHitDirection(new Vector2(1, 0));
 
                 }
@@ -100,40 +92,6 @@ public class Collider extends Component {
 
             return true;
         }
-
-
-
-
-      /*  if (Math.abs(dx) <= combinedHalfWidths) {
-
-            if (Math.abs(dy) <= combinedHalfHeights) {
-
-                if (dy > 0) {
-
-                    if (dy > Math.abs(dx)) {
-
-                        this.collision.setHitDirection(new Vector2(0, 1));
-                    } else {
-
-                        this.collision.setHitDirection(new Vector2(1, 0));
-                    }
-
-                } else if (dy < 0) {
-
-                    if (-dy > Math.abs(dx)) {
-
-                        this.collision.setHitDirection(new Vector2(0, -1));
-                    } else {
-
-                        this.collision.setHitDirection(new Vector2(-1, 0));
-                    }
-                }
-
-                return true;
-            }
-        }
-
-       */
 
         return false;
     }
@@ -170,10 +128,4 @@ public class Collider extends Component {
         return this.size;
     }
 
-  /*  public GameObject getGameObject() {
-
-        return this.gameObject;
-    }
-
-   */
 }

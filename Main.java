@@ -19,6 +19,11 @@ public class Main extends Application {
         stage.show();
         engine.start();
 
+        stage.setOnCloseRequest(e -> {
+
+            engine.stop();
+        });
+        
     }
 
     public static void main(String[] args) {

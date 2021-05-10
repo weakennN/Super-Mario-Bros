@@ -55,7 +55,6 @@ public class ItemBox extends GameObject {
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
-                    this.gameObject.start();
                     super.changeImage(Animator.emptyItemBox);
                 } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
 
@@ -75,7 +74,6 @@ public class ItemBox extends GameObject {
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
-                    this.gameObject.start();
                     super.changeImage(Animator.emptyItemBox);
                 }
 

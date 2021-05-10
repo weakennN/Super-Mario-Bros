@@ -264,11 +264,11 @@ public class MarioManager {
                 || MarioDir.marioJumpingRight) {
 
             // vel.x = 1 vel.y = 1
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 1);
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 2);
         } else {
 
             // vel.x = -1 vel.y = 1
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -1);
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -2);
         }
     }
 
@@ -284,7 +284,7 @@ public class MarioManager {
         rigidbody.getVel().x = xVel;
         rigidbody.getVel().y = 1;
         GameEngine.gameObjects.add(explosive);
-        explosive.start();
+       // explosive.start();
 
     }
 

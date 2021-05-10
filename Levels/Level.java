@@ -92,6 +92,7 @@ public abstract class Level {
     private void initGround(BufferedReader bufferedReader) {
 
         try {
+
             String word = bufferedReader.readLine();
 
             while (word != null && !word.equals("end")) {
@@ -100,24 +101,17 @@ public abstract class Level {
 
                 double x = Double.parseDouble(words[0]);
                 double y = Double.parseDouble(words[1]);
+                double sizeX = Double.parseDouble(words[2]);
+                double sizeY = Double.parseDouble(words[3]);
 
-                RenderEngine.renderImage(Animator.ground, x, y);
+                Position position = new Position(x, y);
 
+                GameObject ground = new Ground(position, GlobalVariables.groundTag);
+                ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
+
+                this.addGameObject(ground);
                 word = bufferedReader.readLine();
             }
-
-            String[] words = bufferedReader.readLine().split("\\s+");
-
-            double posX = Double.parseDouble(words[0]);
-            double posY = Double.parseDouble(words[1]);
-            double sizeX = Double.parseDouble(words[2]);
-            double sizeY = Double.parseDouble(words[3]);
-
-            Position position = new Position(posX, posY);
-            Ground ground = new Ground(position, GlobalVariables.groundTag);
-            ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
-
-            this.addGameObject(ground);
 
         } catch (IOException e) {
 

@@ -19,10 +19,7 @@ public class Camera {
         this.mario = mario;
         this.sceneWidth = Designer.scene.getWidth();
         Designer.gc.translate(this.pos.x, this.pos.y);
-      /*  this.camera = new PerspectiveCamera();
-        Designer.scene.setCamera(this.camera);
 
-       */
     }
 
     public void follow() {

@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 public class Cloud extends GameObject {
 
     public Cloud(Position position, String tag) {
+
         super(position, tag);
     }
 

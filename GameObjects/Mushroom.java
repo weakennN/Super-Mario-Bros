@@ -31,7 +31,7 @@ public class Mushroom extends GameObject {
     public void start() {
 
         Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
-        rigidbody.getVel().x = -2;
+        rigidbody.getVel().x = 1;
 
         super.changeImage(Animator.superMushroom);
     }

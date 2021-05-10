@@ -33,7 +33,7 @@ public class Mario extends GameObject {
         this.immune = false;
         this.onGround = false;
         this.isFalling = false;
-        this.fireMario = false;
+        this.fireMario = true;
         this.marioManager = new MarioManager(this);
     }
 

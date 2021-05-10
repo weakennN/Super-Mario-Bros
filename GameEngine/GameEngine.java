@@ -45,14 +45,15 @@ public class GameEngine {
                         world.getBackGround().getSizeX(), world.getBackGround().getSizeY());
                 ScoreKeeper.updateScore();
 
-
                 for (int i = 0; i < gameObjects.size(); i++) {
 
                     GameObject gameObject = gameObjects.get(i);
                     camera.follow();
-                    gameObject.update();
-                    Image gameObjectImage = gameObject.render();
-                    RenderEngine.render(gameObjectImage, gameObject.getPosition());
+                    if (gameObject.isActive()) {
+                        gameObject.update();
+                        Image gameObjectImage = gameObject.render();
+                        RenderEngine.render(gameObjectImage, gameObject.getPosition());
+                    }
                 }
 
                 if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
@@ -62,7 +63,7 @@ public class GameEngine {
                     this.stop();
                 }
 
-
+                lateStart();
             }
 
         };
@@ -75,7 +76,14 @@ public class GameEngine {
 
         for (GameObject gm : gameObjects) {
 
-            gm.start();
+            // TODO: start them if they are close to Mario
+            if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
+                    || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
+                    && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000) {
+
+                gm.setActive(true);
+                gm.start();
+            }
         }
     }
 
@@ -84,11 +92,8 @@ public class GameEngine {
         while (!gameObjects.isEmpty()) {
 
             GameObject gameObject = gameObjects.get(0);
-            System.out.println(Collider.colliders.size());
-            System.out.println(gameObjects.size());
             gameObject.destroy();
         }
-
 
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
@@ -99,5 +104,28 @@ public class GameEngine {
         this.start();
     }
 
+    public void lateStart() {
+
+        for (GameObject gm : gameObjects) {
+
+            // TODO: start them if they are close to Mario
+
+            if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
+                    || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
+                    && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000
+                    && !gm.isActive()) {
+
+                gm.setActive(true);
+                gm.start();
+            }
+        }
+    }
+
+    public void stop() {
+
+        gameObjects.clear();
+        this.gameLoop.stop();
+        ScoreKeeper.time.getTimer().cancel();
+    }
 
 }

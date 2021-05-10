@@ -29,4 +29,9 @@ public class Time {
 
         return this.seconds;
     }
+
+    public Timer getTimer() {
+
+        return this.timer;
+    }
 }

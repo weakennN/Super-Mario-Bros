@@ -38,6 +38,8 @@ public class Collisions {
         Rigidbody rigidbody = (Rigidbody) first.getComponent(GlobalVariables.rigidbodyTag);
         Collider collider = (Collider) second.getComponent(GlobalVariables.colliderTag);
 
+        // TODO: make it to be able to collider from top
+
         if (collision.getHitDirection().x == 1) {
 
             first.getPosition().getPos().x += collider.getSize().x;

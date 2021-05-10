@@ -36,4 +36,10 @@ public class ScoreKeeper {
 
         time = new Time();
     }
+
+    public static void stopTimer() {
+
+        time.getTimer().cancel();
+    }
+
 }

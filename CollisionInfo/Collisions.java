@@ -43,13 +43,27 @@ public class Collisions {
         if (collision.getHitDirection().x == 1) {
 
             first.getPosition().getPos().x += collider.getSize().x;
-            rigidbody.getVel().x = 1;
+            rigidbody.getVel().x *= -1;
 
         } else if (collision.getHitDirection().x == -1) {
 
             first.getPosition().getPos().x -= collider.getSize().x;
-            rigidbody.getVel().x = -1;
+            rigidbody.getVel().x *= -1;
 
+        }
+
+    }
+
+    public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
+
+        Collider collider = (Collider) second.getComponent(GlobalVariables.colliderTag);
+
+        if (collision.getHitDirection().x == 1) {
+
+            second.getPosition().getPos().x = first.getPosition().getPos().x - collider.getSize().x;
+        } else if (collision.getHitDirection().x == -1) {
+
+            second.getPosition().getPos().x = first.getPosition().getPos().x + collider.getSize().x;
         }
 
     }

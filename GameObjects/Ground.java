@@ -3,19 +3,18 @@ package GameObjects;
 import Animator.Animator;
 import CollisionInfo.Collision;
 import CollisionInfo.Collisions;
-import Common.GlobalVariables;
-import Components.Collider;
-import Components.Rigidbody;
-import Helpers.MarioDir;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
 
 public class Ground extends GameObject {
 
-    public Ground(Position position, String tag) {
+    private boolean visible;
+
+    public Ground(Position position, String tag, boolean visible) {
 
         super(position, tag);
 
+        this.visible = visible;
     }
 
     @Override
@@ -27,7 +26,11 @@ public class Ground extends GameObject {
     @Override
     public Image render() {
 
-        return super.getCurrentAnimation();
+        if (visible) {
+            return super.getCurrentAnimation();
+        }
+
+        return null;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Ground extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (collision.getHitDirection().y == - 1) {
+        if (collision.getHitDirection().y == -1) {
 
             Collisions.defaultOnGroundCollision(this, other, collision);
         }

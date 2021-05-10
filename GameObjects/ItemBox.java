@@ -13,8 +13,8 @@ import javafx.scene.image.Image;
 
 public class ItemBox extends GameObject {
 
-    GameObject gameObject;
-    boolean isEmpty;
+    private GameObject gameObject;
+    private boolean isEmpty;
 
     public ItemBox(Position position, String tag, GameObject gameObject) {
         super(position, tag);
@@ -49,13 +49,14 @@ public class ItemBox extends GameObject {
             if (other.getTag().equals(GlobalVariables.marioTag) && !isEmpty) {
 
                 if (this.gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
+
                     this.gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag,
                             this.gameObject.getPosition(), this.gameObject));
                     this.gameObject.addComponent(new Collider(GlobalVariables.colliderTag, this.gameObject.getPosition(),
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
-                    super.changeImage(Animator.emptyItemBox);
+
                 } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
 
                    /* this.gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, this.gameObject.getPosition(), this.gameObject));
@@ -74,11 +75,13 @@ public class ItemBox extends GameObject {
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
-                    super.changeImage(Animator.emptyItemBox);
+
                 }
 
                 this.isEmpty = true;
             }
+
+            super.changeImage(Animator.emptyItemBox);
 
             Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
             rigidbody.getVel().y = 1;
@@ -86,6 +89,11 @@ public class ItemBox extends GameObject {
         } else if (collision.getHitDirection().y == -1) {
 
             Collisions.defaultOnGroundCollision(this, other, collision);
+
+        } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
+
+            Collisions.defaultHorizontalCollision(this, other, collision);
+
         }
     }
 }

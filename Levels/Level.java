@@ -106,7 +106,7 @@ public abstract class Level {
 
                 Position position = new Position(x, y);
 
-                GameObject ground = new Ground(position, GlobalVariables.groundTag);
+                GameObject ground = new Ground(position, GlobalVariables.groundTag,false);
                 ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
 
                 this.addGameObject(ground);

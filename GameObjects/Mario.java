@@ -7,6 +7,7 @@ import Components.Collider;
 import Components.Rigidbody;
 import GameEngine.GameEngine;
 import GameObjects.AI.Goomba;
+import Helpers.MarioDir;
 import Rigidbody.Position;
 import Score.ScoreKeeper;
 import javafx.scene.image.Image;
@@ -28,12 +29,13 @@ public class Mario extends GameObject {
 
         this.bigMario = false;
         super.changeImage(Animator.marioIdleFacingRight);
+        MarioDir.marioIdleFacingRight = true;
         this.isDead = false;
         this.jumping = false;
         this.immune = false;
         this.onGround = false;
         this.isFalling = false;
-        this.fireMario = true;
+        this.fireMario = false;
         this.marioManager = new MarioManager(this);
     }
 

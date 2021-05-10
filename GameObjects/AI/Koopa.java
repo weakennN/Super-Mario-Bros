@@ -2,12 +2,12 @@ package GameObjects.AI;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
+import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import GameObjects.GameObject;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
-
 
 public class Koopa extends GameObject {
 
@@ -48,11 +48,9 @@ public class Koopa extends GameObject {
             // change koopa's form and physics
         } else if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
 
-            if (collision.getHitDirection().x == 1) {
+            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1){
 
-            } else if (collision.getHitDirection().x == -1) {
-
-
+                Collisions.defaultGoombaAndKoopaCollision(this,other,collision);
             }
         }
     }

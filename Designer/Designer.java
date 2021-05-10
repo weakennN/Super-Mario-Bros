@@ -38,6 +38,7 @@ public class Designer {
 
         canvas = new Canvas(1920, 1080);
         gc = canvas.getGraphicsContext2D();
+
         try {
 
             font = Font.loadFont(new FileInputStream("C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\Font\\defaultFont.ttf"), 50);
@@ -46,11 +47,15 @@ public class Designer {
             e.printStackTrace();
         }
 
-        // gc.translate(2000,0);
         gc.setFont(font);
         gc.setFill(Color.WHITE);
+        /*gc.fillText("WASD keys to move" + "\n"
+                + "Shift to fire", 200, 500);
+
+         */
         root = new Pane();
         root.getChildren().add(canvas);
+
 
         initLabels();
 

@@ -76,7 +76,6 @@ public class GameEngine {
 
         for (GameObject gm : gameObjects) {
 
-            // TODO: start them if they are close to Mario
             if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
                     || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
                     && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000) {
@@ -108,8 +107,6 @@ public class GameEngine {
 
         for (GameObject gm : gameObjects) {
 
-            // TODO: start them if they are close to Mario
-
             if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
                     || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
                     && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000
@@ -125,7 +122,7 @@ public class GameEngine {
 
         gameObjects.clear();
         this.gameLoop.stop();
-        ScoreKeeper.time.getTimer().cancel();
+        ScoreKeeper.stopTimer();
     }
 
 }

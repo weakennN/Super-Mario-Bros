@@ -4,7 +4,6 @@ import Animator.Animator;
 import CollisionInfo.Collision;
 import CollisionInfo.Collisions;
 import Common.GlobalVariables;
-import Components.Collider;
 import Components.Rigidbody;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
@@ -65,37 +64,9 @@ public class BrickBox extends GameObject {
 
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 
-            Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
-
-            if (collision.getHitDirection().x == 1) {
-
-                other.getPosition().getPos().x = this.getPosition().getPos().x - collider.getSize().x;
-
-             /*  if (other.getTag().equals(GlobalVariables.marioTag)){
-
-                    Mario mario = (Mario) other;
-                    if (mario.isOnGround()){
-
-                        mario.changeImage(Animator.marioIdleFacingRight);
-                    }
-                }
-
-              */
-
-            } else {
-
-                // other.getPosition().getPos().x += 10;
-
-                other.getPosition().getPos().x = this.getPosition().getPos().x + collider.getSize().x;
-            }
-
-
-            // TODO: fix this and fix the reposition of the game object after he hits the top of the brick box collider
-            // TODO: Fix this method
-
+            Collisions.defaultHorizontalCollision(this, other, collision);
         }
 
     }
-
 
 }

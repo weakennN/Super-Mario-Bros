@@ -49,7 +49,7 @@ public class MarioManager {
         return this.mario;
     }
 
-    public void setMarioDead(boolean b){
+    public void setMarioDead(boolean b) {
 
         this.mario.setDead(b);
     }
@@ -63,14 +63,12 @@ public class MarioManager {
 
     }
 
+
     public void initializeActions(Rigidbody rigidbody) {
 
         Designer.scene.setOnKeyPressed(e -> {
 
             if (e.getCode() == KeyCode.D) {
-
-                // TODO: add a big mario jumping animation
-                // TODO: create shootFireBall in MarioManager class and checks what direction Mario is facing to know with what velocity to create the fireBall
 
                 if (!MarioDir.marioRunningRight) {
 
@@ -78,7 +76,7 @@ public class MarioManager {
                         rigidbody.getVel().x = 2.5;
                     } else {
 
-                        rigidbody.getVel().x = 0.5;
+                        rigidbody.getVel().x = 0.7;
                     }
                     if (!mario.isBigMario()) {
                         mario.changeImage(Animator.marioRunningRight);
@@ -102,7 +100,7 @@ public class MarioManager {
                         rigidbody.getVel().x = -2.5;
                     } else {
 
-                        rigidbody.getVel().x = -0.5;
+                        rigidbody.getVel().x = -0.7;
                     }
 
                     if (!mario.isBigMario()) {
@@ -120,7 +118,7 @@ public class MarioManager {
             } else if (e.getCode() == KeyCode.W) {
 
                 if (!this.mario.isJumping()) {
-                    rigidbody.getVel().y = -3.8;
+                    rigidbody.getVel().y = -3.6;
                     SoundManager.playSound(Sounds.marioJumpingSound);
 
                     if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight) {
@@ -284,7 +282,6 @@ public class MarioManager {
         rigidbody.getVel().x = xVel;
         rigidbody.getVel().y = 1;
         GameEngine.gameObjects.add(explosive);
-       // explosive.start();
 
     }
 

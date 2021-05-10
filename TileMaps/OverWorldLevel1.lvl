@@ -1,6 +1,9 @@
 GameObjects
-Mario 300 350
+Mario 300 882
 BrickBox 500 882
+BrickBox 550 882
+BrickBox 600 882
+Goomba 600 782
 end
 Ground
 0 932 3000 50

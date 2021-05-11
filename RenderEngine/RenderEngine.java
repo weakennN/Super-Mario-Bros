@@ -13,8 +13,6 @@ public class RenderEngine {
 
     public static void render(Image image, Position position) {
 
-        // TODO: add a condition to check the position and see if its close to Mario so to be rendered
-
         Vector2 pos = position.getPos();
 
         Designer.gc.drawImage(image, pos.x, pos.y);
@@ -34,7 +32,7 @@ public class RenderEngine {
                                  int level, int time, int lives) {
 
         Designer.score.setText(score + "");
-        Designer.score.setLayoutX(Designer.scoreLabel.getLayoutX() + (Designer.scoreLabel.getFont().getSize()));
+        Designer.score.setLayoutX(Designer.scoreLabel.getLayoutX() + Designer.scoreLabel.getWidth() / 2 - Designer.score.getWidth() / 2 + 5);
         Designer.score.setLayoutY(50);
 
         Designer.coins.setText(coins + "");
@@ -42,11 +40,11 @@ public class RenderEngine {
         Designer.coins.setLayoutY(50);
 
         Designer.world.setText(world + "-" + level);
-        Designer.world.setLayoutX(Designer.worldLabel.getLayoutX() + (Designer.worldLabel.getFont().getSize()));
+        Designer.world.setLayoutX(Designer.worldLabel.getLayoutX() + Designer.worldLabel.getWidth() / 2 - Designer.world.getWidth() / 2 + 5);
         Designer.world.setLayoutY(50);
 
         Designer.time.setText(time + "");
-        Designer.time.setLayoutX(Designer.timeLabel.getLayoutX() + (Designer.timeLabel.getFont().getSize()));
+        Designer.time.setLayoutX((Designer.timeLabel.getLayoutX() + Designer.timeLabel.getWidth() / 2 - Designer.time.getWidth() / 2) + 5);
         Designer.time.setLayoutY(50);
 
         Designer.lives.setText(lives + "");

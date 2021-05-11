@@ -1,6 +1,5 @@
 package GameEngine;
 
-import Components.Collider;
 import GameObjects.GameObject;
 import GameObjects.Mario;
 import Levels.Overworld;
@@ -21,6 +20,8 @@ public class GameEngine {
     private Camera camera;
     private Mario mario;
     private World world;
+
+    // TODO: crop the images
 
     public GameEngine() {
 

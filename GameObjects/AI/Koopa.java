@@ -46,11 +46,11 @@ public class Koopa extends GameObject {
 
             this.isTransformed = true;
             // change koopa's form and physics
-        } else if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
+        } else if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) {
 
-            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1){
+            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 
-                Collisions.defaultGoombaAndKoopaCollision(this,other,collision);
+                Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
             }
         }
     }

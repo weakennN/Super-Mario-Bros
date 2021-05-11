@@ -1,10 +1,14 @@
 GameObjects
-Mario 300 882
-BrickBox 500 882
-BrickBox 550 882
-BrickBox 600 882
-Goomba 600 782
+Mario 200 882
+ItemBox 600 740 Coin
+ItemBox 850 740 Mushroom
+ItemBox 950 740 Coin
+ItemBox 900 540 Coin
+BrickBox 800 740
+BrickBox 900 740
+BrickBox 1000 740
+Goomba 950 882
 end
 Ground
-0 932 3000 50
+0 932 5760 50
 end

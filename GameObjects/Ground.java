@@ -3,6 +3,7 @@ package GameObjects;
 import Animator.Animator;
 import CollisionInfo.Collision;
 import CollisionInfo.Collisions;
+import Common.GlobalVariables;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
 
@@ -45,6 +46,10 @@ public class Ground extends GameObject {
         if (collision.getHitDirection().y == -1) {
 
             Collisions.defaultOnGroundCollision(this, other, collision);
+        } else if (other.getTag().equals(GlobalVariables.marioTag)
+                && (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)) {
+
+            Collisions.defaultHorizontalCollision(this, other, collision);
         }
 
     }

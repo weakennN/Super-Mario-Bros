@@ -1,6 +1,5 @@
 package Levels;
 
-import Animator.Animator;
 import Common.GlobalVariables;
 import Components.Collider;
 import Components.Rigidbody;
@@ -8,7 +7,6 @@ import Designer.Camera;
 import GameObjects.*;
 import GameObjects.AI.Goomba;
 import GameObjects.AI.Koopa;
-import RenderEngine.RenderEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
 
@@ -83,6 +81,8 @@ public abstract class Level {
 
                 line = bufferedReader.readLine();
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,12 +106,14 @@ public abstract class Level {
 
                 Position position = new Position(x, y);
 
-                GameObject ground = new Ground(position, GlobalVariables.groundTag,false);
+                GameObject ground = new Ground(position, GlobalVariables.groundTag, false);
                 ground.addComponent(new Collider(GlobalVariables.colliderTag, position, sizeX, sizeY, ground));
 
                 this.addGameObject(ground);
                 word = bufferedReader.readLine();
             }
+
+            this.createInvisibleWall();
 
         } catch (IOException e) {
 
@@ -142,8 +144,9 @@ public abstract class Level {
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
+                    Position cameraPos = new Position(960, 0);
                     this.mario = (Mario) gameObject;
-                    this.camera = new Camera((Mario) gameObject);
+                    this.camera = new Camera((Mario) gameObject, cameraPos);
 
                 } else if (words[0].equals("Goomba")) {
 
@@ -171,7 +174,7 @@ public abstract class Level {
                     }
 
                     gameObject = new ItemBox(position, GlobalVariables.itemBoxTag, itemBoxObject);
-                    gameObject.addComponent(new Collider(GlobalVariables.itemBoxTag, position,
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
                             GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
 
                 } else if (words[0].equals("Mushroom")) {
@@ -190,8 +193,9 @@ public abstract class Level {
                 } else if (words[0].equals("Pipe")) {
 
                     gameObject = new Pipe(position, GlobalVariables.pipeTag);
-                    // TODO: make sure to add width and height in the text file where you create the level
-                    //gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,,,gameObject));
+                    // TODO: add width and height in the text file
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,100,200,gameObject));
+
                 } else if (words[0].equals("Koopa")) {
 
                     gameObject = new Koopa(position, GlobalVariables.koopaTag);
@@ -212,5 +216,13 @@ public abstract class Level {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void createInvisibleWall() {
+
+        Position position = new Position(0, 0);
+        InvisibleWall invisibleWall = new InvisibleWall(position, GlobalVariables.invisibleWallTag, this.camera.getPosition());
+        invisibleWall.addComponent(new Collider(GlobalVariables.colliderTag, position, 50, 1080, invisibleWall));
+        this.addGameObject(invisibleWall);
     }
 }

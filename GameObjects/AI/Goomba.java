@@ -40,7 +40,7 @@ public class Goomba extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals(GlobalVariables.brickBoxTag) && (collision.getHitDirection().x == 1
+        if ((other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) && (collision.getHitDirection().x == 1
                 || collision.getHitDirection().x == -1)) {
 
             Collisions.defaultGoombaAndKoopaCollision(this, other, collision);

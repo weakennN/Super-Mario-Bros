@@ -1,28 +1,31 @@
 package Designer;
 
 import GameObjects.Mario;
+import Rigidbody.Position;
 import mikera.vectorz.Vector2;
 
 public class Camera {
 
-    private Vector2 pos;
+    private Position position;
     private Vector2 vel;
     private Mario mario;
 
-    public Camera(Mario mario) {
+    public Camera(Mario mario, Position position) {
 
-        this.pos = new Vector2(960, 0);
+        this.position = position;
         this.vel = new Vector2(-2.5, 0);
         this.mario = mario;
         Designer.gc.translate(0, 0);
 
     }
 
+    // TODO: add invincible wall int the left corner of the screen
+
     public void follow() {
 
-        if (this.mario.getPosition().getPos().x > this.pos.x) {
+        if (this.mario.getPosition().getPos().x > this.position.getPos().x) {
 
-            this.pos.x = this.mario.getPosition().getPos().x;
+            this.position.getPos().x = this.mario.getPosition().getPos().x;
 
             Designer.gc.translate(this.vel.x, this.vel.y);
         }
@@ -32,6 +35,11 @@ public class Camera {
     public void setMario(Mario mario) {
 
         this.mario = mario;
+    }
+
+    public Position getPosition() {
+
+        return this.position;
     }
 
 }

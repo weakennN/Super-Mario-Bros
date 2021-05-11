@@ -1,7 +1,6 @@
 package Components;
 
 import CollisionInfo.Collision;
-import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -36,7 +35,7 @@ public class Collider extends Component {
 
         for (Collider c : colliders) {
 
-            if (c == this) {
+            if (c == this || c == null) {
 
                 continue;
             }
@@ -67,8 +66,15 @@ public class Collider extends Component {
 
         if (Math.abs(dx) <= combinedHalfWidths && Math.abs(dy) <= combinedHalfHeights) {
 
-            double overLapX = combinedHalfWidths - Math.abs(dx);
+           /* double overLapX = combinedHalfWidths - Math.abs(dx);
             double overLapY = combinedHalfHeights - Math.abs(dy);
+
+            */
+
+            int overLapX = (int) (combinedHalfWidths - Math.abs(dx));
+            int overLapY = (int) (combinedHalfHeights - Math.abs(dy));
+
+            if (overLapX == overLapY && overLapX == 0) return false;
 
             if (overLapX >= overLapY) {
 
@@ -85,7 +91,7 @@ public class Collider extends Component {
             } else {
 
                 if (dx < 0) {
-// debug here to see what couses the horizontal collision of goomba
+
                     this.collision.setHitDirection(new Vector2(-1, 0));
 
                 } else if (dx > 0) {

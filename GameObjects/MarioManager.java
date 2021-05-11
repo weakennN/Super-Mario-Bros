@@ -41,7 +41,7 @@ public class MarioManager {
     public void growMario() {
 
         Collider collider = (Collider) mario.getComponent(GlobalVariables.colliderTag);
-        collider.resize(GlobalVariables.defaultBigMarioColliderSize, GlobalVariables.defaultBigMarioColliderSize);
+        collider.resize(GlobalVariables.defaultBigMarioColliderSizeX, GlobalVariables.defaultBigMarioColliderSizeY);
     }
 
     public Mario getMario() {

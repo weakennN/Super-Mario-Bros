@@ -43,7 +43,6 @@ public class Goomba extends GameObject {
         if (other.getTag().equals(GlobalVariables.brickBoxTag) && (collision.getHitDirection().x == 1
                 || collision.getHitDirection().x == -1)) {
 
-            // TODO: fix the collision so that Goomba can walk on BrickBox objects
             Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
         }
     }

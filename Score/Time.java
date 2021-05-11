@@ -12,6 +12,7 @@ public class Time {
     public Time() {
 
         this.timer = new Timer();
+
         this.seconds = 400;
         this.timerTask = new TimerTask() {
 
@@ -20,6 +21,7 @@ public class Time {
 
                 seconds--;
             }
+
         };
 
         timer.scheduleAtFixedRate(timerTask, 300, 650);
@@ -34,4 +36,5 @@ public class Time {
 
         return this.timer;
     }
+
 }

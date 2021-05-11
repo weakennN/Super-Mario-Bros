@@ -43,18 +43,20 @@ public class GameEngine {
 
                 RenderEngine.renderBackGround(world.getBackGround().getImage(),
                         world.getBackGround().getSizeX(), world.getBackGround().getSizeY());
+
                 ScoreKeeper.updateScore();
 
                 for (int i = 0; i < gameObjects.size(); i++) {
 
                     GameObject gameObject = gameObjects.get(i);
-                    camera.follow();
                     if (gameObject.isActive()) {
                         gameObject.update();
                         Image gameObjectImage = gameObject.render();
                         RenderEngine.render(gameObjectImage, gameObject.getPosition());
                     }
                 }
+
+                camera.follow();
 
                 if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 

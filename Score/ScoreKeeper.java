@@ -11,7 +11,6 @@ public class ScoreKeeper {
     public static int level = 1;
     public static Time time = new Time();
 
-    // create init method that inits everything
     public static void updateScore() {
 
         RenderEngine.showScore(ScoreKeeper.score, ScoreKeeper.coins, world, level, time.getSeconds(), lives);
@@ -34,12 +33,14 @@ public class ScoreKeeper {
 
     public static void restartTimer() {
 
+        time.getTimer().cancel();
         time = new Time();
     }
 
     public static void stopTimer() {
 
         time.getTimer().cancel();
+
     }
 
 }

@@ -15,14 +15,10 @@ import Rigidbody.Position;
 public class MarioManager {
 
     private Mario mario;
-    private boolean[] keyActions;
-    private boolean[] keyReleased;
 
     public MarioManager(Mario mario) {
 
         this.mario = mario;
-        this.keyActions = new boolean[3];
-        this.keyReleased = new boolean[3];
     }
 
     // TODO: create changeImage method here so it change mario image
@@ -59,7 +55,7 @@ public class MarioManager {
         mario.setBigMario(false);
         Animator.marioDecreasingAnimation(mario);
         Collider collider = (Collider) mario.getComponent(GlobalVariables.colliderTag);
-        collider.resize(GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize);
+        collider.resize(GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY);
 
     }
 

@@ -62,6 +62,7 @@ public class Explosive extends GameObject {
         } else if (other.getTag().equals(GlobalVariables.goombaTag) || other.getTag().equals(GlobalVariables.koopaTag)) {
 
             // destroy them
+            other.destroy();
         }
     }
 }

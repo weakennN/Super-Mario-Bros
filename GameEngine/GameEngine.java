@@ -1,5 +1,6 @@
 package GameEngine;
 
+import Designer.Designer;
 import GameObjects.GameObject;
 import GameObjects.Mario;
 import Levels.Overworld;
@@ -35,6 +36,8 @@ public class GameEngine {
 
     public void start() {
 
+        // TODO: fix the pipe collision and collider and after that add so that goomba can hit another goomba on horizontal
+
         this.startGameObjects();
 
         this.gameLoop = new AnimationTimer() {
@@ -50,6 +53,12 @@ public class GameEngine {
                 for (int i = 0; i < gameObjects.size(); i++) {
 
                     GameObject gameObject = gameObjects.get(i);
+
+                    if (gameObject == null) {
+
+                        continue;
+                    }
+
                     if (gameObject.isActive()) {
                         gameObject.update();
                         Image gameObjectImage = gameObject.render();
@@ -61,7 +70,6 @@ public class GameEngine {
 
                 if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 
-                    // restart
                     restartLevel();
                     this.stop();
                 }
@@ -97,13 +105,18 @@ public class GameEngine {
             gameObject.destroy();
         }
 
+        //TODO: create restartCamera method in Camera class
+        Designer.gc.translate(this.camera.getPosition().getPos().x - 960, 0);
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
         gameObjects = this.world.getCurrentLevel().getGameObjects();
         this.mario = this.world.getCurrentLevel().getMario();
+        this.camera = this.world.getCurrentLevel().getCamera();
         this.camera.setMario(this.mario);
         ScoreKeeper.restartTimer();
+
         this.start();
+
     }
 
     public void lateStart() {

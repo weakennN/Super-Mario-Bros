@@ -1,6 +1,7 @@
 package Components;
 
 import CollisionInfo.Collision;
+import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -26,6 +27,7 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.collision = new Collision();
+      //  Designer.gc.strokeRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
         this.calculateCenter();
         colliders.add(this);
     }
@@ -53,10 +55,12 @@ public class Collider extends Component {
         this.calculateCenter();
         collider.calculateCenter();
 
-        if (this.getGameObject().getTag().equals(collider.getGameObject().getTag())) {
+       /* if (this.getGameObject().getTag().equals(collider.getGameObject().getTag())) {
 
             return false;
         }
+
+        */
 
         double dx = this.center.x - collider.getCenter().x;
         double dy = this.center.y - collider.getCenter().y;
@@ -65,11 +69,6 @@ public class Collider extends Component {
         double combinedHalfHeights = this.halfSize.y + collider.getHalfSize().y;
 
         if (Math.abs(dx) <= combinedHalfWidths && Math.abs(dy) <= combinedHalfHeights) {
-
-           /* double overLapX = combinedHalfWidths - Math.abs(dx);
-            double overLapY = combinedHalfHeights - Math.abs(dy);
-
-            */
 
             int overLapX = (int) (combinedHalfWidths - Math.abs(dx));
             int overLapY = (int) (combinedHalfHeights - Math.abs(dy));
@@ -130,9 +129,11 @@ public class Collider extends Component {
 
     public void resize(double sizeX, double sizeY) {
 
+
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.calculateCenter();
+
     }
 
     public Vector2 getSize() {

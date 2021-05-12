@@ -63,6 +63,7 @@ public abstract class Level {
     protected void initLevelObjects(String level) {
 
         try {
+
             BufferedReader bufferedReader = new BufferedReader(new FileReader(level));
 
             String line = bufferedReader.readLine();
@@ -142,7 +143,7 @@ public abstract class Level {
                     gameObject = new Mario(position, GlobalVariables.marioTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
 
                     Position cameraPos = new Position(960, 0);
                     this.mario = (Mario) gameObject;
@@ -153,7 +154,7 @@ public abstract class Level {
                     gameObject = new Goomba(position, GlobalVariables.goombaTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
 
                 } else if (words[0].equals("ItemBox")) {
 
@@ -175,33 +176,33 @@ public abstract class Level {
 
                     gameObject = new ItemBox(position, GlobalVariables.itemBoxTag, itemBoxObject);
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
 
                 } else if (words[0].equals("Mushroom")) {
 
                     gameObject = new Mushroom(position, GlobalVariables.mushroomTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
 
                 } else if (words[0].equals("BrickBox")) {
 
                     gameObject = new BrickBox(position, GlobalVariables.brickBoxTag);
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
 
                 } else if (words[0].equals("Pipe")) {
 
                     gameObject = new Pipe(position, GlobalVariables.pipeTag);
                     // TODO: add width and height in the text file
-                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,100,200,gameObject));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,100,135,gameObject));
 
                 } else if (words[0].equals("Koopa")) {
 
                     gameObject = new Koopa(position, GlobalVariables.koopaTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
                 } else if (words[0].equals("Cloud")) {
 
                     gameObject = new Cloud(position, GlobalVariables.cloudTag);

@@ -1,5 +1,5 @@
 GameObjects
-Mario 200 882
+Mario 600 882
 ItemBox 600 740 Coin
 ItemBox 850 740 Mushroom
 ItemBox 950 740 Coin
@@ -8,6 +8,29 @@ BrickBox 800 740
 BrickBox 900 740
 BrickBox 1000 740
 Goomba 950 882
+Goomba 2100 882
+Goomba 2650 882
+Goomba 2550 882
+Pipe 1250 800
+Pipe 1800 800
+Pipe 2300 800
+Pipe 2800 800
+BrickBox 3900 740
+ItemBox 3950 740 Mushroom
+BrickBox 4000 740
+BrickBox 4030 550
+BrickBox 4080 550
+BrickBox 4130 550
+BrickBox 4180 550
+BrickBox 4230 550
+BrickBox 4280 550
+BrickBox 4330 550
+BrickBox 4380 550
+BrickBox 4730 550
+BrickBox 4780 550
+BrickBox 4830 550
+ItemBox 4880 550 Coin
+BrickBox 4880 740
 end
 Ground
 0 932 5760 50

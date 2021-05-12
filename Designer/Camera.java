@@ -42,4 +42,9 @@ public class Camera {
         return this.position;
     }
 
+    public void resetCamera() {
+
+        Designer.gc.translate(0, 0);
+    }
+
 }

@@ -34,17 +34,27 @@ public class Goomba extends GameObject {
     public void start() {
 
         Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
-        rigidbody.getVel().x = -1;
+        rigidbody.getVel().x = 1;
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if ((other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) && (collision.getHitDirection().x == 1
+        /*if ((other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) && (collision.getHitDirection().x == 1
                 || collision.getHitDirection().x == -1)) {
 
-            Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
+            Collisions.defaultHorizontalCollision(other, this, collision);
         }
+
+         */
+
+       /* if ((collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)
+                && other.getTag().equals(GlobalVariables.goombaTag)){
+
+            Collisions.defaultHorizontalCollision(other, this, collision);
+        }
+
+        */
     }
 
     public Rigidbody getRigidbody() {

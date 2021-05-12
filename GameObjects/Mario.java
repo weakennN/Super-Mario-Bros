@@ -60,7 +60,6 @@ public class Mario extends GameObject {
     @Override
     public void start() {
 
-        // Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
         this.initializeActions(this.getRigidbody());
     }
 

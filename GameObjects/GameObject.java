@@ -7,6 +7,7 @@ import Components.Component;
 import GameEngine.GameEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
+import mikera.matrixx.impl.IFastBands;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -80,15 +81,23 @@ public abstract class GameObject {
 
     protected void updateComponents() {
 
+
         try {
 
             for (Component c : this.components) {
 
+                if (c == null) {
+
+                    continue;
+                }
+
                 c.update();
             }
-        } catch (Exception e) {
+
+        } catch (Exception ignored) {
 
         }
+
 
     }
 
@@ -120,6 +129,7 @@ public abstract class GameObject {
         GameEngine.gameObjects.remove(this);
         Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
         Collider.removeCollider(collider);
+        this.active = false;
         this.components.clear();
     }
 }

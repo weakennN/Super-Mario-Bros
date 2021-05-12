@@ -53,7 +53,7 @@ public class ItemBox extends GameObject {
                     this.gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag,
                             this.gameObject.getPosition(), this.gameObject));
                     this.gameObject.addComponent(new Collider(GlobalVariables.colliderTag, this.gameObject.getPosition(),
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
 
@@ -72,7 +72,7 @@ public class ItemBox extends GameObject {
                 } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
 
                     this.gameObject.addComponent(new Collider(GlobalVariables.colliderTag, this.gameObject.getPosition(),
-                            GlobalVariables.defaultColliderSize, GlobalVariables.defaultColliderSize, this.gameObject));
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
 

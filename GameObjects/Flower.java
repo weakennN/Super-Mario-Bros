@@ -33,8 +33,6 @@ public class Flower extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        // TODO: make Mario able to throw explosives
-
         if (other.getTag().equals(GlobalVariables.marioTag)) {
 
             Mario mario = (Mario) other;

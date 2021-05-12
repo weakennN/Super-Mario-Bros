@@ -36,7 +36,7 @@ public class RenderEngine {
         Designer.score.setLayoutY(50);
 
         Designer.coins.setText(coins + "");
-        Designer.coins.setLayoutX(Designer.coinsLabel.getLayoutX() + (Designer.coinsLabel.getFont().getSize()));
+        Designer.coins.setLayoutX(Designer.coinsLabel.getLayoutX() + Designer.coinsLabel.getWidth() / 2 - Designer.coins.getWidth() / 2 + 5);
         Designer.coins.setLayoutY(50);
 
         Designer.world.setText(world + "-" + level);
@@ -48,7 +48,7 @@ public class RenderEngine {
         Designer.time.setLayoutY(50);
 
         Designer.lives.setText(lives + "");
-        Designer.lives.setLayoutX(Designer.livesLabel.getLayoutX() + (Designer.livesLabel.getFont().getSize()));
+        Designer.lives.setLayoutX(Designer.livesLabel.getLayoutX() + Designer.livesLabel.getWidth() / 2 - Designer.lives.getWidth() / 2 + 5);
         Designer.lives.setLayoutY(50);
 
     }

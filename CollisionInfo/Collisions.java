@@ -63,7 +63,7 @@ public class Collisions {
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
 
         // maybe change that so it gets the first's collider
-        Component component = first.getComponent(GlobalVariables.colliderTag);
+        Component component = second.getComponent(GlobalVariables.colliderTag);
 
         if (component == null) {
 
@@ -80,7 +80,9 @@ public class Collisions {
 
         } else if (collision.getHitDirection().x == -1) {
 
-            second.getPosition().getPos().x = first.getPosition().getPos().x + collider.getSize().x;
+            Collider collider1 = (Collider) first.getComponent(GlobalVariables.colliderTag);
+
+            second.getPosition().getPos().x = first.getPosition().getPos().x + collider1.getSize().x;
 
             checkFromEnemy(second);
         }
@@ -89,7 +91,7 @@ public class Collisions {
 
     private static void checkFromEnemy(GameObject gameObject) {
 
-        if (gameObject.getTag().equals(GlobalVariables.goombaTag)) {
+        if (gameObject.getTag().equals(GlobalVariables.goombaTag) || gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
 
             Rigidbody rigidbody = (Rigidbody) gameObject.getComponent(GlobalVariables.rigidbodyTag);
             rigidbody.getVel().x *= -1;

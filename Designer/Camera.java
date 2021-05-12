@@ -13,13 +13,11 @@ public class Camera {
     public Camera(Mario mario, Position position) {
 
         this.position = position;
-        this.vel = new Vector2(-2.5, 0);
+        this.vel = new Vector2(0, 0);
         this.mario = mario;
         Designer.gc.translate(0, 0);
 
     }
-
-    // TODO: add invincible wall int the left corner of the screen
 
     public void follow() {
 
@@ -27,7 +25,9 @@ public class Camera {
 
             this.position.getPos().x = this.mario.getPosition().getPos().x;
 
-            Designer.gc.translate(this.vel.x, this.vel.y);
+            this.vel.x = this.mario.getRigidbody().getVel().x;
+
+            Designer.gc.translate(-this.vel.x, this.vel.y);
         }
 
     }

@@ -36,7 +36,8 @@ public class GameEngine {
 
     public void start() {
 
-        // TODO: fix the pipe collision and collider and after that add so that goomba can hit another goomba on horizontal
+        // TODO: add more enemies tomorrow or later today
+        // TODO: add castle object
 
         this.startGameObjects();
 
@@ -104,7 +105,7 @@ public class GameEngine {
             GameObject gameObject = gameObjects.get(0);
             gameObject.destroy();
         }
-
+        // TODO: restart the score after mario dies
         //TODO: create restartCamera method in Camera class
         Designer.gc.translate(this.camera.getPosition().getPos().x - 960, 0);
         this.mario = null;

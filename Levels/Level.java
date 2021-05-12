@@ -143,7 +143,7 @@ public abstract class Level {
                     gameObject = new Mario(position, GlobalVariables.marioTag);
                     gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, position, gameObject));
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
+                            GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY, gameObject));
 
                     Position cameraPos = new Position(960, 0);
                     this.mario = (Mario) gameObject;

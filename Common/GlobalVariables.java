@@ -19,6 +19,8 @@ public class GlobalVariables {
     public final static String invisibleWallTag = "invisibleWall";
     public final static double defaultColliderSizeX = 40;
     public final static double defaultColliderSizeY = 50;
+    public final static double defaultMarioColliderX = 40;
+    public final static double defaultMarioColliderY = 50;
     public final static double defaultBigMarioColliderSizeX = 45;
     public final static double defaultBigMarioColliderSizeY = 85;
 

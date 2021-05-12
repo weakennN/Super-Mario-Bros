@@ -55,7 +55,7 @@ public class MarioManager {
         mario.setBigMario(false);
         Animator.marioDecreasingAnimation(mario);
         Collider collider = (Collider) mario.getComponent(GlobalVariables.colliderTag);
-        collider.resize(GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY);
+        collider.resize(GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY);
 
     }
 

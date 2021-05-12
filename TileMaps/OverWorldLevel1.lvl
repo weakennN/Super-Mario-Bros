@@ -10,7 +10,7 @@ BrickBox 1000 740
 Goomba 950 882
 Goomba 2100 882
 Goomba 2650 882
-Goomba 2550 882
+Goomba 2500 882
 Pipe 1250 800
 Pipe 1800 800
 Pipe 2300 800
@@ -31,7 +31,108 @@ BrickBox 4780 550
 BrickBox 4830 550
 ItemBox 4880 550 Coin
 BrickBox 4880 740
+BrickBox 5200 740
+BrickBox 5250 740
+BrickBox 5200 740
+ItemBox 5550 740 Coin
+ItemBox 5700 740 Coin
+ItemBox 5850 740 Coin
+ItemBox 5700 550 Mushroom
+BrickBox 6300 740
+BrickBox 6400 550
+BrickBox 6450 550
+BrickBox 6500 550
+BrickBox 6850 550
+ItemBox 6900 550 Coin
+ItemBox 6950 550 Coin
+BrickBox 7000 550
+BrickBox 6900 740
+BrickBox 6950 740
+BrickBox 7150 882
+BrickBox 7200 882
+BrickBox 7250 882
+BrickBox 7300 882
+BrickBox 7200 832
+BrickBox 7250 832
+BrickBox 7300 832
+BrickBox 7250 782
+BrickBox 7300 782
+BrickBox 7300 732
+BrickBox 7450 882
+BrickBox 7500 882
+BrickBox 7550 882
+BrickBox 7600 882
+BrickBox 7450 832
+BrickBox 7500 832
+BrickBox 7550 832
+BrickBox 7450 782
+BrickBox 7500 782
+BrickBox 7450 732
+BrickBox 7850 882
+BrickBox 7900 882
+BrickBox 7950 882
+BrickBox 8000 882
+BrickBox 8050 882
+BrickBox 7900 832
+BrickBox 7950 832
+BrickBox 8000 832
+BrickBox 8050 832
+BrickBox 7950 782
+BrickBox 8000 782
+BrickBox 8050 782
+BrickBox 8000 732
+BrickBox 8050 732
+Pipe 8700 800
+BrickBox 8950 740
+BrickBox 9000 740
+ItemBox 9050 740 Coin
+BrickBox 9100 740
+Pipe 9700 800
+BrickBox 9800 882
+BrickBox 9850 882
+BrickBox 9900 882
+BrickBox 9950 882
+BrickBox 10000 882
+BrickBox 10050 882
+BrickBox 10100 882
+BrickBox 10150 882
+BrickBox 10200 882
+BrickBox 9850 832
+BrickBox 9900 832
+BrickBox 9950 832
+BrickBox 10000 832
+BrickBox 10050 832
+BrickBox 10100 832
+BrickBox 10150 832
+BrickBox 10200 832
+BrickBox 9900 782
+BrickBox 9950 782
+BrickBox 10000 782
+BrickBox 10050 782
+BrickBox 10100 782
+BrickBox 10150 782
+BrickBox 10200 782
+BrickBox 9950 732
+BrickBox 10000 732
+BrickBox 10050 732
+BrickBox 10100 732
+BrickBox 10150 732
+BrickBox 10200 732
+BrickBox 10000 682
+BrickBox 10050 682
+BrickBox 10100 682
+BrickBox 10150 682
+BrickBox 10200 682
+BrickBox 10050 632
+BrickBox 10100 632
+BrickBox 10150 632
+BrickBox 10200 632
+BrickBox 10100 582
+BrickBox 10150 582
+BrickBox 10200 582
+BrickBox 10150 532
+BrickBox 10200 532
 end
 Ground
-0 932 5760 50
+0 932 11520 50
 end

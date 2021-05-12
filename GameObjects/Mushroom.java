@@ -41,7 +41,7 @@ public class Mushroom extends GameObject {
 
         if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
 
-            Collisions.defaultGoombaAndKoopaCollision(this, other, collision);
+            Collisions.defaultHorizontalCollision(other, this, collision);
         }
     }
 

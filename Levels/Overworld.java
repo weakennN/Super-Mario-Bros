@@ -8,7 +8,7 @@ public class Overworld extends World {
 
         super();
 
-        super.setBackGround(Animator.background, 5760, 1080);
+        super.setBackGround(Animator.background, 11520, 1080);
 
         super.addLevel(new Level1());
     }

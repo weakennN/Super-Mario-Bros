@@ -7,7 +7,6 @@ import Components.Component;
 import GameEngine.GameEngine;
 import Rigidbody.Position;
 import javafx.scene.image.Image;
-import mikera.matrixx.impl.IFastBands;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -81,7 +80,6 @@ public abstract class GameObject {
 
     protected void updateComponents() {
 
-
         try {
 
             for (Component c : this.components) {
@@ -97,7 +95,6 @@ public abstract class GameObject {
         } catch (Exception ignored) {
 
         }
-
 
     }
 

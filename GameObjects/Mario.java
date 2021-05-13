@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 public class Mario extends GameObject {
 
     private MarioManager marioManager;
+    private boolean normal;
     private boolean bigMario;
     private boolean isDead;
     private boolean jumping;
@@ -29,6 +30,7 @@ public class Mario extends GameObject {
 
         super(position, tag);
 
+        this.normal = true;
         this.bigMario = false;
         super.changeImage(Animator.marioIdleFacingRight);
         MarioDir.marioIdleFacingRight = true;
@@ -43,11 +45,6 @@ public class Mario extends GameObject {
 
     @Override
     public void update() {
-
-        if (bigMario) {
-
-            this.marioManager.growMario();
-        }
 
         super.updateComponents();
 
@@ -124,11 +121,13 @@ public class Mario extends GameObject {
     }
 
     public boolean isBigMario() {
-        return bigMario;
+
+        return this.bigMario;
     }
 
     public boolean isJumping() {
-        return jumping;
+
+        return this.jumping;
     }
 
     public boolean isOnGround() {
@@ -169,7 +168,7 @@ public class Mario extends GameObject {
 
         } else if (collision.getHitDirection().y == 1) {
 
-            this.getRigidbody().getVel().y -= 5;
+            this.getRigidbody().getVel().y *= -0.3;
             SoundManager.playSound(Sounds.goombaDeadSound);
             ScoreKeeper.incrementScore(100);
             goomba.removeComponent(GlobalVariables.rigidbodyTag);
@@ -181,7 +180,7 @@ public class Mario extends GameObject {
 
     private void marioAndMushroomCollision(Mushroom mushroom) {
 
-        this.getMarioManager().powerUpMarioWithMushroom(this);
+        this.getMarioManager().powerUpMarioWithMushroom();
         GameEngine.gameObjects.remove(mushroom);
         Collider.removeCollider((Collider) mushroom.getComponent(GlobalVariables.colliderTag));
         mushroom.removeComponent(GlobalVariables.colliderTag);
@@ -204,6 +203,16 @@ public class Mario extends GameObject {
     public void setOnGround(boolean b) {
 
         this.onGround = b;
+    }
+
+    public boolean isNormal() {
+
+        return this.normal;
+    }
+
+    public void setNormal(boolean b) {
+
+        this.normal = b;
     }
 
 }

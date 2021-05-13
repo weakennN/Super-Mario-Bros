@@ -50,8 +50,10 @@ public class Animator {
     public final static String castle = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\castle.png";
     public final static String cloud = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\cloud.png";
     public final static String goombaDead = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\goombaDead.png";
+    public final static String fireMarioFacingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioFacingRight.png";
+    public final static String fireMarioFacingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioFacingLeft.png";
 
-    public static void marioGrowingAnimation(Mario mario) {
+    public static void marioGrowingAnimation(Mario mario,MarioManager marioManager) {
 
         mario.changeImage(Animator.marioGrowing);
 
@@ -70,6 +72,7 @@ public class Animator {
 
                     mario.initializeActions((Rigidbody) mario.getComponent(GlobalVariables.rigidbodyTag));
                     mario.changeImage(Animator.bigMarioFacingRight);
+                    marioManager.growMario();
                     this.currentTime = 0;
                     this.stop();
                     return;

@@ -23,15 +23,16 @@ public class MarioManager {
 
     // TODO: create changeImage method here so it change mario image
 
-    public void powerUpMarioWithMushroom(Mario mario) {
+    public void powerUpMarioWithMushroom() {
 
         mario.getRigidbody().getVel().x = 0;
         mario.getRigidbody().getVel().y = 0;
         mario.getRigidbody().getAcc().y = 0;
         mario.getRigidbody().getAcc().x = 0;
 
-        Animator.marioGrowingAnimation(mario);
+        Animator.marioGrowingAnimation(mario, this);
         mario.setBigMario(true);
+        this.mario.setNormal(false);
     }
 
     public void growMario() {
@@ -53,6 +54,7 @@ public class MarioManager {
     public void decreaseMario() {
 
         mario.setBigMario(false);
+        this.mario.setNormal(true);
         Animator.marioDecreasingAnimation(mario);
         Collider collider = (Collider) mario.getComponent(GlobalVariables.colliderTag);
         collider.resize(GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY);
@@ -74,12 +76,15 @@ public class MarioManager {
 
                         rigidbody.getVel().x = 0.7;
                     }
-                    if (!mario.isBigMario()) {
+                    if (this.mario.isNormal()) {
                         mario.changeImage(Animator.marioRunningRight);
 
-                    } else {
+                    } else if (this.mario.isBigMario()) {
                         mario.changeImage(Animator.bigMarioRunningRight);
 
+                    } else if (this.mario.isFireMario()) {
+
+                        mario.changeImage(Animator.fireMarioFacingRight);
                     }
 
                     MarioDir.marioIdleFacingLeft = false;
@@ -99,12 +104,15 @@ public class MarioManager {
                         rigidbody.getVel().x = -0.7;
                     }
 
-                    if (!mario.isBigMario()) {
+                    if (this.mario.isNormal()) {
+
                         this.mario.changeImage(Animator.marioRunningLeft);
+                    } else if (this.mario.isBigMario()) {
 
-                    } else {
                         this.mario.changeImage(Animator.bigMarioRunningLeft);
+                    } else if (this.mario.isFireMario()) {
 
+                        this.mario.changeImage(Animator.fireMarioFacingLeft);
                     }
 
                     MarioDir.marioIdleFacingRight = false;
@@ -159,10 +167,15 @@ public class MarioManager {
             if (e.getCode() == KeyCode.A) {
 
                 rigidbody.getVel().x = 0;
-                if (!this.mario.isBigMario()) {
+                if (this.mario.isNormal()) {
+
                     this.mario.changeImage(Animator.marioIdleFacingLeft);
                 } else if (this.mario.isBigMario()) {
+
                     this.mario.changeImage(Animator.bigMarioFacingLeft);
+                } else if (this.mario.isFireMario()) {
+
+                    this.mario.changeImage(Animator.fireMarioFacingLeft);
                 }
                 MarioDir.marioRunningLeft = false;
                 MarioDir.marioIdleFacingLeft = true;
@@ -171,11 +184,17 @@ public class MarioManager {
             } else if (e.getCode() == KeyCode.D) {
 
                 rigidbody.getVel().x = 0;
-                if (!this.mario.isBigMario()) {
+                if (this.mario.isNormal()) {
+
                     this.mario.changeImage(Animator.marioIdleFacingRight);
                 } else if (this.mario.isBigMario()) {
+
                     this.mario.changeImage(Animator.bigMarioFacingRight);
+                } else if (this.mario.isFireMario()) {
+
+                    this.mario.changeImage(Animator.fireMarioFacingRight);
                 }
+
                 MarioDir.marioIdleFacingRight = true;
                 MarioDir.marioRunningRight = false;
                 rigidbody.getAcc().x = 0;
@@ -258,11 +277,11 @@ public class MarioManager {
                 || MarioDir.marioJumpingRight) {
 
             // vel.x = 1 vel.y = 1
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 2);
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 1);
         } else {
 
             // vel.x = -1 vel.y = 1
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -2);
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -1);
         }
     }
 
@@ -273,7 +292,7 @@ public class MarioManager {
         explosive.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag,
                 position, explosive));
         explosive.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                20, 20, explosive));
+                35, 35, explosive));
         Rigidbody rigidbody = (Rigidbody) explosive.getComponent(GlobalVariables.rigidbodyTag);
         rigidbody.getVel().x = xVel;
         rigidbody.getVel().y = 1;

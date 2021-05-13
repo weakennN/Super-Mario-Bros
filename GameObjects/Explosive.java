@@ -35,15 +35,21 @@ public class Explosive extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.groundTag)) {
+        if (other.getTag().equals(GlobalVariables.pipeTag)){
 
-            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
+            System.out.println();
+        }
 
-                // destroy explosiveAnimation
+        if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.groundTag)
+                || other.getTag().equals(GlobalVariables.pipeTag) || other.getTag().equals(GlobalVariables.itemBoxTag)) {
+
+            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1
+                    || collision.getHitDirection().y == -1) {
+
                 this.destroy();
             } else {
 
-                // bounce up
+
                 Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
                 this.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
                 Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
@@ -56,12 +62,12 @@ public class Explosive extends GameObject {
                     rigidbody.getVel().x = -3.5;
                 }
 
-                rigidbody.getVel().y = -3.5;
+                rigidbody.getVel().y = -1.5;
             }
 
         } else if (other.getTag().equals(GlobalVariables.goombaTag) || other.getTag().equals(GlobalVariables.koopaTag)) {
 
-            // destroy them
+
             other.destroy();
         }
     }

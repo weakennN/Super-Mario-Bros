@@ -57,6 +57,7 @@ public class ItemBox extends GameObject {
 
                     GameEngine.gameObjects.add(this.gameObject);
 
+                    super.changeImage(Animator.emptyItemBox);
                 } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
 
                    /* this.gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, this.gameObject.getPosition(), this.gameObject));
@@ -75,13 +76,11 @@ public class ItemBox extends GameObject {
                             GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
-
+                    super.changeImage(Animator.emptyItemBox);
                 }
 
                 this.isEmpty = true;
             }
-
-            super.changeImage(Animator.emptyItemBox);
 
             Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
             rigidbody.getVel().y = 1;

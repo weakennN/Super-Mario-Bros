@@ -27,7 +27,7 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.collision = new Collision();
-      //  Designer.gc.strokeRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+        //  Designer.gc.strokeRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
         this.calculateCenter();
         colliders.add(this);
     }
@@ -35,20 +35,24 @@ public class Collider extends Component {
     @Override
     public void update() {
 
-        for (Collider c : colliders) {
 
-            if (c == this || c == null) {
 
-                continue;
+            for (Collider c : colliders) {
+
+                if (c == this || c == null) {
+
+                    continue;
+                }
+
+                if (this.checkCollision(c)) {
+
+                    super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
+                }
             }
 
-            if (this.checkCollision(c)) {
-
-                super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
-            }
         }
 
-    }
+
 
     public boolean checkCollision(Collider collider) {
 

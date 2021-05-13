@@ -22,8 +22,6 @@ public class GameEngine {
     private Mario mario;
     private World world;
 
-    // TODO: crop the images
-
     public GameEngine() {
 
         this.world = new Overworld();
@@ -32,12 +30,12 @@ public class GameEngine {
         this.mario = this.world.getCurrentLevel().getMario();
         SoundManager.playMarioBackgroundTheme();
 
+        // move these in the start method
     }
 
     public void start() {
 
-        // TODO: add more enemies tomorrow or later today
-        // TODO: add castle object
+        // TODO: fix the Mario bumping in goomba
 
         this.startGameObjects();
 
@@ -105,15 +103,15 @@ public class GameEngine {
             GameObject gameObject = gameObjects.get(0);
             gameObject.destroy();
         }
-        // TODO: restart the score after mario dies
-        //TODO: create restartCamera method in Camera class
-        Designer.gc.translate(this.camera.getPosition().getPos().x - 960, 0);
+
+        this.camera.resetCamera();
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
         gameObjects = this.world.getCurrentLevel().getGameObjects();
         this.mario = this.world.getCurrentLevel().getMario();
         this.camera = this.world.getCurrentLevel().getCamera();
         this.camera.setMario(this.mario);
+        ScoreKeeper.restartScore();
         ScoreKeeper.restartTimer();
 
         this.start();

@@ -46,7 +46,7 @@ public class Koopa extends GameObject {
 
             this.isTransformed = true;
             // change koopa's form and physics
-        } /*else if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) {
+        } else if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) {
 
             if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
 
@@ -54,7 +54,7 @@ public class Koopa extends GameObject {
             }
 
         }
-        */
+
     }
 
     public boolean isTransformed() {

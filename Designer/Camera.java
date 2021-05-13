@@ -44,7 +44,7 @@ public class Camera {
 
     public void resetCamera() {
 
-        Designer.gc.translate(0, 0);
+        Designer.gc.translate(this.position.getPos().x - 960, 0);
     }
 
 }

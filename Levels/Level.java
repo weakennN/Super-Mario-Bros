@@ -195,7 +195,7 @@ public abstract class Level {
 
                     gameObject = new Pipe(position, GlobalVariables.pipeTag);
                     // TODO: add width and height in the text file
-                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag,position,100,135,gameObject));
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 100, 135, gameObject));
 
                 } else if (words[0].equals("Koopa")) {
 
@@ -206,6 +206,9 @@ public abstract class Level {
                 } else if (words[0].equals("Cloud")) {
 
                     gameObject = new Cloud(position, GlobalVariables.cloudTag);
+                } else if (words[0].equals("Castle")) {
+
+                    gameObject = new Castle(position, GlobalVariables.castleTag);
                 }
 
                 this.addGameObject(gameObject);

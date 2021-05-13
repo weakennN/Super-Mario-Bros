@@ -39,30 +39,8 @@ public class Collisions {
 
     }
 
-    public static void defaultGoombaAndKoopaCollision(GameObject first, GameObject second, Collision collision) {
-
-        Rigidbody rigidbody = (Rigidbody) first.getComponent(GlobalVariables.rigidbodyTag);
-        Collider collider = (Collider) second.getComponent(GlobalVariables.colliderTag);
-
-     /*   if (collision.getHitDirection().x == 1) {
-
-            first.getPosition().getPos().x = second.getPosition().getPos().x - collider.getSize().x;
-            rigidbody.getVel().x *= -1;
-
-        } else if (collision.getHitDirection().x == -1) {
-
-            first.getPosition().getPos().x = second.getPosition().getPos().x + collider.getSize().x;
-            rigidbody.getVel().x *= -1;
-
-        }
-
-      */
-
-    }
-
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
 
-        // maybe change that so it gets the first's collider
         Component component = second.getComponent(GlobalVariables.colliderTag);
 
         if (component == null) {
@@ -91,7 +69,8 @@ public class Collisions {
 
     private static void checkFromEnemy(GameObject gameObject) {
 
-        if (gameObject.getTag().equals(GlobalVariables.goombaTag) || gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
+        if (gameObject.getTag().equals(GlobalVariables.goombaTag)
+                || gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
 
             Rigidbody rigidbody = (Rigidbody) gameObject.getComponent(GlobalVariables.rigidbodyTag);
             rigidbody.getVel().x *= -1;

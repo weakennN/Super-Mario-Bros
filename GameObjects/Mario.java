@@ -10,6 +10,8 @@ import GameObjects.AI.Goomba;
 import Helpers.MarioDir;
 import Rigidbody.Position;
 import Score.ScoreKeeper;
+import SoundEffects.SoundManager;
+import SoundEffects.Sounds;
 import javafx.scene.image.Image;
 
 public class Mario extends GameObject {
@@ -167,8 +169,13 @@ public class Mario extends GameObject {
 
         } else if (collision.getHitDirection().y == 1) {
 
+            this.getRigidbody().getVel().y -= 5;
+            SoundManager.playSound(Sounds.goombaDeadSound);
             ScoreKeeper.incrementScore(100);
-            goomba.destroy();
+            goomba.removeComponent(GlobalVariables.rigidbodyTag);
+            Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
+            goomba.removeComponent(GlobalVariables.colliderTag);
+            Animator.goombaDeadAnimation(goomba);
         }
     }
 

@@ -43,4 +43,10 @@ public class ScoreKeeper {
 
     }
 
+    public static void restartScore(){
+
+        score = 0;
+        coins = 0;
+    }
+
 }

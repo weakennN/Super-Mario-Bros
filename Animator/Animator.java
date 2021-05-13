@@ -3,6 +3,7 @@ package Animator;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import Designer.Designer;
+import GameObjects.AI.Goomba;
 import GameObjects.GameObject;
 import GameObjects.Mario;
 import GameObjects.MarioManager;
@@ -10,6 +11,7 @@ import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -47,6 +49,7 @@ public class Animator {
     public final static String explosive = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\explosive.png";
     public final static String castle = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\castle.png";
     public final static String cloud = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\cloud.png";
+    public final static String goombaDead = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\goombaDead.png";
 
     public static void marioGrowingAnimation(Mario mario) {
 
@@ -161,5 +164,28 @@ public class Animator {
 
         animator.start();
 
+    }
+
+    public static void goombaDeadAnimation(Goomba goomba) {
+
+        goomba.changeImage(Animator.goombaDead);
+
+        animator = new AnimationTimer() {
+
+            private int currentTime = 0;
+
+            @Override
+            public void handle(long l) {
+
+                if (this.currentTime++ >= 50) {
+
+                    goomba.destroy();
+                    this.currentTime = 0;
+                    this.stop();
+                }
+            }
+        };
+
+        animator.start();
     }
 }

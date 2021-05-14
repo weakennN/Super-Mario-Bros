@@ -1,12 +1,8 @@
 package GameEngine;
 
 import GameObjects.GameObject;
-import GameObjects.Mario;
-import Levels.Overworld;
-import Levels.World;
 import RenderEngine.RenderEngine;
 import Score.ScoreKeeper;
-import SoundEffects.SoundManager;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import Designer.Camera;
@@ -18,32 +14,21 @@ public class GameEngine {
     public static List<GameObject> gameObjects;
     private AnimationTimer gameLoop;
     private Camera camera;
-    private Mario mario;
-    private World world;
+    private Game game;
 
-    public GameEngine() {
+    public GameEngine(Game game) {
 
-        this.world = new Overworld();
-        gameObjects = this.world.getCurrentLevel().getGameObjects();
-        this.camera = this.world.getCurrentLevel().getCamera();
-        this.mario = this.world.getCurrentLevel().getMario();
-        SoundManager.playMarioBackgroundTheme();
-
-        // move these in the start method
+        this.game = game;
     }
 
     public void start() {
-
-        this.startGameObjects();
 
         this.gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long l) {
 
-                RenderEngine.renderBackGround(world.getBackGround().getImage(),
-                        world.getBackGround().getSizeX(), world.getBackGround().getSizeY());
-
+                game.update();
                 ScoreKeeper.updateScore();
 
                 for (int i = 0; i < gameObjects.size(); i++) {
@@ -66,34 +51,12 @@ public class GameEngine {
 
                 camera.follow();
 
-                if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
-
-                    this.stop();
-                    restartLevel();
-                }
-
-                lateStart();
             }
 
         };
 
         this.gameLoop.start();
 
-    }
-
-    private void startGameObjects() {
-
-        for (GameObject gm : gameObjects) {
-
-            if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
-                    || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
-                    && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000) {
-
-                gm.setActive(true);
-                gm.start();
-            }
-
-        }
     }
 
     public void restartLevel() {
@@ -104,7 +67,7 @@ public class GameEngine {
             gameObject.destroy();
         }
 
-        this.camera.resetCamera();
+      /*  this.camera.resetCamera();
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
         gameObjects = this.world.getCurrentLevel().getGameObjects();
@@ -114,13 +77,15 @@ public class GameEngine {
         ScoreKeeper.restartScore();
         ScoreKeeper.restartTimer();
 
+       */
+
         this.start();
 
     }
 
     public void lateStart() {
 
-        for (GameObject gm : gameObjects) {
+      /*  for (GameObject gm : gameObjects) {
 
             if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
                     || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
@@ -131,6 +96,8 @@ public class GameEngine {
                 gm.start();
             }
         }
+
+       */
     }
 
     public void stop() {
@@ -138,6 +105,16 @@ public class GameEngine {
         gameObjects.clear();
         this.gameLoop.stop();
         ScoreKeeper.stopTimer();
+    }
+
+    public void setCamera(Camera camera) {
+
+        this.camera = camera;
+    }
+
+    public Camera getCamera() {
+
+        return this.camera;
     }
 
 }

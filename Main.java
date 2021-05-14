@@ -1,5 +1,6 @@
 import Designer.Designer;
 import GameEngine.GameEngine;
+import GameEngine.SuperMarioBros;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,17 +12,18 @@ public class Main extends Application {
 
         Scene scene = Designer.initializeNodes();
 
-        GameEngine engine = new GameEngine();
+        SuperMarioBros superMarioBros = new SuperMarioBros();
+
 
         stage.setTitle("Super Mario Bros.");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
-        engine.start();
+        superMarioBros.start();
 
         stage.setOnCloseRequest(e -> {
 
-            engine.stop();
+            superMarioBros.stop();
         });
 
     }

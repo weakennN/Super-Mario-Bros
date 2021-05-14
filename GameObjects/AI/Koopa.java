@@ -2,7 +2,6 @@ package GameObjects.AI;
 
 import Animator.Animator;
 import CollisionInfo.Collision;
-import CollisionInfo.Collisions;
 import Common.GlobalVariables;
 import Components.Rigidbody;
 import GameObjects.GameObject;
@@ -21,6 +20,18 @@ public class Koopa extends GameObject {
 
     @Override
     public void update() {
+
+        // TODO: make this method and add koopa's shell
+
+        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+
+        if (rigidbody.getVel().x > 0){
+
+            super.changeImage(Animator.koopaFacingRight);
+        }else {
+
+            super.changeImage(Animator.koopaFacingLeft);
+        }
 
         super.updateComponents();
     }
@@ -45,14 +56,8 @@ public class Koopa extends GameObject {
         if (other.getTag().equals(GlobalVariables.marioTag) && collision.getHitDirection().y == -1) {
 
             this.isTransformed = true;
+            this.destroy();
             // change koopa's form and physics
-        } else if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.pipeTag)) {
-
-            if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
-
-                Collisions.defaultHorizontalCollision(other, this, collision);
-            }
-
         }
 
     }

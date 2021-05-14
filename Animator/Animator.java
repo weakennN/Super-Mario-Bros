@@ -11,7 +11,6 @@ import SoundEffects.SoundManager;
 import SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -52,8 +51,12 @@ public class Animator {
     public final static String goombaDead = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\goombaDead.png";
     public final static String fireMarioFacingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioFacingRight.png";
     public final static String fireMarioFacingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioFacingLeft.png";
+    public final static String fireMarioRunningRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioRunningRight.gif";
+    public final static String fireMarioRunningLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioRunningLeft.gif";
+    public final static String fireMarioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioJumpingRight.png";
+    public final static String fireMarioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Animator\\ObjectsAnimations\\fireMarioJumpingLeft.png";
 
-    public static void marioGrowingAnimation(Mario mario,MarioManager marioManager) {
+    public static void marioGrowingAnimation(Mario mario, MarioManager marioManager) {
 
         mario.changeImage(Animator.marioGrowing);
 
@@ -90,6 +93,8 @@ public class Animator {
 
         Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
+
+        marioManager.getMario().changeImage(Animator.marioDead);
 
         animator = new AnimationTimer() {
 

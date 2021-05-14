@@ -152,7 +152,7 @@ public class Mario extends GameObject {
                     this.getRigidbody().getVel().x = 0;
                     this.getRigidbody().getVel().y = 1;
                     ScoreKeeper.decreaseLives();
-                    this.changeImage(Animator.marioDead);
+                    //this.changeImage(Animator.marioDead);
                     Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
                     Collider.removeCollider(collider);
                     this.removeComponent(GlobalVariables.colliderTag);

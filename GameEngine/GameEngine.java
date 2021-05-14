@@ -34,8 +34,6 @@ public class GameEngine {
 
     public void start() {
 
-        // TODO: fix the Mario bumping in goomba
-
         this.startGameObjects();
 
         this.gameLoop = new AnimationTimer() {
@@ -58,18 +56,20 @@ public class GameEngine {
                     }
 
                     if (gameObject.isActive()) {
+
                         gameObject.update();
                         Image gameObjectImage = gameObject.render();
                         RenderEngine.render(gameObjectImage, gameObject.getPosition());
                     }
+
                 }
 
                 camera.follow();
 
                 if (mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 
-                    restartLevel();
                     this.stop();
+                    restartLevel();
                 }
 
                 lateStart();
@@ -92,6 +92,7 @@ public class GameEngine {
                 gm.setActive(true);
                 gm.start();
             }
+
         }
     }
 

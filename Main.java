@@ -13,7 +13,7 @@ public class Main extends Application {
 
         GameEngine engine = new GameEngine();
 
-        stage.setTitle("Super Mario Game");
+        stage.setTitle("Super Mario Bros.");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();

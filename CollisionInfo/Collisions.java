@@ -41,6 +41,11 @@ public class Collisions {
 
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
 
+        if (second.getTag().equals(GlobalVariables.koopaTag)){
+
+            System.out.println();
+        }
+
         Component component = second.getComponent(GlobalVariables.colliderTag);
 
         if (component == null) {
@@ -70,7 +75,7 @@ public class Collisions {
     private static void checkFromEnemy(GameObject gameObject) {
 
         if (gameObject.getTag().equals(GlobalVariables.goombaTag)
-                || gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
+                || gameObject.getTag().equals(GlobalVariables.mushroomTag) || gameObject.getTag().equals(GlobalVariables.koopaTag)) {
 
             Rigidbody rigidbody = (Rigidbody) gameObject.getComponent(GlobalVariables.rigidbodyTag);
             rigidbody.getVel().x *= -1;

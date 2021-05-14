@@ -1,7 +1,6 @@
 package Components;
 
 import CollisionInfo.Collision;
-import Designer.Designer;
 import GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 import Rigidbody.Position;
@@ -35,24 +34,21 @@ public class Collider extends Component {
     @Override
     public void update() {
 
+        for (Collider c : colliders) {
 
+            if (c == this || c == null) {
 
-            for (Collider c : colliders) {
+                continue;
+            }
 
-                if (c == this || c == null) {
+            if (this.checkCollision(c)) {
 
-                    continue;
-                }
-
-                if (this.checkCollision(c)) {
-
-                    super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
-                }
+                super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
             }
 
         }
 
-
+    }
 
     public boolean checkCollision(Collider collider) {
 

@@ -21,8 +21,6 @@ public class MarioManager {
         this.mario = mario;
     }
 
-    // TODO: create changeImage method here so it change mario image
-
     public void powerUpMarioWithMushroom() {
 
         mario.getRigidbody().getVel().x = 0;
@@ -77,14 +75,14 @@ public class MarioManager {
                         rigidbody.getVel().x = 0.7;
                     }
                     if (this.mario.isNormal()) {
+
                         mario.changeImage(Animator.marioRunningRight);
-
                     } else if (this.mario.isBigMario()) {
-                        mario.changeImage(Animator.bigMarioRunningRight);
 
+                        mario.changeImage(Animator.bigMarioRunningRight);
                     } else if (this.mario.isFireMario()) {
 
-                        mario.changeImage(Animator.fireMarioFacingRight);
+                        mario.changeImage(Animator.fireMarioRunningRight);
                     }
 
                     MarioDir.marioIdleFacingLeft = false;
@@ -112,7 +110,7 @@ public class MarioManager {
                         this.mario.changeImage(Animator.bigMarioRunningLeft);
                     } else if (this.mario.isFireMario()) {
 
-                        this.mario.changeImage(Animator.fireMarioFacingLeft);
+                        this.mario.changeImage(Animator.fireMarioRunningLeft);
                     }
 
                     MarioDir.marioIdleFacingRight = false;
@@ -130,9 +128,12 @@ public class MarioManager {
                         if (this.mario.isBigMario()) {
 
                             this.mario.changeImage(Animator.bigMarioJumpingRight);
-                        } else {
+                        } else if (this.mario.isNormal()) {
 
-                            mario.changeImage(Animator.marioJumpingRight);
+                            this.mario.changeImage(Animator.marioJumpingRight);
+                        } else if (this.mario.isFireMario()) {
+
+                            this.mario.changeImage(Animator.fireMarioJumpingRight);
                         }
 
                         MarioDir.marioJumpingRight = true;
@@ -141,9 +142,12 @@ public class MarioManager {
                         if (this.mario.isBigMario()) {
 
                             this.mario.changeImage(Animator.bigMarioJumpingLeft);
-                        } else {
+                        } else if (this.mario.isNormal()) {
 
                             mario.changeImage(Animator.marioJumpingLeft);
+                        } else if (this.mario.isFireMario()) {
+
+                            this.mario.changeImage(Animator.fireMarioJumpingLeft);
                         }
 
                         MarioDir.marioJumpingLeft = true;
@@ -219,8 +223,8 @@ public class MarioManager {
 
                     this.mario.changeImage(Animator.bigMarioRunningLeft);
                 }
-            } else {
-// TODO: make a method for these if checks because there is a lot of copy paste
+            } else if (this.mario.isNormal()) {
+
                 if (mario.getRigidbody().getVel().x > 0) {
 
                     this.mario.changeImage(Animator.marioRunningRight);
@@ -230,6 +234,18 @@ public class MarioManager {
                 } else {
 
                     this.mario.changeImage(Animator.marioRunningLeft);
+                }
+            } else if (this.mario.isFireMario()) {
+
+                if (mario.getRigidbody().getVel().x > 0) {
+
+                    this.mario.changeImage(Animator.fireMarioRunningRight);
+                } else if (mario.getRigidbody().getVel().x == 0) {
+
+                    this.mario.changeImage(Animator.fireMarioFacingRight);
+                } else {
+
+                    this.mario.changeImage(Animator.fireMarioRunningLeft);
                 }
             }
 
@@ -250,7 +266,7 @@ public class MarioManager {
                     this.mario.changeImage(Animator.bigMarioRunningRight);
                 }
 
-            } else {
+            } else if (this.mario.isNormal()) {
 
                 if (mario.getRigidbody().getVel().x < 0) {
 
@@ -264,6 +280,19 @@ public class MarioManager {
                     this.mario.changeImage(Animator.marioRunningRight);
                 }
 
+            } else if (this.mario.isFireMario()) {
+
+                if (mario.getRigidbody().getVel().x < 0) {
+
+                    this.mario.changeImage(Animator.fireMarioRunningLeft);
+
+                } else if (this.mario.getRigidbody().getVel().x == 0) {
+
+                    this.mario.changeImage(Animator.fireMarioFacingLeft);
+                } else {
+
+                    this.mario.changeImage(Animator.fireMarioRunningRight);
+                }
             }
 
             MarioDir.marioJumpingLeft = false;
@@ -276,11 +305,9 @@ public class MarioManager {
         if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight
                 || MarioDir.marioJumpingRight) {
 
-            // vel.x = 1 vel.y = 1
             this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 1);
         } else {
 
-            // vel.x = -1 vel.y = 1
             this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -1);
         }
     }

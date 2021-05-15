@@ -1,6 +1,5 @@
-import Designer.Designer;
-import GameEngine.GameEngine;
-import GameEngine.SuperMarioBros;
+import UIEngine.Designer;
+import Game.SuperMarioBros;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

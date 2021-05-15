@@ -1,8 +1,7 @@
 package RenderEngine;
 
-import Designer.Designer;
-import Rigidbody.Position;
-import javafx.scene.control.Label;
+import UIEngine.Designer;
+import ECS.Position;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 

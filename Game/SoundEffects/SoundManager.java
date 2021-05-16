@@ -24,7 +24,7 @@ public class SoundManager {
     public static void playSound(String sound) {
 
         audioClip = new AudioClip(Paths.get(sound).toUri().toString());
-        audioClip.setVolume(0.04);
+        audioClip.setVolume(0.05);
         audioClip.play();
     }
 

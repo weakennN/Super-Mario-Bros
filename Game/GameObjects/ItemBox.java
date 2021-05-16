@@ -9,6 +9,8 @@ import ECS.Rigidbody;
 import Engine.GameEngine;
 import ECS.Position;
 import Game.Score.ScoreKeeper;
+import Game.SoundEffects.SoundManager;
+import Game.SoundEffects.Sounds;
 import javafx.scene.image.Image;
 
 public class ItemBox extends GameObject {
@@ -57,9 +59,11 @@ public class ItemBox extends GameObject {
 
                     GameEngine.gameObjects.add(this.gameObject);
 
+                    SoundManager.playSound(Sounds.itemBlockSound);
                     super.changeImage(Animator.emptyItemBox);
                 } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
 
+                    SoundManager.playSound(Sounds.coinSound);
                     Animator.marioGettingCoinFromItemBoxAnimation(this);
                     ScoreKeeper.coins++;
                     super.changeImage(Animator.emptyItemBox);
@@ -70,10 +74,16 @@ public class ItemBox extends GameObject {
                             GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject));
 
                     GameEngine.gameObjects.add(this.gameObject);
+
+                    SoundManager.playSound(Sounds.itemBlockSound);
                     super.changeImage(Animator.emptyItemBox);
                 }
 
                 this.isEmpty = true;
+
+            } else {
+
+                SoundManager.playSound(Sounds.bumpSound);
             }
 
             Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);

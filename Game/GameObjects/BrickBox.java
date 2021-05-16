@@ -7,6 +7,8 @@ import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
 import Game.GameObjects.Mario.Mario;
 import ECS.Position;
+import Game.SoundEffects.SoundManager;
+import Game.SoundEffects.Sounds;
 import javafx.scene.image.Image;
 
 public class BrickBox extends GameObject {
@@ -58,7 +60,11 @@ public class BrickBox extends GameObject {
 
                 if (mario.isBigMario()) {
 
+                    SoundManager.playSound(Sounds.blockDestructionSound);
                     this.destroy();
+                }else {
+
+                    SoundManager.playSound(Sounds.bumpSound);
                 }
 
             }

@@ -24,6 +24,8 @@ public class MarioManager {
 
     public void powerUpMarioWithMushroom() {
 
+        SoundManager.playSound(Sounds.superMarioGrowingSound);
+
         mario.getRigidbody().getVel().x = 0;
         mario.getRigidbody().getVel().y = 0;
         mario.getRigidbody().getAcc().y = 0;
@@ -122,7 +124,14 @@ public class MarioManager {
 
                 if (!this.mario.isJumping()) {
                     rigidbody.getVel().y = -3.6;
-                    SoundManager.playSound(Sounds.marioJumpingSound);
+
+                    if (this.mario.isNormal()) {
+
+                        SoundManager.playSound(Sounds.marioJumpingSound);
+                    } else {
+
+                        SoundManager.playSound(Sounds.bigMarioJumpingSound);
+                    }
 
                     if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight) {
 

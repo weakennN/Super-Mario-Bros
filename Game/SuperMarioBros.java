@@ -1,5 +1,6 @@
 package Game;
 
+import Game.SoundEffects.Sounds;
 import UIEngine.Designer;
 import Engine.GameEngine;
 import Game.GameObjects.GameObject;
@@ -66,6 +67,11 @@ public class SuperMarioBros extends Game {
         if (this.mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 
             this.restartLevel();
+        }
+
+        if (ScoreKeeper.time.getSeconds() == 100) {
+
+            SoundManager.playSound(Sounds.timeWarningSound);
         }
 
     }

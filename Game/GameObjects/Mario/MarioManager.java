@@ -4,6 +4,7 @@ import Game.Animator.Animator;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
+import Game.Score.ScoreKeeper;
 import UIEngine.Designer;
 import Engine.GameEngine;
 import Game.GameObjects.Explosive;
@@ -325,6 +326,17 @@ public class MarioManager {
         rigidbody.getVel().y = 1;
         GameEngine.gameObjects.add(explosive);
 
+    }
+
+    public void marioDead() {
+
+        this.mario.getRigidbody().getVel().x = 0;
+        this.mario.getRigidbody().getVel().y = 1;
+        ScoreKeeper.decreaseLives();
+        Collider collider = (Collider) this.mario.getComponent(GlobalVariables.colliderTag);
+        Collider.removeCollider(collider);
+        this.mario.removeComponent(GlobalVariables.colliderTag);
+        Animator.marioDeadAnimation(this);
     }
 
 }

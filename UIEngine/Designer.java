@@ -47,17 +47,13 @@ public class Designer {
 
         gc.setFont(font);
         gc.setFill(Color.WHITE);
-        /*gc.fillText("WASD keys to move" + "\n"
-                + "Shift to fire", 200, 500);
 
-         */
         root = new Pane();
         root.getChildren().add(canvas);
 
 
         initLabels();
 
-        //TODO: add a imageView for the background
         scene = new Scene(root, 1920, 1080);
 
         return scene;
@@ -65,7 +61,7 @@ public class Designer {
 
     private static void initLabels() {
 
-        scoreLabel = new Label("Game/Score");
+        scoreLabel = new Label("Score");
         coinsLabel = new Label("Coins");
         worldLabel = new Label("World");
         timeLabel = new Label("Time");

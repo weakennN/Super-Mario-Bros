@@ -150,14 +150,7 @@ public class Mario extends GameObject {
 
                 if (!bigMario) {
 
-                    this.getRigidbody().getVel().x = 0;
-                    this.getRigidbody().getVel().y = 1;
-                    ScoreKeeper.decreaseLives();
-                    Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
-                    Collider.removeCollider(collider);
-                    this.removeComponent(GlobalVariables.colliderTag);
-                    Animator.marioDeadAnimation(this.marioManager);
-
+                    this.marioManager.marioDead();
                 } else {
 
                     this.immune = true;

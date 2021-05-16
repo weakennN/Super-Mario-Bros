@@ -60,16 +60,10 @@ public class ItemBox extends GameObject {
                     super.changeImage(Animator.emptyItemBox);
                 } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
 
-                   /* this.gameObject.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag, this.gameObject.getPosition(), this.gameObject));
-                    GameEngine.gameObjects.add(this.gameObject);
-                    this.gameObject.start();
-
-                    */
-
                     Animator.marioGettingCoinFromItemBoxAnimation(this);
-
                     ScoreKeeper.coins++;
                     super.changeImage(Animator.emptyItemBox);
+
                 } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
 
                     this.gameObject.addComponent(new Collider(GlobalVariables.colliderTag, this.gameObject.getPosition(),

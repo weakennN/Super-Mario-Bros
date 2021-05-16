@@ -9,7 +9,7 @@ import Game.Camera;
 
 import java.util.List;
 
-public class GameEngine {
+public class GameEngine extends Engine{
 
     public static List<GameObject> gameObjects;
     private AnimationTimer gameLoop;
@@ -21,6 +21,7 @@ public class GameEngine {
         this.game = game;
     }
 
+    @Override
     public void start() {
 
         this.gameLoop = new AnimationTimer() {
@@ -58,47 +59,7 @@ public class GameEngine {
 
     }
 
-    public void restartLevel() {
-
-        while (!gameObjects.isEmpty()) {
-
-            GameObject gameObject = gameObjects.get(0);
-            gameObject.destroy();
-        }
-
-      /*  this.camera.resetCamera();
-        this.mario = null;
-        this.world.getCurrentLevel().initLevel();
-        gameObjects = this.world.getCurrentLevel().getGameObjects();
-        this.mario = this.world.getCurrentLevel().getMario();
-        this.camera = this.world.getCurrentLevel().getCamera();
-        this.camera.setMario(this.mario);
-        ScoreKeeper.restartScore();
-        ScoreKeeper.restartTimer();
-
-       */
-
-        this.start();
-
-    }
-
-    public void lateStart() {
-
-      /*  for (GameObject gm : gameObjects) {
-
-            if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
-                    || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
-                    && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000
-                    && !gm.isActive()) {
-
-                gm.setActive(true);
-                gm.start();
-            }
-        }
-
-       */
-    }
-
+    @Override
     public void stop() {
 
         gameObjects.clear();

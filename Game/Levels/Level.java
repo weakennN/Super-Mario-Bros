@@ -193,7 +193,6 @@ public abstract class Level {
                 } else if (words[0].equals("Pipe")) {
 
                     gameObject = new Pipe(position, GlobalVariables.pipeTag);
-                    // TODO: add width and height in the text file
                     gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position, 100, 135, gameObject));
 
                 } else if (words[0].equals("Koopa")) {

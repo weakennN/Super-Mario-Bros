@@ -5,9 +5,6 @@ import ECS.Position;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class RenderEngine {
 
     public static void render(Image image, Position position) {
@@ -15,16 +12,6 @@ public class RenderEngine {
         Vector2 pos = position.getPos();
 
         Designer.gc.drawImage(image, pos.x, pos.y);
-    }
-
-    public static void renderImage(String image, double x, double y) {
-
-        try {
-            Image image1 = new Image(new FileInputStream(image));
-            Designer.gc.drawImage(image1, x, y);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void showScore(int score, int coins, int world,
@@ -52,8 +39,4 @@ public class RenderEngine {
 
     }
 
-    public static void renderBackGround(Image image, double sizeX, double sizeY) {
-
-        Designer.gc.drawImage(image, 0, 0, sizeX, sizeY);
-    }
 }

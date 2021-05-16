@@ -84,7 +84,6 @@ public class SuperMarioBros extends Game {
         this.gameObjects = this.world.getCurrentLevel().getGameObjects();
         this.mario = this.world.getCurrentLevel().getMario();
         this.engine.setCamera(this.world.getCurrentLevel().getCamera());
-      //  this.engine.getCamera().setMario(this.mario);
         ScoreKeeper.restartScore();
         ScoreKeeper.restartTimer();
 

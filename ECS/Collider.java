@@ -25,7 +25,6 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.collision = new Collision();
-        //  Designer.gc.strokeRect(this.pos.x, this.pos.y, this.size.x, this.size.y);
         this.calculateCenter();
         colliders.add(this);
     }
@@ -53,13 +52,6 @@ public class Collider extends Component {
 
         this.calculateCenter();
         collider.calculateCenter();
-
-       /* if (this.getGameObject().getTag().equals(collider.getGameObject().getTag())) {
-
-            return false;
-        }
-
-        */
 
         double dx = this.center.x - collider.getCenter().x;
         double dy = this.center.y - collider.getCenter().y;

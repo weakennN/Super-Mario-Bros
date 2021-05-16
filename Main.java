@@ -13,7 +13,6 @@ public class Main extends Application {
 
         SuperMarioBros superMarioBros = new SuperMarioBros();
 
-
         stage.setTitle("Super Mario Bros.");
         stage.setMaximized(true);
         stage.setScene(scene);

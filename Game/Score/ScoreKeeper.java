@@ -49,4 +49,13 @@ public class ScoreKeeper {
         coins = 0;
     }
 
+    public static void restart(){
+
+        restartScore();
+        restartTimer();
+        lives = 3;
+        level = 1;
+        world = 1;
+    }
+
 }

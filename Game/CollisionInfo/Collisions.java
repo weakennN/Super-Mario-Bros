@@ -41,11 +41,6 @@ public class Collisions {
 
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
 
-        if (second.getTag().equals(GlobalVariables.koopaTag)){
-
-            System.out.println();
-        }
-
         Component component = second.getComponent(GlobalVariables.colliderTag);
 
         if (component == null) {

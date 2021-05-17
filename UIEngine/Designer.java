@@ -39,7 +39,7 @@ public class Designer {
 
         try {
 
-            font = Font.loadFont(new FileInputStream("C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\Font\\defaultFont.ttf"), 50);
+            font = Font.loadFont(new FileInputStream("C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\Font\\defaultFont.ttf"), 33);
             background = new Image(new FileInputStream(Animator.background));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -74,14 +74,14 @@ public class Designer {
 
         Label[] labels = {scoreLabel, coinsLabel, worldLabel, timeLabel, livesLabel};
 
-        double x = 100;
+        double x = 90;
 
         for (Label label : labels) {
 
             label.setLayoutX(x);
             label.setFont(font);
             root.getChildren().add(label);
-            x += 400;
+            x += 390;
 
         }
 

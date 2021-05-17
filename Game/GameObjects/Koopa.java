@@ -12,11 +12,13 @@ import javafx.scene.image.Image;
 public class Koopa extends GameObject {
 
     private boolean isTransformed;
+    private boolean shellMoving;
 
     public Koopa(Position position, String tag) {
         super(position, tag);
 
         this.isTransformed = false;
+        this.shellMoving = false;
     }
 
     @Override
@@ -58,34 +60,47 @@ public class Koopa extends GameObject {
 
         if (other.getTag().equals(GlobalVariables.marioTag) && collision.getHitDirection().y == -1) {
 
+            Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
+            Rigidbody rigidbody1 = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+
             if (!this.isTransformed) {
 
-                Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
-                Rigidbody rigidbody1 = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
                 rigidbody1.getVel().x = 0;
-                rigidbody.getVel().y *= -0.3;
                 super.changeImage(Animator.koopasShell);
                 this.isTransformed = true;
 
             } else {
 
-                Rigidbody rigidbody = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
-                rigidbody.getVel().x = 4.5;
+                if (rigidbody1.getVel().x >= 0) {
+
+                    rigidbody1.getVel().x = 4.5;
+                    this.shellMoving = true;
+                } else {
+
+                    rigidbody1.getVel().x = 0;
+                    this.shellMoving = false;
+                }
+
             }
+
+            rigidbody.getVel().y *= -0.3;
 
         } else if ((other.getTag().equals(GlobalVariables.goombaTag)
                 || other.getTag().equals(GlobalVariables.marioTag)) &&
-                (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)) {
+                (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) && this.shellMoving) {
+
+            // TODO: fix this
 
             if (other.getTag().equals(GlobalVariables.marioTag)) {
 
                 Mario mario = (Mario) other;
                 mario.getMarioManager().marioDead();
-            }else {
+            } else if (this.isTransformed) {
 
                 other.destroy();
                 ScoreKeeper.incrementScore(100);
             }
+
         }
 
     }

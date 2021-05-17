@@ -1,6 +1,8 @@
 package Game;
 
+import Game.Animator.Animator;
 import Game.SoundEffects.Sounds;
+import RenderEngine.RenderEngine;
 import UIEngine.Designer;
 import Engine.GameEngine;
 import Game.GameObjects.GameObject;
@@ -9,6 +11,7 @@ import Game.Levels.Overworld;
 import Game.Levels.World;
 import Game.Score.ScoreKeeper;
 import Game.SoundEffects.SoundManager;
+import javafx.animation.AnimationTimer;
 
 import java.util.List;
 
@@ -21,19 +24,20 @@ public class SuperMarioBros extends Game {
 
     public SuperMarioBros() {
 
-        this.engine = new GameEngine(this);
-        this.world = new Overworld();
-        this.mario = this.world.getCurrentLevel().getMario();
-        SoundManager.playMarioBackgroundTheme();
+
     }
 
     @Override
     public void start() {
 
+        this.engine = new GameEngine(this);
+        this.world = new Overworld();
+        this.world.getCurrentLevel().initLevel();
+        this.mario = this.world.getCurrentLevel().getMario();
+        SoundManager.playMarioBackgroundTheme();
         this.gameObjects = this.world.getCurrentLevel().getGameObjects();
         GameEngine.gameObjects = this.gameObjects;
         this.engine.setCamera(this.world.getCurrentLevel().getCamera());
-
         this.engine.start();
     }
 
@@ -64,6 +68,12 @@ public class SuperMarioBros extends Game {
 
         }
 
+        if (ScoreKeeper.lives == 0) {
+
+            this.gaveOver();
+            return;
+        }
+
         if (this.mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
 
             this.restartLevel();
@@ -78,11 +88,7 @@ public class SuperMarioBros extends Game {
 
     private void restartLevel() {
 
-        while (!this.gameObjects.isEmpty()) {
-
-            GameObject gm = this.gameObjects.get(0);
-            gm.destroy();
-        }
+        this.destroyGameObjects();
 
         this.engine.getCamera().resetCamera();
         this.mario = null;
@@ -99,5 +105,48 @@ public class SuperMarioBros extends Game {
 
         ScoreKeeper.stopTimer();
         this.engine.stop();
+    }
+
+    private void gaveOver() {
+
+        RenderEngine.renderBackGround(Animator.gameOver);
+        this.world = null;
+        this.mario = null;
+        this.destroyGameObjects();
+        this.engine.stop();
+        SoundManager.stop();
+        SoundManager.playSound(Sounds.gameOverSound);
+
+
+        AnimationTimer animationTimer = new AnimationTimer() {
+
+            private int time = 0;
+
+            @Override
+            public void handle(long l) {
+
+                if (this.time++ == 350) {
+
+                    ScoreKeeper.restart();
+                    SuperMarioBros.this.start();
+                    this.stop();
+                }
+
+            }
+
+        };
+
+        animationTimer.start();
+
+    }
+
+    private void destroyGameObjects() {
+
+        while (!this.gameObjects.isEmpty()) {
+
+            GameObject gm = this.gameObjects.get(0);
+            gm.destroy();
+        }
+
     }
 }

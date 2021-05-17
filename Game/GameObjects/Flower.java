@@ -40,5 +40,7 @@ public class Flower extends GameObject {
             mario.setFireMario(true);
             this.destroy();
         }
+
     }
+
 }

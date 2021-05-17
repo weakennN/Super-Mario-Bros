@@ -2,6 +2,7 @@ package Game.Animator;
 
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
+import Game.Score.ScoreKeeper;
 import UIEngine.Designer;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.GameObject;
@@ -56,6 +57,7 @@ public class Animator {
     public final static String fireMarioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\fireMarioJumpingRight.png";
     public final static String fireMarioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\fireMarioJumpingLeft.png";
     public final static String koopasShell = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\koopasShell.png";
+    public final static String gameOver = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\gameOver.png";
 
     public static void marioGrowingAnimation(Mario mario, MarioManager marioManager) {
 
@@ -105,7 +107,7 @@ public class Animator {
             public void handle(long l) {
 
                 if (currentTime++ == 300) {
-
+                    ScoreKeeper.decreaseLives();
                     marioManager.setMarioDead(true);
                     this.stop();
                     return;

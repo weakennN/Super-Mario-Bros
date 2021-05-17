@@ -5,6 +5,9 @@ import ECS.Position;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class RenderEngine {
 
     public static void render(Image image, Position position) {
@@ -37,6 +40,17 @@ public class RenderEngine {
         Designer.lives.setLayoutX(Designer.livesLabel.getLayoutX() + Designer.livesLabel.getWidth() / 2 - Designer.lives.getWidth() / 2 + 5);
         Designer.lives.setLayoutY(50);
 
+    }
+
+    public static void renderBackGround(String strImage) {
+
+        try {
+            Image image = new Image(new FileInputStream(strImage));
+            Designer.gc.drawImage(image, 0, 0, 1920, 1080);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

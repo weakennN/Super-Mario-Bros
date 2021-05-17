@@ -7,7 +7,6 @@ public class Level1 extends Level {
     public Level1() {
 
         super();
-        this.initLevel();
     }
 
     @Override

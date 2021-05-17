@@ -219,6 +219,8 @@ public class MarioManager {
 
     public void setMarioAnimationAfterJump() {
 
+        // TODO: refactor this to method
+
         if (MarioDir.marioJumpingRight) {
 
             if (this.mario.isBigMario()) {
@@ -341,7 +343,6 @@ public class MarioManager {
 
         this.mario.getRigidbody().getVel().x = 0;
         this.mario.getRigidbody().getVel().y = 1;
-        ScoreKeeper.decreaseLives();
         Collider collider = (Collider) this.mario.getComponent(GlobalVariables.colliderTag);
         Collider.removeCollider(collider);
         this.mario.removeComponent(GlobalVariables.colliderTag);

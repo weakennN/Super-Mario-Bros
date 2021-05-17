@@ -1,6 +1,6 @@
 package Game.GameObjects;
 
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Component;

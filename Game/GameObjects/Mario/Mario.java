@@ -1,18 +1,13 @@
 package Game.GameObjects.Mario;
 
 import Game.Animator.Animator;
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
-import ECS.Collider;
 import ECS.Rigidbody;
-import Engine.GameEngine;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.Mushroom;
 import ECS.Position;
-import Game.Score.ScoreKeeper;
-import Game.SoundEffects.SoundManager;
-import Game.SoundEffects.Sounds;
 import javafx.scene.image.Image;
 
 public class Mario extends GameObject {
@@ -42,6 +37,7 @@ public class Mario extends GameObject {
         this.isFalling = false;
         this.fireMario = false;
         this.marioManager = new MarioManager(this);
+
     }
 
     @Override
@@ -68,7 +64,7 @@ public class Mario extends GameObject {
 
         if (other.getTag().equals(GlobalVariables.mushroomTag)) {
 
-            this.marioAndMushroomCollision((Mushroom) other);
+            this.marioManager.marioPowerUpWithMushroom((Mushroom) other);
         } else if (other.getTag().equals(GlobalVariables.goombaTag)) {
 
             this.marioAndGoombaCollision((Goomba) other, collision);
@@ -111,6 +107,11 @@ public class Mario extends GameObject {
         this.jumping = jumping;
     }
 
+    public boolean isImmune() {
+
+        return this.immune;
+    }
+
     public Rigidbody getRigidbody() {
 
         return (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
@@ -146,45 +147,12 @@ public class Mario extends GameObject {
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
                 || collision.getHitDirection().x < 0) {
 
-            if (!this.immune) {
-
-                if (!bigMario) {
-
-                    this.marioManager.marioDead();
-                } else {
-
-                    this.immune = true;
-                    this.marioManager.decreaseMario();
-                }
-            }
-
+            this.marioManager.checkMarioDead();
 
         } else if (collision.getHitDirection().y == 1) {
 
-            if (!this.immune) {
-
-                this.getRigidbody().getVel().y *= -0.3;
-                SoundManager.playSound(Sounds.goombaDeadSound);
-                ScoreKeeper.incrementScore(100);
-                goomba.removeComponent(GlobalVariables.rigidbodyTag);
-                Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
-                goomba.removeComponent(GlobalVariables.colliderTag);
-                Animator.goombaDeadAnimation(goomba);
-            }
+            this.marioManager.killGoomba(goomba);
         }
-    }
-
-    private void marioAndMushroomCollision(Mushroom mushroom) {
-
-        this.getMarioManager().powerUpMarioWithMushroom();
-        GameEngine.gameObjects.remove(mushroom);
-        Collider.removeCollider((Collider) mushroom.getComponent(GlobalVariables.colliderTag));
-        mushroom.removeComponent(GlobalVariables.colliderTag);
-        mushroom.removeComponent(GlobalVariables.rigidbodyTag);
-        ScoreKeeper.incrementScore(1000);
-
-        mushroom = null;
-
     }
 
     @Override

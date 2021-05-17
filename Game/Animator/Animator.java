@@ -57,7 +57,7 @@ public class Animator {
     public final static String fireMarioJumpingRight = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\fireMarioJumpingRight.png";
     public final static String fireMarioJumpingLeft = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\fireMarioJumpingLeft.png";
     public final static String koopasShell = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\koopasShell.png";
-    public final static String gameOver = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\gameOver.png";
+    public final static String gameOver = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\ObjectsAnimations\\gameOver.jpg";
 
     public static void marioGrowingAnimation(Mario mario, MarioManager marioManager) {
 

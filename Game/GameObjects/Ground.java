@@ -1,8 +1,8 @@
 package Game.GameObjects;
 
 import Game.Animator.Animator;
-import Game.CollisionInfo.Collision;
-import Game.CollisionInfo.Collisions;
+import Game.Collision.Collision;
+import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
 import ECS.Position;
 import javafx.scene.image.Image;

@@ -1,4 +1,4 @@
-package Game.CollisionInfo;
+package Game.Collision;
 
 import Game.Common.GlobalVariables;
 import ECS.Collider;

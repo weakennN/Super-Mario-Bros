@@ -42,15 +42,17 @@ public class RenderEngine {
 
     }
 
-    public static void renderBackGround(String strImage) {
+    public static void renderImage(String strImage, double startX, double startY
+            , double endX, double endY) {
 
         try {
             Image image = new Image(new FileInputStream(strImage));
-            Designer.gc.drawImage(image, 0, 0, 1920, 1080);
+            Designer.gc.drawImage(image, startX, startY, endX, endY);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
 }

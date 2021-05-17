@@ -1,6 +1,6 @@
 package ECS;
 
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 

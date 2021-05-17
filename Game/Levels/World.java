@@ -12,6 +12,7 @@ public abstract class World {
     public World() {
 
         this.levels = new ArrayList<>();
+        this.currentLevel = 0;
     }
 
     protected void setBackGround(String backGround, double sizeX, double sizeY) {

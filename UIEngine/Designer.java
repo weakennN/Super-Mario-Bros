@@ -94,4 +94,14 @@ public class Designer {
         root.getChildren().addAll(score, coins, world, time, lives);
     }
 
+    public static void showLabels(boolean b) {
+
+        Label[] labels = {scoreLabel, coinsLabel, worldLabel, timeLabel, livesLabel, score, coins, world, lives, time};
+
+        for (Label label : labels) {
+
+            label.setVisible(b);
+        }
+    }
+
 }

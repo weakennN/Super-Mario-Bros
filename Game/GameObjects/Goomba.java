@@ -1,7 +1,7 @@
 package Game.GameObjects;
 
 import Game.Animator.Animator;
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
 import ECS.Position;

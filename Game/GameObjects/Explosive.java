@@ -1,7 +1,7 @@
 package Game.GameObjects;
 
 import Game.Animator.Animator;
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
@@ -66,7 +66,6 @@ public class Explosive extends GameObject {
             }
 
         } else if (other.getTag().equals(GlobalVariables.goombaTag) || other.getTag().equals(GlobalVariables.koopaTag)) {
-
 
             other.destroy();
         }

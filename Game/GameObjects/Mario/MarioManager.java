@@ -4,6 +4,8 @@ import Game.Animator.Animator;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
+import Game.GameObjects.Goomba;
+import Game.GameObjects.Mushroom;
 import Game.Score.ScoreKeeper;
 import UIEngine.Designer;
 import Engine.GameEngine;
@@ -20,20 +22,6 @@ public class MarioManager {
     public MarioManager(Mario mario) {
 
         this.mario = mario;
-    }
-
-    public void powerUpMarioWithMushroom() {
-
-        SoundManager.playSound(Sounds.superMarioGrowingSound);
-
-        mario.getRigidbody().getVel().x = 0;
-        mario.getRigidbody().getVel().y = 0;
-        mario.getRigidbody().getAcc().y = 0;
-        mario.getRigidbody().getAcc().x = 0;
-
-        Animator.marioGrowingAnimation(mario, this);
-        mario.setBigMario(true);
-        this.mario.setNormal(false);
     }
 
     public void growMario() {
@@ -219,95 +207,42 @@ public class MarioManager {
 
     public void setMarioAnimationAfterJump() {
 
-        // TODO: refactor this to method
-
         if (MarioDir.marioJumpingRight) {
 
             if (this.mario.isBigMario()) {
 
-                if (mario.getRigidbody().getVel().x > 0) {
+                this.afterJumpDirection(Animator.bigMarioRunningLeft, Animator.bigMarioFacingRight, Animator.bigMarioRunningRight);
 
-                    this.mario.changeImage(Animator.bigMarioRunningRight);
-                } else if (this.mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.bigMarioFacingRight);
-                } else {
-
-                    this.mario.changeImage(Animator.bigMarioRunningLeft);
-                }
             } else if (this.mario.isNormal()) {
 
-                if (mario.getRigidbody().getVel().x > 0) {
+                this.afterJumpDirection(Animator.marioRunningLeft, Animator.marioIdleFacingRight, Animator.marioRunningRight);
 
-                    this.mario.changeImage(Animator.marioRunningRight);
-                } else if (mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.marioIdleFacingRight);
-                } else {
-
-                    this.mario.changeImage(Animator.marioRunningLeft);
-                }
             } else if (this.mario.isFireMario()) {
 
-                if (mario.getRigidbody().getVel().x > 0) {
+                this.afterJumpDirection(Animator.fireMarioRunningLeft, Animator.fireMarioFacingRight, Animator.fireMarioRunningRight);
 
-                    this.mario.changeImage(Animator.fireMarioRunningRight);
-                } else if (mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.fireMarioFacingRight);
-                } else {
-
-                    this.mario.changeImage(Animator.fireMarioRunningLeft);
-                }
             }
 
             MarioDir.marioJumpingRight = false;
+
         } else if (MarioDir.marioJumpingLeft) {
 
             if (this.mario.isBigMario()) {
 
-                if (mario.getRigidbody().getVel().x < 0) {
-
-                    this.mario.changeImage(Animator.bigMarioRunningLeft);
-
-                } else if (this.mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.bigMarioFacingLeft);
-                } else {
-
-                    this.mario.changeImage(Animator.bigMarioRunningRight);
-                }
+                this.afterJumpDirection(Animator.bigMarioRunningLeft, Animator.bigMarioFacingLeft, Animator.bigMarioRunningRight);
 
             } else if (this.mario.isNormal()) {
 
-                if (mario.getRigidbody().getVel().x < 0) {
-
-                    this.mario.changeImage(Animator.marioRunningLeft);
-
-                } else if (this.mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.marioIdleFacingLeft);
-                } else {
-
-                    this.mario.changeImage(Animator.marioRunningRight);
-                }
+                this.afterJumpDirection(Animator.marioRunningLeft, Animator.marioIdleFacingLeft, Animator.marioRunningRight);
 
             } else if (this.mario.isFireMario()) {
 
-                if (mario.getRigidbody().getVel().x < 0) {
+                this.afterJumpDirection(Animator.fireMarioRunningLeft, Animator.fireMarioFacingLeft, Animator.fireMarioRunningRight);
 
-                    this.mario.changeImage(Animator.fireMarioRunningLeft);
-
-                } else if (this.mario.getRigidbody().getVel().x == 0) {
-
-                    this.mario.changeImage(Animator.fireMarioFacingLeft);
-                } else {
-
-                    this.mario.changeImage(Animator.fireMarioRunningRight);
-                }
             }
 
             MarioDir.marioJumpingLeft = false;
+
         }
 
     }
@@ -331,7 +266,7 @@ public class MarioManager {
         explosive.addComponent(new Rigidbody(GlobalVariables.rigidbodyTag,
                 position, explosive));
         explosive.addComponent(new Collider(GlobalVariables.colliderTag, position,
-                35, 35, explosive));
+                25, 25, explosive));
         Rigidbody rigidbody = (Rigidbody) explosive.getComponent(GlobalVariables.rigidbodyTag);
         rigidbody.getVel().x = xVel;
         rigidbody.getVel().y = 1;
@@ -347,6 +282,78 @@ public class MarioManager {
         Collider.removeCollider(collider);
         this.mario.removeComponent(GlobalVariables.colliderTag);
         Animator.marioDeadAnimation(this);
+    }
+
+    private void afterJumpDirection(String animation1, String animation2, String animation3) {
+
+        if (mario.getRigidbody().getVel().x < 0) {
+
+            this.mario.changeImage(animation1);
+
+        } else if (this.mario.getRigidbody().getVel().x == 0) {
+
+            this.mario.changeImage(animation2);
+        } else {
+
+            this.mario.changeImage(animation3);
+        }
+
+    }
+
+    public void checkMarioDead() {
+
+        if (!this.mario.isImmune()) {
+
+            if (!this.mario.isBigMario()) {
+
+                this.marioDead();
+            } else {
+
+                this.mario.setImmune(true);
+                this.decreaseMario();
+            }
+        }
+    }
+
+    public void killGoomba(Goomba goomba) {
+
+        if (!this.mario.isImmune()) {
+
+            this.mario.getRigidbody().getVel().y *= -0.3;
+            SoundManager.playSound(Sounds.goombaDeadSound);
+            ScoreKeeper.incrementScore(100);
+            goomba.removeComponent(GlobalVariables.rigidbodyTag);
+            Collider.removeCollider((Collider) goomba.getComponent(GlobalVariables.colliderTag));
+            goomba.removeComponent(GlobalVariables.colliderTag);
+            Animator.goombaDeadAnimation(goomba);
+        }
+    }
+
+    public void powerUpWithMushroom() {
+
+        SoundManager.playSound(Sounds.superMarioGrowingSound);
+
+        mario.getRigidbody().getVel().x = 0;
+        mario.getRigidbody().getVel().y = 0;
+        mario.getRigidbody().getAcc().y = 0;
+        mario.getRigidbody().getAcc().x = 0;
+
+        Animator.marioGrowingAnimation(mario, mario.getMarioManager());
+        mario.setBigMario(true);
+        mario.setNormal(false);
+
+    }
+
+    public void marioPowerUpWithMushroom(Mushroom mushroom) {
+
+        this.powerUpWithMushroom();
+        GameEngine.gameObjects.remove(mushroom);
+        Collider.removeCollider((Collider) mushroom.getComponent(GlobalVariables.colliderTag));
+        mushroom.removeComponent(GlobalVariables.colliderTag);
+        mushroom.removeComponent(GlobalVariables.rigidbodyTag);
+        ScoreKeeper.incrementScore(1000);
+
+        mushroom = null;
     }
 
 }

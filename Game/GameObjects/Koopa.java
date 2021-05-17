@@ -1,7 +1,7 @@
 package Game.GameObjects;
 
 import Game.Animator.Animator;
-import Game.CollisionInfo.Collision;
+import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
 import ECS.Position;
@@ -100,6 +100,13 @@ public class Koopa extends GameObject {
                 other.destroy();
                 ScoreKeeper.incrementScore(100);
             }
+
+        } else if (other.getTag().equals(GlobalVariables.marioTag) &&
+                (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) && !this.shellMoving) {
+
+            Mario mario = (Mario) other;
+
+           mario.getMarioManager().checkMarioDead();
 
         }
 

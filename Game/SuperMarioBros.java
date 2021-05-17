@@ -24,7 +24,6 @@ public class SuperMarioBros extends Game {
 
     public SuperMarioBros() {
 
-
     }
 
     @Override
@@ -109,14 +108,16 @@ public class SuperMarioBros extends Game {
 
     private void gaveOver() {
 
-        RenderEngine.renderBackGround(Animator.gameOver);
+        Designer.showLabels(false);
+        RenderEngine.renderImage(Animator.gameOver, this.engine.getCamera().getPosition().getPos().x - 960
+                , 0, 1920, 1080);
+        this.engine.getCamera().resetCamera();
         this.world = null;
         this.mario = null;
         this.destroyGameObjects();
         this.engine.stop();
         SoundManager.stop();
         SoundManager.playSound(Sounds.gameOverSound);
-
 
         AnimationTimer animationTimer = new AnimationTimer() {
 
@@ -127,6 +128,7 @@ public class SuperMarioBros extends Game {
 
                 if (this.time++ == 350) {
 
+                    Designer.showLabels(true);
                     ScoreKeeper.restart();
                     SuperMarioBros.this.start();
                     this.stop();

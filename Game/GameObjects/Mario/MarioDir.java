@@ -8,4 +8,5 @@ public class MarioDir {
     public static boolean marioRunningLeft = false;
     public static boolean marioJumpingRight = false;
     public static boolean marioJumpingLeft = false;
+
 }

@@ -37,8 +37,8 @@ public class Flower extends GameObject {
         if (other.getTag().equals(GlobalVariables.marioTag)) {
 
             Mario mario = (Mario) other;
-            mario.setFireMario(true);
-            this.destroy();
+            mario.getMarioManager().powerUpWithFireFireFlower(this);
+
         }
 
     }

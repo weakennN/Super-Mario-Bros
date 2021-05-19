@@ -21,6 +21,7 @@ public class Mario extends GameObject {
     private boolean onGround;
     private boolean fireMario;
     private boolean isFalling;
+    private boolean breakable;
 
     public Mario(Position position, String tag) {
 
@@ -36,6 +37,7 @@ public class Mario extends GameObject {
         this.onGround = false;
         this.isFalling = false;
         this.fireMario = false;
+        this.breakable = false;
         this.marioManager = new MarioManager(this);
 
     }
@@ -177,6 +179,16 @@ public class Mario extends GameObject {
     public void setNormal(boolean b) {
 
         this.normal = b;
+    }
+
+    public void setBreakable(boolean b) {
+
+        this.breakable = b;
+    }
+
+    public boolean isBreakable() {
+
+        return this.breakable;
     }
 
 }

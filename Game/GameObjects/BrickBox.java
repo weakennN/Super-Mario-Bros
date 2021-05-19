@@ -58,7 +58,7 @@ public class BrickBox extends GameObject {
 
                 Mario mario = (Mario) other;
 
-                if (mario.isBigMario()) {
+                if (mario.isBreakable()) {
 
                     SoundManager.playSound(Sounds.blockDestructionSound);
                     this.destroy();

@@ -89,13 +89,11 @@ public class Koopa extends GameObject {
                 || other.getTag().equals(GlobalVariables.marioTag)) &&
                 (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) && this.shellMoving) {
 
-            // TODO: fix this
-
             if (other.getTag().equals(GlobalVariables.marioTag)) {
 
                 Mario mario = (Mario) other;
-                mario.getMarioManager().marioDead();
-            } else if (this.isTransformed) {
+                mario.getMarioManager().checkMarioDead();
+            } else if (this.isTransformed && this.shellMoving) {
 
                 other.destroy();
                 ScoreKeeper.incrementScore(100);
@@ -106,7 +104,7 @@ public class Koopa extends GameObject {
 
             Mario mario = (Mario) other;
 
-           mario.getMarioManager().checkMarioDead();
+            mario.getMarioManager().checkMarioDead();
 
         }
 

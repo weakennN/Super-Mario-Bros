@@ -45,11 +45,9 @@ public abstract class GameObject {
 
     public void changeImage(String image) {
 
-        try {
-            this.currentAnimation = new Image(new FileInputStream(image));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+            this.currentAnimation = new Image(image);
+
 
     }
 

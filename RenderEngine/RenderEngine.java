@@ -5,9 +5,6 @@ import ECS.Position;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class RenderEngine {
 
     public static void render(Image image, Position position) {
@@ -45,14 +42,15 @@ public class RenderEngine {
     public static void renderImage(String strImage, double startX, double startY
             , double endX, double endY) {
 
-        try {
-            Image image = new Image(new FileInputStream(strImage));
-            Designer.gc.drawImage(image, startX, startY, endX, endY);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        Image image = new Image(strImage);
+        Designer.gc.drawImage(image, startX, startY, endX, endY);
 
     }
 
+    public static void renderImage(String strImage, double startX, double startY) {
+
+        Image image = new Image(strImage);
+        Designer.gc.drawImage(image, startX, startY);
+
+    }
 }

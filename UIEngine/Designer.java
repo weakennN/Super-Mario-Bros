@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -19,7 +20,6 @@ public class Designer {
     public static Canvas canvas;
     public static GraphicsContext gc;
     public static Pane root;
-    public static Image background;
     public static Font font;
     public static Label scoreLabel;
     public static Label coinsLabel;
@@ -38,9 +38,7 @@ public class Designer {
         gc = canvas.getGraphicsContext2D();
 
         try {
-
             font = Font.loadFont(new FileInputStream("C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\Font\\defaultFont.ttf"), 33);
-            background = new Image(new FileInputStream(Animator.background));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

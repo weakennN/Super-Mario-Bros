@@ -4,6 +4,7 @@ import Game.Animator.Animator;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
+import Game.GameObjects.Flower;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.Mushroom;
 import Game.Score.ScoreKeeper;
@@ -42,7 +43,8 @@ public class MarioManager {
 
     public void decreaseMario() {
 
-        mario.setBigMario(false);
+        this.mario.setBigMario(false);
+        this.mario.setBreakable(false);
         this.mario.setNormal(true);
         Animator.marioDecreasingAnimation(mario);
         Collider collider = (Collider) mario.getComponent(GlobalVariables.colliderTag);
@@ -81,7 +83,6 @@ public class MarioManager {
                 }
 
             } else if (e.getCode() == KeyCode.A) {
-
 
                 if (!MarioDir.marioRunningLeft) {
 
@@ -183,6 +184,7 @@ public class MarioManager {
                 MarioDir.marioIdleFacingLeft = true;
                 rigidbody.getAcc().x = 0;
                 rigidbody.getAcc().y = 0;
+
             } else if (e.getCode() == KeyCode.D) {
 
                 rigidbody.getVel().x = 0;
@@ -252,10 +254,10 @@ public class MarioManager {
         if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight
                 || MarioDir.marioJumpingRight) {
 
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, 1);
+            this.createExplosive(this.mario.getPosition().getPos().x + 20, this.mario.getPosition().getPos().y + 25, 2);
         } else {
 
-            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y, -1);
+            this.createExplosive(this.mario.getPosition().getPos().x, this.mario.getPosition().getPos().y + 25, -2);
         }
     }
 
@@ -304,15 +306,19 @@ public class MarioManager {
 
         if (!this.mario.isImmune()) {
 
-            if (!this.mario.isBigMario()) {
+            if (!this.mario.isBigMario() && !this.mario.isFireMario()) {
 
                 this.marioDead();
             } else {
 
                 this.mario.setImmune(true);
+                this.mario.setBigMario(false);
+                this.mario.setFireMario(false);
                 this.decreaseMario();
             }
+
         }
+
     }
 
     public void killGoomba(Goomba goomba) {
@@ -340,8 +346,18 @@ public class MarioManager {
 
         Animator.marioGrowingAnimation(mario, mario.getMarioManager());
         mario.setBigMario(true);
+        mario.setBreakable(true);
         mario.setNormal(false);
 
+    }
+
+    public void powerUpWithFireFireFlower(Flower fireFlower) {
+
+        this.mario.setFireMario(true);
+        this.mario.setNormal(false);
+        this.mario.setBreakable(true);
+        this.growMario();
+        fireFlower.destroy();
     }
 
     public void marioPowerUpWithMushroom(Mushroom mushroom) {

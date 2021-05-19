@@ -13,11 +13,7 @@ public class WorldBackground {
 
     public WorldBackground(String image1, double sizeX, double sizeY) {
 
-        try {
-            this.image = new Image(new FileInputStream(image1));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        this.image = new Image(image1);
 
         this.sizeX = sizeX;
         this.sizeY = sizeY;

@@ -12,10 +12,6 @@ import Game.GameObjects.Mario.MarioManager;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
-import javafx.scene.image.Image;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Animator {
 
@@ -59,6 +55,7 @@ public class Animator {
     public final static String fireMarioJumpingLeft = "/Game/Animator/ObjectsAnimations/fireMarioJumpingLeft.png";
     public final static String koopasShell = "/Game/Animator/ObjectsAnimations/koopasShell.png";
     public final static String gameOver = "/Game/Animator/ObjectsAnimations/gameOver.jpg";
+    public final static String block = "/Game/Animator/ObjectsAnimations/block.png";
 
     public static void marioGrowingAnimation(Mario mario, MarioManager marioManager) {
 

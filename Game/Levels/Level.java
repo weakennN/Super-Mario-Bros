@@ -10,6 +10,7 @@ import ECS.Position;
 import javafx.scene.image.Image;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,7 +64,9 @@ public abstract class Level {
 
         try {
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(level));
+            FileReader fileReader = new FileReader(level);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line = bufferedReader.readLine();
 
@@ -207,6 +210,11 @@ public abstract class Level {
                 } else if (words[0].equals("Castle")) {
 
                     gameObject = new Castle(position, GlobalVariables.castleTag);
+                } else if (words[0].equals("Block")) {
+
+                    gameObject = new Block(position, GlobalVariables.blockTag);
+                    gameObject.addComponent(new Collider(GlobalVariables.colliderTag, position,
+                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, gameObject));
                 }
 
                 this.addGameObject(gameObject);

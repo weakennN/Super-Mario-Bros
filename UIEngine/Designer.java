@@ -1,11 +1,9 @@
 package UIEngine;
 
-import Game.Animator.Animator;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -48,7 +46,6 @@ public class Designer {
 
         root = new Pane();
         root.getChildren().add(canvas);
-
 
         initLabels();
 
@@ -100,6 +97,7 @@ public class Designer {
 
             label.setVisible(b);
         }
+
     }
 
 }

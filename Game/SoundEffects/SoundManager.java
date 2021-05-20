@@ -28,7 +28,7 @@ public class SoundManager {
         audioClip.play();
     }
 
-    public static void stop(){
+    public static void stop() {
 
         mediaPlayer.stop();
         audioClip.stop();

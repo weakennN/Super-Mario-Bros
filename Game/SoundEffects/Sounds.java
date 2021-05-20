@@ -1,5 +1,7 @@
 package Game.SoundEffects;
 
+import java.io.File;
+
 public class Sounds {
 
     public final static String marioJumpingSound = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\SoundEffects\\Sounds\\marioJumpingSound.mp3";
@@ -15,4 +17,6 @@ public class Sounds {
     public final static String bumpSound = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\SoundEffects\\Sounds\\bumpSound.mp3";
     public final static String timeWarningSound = "C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\SoundEffects\\Sounds\\timeWarningSound.mp3";
 
+
 }
+

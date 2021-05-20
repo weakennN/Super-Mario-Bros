@@ -8,8 +8,6 @@ import Engine.GameEngine;
 import ECS.Position;
 import javafx.scene.image.Image;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +43,7 @@ public abstract class GameObject {
 
     public void changeImage(String image) {
 
-
-            this.currentAnimation = new Image(image);
-
+        this.currentAnimation = new Image(image);
 
     }
 
@@ -109,6 +105,7 @@ public abstract class GameObject {
 
                 return c;
             }
+
         }
 
         return null;

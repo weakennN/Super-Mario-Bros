@@ -39,39 +39,39 @@ public class BrickBox extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
+            Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
 
-        if (rigidbody == null) {
+            if (rigidbody == null) {
 
-            return;
-        }
-
-        if (collision.getHitDirection().y == -1) {
-
-            Collisions.defaultOnGroundCollision(this, other, collision);
-
-        } else if (collision.getHitDirection().y == 1) {
-
-            rigidbody.getVel().y = 1;
-
-            if (other.getTag().equals(GlobalVariables.marioTag)) {
-
-                Mario mario = (Mario) other;
-
-                if (mario.isBreakable()) {
-
-                    SoundManager.playSound(Sounds.blockDestructionSound);
-                    this.destroy();
-                }else {
-
-                    SoundManager.playSound(Sounds.bumpSound);
-                }
-
+                return;
             }
 
-        } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
+            if (collision.getHitDirection().y == -1) {
 
-            Collisions.defaultHorizontalCollision(this, other, collision);
+                Collisions.defaultOnGroundCollision(this, other, collision);
+
+            } else if (collision.getHitDirection().y == 1) {
+
+                rigidbody.getVel().y = 1;
+
+                if (other.getTag().equals(GlobalVariables.marioTag)) {
+
+                    Mario mario = (Mario) other;
+
+                    if (mario.isBreakable()) {
+
+                        SoundManager.playSound(Sounds.blockDestructionSound);
+                        this.destroy();
+                    } else {
+
+                        SoundManager.playSound(Sounds.bumpSound);
+                    }
+
+                }
+
+            } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
+
+                Collisions.defaultHorizontalCollision(this, other, collision);
         }
 
     }

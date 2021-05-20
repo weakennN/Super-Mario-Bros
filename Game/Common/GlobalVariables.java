@@ -18,6 +18,7 @@ public class GlobalVariables {
     public final static String cloudTag = "cloud";
     public final static String invisibleWallTag = "invisibleWall";
     public final static String castleTag = "castle";
+    public final static String blockTag = "block";
     public final static double defaultColliderSizeX = 40;
     public final static double defaultColliderSizeY = 50;
     public final static double defaultMarioColliderX = 40;

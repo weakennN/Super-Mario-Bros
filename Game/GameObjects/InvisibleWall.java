@@ -41,5 +41,6 @@ public class InvisibleWall extends GameObject {
 
             Collisions.defaultHorizontalCollision(this, other, collision);
         }
+
     }
 }

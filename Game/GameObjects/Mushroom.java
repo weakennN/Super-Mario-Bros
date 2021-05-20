@@ -39,10 +39,6 @@ public class Mushroom extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        if (other.getTag().equals(GlobalVariables.brickBoxTag)) {
-
-            Collisions.defaultHorizontalCollision(other, this, collision);
-        }
     }
 
     public Rigidbody getRigidbody() {

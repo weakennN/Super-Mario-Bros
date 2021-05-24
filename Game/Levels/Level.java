@@ -64,7 +64,9 @@ public abstract class Level {
 
         try {
 
-            FileReader fileReader = new FileReader(level);
+            File file = new File(level);
+
+            FileReader fileReader = new FileReader(file);
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 

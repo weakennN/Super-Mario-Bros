@@ -6,7 +6,6 @@ public class Collision {
 
     private Vector2 hitDirection;
 
-
     public Vector2 getHitDirection() {
 
         return this.hitDirection;

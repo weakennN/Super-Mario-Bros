@@ -9,7 +9,7 @@ import Game.Camera;
 
 import java.util.List;
 
-public class GameEngine extends Engine{
+public class GameEngine extends Engine {
 
     public static List<GameObject> gameObjects;
     private AnimationTimer gameLoop;

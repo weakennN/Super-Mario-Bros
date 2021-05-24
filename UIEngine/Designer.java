@@ -36,7 +36,10 @@ public class Designer {
         gc = canvas.getGraphicsContext2D();
 
         try {
-            font = Font.loadFont(new FileInputStream("C:\\Users\\PC\\IdeaProjects\\Super Mario Game\\src\\Game\\Animator\\Font\\defaultFont.ttf"), 33);
+
+            File file = new File("./src/Game/Animator/Font/defaultFont.ttf");
+
+            font = Font.loadFont(new FileInputStream(file), 33);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="net.mikera:vectorz:0.48.0" type="repository">
+    <properties maven-id="net.mikera:vectorz:0.48.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/mikera/vectorz/0.48.0/vectorz-0.48.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/us/bpsm/edn-java/0.4.5/edn-java-0.4.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/mikera/randomz/0.3.0/randomz-0.3.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/mikera/mathz/0.3.0/mathz-0.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

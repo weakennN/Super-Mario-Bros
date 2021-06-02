@@ -1,0 +1,185 @@
+GameObjects
+Mario 200 882
+ItemBox 600 740 Coin
+ItemBox 850 740 Mushroom
+ItemBox 950 740 Coin
+ItemBox 900 540 Coin
+Cloud 200 100
+Cloud 500 100
+Cloud 1000 75
+Cloud 1400 50
+Cloud 2000 100
+Cloud 2400 80
+Cloud 2700 120
+Cloud 3000 100
+Cloud 3300 85
+Cloud 3650 100
+Cloud 4100 75
+Cloud 4400 95
+Cloud 5000 76
+Cloud 5300 110
+Cloud 5700 100
+Cloud 6000 85
+Cloud 6300 100
+Cloud 6600 95
+Cloud 7000 100
+Cloud 7350 90
+Cloud 7700 70
+Cloud 8200 100
+Cloud 8600 66
+Cloud 9000 77
+Cloud 9300 100
+Cloud 9500 111
+Cloud 10000 123
+Cloud 10500 100
+Cloud 10900 88
+Cloud 11600 100
+Cloud 12000 89
+Cloud 12500 85
+BrickBox 800 740
+BrickBox 900 740
+BrickBox 1000 740
+Koopa 2300 882
+Goomba 950 882
+Goomba 2100 882
+Goomba 2650 882
+Goomba 2500 882
+Pipe 1250 800
+Goomba 1400 882
+Pipe 1800 800
+Pipe 2300 800
+Pipe 2800 800
+BrickBox 3900 740
+ItemBox 3950 740 Mushroom
+BrickBox 4000 740
+BrickBox 4030 550
+BrickBox 4080 550
+BrickBox 4130 550
+BrickBox 4180 550
+BrickBox 4230 550
+BrickBox 4280 550
+BrickBox 4330 550
+BrickBox 4380 550
+Goomba 4300 500
+Goomba 4225 500
+BrickBox 4730 550
+BrickBox 4780 550
+BrickBox 4830 550
+ItemBox 4880 550 Coin
+BrickBox 4880 740
+Goomba 4900 882
+Goomba 4950 882
+Goomba 5200 882
+Goomba 5300 882
+BrickBox 5200 740
+BrickBox 5250 740
+BrickBox 5200 740
+ItemBox 5550 740 Coin
+ItemBox 5700 740 Coin
+ItemBox 5850 740 Coin
+ItemBox 5700 550 Mushroom
+BrickBox 6300 740
+BrickBox 6400 550
+BrickBox 6450 550
+BrickBox 6500 550
+BrickBox 6850 550
+ItemBox 6900 550 Coin
+ItemBox 6950 550 Coin
+Goomba 6800 882
+BrickBox 7000 550
+BrickBox 6900 740
+BrickBox 6950 740
+Block 7150 882
+Block 7200 882
+Block 7250 882
+Block 7300 882
+Block 7200 832
+Block 7250 832
+Block 7300 832
+Block 7250 782
+Block 7300 782
+Block 7300 732
+Block 7450 882
+Block 7500 882
+Block 7550 882
+Block 7600 882
+Block 7450 832
+Block 7500 832
+Block 7550 832
+Block 7450 782
+Block 7500 782
+Block 7450 732
+Block 7850 882
+Block 7900 882
+Block 7950 882
+Block 8000 882
+Block 8050 882
+Block 7900 832
+Block 7950 832
+Goomba 7800 882
+Block 8000 832
+Block 8050 832
+Block 7950 782
+Block 8000 782
+Block 8050 782
+Block 8000 732
+Block 8050 732
+Pipe 8700 800
+Goomba 8600 882
+BrickBox 8950 740
+BrickBox 9000 740
+ItemBox 9050 740 Coin
+BrickBox 9100 740
+Goomba 9600 882
+Goomba 9550 882 
+Goomba 9400 882
+Pipe 9700 800
+Block 9800 882
+Block 9850 882
+Block 9900 882
+Block 9950 882
+Block 10000 882
+Block 10050 882
+Block 10100 882
+Block 10150 882
+Block 10200 882
+Block 9850 832
+Block 9900 832
+Block 9950 832
+Block 10000 832
+Block 10050 832
+Block 10100 832
+Block 10150 832
+Block 10200 832
+Block 9900 782
+Block 9950 782
+Block 10000 782
+Block 10050 782
+Block 10100 782
+Block 10150 782
+Block 10200 782
+Block 9950 732
+Block 10000 732
+Block 10050 732
+Block 10100 732
+Block 10150 732
+Block 10200 732
+Block 10000 682
+Block 10050 682
+Block 10100 682
+Block 10150 682
+Block 10200 682
+Block 10050 632
+Block 10100 632
+Block 10150 632
+Block 10200 632
+Block 10100 582
+Block 10150 582
+Block 10200 582
+Block 10150 532
+Block 10200 532
+Castle 11000 554
+end
+Ground
+0 932 13440 50
+end

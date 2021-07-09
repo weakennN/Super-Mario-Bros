@@ -58,7 +58,7 @@ public class MarioManager {
 
     public void initializeActions(Rigidbody rigidbody) {
 
-        Designer.scene.setOnKeyPressed(e -> {
+        /*Designer.scene.setOnKeyPressed(e -> {
 
             if (e.getCode() == KeyCode.D) {
 
@@ -189,6 +189,8 @@ public class MarioManager {
                 this.hasInput = false;
             }
         });
+
+         */
     }
 
     public void setMarioAnimationAfterJump() {

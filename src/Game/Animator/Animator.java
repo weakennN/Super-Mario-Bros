@@ -3,6 +3,7 @@ package Game.Animator;
 import ECS.Transform;
 import ECS.Rigidbody;
 import Game.Score.ScoreKeeper;
+import Input.Input;
 import RenderEngine.RenderEngine;
 import UIEngine.Designer;
 import Game.GameObjects.Goomba;
@@ -61,8 +62,11 @@ public class Animator {
 
         mario.changeImage(Animator.marioGrowing);
 
-        Designer.scene.setOnKeyPressed(null);
+        Input.lock();
+        /*Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
+
+         */
 
         animator = new AnimationTimer() {
 
@@ -75,6 +79,7 @@ public class Animator {
                 if (currentTime++ == 175) {
 
                     mario.initializeActions(mario.getComponent(Rigidbody.class));
+                    Input.unlock();
                     mario.changeImage(Animator.bigMarioFacingRight);
                     marioManager.growMario();
                     this.currentTime = 0;

@@ -3,6 +3,7 @@ package Engine;
 import ECS.Collider;
 import ECS.Transform;
 import Game.GameObjects.GameObject;
+import Input.Input;
 import RenderEngine.RenderEngine;
 import Game.Game;
 import javafx.animation.AnimationTimer;
@@ -15,12 +16,14 @@ public class GameEngine extends Engine {
 
     public static List<GameObject> gameObjects;
     private AnimationTimer gameLoop;
+    private Input input;
     private Camera camera;
     private Game game;
 
     public GameEngine(Game game) {
 
         this.game = game;
+        this.input = new Input();
     }
 
     @Override
@@ -51,6 +54,7 @@ public class GameEngine extends Engine {
 
                 }
 
+                input.update();
                 detectCollision();
 
                 camera.follow();
@@ -104,6 +108,10 @@ public class GameEngine extends Engine {
         this.gameLoop.stop();
     }
 
+    public void restartInput() {
+        this.input = new Input();
+    }
+
     public void setCamera(Camera camera) {
 
         this.camera = camera;
@@ -114,4 +122,7 @@ public class GameEngine extends Engine {
         return this.camera;
     }
 
+    public Input getInput() {
+        return this.input;
+    }
 }

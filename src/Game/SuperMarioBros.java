@@ -3,6 +3,7 @@ package Game;
 import ECS.Transform;
 import Game.Animator.Animator;
 import Game.SoundEffects.Sounds;
+import Input.InputHandler;
 import RenderEngine.RenderEngine;
 import UIEngine.Designer;
 import Engine.GameEngine;
@@ -20,6 +21,7 @@ public class SuperMarioBros extends Game {
 
     private List<GameObject> gameObjects;
     private GameEngine engine;
+    private InputHandler inputHandler;
     private World world;
     private Mario mario;
 
@@ -31,6 +33,7 @@ public class SuperMarioBros extends Game {
     public void start() {
 
         this.engine = new GameEngine(this);
+        this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();
         this.world.getCurrentLevel().initLevel();
         this.mario = this.world.getCurrentLevel().getMario();
@@ -43,10 +46,8 @@ public class SuperMarioBros extends Game {
 
     @Override
     public void render() {
-
         Designer.gc.drawImage(this.world.getBackGround().getImage(), 0, 0, this.world.getBackGround().getSizeX(),
                 this.world.getBackGround().getSizeY());
-
     }
 
     @Override
@@ -84,6 +85,7 @@ public class SuperMarioBros extends Game {
             SoundManager.playSound(Sounds.timeWarningSound);
         }
 
+        this.inputHandler.update();
     }
 
     private void restartLevel() {
@@ -91,6 +93,8 @@ public class SuperMarioBros extends Game {
         this.destroyGameObjects();
 
         this.engine.getCamera().resetCamera();
+        this.engine.restartInput();
+        this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.mario = null;
         this.world.getCurrentLevel().initLevel();
         this.gameObjects = this.world.getCurrentLevel().getGameObjects();
@@ -150,6 +154,9 @@ public class SuperMarioBros extends Game {
             GameObject gm = this.gameObjects.get(0);
             gm.destroy();
         }
+    }
 
+    public Mario getMario() {
+        return this.mario;
     }
 }

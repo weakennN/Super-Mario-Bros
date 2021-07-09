@@ -1,17 +1,17 @@
 package Game.GameObjects;
 
+import ECS.Transform;
 import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Explosive extends GameObject {
 
-    public Explosive(Position position, String tag) {
-        super(position, tag);
+    public Explosive(String tag) {
+        super(tag);
     }
 
     @Override
@@ -45,9 +45,9 @@ public class Explosive extends GameObject {
             } else {
 
 
-                Collider collider = (Collider) other.getComponent(GlobalVariables.colliderTag);
-                this.getPosition().getPos().y = this.getPosition().getPos().y - collider.getSize().y;
-                Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+                Collider collider = other.getComponent(Collider.class);
+                super.getComponent(Transform.class).getPos().y = super.getComponent(Transform.class).getPos().y - collider.getSize().y;
+                Rigidbody rigidbody = super.getComponent(Rigidbody.class);
 
                 if (rigidbody.getVel().x >= 0) {
 

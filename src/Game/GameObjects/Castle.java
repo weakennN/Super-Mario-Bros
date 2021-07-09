@@ -2,13 +2,12 @@ package Game.GameObjects;
 
 import Game.Animator.Animator;
 import Game.Collision.Collision;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Castle extends GameObject {
 
-    public Castle(Position position, String tag) {
-        super(position, tag);
+    public Castle(String tag) {
+        super(tag);
 
     }
 

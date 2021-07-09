@@ -7,7 +7,6 @@ import ECS.Rigidbody;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.Mushroom;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Mario extends GameObject {
@@ -23,9 +22,9 @@ public class Mario extends GameObject {
     private boolean isFalling;
     private boolean breakable;
 
-    public Mario(Position position, String tag) {
+    public Mario(String tag) {
 
-        super(position, tag);
+        super(tag);
 
         this.normal = true;
         this.bigMario = false;
@@ -47,17 +46,20 @@ public class Mario extends GameObject {
 
         super.updateComponents();
 
+      /*  if (!this.marioManager.isHasInput()) {
+            ((Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag)).getVel().x -= ((Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag)).getVel().x / 20;
+        }
+
+       */
     }
 
     @Override
     public Image render() {
-
         return super.getCurrentAnimation();
     }
 
     @Override
     public void start() {
-
         this.initializeActions(this.getRigidbody());
     }
 
@@ -65,82 +67,66 @@ public class Mario extends GameObject {
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (other.getTag().equals(GlobalVariables.mushroomTag)) {
-
             this.marioManager.marioPowerUpWithMushroom((Mushroom) other);
         } else if (other.getTag().equals(GlobalVariables.goombaTag)) {
-
             this.marioAndGoombaCollision((Goomba) other, collision);
         }
 
     }
 
     public MarioManager getMarioManager() {
-
         return this.marioManager;
     }
 
     public void setDead(boolean dead) {
-
         this.isDead = dead;
     }
 
     public void initializeActions(Rigidbody rigidbody) {
-
         this.marioManager.initializeActions(rigidbody);
     }
 
     public void setBigMario(boolean b) {
-
         this.bigMario = b;
     }
 
     public boolean isFireMario() {
-
         return this.fireMario;
     }
 
     public void setFireMario(boolean b) {
-
         this.fireMario = b;
     }
 
     public void setJumping(boolean jumping) {
-
         this.jumping = jumping;
     }
 
     public boolean isImmune() {
-
         return this.immune;
     }
 
     public Rigidbody getRigidbody() {
-
-        return (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+        return this.getComponent(Rigidbody.class);
     }
 
     public void setImmune(boolean b) {
-
         this.immune = b;
     }
 
     public boolean isBigMario() {
-
         return this.bigMario;
     }
 
     public boolean isJumping() {
-
         return this.jumping;
     }
 
     public boolean isOnGround() {
-
         return this.onGround;
     }
 
     public boolean isDead() {
-
         return this.isDead;
     }
 
@@ -148,47 +134,36 @@ public class Mario extends GameObject {
 
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
                 || collision.getHitDirection().x < 0) {
-
             this.marioManager.checkMarioDead();
-
         } else if (collision.getHitDirection().y == 1) {
-
             this.marioManager.killGoomba(goomba);
         }
     }
 
     @Override
     public void changeImage(String image) {
-
         if (!this.isJumping()) {
-
             super.changeImage(image);
         }
     }
 
     public void setOnGround(boolean b) {
-
         this.onGround = b;
     }
 
     public boolean isNormal() {
-
         return this.normal;
     }
 
     public void setNormal(boolean b) {
-
         this.normal = b;
     }
 
     public void setBreakable(boolean b) {
-
         this.breakable = b;
     }
 
     public boolean isBreakable() {
-
         return this.breakable;
     }
-
 }

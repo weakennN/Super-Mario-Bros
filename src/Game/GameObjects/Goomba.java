@@ -4,21 +4,19 @@ import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Goomba extends GameObject {
 
-    public Goomba(Position position, String tag) {
+    public Goomba(String tag) {
 
-        super(position, tag);
+        super(tag);
 
         super.changeImage(Animator.goomba);
     }
 
     @Override
     public void update() {
-
         super.updateComponents();
     }
 
@@ -31,7 +29,7 @@ public class Goomba extends GameObject {
     @Override
     public void start() {
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -1;
     }
 
@@ -42,16 +40,13 @@ public class Goomba extends GameObject {
                 && other.getTag().equals(GlobalVariables.goombaTag)) {
 
             this.getRigidbody().getVel().x *= -1;
-            Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
+            Rigidbody rigidbody = other.getComponent(Rigidbody.class);
             rigidbody.getVel().x *= -1;
-
         }
-
     }
 
     public Rigidbody getRigidbody() {
-
-        return (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+        return this.getComponent(Rigidbody.class);
     }
 
 }

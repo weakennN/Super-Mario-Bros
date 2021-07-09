@@ -16,7 +16,6 @@ public class SoundManager {
     public static void playMarioBackgroundTheme() {
 
         File file = new File(Sounds.superMarioBackgroundMusic);
-
         media = new Media(Paths.get(file.getAbsolutePath()).toUri().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setVolume(0.04);

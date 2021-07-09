@@ -13,39 +13,20 @@ public class Collider extends Component {
     private Vector2 size;
     private Vector2 center;
     private Vector2 halfSize;
+    private boolean checked;
     private Collision collision;
-
     public static List<Collider> colliders = new ArrayList<>();
 
-    public Collider(String tag, Position position, double sizeX,
-                    double sizeY, GameObject gameObject) {
-        super(tag, gameObject);
+    public Collider(GameObject gameObject, double sizeX, double sizeY, Transform transform) {
 
-        this.pos = position.getPos();
+        super(gameObject);
+        this.pos = transform.getPos();
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
-        this.collision = new Collision();
         this.calculateCenter();
+        this.checked = false;
+        this.collision = new Collision();
         colliders.add(this);
-    }
-
-    @Override
-    public void update() {
-
-        for (Collider c : colliders) {
-
-            if (c == this || c == null) {
-
-                continue;
-            }
-
-            if (this.checkCollision(c)) {
-
-                super.getGameObject().onCollisionEnter(c.getGameObject(), this.collision);
-            }
-
-        }
-
     }
 
     public boolean checkCollision(Collider collider) {
@@ -69,25 +50,17 @@ public class Collider extends Component {
             if (overLapX >= overLapY) {
 
                 if (dy > 0) {
-
                     this.collision.setHitDirection(new Vector2(0, -1));
-
                 } else if (dy < 0) {
-
                     this.collision.setHitDirection(new Vector2(0, 1));
-
                 }
 
             } else {
 
                 if (dx < 0) {
-
                     this.collision.setHitDirection(new Vector2(-1, 0));
-
                 } else if (dx > 0) {
-
                     this.collision.setHitDirection(new Vector2(1, 0));
-
                 }
 
             }
@@ -96,35 +69,26 @@ public class Collider extends Component {
         }
 
         return false;
+
     }
 
-    protected Vector2 getCenter() {
-
-        return this.center;
+    public static void removeCollider(Collider collider) {
+        colliders.remove(collider);
     }
 
-    protected Vector2 getHalfSize() {
-
-        return this.halfSize;
-    }
-
-    protected void calculateCenter() {
+    private void calculateCenter() {
 
         this.center = new Vector2(this.pos.x + this.halfSize.x, this.pos.y + this.halfSize.y);
     }
 
-    public static void removeCollider(Collider collider) {
+    public Vector2 getCenter() {
 
-        colliders.remove(collider);
+        return this.center;
     }
 
-    public void resize(double sizeX, double sizeY) {
+    public Vector2 getHalfSize() {
 
-
-        this.size = new Vector2(sizeX, sizeY);
-        this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
-        this.calculateCenter();
-
+        return this.halfSize;
     }
 
     public Vector2 getSize() {
@@ -132,4 +96,28 @@ public class Collider extends Component {
         return this.size;
     }
 
+    public Vector2 getPos() {
+
+        return this.pos;
+    }
+
+    public void resize(double sizeX, double sizeY) {
+
+        this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
+        this.size.x = sizeX;
+        this.size.y = sizeY;
+        this.calculateCenter();
+    }
+
+    public boolean isChecked() {
+        return this.checked;
+    }
+
+    public void setChecked(boolean b) {
+        this.checked = b;
+    }
+
+    public Collision getCollision() {
+        return this.collision;
+    }
 }

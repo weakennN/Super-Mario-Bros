@@ -2,14 +2,13 @@ package Game.GameObjects;
 
 import Game.Animator.Animator;
 import Game.Collision.Collision;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Cloud extends GameObject {
 
-    public Cloud(Position position, String tag) {
+    public Cloud(String tag) {
 
-        super(position, tag);
+        super(tag);
     }
 
     @Override

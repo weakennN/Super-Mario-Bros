@@ -4,16 +4,15 @@ import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Ground extends GameObject {
 
     private boolean visible;
 
-    public Ground(Position position, String tag, boolean visible) {
+    public Ground(String tag, boolean visible) {
 
-        super(position, tag);
+        super(tag);
 
         this.visible = visible;
     }

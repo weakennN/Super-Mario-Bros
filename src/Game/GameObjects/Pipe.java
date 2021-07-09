@@ -3,13 +3,12 @@ package Game.GameObjects;
 import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Pipe extends GameObject {
 
-    public Pipe(Position position, String tag) {
-        super(position, tag);
+    public Pipe(String tag) {
+        super(tag);
     }
 
     @Override

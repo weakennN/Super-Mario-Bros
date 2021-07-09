@@ -1,17 +1,17 @@
 package Game.GameObjects;
 
+import ECS.Transform;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class InvisibleWall extends GameObject {
 
-    private Position cameraPosition;
+    private Transform cameraPosition;
 
-    public InvisibleWall(Position position, String tag, Position cameraPosition) {
-        super(position, tag);
+    public InvisibleWall(String tag, Transform cameraPosition) {
+        super(tag);
 
         this.cameraPosition = cameraPosition;
     }
@@ -19,7 +19,7 @@ public class InvisibleWall extends GameObject {
     @Override
     public void update() {
 
-        super.getPosition().getPos().x = this.cameraPosition.getPos().x - 1010;
+        super.getComponent(Transform.class).getPos().x = this.cameraPosition.getPos().x - 1010;
         super.updateComponents();
     }
 

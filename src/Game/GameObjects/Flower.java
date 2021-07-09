@@ -4,13 +4,12 @@ import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Mario.Mario;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Flower extends GameObject {
 
-    public Flower(Position position, String tag) {
-        super(position, tag);
+    public Flower(String tag) {
+        super(tag);
     }
 
     @Override

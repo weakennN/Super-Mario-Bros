@@ -1,8 +1,8 @@
 package Game.Collision;
 
+import ECS.Transform;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
-import ECS.Component;
 import ECS.Rigidbody;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mario.Mario;
@@ -11,19 +11,16 @@ public class Collisions {
 
     public static void defaultOnGroundCollision(GameObject first, GameObject second, Collision collision) {
 
-        Component component = second.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = second.getComponent(Rigidbody.class);
 
-        if (component == null) {
-
+        if (rigidbody == null) {
             return;
         }
 
-        Rigidbody rigidbody = (Rigidbody) component;
-
         if (collision.getHitDirection().y == -1) {
 
-            Collider collider = (Collider) second.getComponent(GlobalVariables.colliderTag);
-            second.getPosition().getPos().y = first.getPosition().getPos().y - collider.getSize().y;
+            Collider collider = second.getComponent(Collider.class);
+            second.getComponent(Transform.class).getPos().y = first.getComponent(Transform.class).getPos().y - collider.getSize().y;
             rigidbody.getAcc().y = 0;
             rigidbody.getVel().y = 0;
 
@@ -41,26 +38,24 @@ public class Collisions {
 
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
 
-        Component component = second.getComponent(GlobalVariables.colliderTag);
+        Collider collider = second.getComponent(Collider.class);
 
-        if (component == null) {
+        if (collider == null) {
 
             return;
         }
 
-        Collider collider = (Collider) component;
-
         if (collision.getHitDirection().x == 1) {
 
-            second.getPosition().getPos().x = first.getPosition().getPos().x - collider.getSize().x;
+            second.getComponent(Transform.class).getPos().x = first.getComponent(Transform.class).getPos().x - collider.getSize().x;
 
             checkFromEnemy(second);
 
         } else if (collision.getHitDirection().x == -1) {
 
-            Collider collider1 = (Collider) first.getComponent(GlobalVariables.colliderTag);
+            Collider collider1 = first.getComponent(Collider.class);
 
-            second.getPosition().getPos().x = first.getPosition().getPos().x + collider1.getSize().x;
+            second.getComponent(Transform.class).getPos().x = first.getComponent(Transform.class).getPos().x + collider1.getSize().x;
 
             checkFromEnemy(second);
         }
@@ -71,12 +66,10 @@ public class Collisions {
 
         if (gameObject.getTag().equals(GlobalVariables.goombaTag)
                 || gameObject.getTag().equals(GlobalVariables.mushroomTag) ||
-                gameObject.getTag().equals(GlobalVariables.koopaTag) || gameObject.getTag().equals(GlobalVariables.blockTag)) {
+                gameObject.getTag().equals(GlobalVariables.koopaTag)) {
 
-            Rigidbody rigidbody = (Rigidbody) gameObject.getComponent(GlobalVariables.rigidbodyTag);
+            Rigidbody rigidbody = gameObject.getComponent(Rigidbody.class);
             rigidbody.getVel().x *= -1;
         }
-
     }
-
 }

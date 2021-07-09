@@ -2,16 +2,13 @@ package Game.GameObjects;
 
 import Game.Animator.Animator;
 import Game.Collision.Collision;
-import Game.Collision.Collisions;
-import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 public class Mushroom extends GameObject {
 
-    public Mushroom(Position position, String tag) {
-        super(position, tag);
+    public Mushroom(String tag) {
+        super(tag);
 
     }
 
@@ -30,7 +27,7 @@ public class Mushroom extends GameObject {
     @Override
     public void start() {
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = this.getRigidbody();
         rigidbody.getVel().x = 1;
 
         super.changeImage(Animator.superMushroom);
@@ -43,7 +40,7 @@ public class Mushroom extends GameObject {
 
     public Rigidbody getRigidbody() {
 
-        return (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        return super.getComponent(Rigidbody.class);
     }
 
 }

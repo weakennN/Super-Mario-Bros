@@ -1,19 +1,17 @@
 package Game.GameObjects;
 
-import ECS.Position;
 import ECS.Rigidbody;
 import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
-import Game.Common.GlobalVariables;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
 import javafx.scene.image.Image;
 
 public class Block extends GameObject {
 
-    public Block(Position position, String tag) {
-        super(position, tag);
+    public Block(String tag) {
+        super(tag);
     }
 
     @Override
@@ -37,7 +35,7 @@ public class Block extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
-        Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = other.getComponent(Rigidbody.class);
 
         if (rigidbody == null) {
 

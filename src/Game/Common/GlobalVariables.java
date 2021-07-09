@@ -25,5 +25,7 @@ public class GlobalVariables {
     public final static double defaultMarioColliderY = 50;
     public final static double defaultBigMarioColliderSizeX = 45;
     public final static double defaultBigMarioColliderSizeY = 85;
+    public static final String BACKGROUND_SORTING_LAYER = "background";
+    public static final String DEFAULT_SORTING_LAYER = "default";
 
 }

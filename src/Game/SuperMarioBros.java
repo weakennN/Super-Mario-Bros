@@ -1,5 +1,6 @@
 package Game;
 
+import ECS.Transform;
 import Game.Animator.Animator;
 import Game.SoundEffects.Sounds;
 import RenderEngine.RenderEngine;
@@ -56,9 +57,9 @@ public class SuperMarioBros extends Game {
 
         for (GameObject gm : this.gameObjects) {
 
-            if ((gm.getPosition().getPos().x >= this.mario.getPosition().getPos().x
-                    || gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x)
-                    && gm.getPosition().getPos().x <= this.mario.getPosition().getPos().x + 2000
+            if ((gm.getComponent(Transform.class).getPos().x >= this.mario.getComponent(Transform.class).getPos().x
+                    || gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x)
+                    && gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x + 2000
                     && !gm.isActive()) {
 
                 gm.start();

@@ -4,7 +4,6 @@ import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
-import ECS.Position;
 import Game.GameObjects.Mario.Mario;
 import Game.Score.ScoreKeeper;
 import javafx.scene.image.Image;
@@ -14,8 +13,8 @@ public class Koopa extends GameObject {
     private boolean isTransformed;
     private boolean shellMoving;
 
-    public Koopa(Position position, String tag) {
-        super(position, tag);
+    public Koopa(String tag) {
+        super(tag);
 
         this.isTransformed = false;
         this.shellMoving = false;
@@ -24,7 +23,7 @@ public class Koopa extends GameObject {
     @Override
     public void update() {
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = super.getComponent(Rigidbody.class);
 
         if (!this.isTransformed) {
 
@@ -50,7 +49,7 @@ public class Koopa extends GameObject {
     @Override
     public void start() {
 
-        Rigidbody rigidbody = (Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag);
+        Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -1;
         super.changeImage(Animator.koopaFacingLeft);
     }
@@ -60,8 +59,8 @@ public class Koopa extends GameObject {
 
         if (other.getTag().equals(GlobalVariables.marioTag) && collision.getHitDirection().y == -1) {
 
-            Rigidbody rigidbody = (Rigidbody) other.getComponent(GlobalVariables.rigidbodyTag);
-            Rigidbody rigidbody1 = (Rigidbody) this.getComponent(GlobalVariables.rigidbodyTag);
+            Rigidbody rigidbody = other.getComponent(Rigidbody.class);
+            Rigidbody rigidbody1 = this.getComponent(Rigidbody.class);
 
             if (!this.isTransformed) {
 

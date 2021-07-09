@@ -8,18 +8,31 @@ public class Rigidbody extends Component {
     private Vector2 pos;
     private Vector2 vel;
     private Vector2 acc;
-    private Vector2 gravity;
-    private boolean applyGravity;
+    private boolean applyGravity = true;
+    private int time = 0;
 
-    public Rigidbody(String tag, Position position, GameObject gameObject) {
-        super(tag, gameObject);
+    public Rigidbody(GameObject gameObject) {
 
-        this.pos = position.getPos();
+        super(gameObject);
+
+        this.pos = gameObject.getComponent(Transform.class).getPos();
         this.vel = new Vector2();
         this.acc = new Vector2();
-        this.gravity = new Vector2(0, 0.001);
-        this.applyGravity = true;
+    }
 
+    public Rigidbody(GameObject gameObject, Transform transform) {
+
+        super(gameObject);
+
+        this.pos = transform.getPos();
+        this.vel = new Vector2();
+        this.acc = new Vector2();
+    }
+
+    public Rigidbody(GameObject gameObject, boolean applyGravity) {
+
+        this(gameObject);
+        this.applyGravity = applyGravity;
     }
 
     @Override
@@ -28,31 +41,30 @@ public class Rigidbody extends Component {
         this.physicsUpdate();
     }
 
-    public Vector2 getVel() {
-
-        return vel;
-    }
-
-    public Vector2 getAcc() {
-
-        return acc;
-    }
-
     private void physicsUpdate() {
 
-        this.applyForce(this.gravity);
+        if (this.applyGravity) {
+            this.applyForce(new Vector2(0, 0.00125));
+        }
+
         this.vel.add(this.acc);
         this.pos.add(this.vel);
+
     }
 
     private void applyForce(Vector2 force) {
-
         this.acc.add(force);
     }
 
-    public Vector2 getPos() {
-
-        return this.pos;
+    public Vector2 getVel() {
+        return this.vel;
     }
 
+    public Vector2 getAcc() {
+        return this.acc;
+    }
+
+    public Vector2 getPos() {
+        return this.pos;
+    }
 }

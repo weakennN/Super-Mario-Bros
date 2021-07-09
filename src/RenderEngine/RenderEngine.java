@@ -1,13 +1,13 @@
 package RenderEngine;
 
+import ECS.Transform;
 import UIEngine.Designer;
-import ECS.Position;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
 public class RenderEngine {
 
-    public static void render(Image image, Position position) {
+    public static void render(Image image, Transform position) {
 
         Vector2 pos = position.getPos();
 

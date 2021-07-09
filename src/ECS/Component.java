@@ -5,23 +5,31 @@ import Game.GameObjects.GameObject;
 public abstract class Component {
 
     private GameObject gameObject;
-    private String tag;
+    private boolean active;
 
-    protected Component(String tag, GameObject gameObject) {
+    public Component(GameObject gameObject) {
 
         this.gameObject = gameObject;
-        this.tag = tag;
+        this.active = false;
     }
 
-    public abstract void update();
+    public void start() {
+        this.active = true;
+    }
 
-    public String getTag() {
+    public void update() {
 
-        return this.tag;
     }
 
     public GameObject getGameObject() {
-
         return this.gameObject;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean b) {
+        this.active = b;
     }
 }

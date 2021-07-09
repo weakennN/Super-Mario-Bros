@@ -1,5 +1,7 @@
 package Engine;
 
+import ECS.Collider;
+import ECS.Transform;
 import Game.GameObjects.GameObject;
 import RenderEngine.RenderEngine;
 import Game.Game;
@@ -44,10 +46,12 @@ public class GameEngine extends Engine {
 
                         gameObject.update();
                         Image gameObjectImage = gameObject.render();
-                        RenderEngine.render(gameObjectImage, gameObject.getPosition());
+                        RenderEngine.render(gameObjectImage, gameObject.getComponent(Transform.class));
                     }
 
                 }
+
+                detectCollision();
 
                 camera.follow();
 
@@ -57,6 +61,40 @@ public class GameEngine extends Engine {
 
         this.gameLoop.start();
 
+    }
+
+    private void updateGameObjects() {
+
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            GameObject gameObject = gameObjects.get(i);
+
+            if (gameObject.isActive()) {
+
+                gameObject.update();
+            }
+        }
+    }
+
+    private void detectCollision() {
+
+        for (int i = 0; i < Collider.colliders.size(); i++) {
+
+            Collider collider = Collider.colliders.get(i);
+
+            for (int j = 0; j < Collider.colliders.size(); j++) {
+
+                if (collider == Collider.colliders.get(j)) {
+                    continue;
+                }
+
+                if (collider.checkCollision(Collider.colliders.get(j))) {
+
+                    collider.getGameObject().onCollisionEnter(Collider.colliders.get(j).getGameObject(), collider.getCollision());
+                }
+            }
+
+        }
     }
 
     @Override

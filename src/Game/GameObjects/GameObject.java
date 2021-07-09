@@ -1,11 +1,9 @@
 package Game.GameObjects;
 
 import Game.Collision.Collision;
-import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Component;
 import Engine.GameEngine;
-import ECS.Position;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -13,15 +11,13 @@ import java.util.List;
 
 public abstract class GameObject {
 
-    private Position position;
     private Image currentAnimation;
     private String tag;
     private boolean active;
     List<Component> components;
 
-    public GameObject(Position position, String tag) {
+    public GameObject(String tag) {
 
-        this.position = position;
         this.currentAnimation = null;
         this.tag = tag;
         this.components = new ArrayList<>();
@@ -33,11 +29,6 @@ public abstract class GameObject {
     public abstract Image render();
 
     public abstract void start();
-
-    public Position getPosition() {
-
-        return this.position;
-    }
 
     public abstract void onCollisionEnter(GameObject other, Collision collision);
 
@@ -93,33 +84,28 @@ public abstract class GameObject {
     }
 
     public void addComponent(Component component) {
-
         this.components.add(component);
     }
 
-    public Component getComponent(String componentTag) {
+    public <T extends Component> T getComponent(Class<T> component) {
 
         for (Component c : this.components) {
-
-            if (c.getTag().equals(componentTag)) {
-
-                return c;
+            if (component.isAssignableFrom(c.getClass())) {
+                return component.cast(c);
             }
-
         }
 
         return null;
     }
 
-    public void removeComponent(String componentTag) {
-
-        this.components.removeIf(c -> c.getTag().equals(componentTag));
+    public <T extends Component> void removeComponent(Class<T> component) {
+        this.components.removeIf(c -> component.isAssignableFrom(c.getClass()));
     }
 
     public void destroy() {
 
         GameEngine.gameObjects.remove(this);
-        Collider collider = (Collider) this.getComponent(GlobalVariables.colliderTag);
+        Collider collider = this.getComponent(Collider.class);
         Collider.removeCollider(collider);
         this.active = false;
         this.components.clear();

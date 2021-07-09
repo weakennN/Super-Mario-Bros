@@ -1,17 +1,17 @@
 package Game;
 
+import ECS.Transform;
 import Game.GameObjects.Mario.Mario;
-import ECS.Position;
 import UIEngine.Designer;
 import mikera.vectorz.Vector2;
 
 public class Camera {
 
-    private Position position;
+    private Transform position;
     private Vector2 vel;
     private Mario mario;
 
-    public Camera(Mario mario, Position position) {
+    public Camera(Mario mario, Transform position) {
 
         this.position = position;
         this.vel = new Vector2(0, 0);
@@ -22,9 +22,9 @@ public class Camera {
 
     public void follow() {
 
-        if (this.mario.getPosition().getPos().x > this.position.getPos().x) {
+        if (this.mario.getComponent(Transform.class).getPos().x > this.position.getPos().x) {
 
-            this.position.getPos().x = this.mario.getPosition().getPos().x;
+            this.position.getPos().x = this.mario.getComponent(Transform.class).getPos().x;
 
             this.vel.x = this.mario.getRigidbody().getVel().x;
 
@@ -38,7 +38,7 @@ public class Camera {
         this.mario = mario;
     }
 
-    public Position getPosition() {
+    public Transform getPosition() {
 
         return this.position;
     }

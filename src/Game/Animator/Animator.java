@@ -1,6 +1,6 @@
 package Game.Animator;
 
-import Game.Common.GlobalVariables;
+import ECS.Transform;
 import ECS.Rigidbody;
 import Game.Score.ScoreKeeper;
 import RenderEngine.RenderEngine;
@@ -74,7 +74,7 @@ public class Animator {
 
                 if (currentTime++ == 175) {
 
-                    mario.initializeActions((Rigidbody) mario.getComponent(GlobalVariables.rigidbodyTag));
+                    mario.initializeActions(mario.getComponent(Rigidbody.class));
                     mario.changeImage(Animator.bigMarioFacingRight);
                     marioManager.growMario();
                     this.currentTime = 0;
@@ -142,8 +142,8 @@ public class Animator {
 
     public static void marioGettingCoinFromItemBoxAnimation(GameObject gameObject) {
 
-        double x = gameObject.getPosition().getPos().x;
-        double y = gameObject.getPosition().getPos().y;
+        double x = gameObject.getComponent(Transform.class).getPos().x;
+        double y = gameObject.getComponent(Transform.class).getPos().y;
 
         double[] arr = new double[2];
         arr[0] = x;

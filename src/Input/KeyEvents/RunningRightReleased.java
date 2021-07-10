@@ -1,6 +1,9 @@
 package Input.KeyEvents;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SpriteRenderer;
+import Game.Common.GlobalVariables;
+import Game.Common.SpriteSheetContainer;
 import Game.Game;
 import Game.GameObjects.Mario.MarioDir;
 import Game.SuperMarioBros;
@@ -19,17 +22,23 @@ public class RunningRightReleased extends KeyEvent {
         Mario mario = ((SuperMarioBros) game).getMario();
 
         mario.getRigidbody().getVel().x = 0;
-        if (mario.isNormal()) {
-            mario.changeImage(Animator.marioIdleFacingRight);
-        } else if (mario.isBigMario()) {
-            mario.changeImage(Animator.bigMarioFacingRight);
-        } else if (mario.isFireMario()) {
-            mario.changeImage(Animator.fireMarioFacingRight);
-        }
 
+        if (!mario.isJumping()) {
+            if (mario.isNormal()) {
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(14));
+                mario.getComponent(ECS.Animator.Animator.class).getAnimationController().stop();
+            } else if (mario.isBigMario()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(21));
+            } else if (mario.isFireMario()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(21));
+            }
+        }
         MarioDir.marioIdleFacingRight = true;
         MarioDir.marioRunningRight = false;
         mario.getRigidbody().getAcc().x = 0;
         mario.getRigidbody().getAcc().y = 0;
+
     }
 }

@@ -1,12 +1,11 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
 import Game.GameObjects.Mario.Mario;
 import Game.Score.ScoreKeeper;
-import javafx.scene.image.Image;
 
 public class Koopa extends GameObject {
 
@@ -29,10 +28,10 @@ public class Koopa extends GameObject {
 
             if (rigidbody.getVel().x > 0) {
 
-                super.changeImage(Animator.koopaFacingRight);
+
             } else {
 
-                super.changeImage(Animator.koopaFacingLeft);
+
             }
 
         }
@@ -41,17 +40,11 @@ public class Koopa extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -1;
-        super.changeImage(Animator.koopaFacingLeft);
+        super.getComponent(Animator.class).getAnimationController().playAnimation("koopaAnimation");
     }
 
     @Override
@@ -65,7 +58,6 @@ public class Koopa extends GameObject {
             if (!this.isTransformed) {
 
                 rigidbody1.getVel().x = 0;
-                super.changeImage(Animator.koopasShell);
                 this.isTransformed = true;
 
             } else {

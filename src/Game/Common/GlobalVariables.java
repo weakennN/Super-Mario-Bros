@@ -24,8 +24,14 @@ public class GlobalVariables {
     public final static double defaultMarioColliderX = 40;
     public final static double defaultMarioColliderY = 50;
     public final static double defaultBigMarioColliderSizeX = 45;
-    public final static double defaultBigMarioColliderSizeY = 85;
+    public final static double defaultBigMarioColliderSizeY = 90;
     public static final String BACKGROUND_SORTING_LAYER = "background";
     public static final String DEFAULT_SORTING_LAYER = "default";
-
+    public static final String MARIO_SPRITE_SHEET = "marioSpriteSheet";
+    public static final String GOOMBA_SPRITE_SHEET_KEY = "goombaSpriteSheet";
+    public static final String ITEM_BOX_SPITE_SHEET_KEY = "itemBoxSpriteSheet";
+    public static final String KOOPA_SPRITE_SHEET_KEY = "koopaSpriteSheet";
+    public static final String BIG_MARIO_SPRITE_SHEET_KEY = "bigMarioSpriteSheet";
+    public static final String FIRE_MARIO_SPRITE_SHEET_KEY = "fireMarioSpriteSheet";
+    public static final String COIN_SPRITE_SHEET_KEY = "coinSpriteSheet";
 }

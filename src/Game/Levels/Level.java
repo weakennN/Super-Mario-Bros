@@ -1,12 +1,12 @@
 package Game.Levels;
 
 import ECS.Collider;
-import ECS.Rigidbody;
 import ECS.Transform;
 import Game.Camera;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.*;
 import Game.GameObjects.Mario.Mario;
+import Game.Levels.GameObjectFactory.GameObjectFactory;
 import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
@@ -27,6 +27,7 @@ public abstract class Level {
     public Level() {
 
         this.gameObjects = new ArrayList<>();
+        GameObjectFactory.init(this);
     }
 
     public abstract void initLevel();
@@ -46,7 +47,7 @@ public abstract class Level {
         this.backGround = backGround;
     }
 
-    protected void setCamera(Camera camera) {
+    public void setCamera(Camera camera) {
 
         this.camera = camera;
     }
@@ -110,7 +111,6 @@ public abstract class Level {
                 double sizeX = Double.parseDouble(words[2]);
                 double sizeY = Double.parseDouble(words[3]);
 
-
                 GameObject ground = new Ground(GlobalVariables.groundTag, false);
                 Transform transform = new Transform(new Vector2(x, y), ground);
                 ground.addComponent(new Collider(ground, sizeX, sizeY, transform));
@@ -137,88 +137,11 @@ public abstract class Level {
             while (word != null && !word.equals("end")) {
 
                 String[] words = word.split("\\s+");
-
                 GameObject gameObject = null;
-                double x = Double.parseDouble(words[1]);
-                double y = Double.parseDouble(words[2]);
-
-                Transform transform = new Transform(new Vector2(x, y), gameObject);
-
-                if (words[0].equals("Mario")) {
-
-                    gameObject = new Mario(GlobalVariables.marioTag);
-                    gameObject.addComponent(new Rigidbody(gameObject, transform));
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY, transform));
-
-                    Transform cameraPos = new Transform(new Vector2(960, 0));
-                    this.mario = (Mario) gameObject;
-                    this.camera = new Camera((Mario) gameObject, cameraPos);
-
-                } else if (words[0].equals("Goomba")) {
-
-                    gameObject = new Goomba(GlobalVariables.goombaTag);
-                    gameObject.addComponent(new Rigidbody(gameObject, transform));
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-
-                } else if (words[0].equals("ItemBox")) {
-
-                    GameObject itemBoxObject = null;
-                    Transform position = new Transform(new Vector2(transform.getPos().x, transform.getPos().y - 50), itemBoxObject);
-                    if (words[3].equals("Mushroom")) {
-                        itemBoxObject = new Mushroom(GlobalVariables.mushroomTag);
-                    } else if (words[3].equals("Coin")) {
-                        itemBoxObject = new Coin(GlobalVariables.coinTag);
-                    } else if (words[3].equals("FireFlower")) {
-                        itemBoxObject = new Flower(GlobalVariables.fireFlowerTag);
-                        Transform position2 = new Transform(new Vector2(position.getPos().x, position.getPos().y - 50), itemBoxObject);
-                        itemBoxObject.addComponent(position2);
-                    }
-
-                    gameObject = new ItemBox(GlobalVariables.itemBoxTag, itemBoxObject);
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-
-                } else if (words[0].equals("Mushroom")) {
-
-                    gameObject = new Mushroom(GlobalVariables.mushroomTag);
-                    gameObject.addComponent(new Rigidbody(gameObject, transform));
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-
-                } else if (words[0].equals("BrickBox")) {
-
-                    gameObject = new BrickBox(GlobalVariables.brickBoxTag);
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-
-                } else if (words[0].equals("Pipe")) {
-
-                    gameObject = new Pipe(GlobalVariables.pipeTag);
-                    gameObject.addComponent(new Collider(gameObject, 100, 135, transform));
-
-                } else if (words[0].equals("Koopa")) {
-
-                    gameObject = new Koopa(GlobalVariables.koopaTag);
-                    gameObject.addComponent(new Rigidbody(gameObject, transform));
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-                } else if (words[0].equals("Cloud")) {
-
-                    gameObject = new Cloud(GlobalVariables.cloudTag);
-                } else if (words[0].equals("Castle")) {
-
-                    gameObject = new Castle(GlobalVariables.castleTag);
-                } else if (words[0].equals("Block")) {
-
-                    gameObject = new Block(GlobalVariables.blockTag);
-                    gameObject.addComponent(new Collider(gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
+                if (!words[0].equals("Pipe") && !words[0].equals("Castle")) {
+                    gameObject = GameObjectFactory.create(words, words[0]);
+                    this.addGameObject(gameObject);
                 }
-
-                gameObject.addComponent(transform);
-                this.addGameObject(gameObject);
 
                 word = bufferedReader.readLine();
             }
@@ -231,12 +154,15 @@ public abstract class Level {
 
     private void createInvisibleWall() {
 
-
         InvisibleWall invisibleWall = new InvisibleWall(GlobalVariables.invisibleWallTag, this.camera.getPosition());
         Transform transform = new Transform(new Vector2(0, 0), invisibleWall);
         invisibleWall.addComponent(new Collider(invisibleWall, 50, 1080, transform));
         invisibleWall.addComponent(transform);
         this.addGameObject(invisibleWall);
 
+    }
+
+    public void setMario(Mario mario) {
+        this.mario = mario;
     }
 }

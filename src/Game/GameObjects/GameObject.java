@@ -1,24 +1,22 @@
 package Game.GameObjects;
 
+import ECS.SprtieRenderer.SpriteRenderer;
 import Game.Collision.Collision;
 import ECS.Collider;
 import ECS.Component;
 import Engine.GameEngine;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GameObject {
 
-    private Image currentAnimation;
     private String tag;
     private boolean active;
     List<Component> components;
 
     public GameObject(String tag) {
 
-        this.currentAnimation = null;
         this.tag = tag;
         this.components = new ArrayList<>();
         this.active = false;
@@ -26,22 +24,9 @@ public abstract class GameObject {
 
     public abstract void update();
 
-    public abstract Image render();
-
     public abstract void start();
 
     public abstract void onCollisionEnter(GameObject other, Collision collision);
-
-    public void changeImage(String image) {
-
-        this.currentAnimation = new Image(image);
-
-    }
-
-    public Image getCurrentAnimation() {
-
-        return this.currentAnimation;
-    }
 
     protected void setTag(String tag) {
 
@@ -107,6 +92,11 @@ public abstract class GameObject {
         GameEngine.gameObjects.remove(this);
         Collider collider = this.getComponent(Collider.class);
         Collider.removeCollider(collider);
+
+        if (this.getComponent(SpriteRenderer.class) != null){
+            this.getComponent(SpriteRenderer.class).getSortingLayer().removeSpriteRenderer(this.getComponent(SpriteRenderer.class));
+        }
+
         this.active = false;
         this.components.clear();
     }

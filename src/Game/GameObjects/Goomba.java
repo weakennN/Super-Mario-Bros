@@ -1,10 +1,9 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
-import javafx.scene.image.Image;
 
 public class Goomba extends GameObject {
 
@@ -12,7 +11,6 @@ public class Goomba extends GameObject {
 
         super(tag);
 
-        super.changeImage(Animator.goomba);
     }
 
     @Override
@@ -21,16 +19,11 @@ public class Goomba extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -1;
+        super.getComponent(Animator.class).getAnimationController().playAnimation("goombaAnimation");
     }
 
     @Override

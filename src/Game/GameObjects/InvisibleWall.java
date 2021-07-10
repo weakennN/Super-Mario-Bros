@@ -4,7 +4,6 @@ import ECS.Transform;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
-import javafx.scene.image.Image;
 
 public class InvisibleWall extends GameObject {
 
@@ -24,11 +23,6 @@ public class InvisibleWall extends GameObject {
     }
 
     @Override
-    public Image render() {
-        return null;
-    }
-
-    @Override
     public void start() {
 
     }
@@ -41,6 +35,5 @@ public class InvisibleWall extends GameObject {
 
             Collisions.defaultHorizontalCollision(this, other, collision);
         }
-
     }
 }

@@ -32,4 +32,8 @@ public abstract class Component {
     public void setActive(boolean b) {
         this.active = b;
     }
+
+    public void setGameObject(GameObject gameObject) {
+        this.gameObject = gameObject;
+    }
 }

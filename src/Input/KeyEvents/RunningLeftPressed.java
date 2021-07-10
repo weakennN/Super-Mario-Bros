@@ -1,6 +1,6 @@
 package Input.KeyEvents;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
 import Game.Game;
 import Game.GameObjects.Mario.Mario;
 import Game.GameObjects.Mario.MarioDir;
@@ -26,16 +26,19 @@ public class RunningLeftPressed extends KeyEvent {
                 mario.getRigidbody().getVel().x = -0.7;
             }
 
-            if (mario.isNormal()) {
-                mario.changeImage(Animator.marioRunningLeft);
-            } else if (mario.isBigMario()) {
-                mario.changeImage(Animator.bigMarioRunningLeft);
-            } else if (mario.isFireMario()) {
-                mario.changeImage(Animator.fireMarioRunningLeft);
+            if (!mario.isJumping()) {
+                if (mario.isNormal()) {
+                    mario.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("marioRunningLeft");
+                } else if (mario.isBigMario()) {
+                    mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunningLeft");
+                } else if (mario.isFireMario()) {
+                    mario.getComponent(Animator.class).getAnimationController().playAnimation("fireMarioRunningLeft");
+                }
             }
 
             MarioDir.marioIdleFacingRight = false;
             MarioDir.marioRunningLeft = true;
+
         }
     }
 }

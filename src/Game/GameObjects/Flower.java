@@ -1,10 +1,8 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Mario.Mario;
-import javafx.scene.image.Image;
 
 public class Flower extends GameObject {
 
@@ -19,15 +17,8 @@ public class Flower extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.flower);
     }
 
     @Override

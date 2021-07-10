@@ -1,7 +1,9 @@
 package Game;
 
+import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.Transform;
 import Game.Animator.Animator;
+import Game.Common.SpriteSheetContainer;
 import Game.SoundEffects.Sounds;
 import Input.InputHandler;
 import RenderEngine.RenderEngine;
@@ -33,6 +35,8 @@ public class SuperMarioBros extends Game {
     public void start() {
 
         this.engine = new GameEngine(this);
+        SpriteSheetContainer.init();
+        SortingLayersContainer.initContainer();
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();
         this.world.getCurrentLevel().initLevel();
@@ -57,7 +61,9 @@ public class SuperMarioBros extends Game {
         ScoreKeeper.updateScore();
 
         for (GameObject gm : this.gameObjects) {
-
+            if (gm.getComponent(Transform.class) == null){
+                System.out.println();
+            }
             if ((gm.getComponent(Transform.class).getPos().x >= this.mario.getComponent(Transform.class).getPos().x
                     || gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x)
                     && gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x + 2000
@@ -114,8 +120,10 @@ public class SuperMarioBros extends Game {
     private void gaveOver() {
 
         Designer.showLabels(false);
-        RenderEngine.renderImage(Animator.gameOver, this.engine.getCamera().getPosition().getPos().x - 960
+      /*  RenderEngine.renderImage(Animator.gameOver, this.engine.getCamera().getPosition().getPos().x - 960
                 , 0, 1920, 1080);
+
+       */
         this.engine.getCamera().resetCamera();
         this.world = null;
         this.mario = null;

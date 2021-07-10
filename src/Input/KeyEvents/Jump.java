@@ -1,6 +1,9 @@
 package Input.KeyEvents;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SpriteRenderer;
+import Game.Common.GlobalVariables;
+import Game.Common.SpriteSheetContainer;
 import Game.Game;
 import Game.GameObjects.Mario.Mario;
 import Game.GameObjects.Mario.MarioDir;
@@ -31,22 +34,28 @@ public class Jump extends KeyEvent {
             if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight) {
 
                 if (mario.isBigMario()) {
-                    mario.changeImage(Animator.bigMarioJumpingRight);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(26));
                 } else if (mario.isNormal()) {
-                    mario.changeImage(Animator.marioJumpingRight);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(19));
                 } else if (mario.isFireMario()) {
-                    mario.changeImage(Animator.fireMarioJumpingRight);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(26));
                 }
 
                 MarioDir.marioJumpingRight = true;
             } else {
 
                 if (mario.isBigMario()) {
-                    mario.changeImage(Animator.bigMarioJumpingLeft);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(15));
                 } else if (mario.isNormal()) {
-                    mario.changeImage(Animator.marioJumpingLeft);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(8));
                 } else if (mario.isFireMario()) {
-                    mario.changeImage(Animator.fireMarioJumpingLeft);
+                    mario.getComponent(Animator.class).getAnimationController().stop();
+                    mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(15));
                 }
 
                 MarioDir.marioJumpingLeft = true;

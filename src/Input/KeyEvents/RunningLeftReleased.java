@@ -1,6 +1,9 @@
 package Input.KeyEvents;
 
-import Game.Animator.Animator;
+import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SpriteRenderer;
+import Game.Common.GlobalVariables;
+import Game.Common.SpriteSheetContainer;
 import Game.Game;
 import Game.GameObjects.Mario.Mario;
 import Game.GameObjects.Mario.MarioDir;
@@ -18,16 +21,23 @@ public class RunningLeftReleased extends KeyEvent {
         Mario mario = ((SuperMarioBros) game).getMario();
 
         mario.getRigidbody().getVel().x = 0;
-        if (mario.isNormal()) {
-            mario.changeImage(Animator.marioIdleFacingLeft);
-        } else if (mario.isBigMario()) {
-            mario.changeImage(Animator.bigMarioFacingLeft);
-        } else if (mario.isFireMario()) {
-            mario.changeImage(Animator.fireMarioFacingLeft);
+        if (!mario.isJumping()) {
+            if (mario.isNormal()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(13));
+            } else if (mario.isBigMario()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(20));
+            } else if (mario.isFireMario()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(20));
+            }
         }
-        MarioDir.marioRunningLeft = false;
-        MarioDir.marioIdleFacingLeft = true;
-        mario.getRigidbody().getAcc().x = 0;
-        mario.getRigidbody().getAcc().y = 0;
+
+            MarioDir.marioRunningLeft = false;
+            MarioDir.marioIdleFacingLeft = true;
+            mario.getRigidbody().getAcc().x = 0;
+            mario.getRigidbody().getAcc().y = 0;
+
     }
 }

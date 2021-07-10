@@ -19,18 +19,10 @@ public class Mushroom extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
         Rigidbody rigidbody = this.getRigidbody();
         rigidbody.getVel().x = 1;
-
-        super.changeImage(Animator.superMushroom);
     }
 
     @Override
@@ -42,5 +34,4 @@ public class Mushroom extends GameObject {
 
         return super.getComponent(Rigidbody.class);
     }
-
 }

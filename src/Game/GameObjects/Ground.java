@@ -1,10 +1,8 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
-import javafx.scene.image.Image;
 
 public class Ground extends GameObject {
 
@@ -24,19 +22,8 @@ public class Ground extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        if (visible) {
-            return super.getCurrentAnimation();
-        }
-
-        return null;
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.ground);
     }
 
     @Override

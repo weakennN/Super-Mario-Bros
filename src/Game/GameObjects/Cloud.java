@@ -1,8 +1,6 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
-import javafx.scene.image.Image;
 
 public class Cloud extends GameObject {
 
@@ -18,15 +16,8 @@ public class Cloud extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.cloud);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Game.GameObjects;
 
+import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import Game.Animator.Animator;
 import Game.Collision.Collision;
@@ -8,28 +9,29 @@ import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
 import Engine.GameEngine;
+import Game.Common.SpriteSheetContainer;
+import Game.Levels.GameObjectFactory.GameObjectFactory;
 import Game.Score.ScoreKeeper;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
-import javafx.scene.image.Image;
-import mikera.vectorz.Vector2;
 
 public class ItemBox extends GameObject {
 
     private GameObject gameObject;
+    private String gameObjectCreator;
     private boolean isEmpty;
 
-    public ItemBox(String tag, GameObject gameObject) {
+    public ItemBox(String tag, String gameObjectCreator) {
         super(tag);
 
-        this.gameObject = gameObject;
+        this.gameObjectCreator = gameObjectCreator;
         this.isEmpty = false;
     }
 
     @Override
     public void start() {
 
-        super.changeImage(Animator.itemBox);
+        super.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("itemBoxAnimation");
     }
 
     @Override
@@ -39,37 +41,30 @@ public class ItemBox extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (collision.getHitDirection().y == 1) {
 
             if (other.getTag().equals(GlobalVariables.marioTag) && !isEmpty) {
 
-                if (this.gameObject.getTag().equals(GlobalVariables.mushroomTag)) {
+                if (this.gameObjectCreator.equals("Mushroom")) {
 
-                    Transform transform = new Transform(new Vector2(super.getComponent(Transform.class).getPos().x, super.getComponent(Transform.class).getPos().y - 50), this.gameObject);
-                    this.gameObject.addComponent(new Rigidbody(this.gameObject, transform));
-                    this.gameObject.addComponent(new Collider(this.gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-                    this.gameObject.addComponent(transform);
+                    String[] params = {super.getComponent(Transform.class).getPos().x + "", super.getComponent(Transform.class).getPos().y - 50 + ""};
+                    Mushroom mushroom = (Mushroom) GameObjectFactory.create(params, "Mushroom");
 
-                    GameEngine.gameObjects.add(this.gameObject);
-
+                    GameEngine.gameObjects.add(mushroom);
                     SoundManager.playSound(Sounds.itemBlockSound);
-                    super.changeImage(Animator.emptyItemBox);
-                } else if (this.gameObject.getTag().equals(GlobalVariables.coinTag)) {
+                } else if (this.gameObjectCreator.equals("Coin")) {
 
+                    String[] params = {super.getComponent(Transform.class).getPos().x + "", super.getComponent(Transform.class).getPos().y - 50 + ""};
+                    Coin coin = (Coin) GameObjectFactory.create(params, this.gameObjectCreator);
+                    coin.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("coinAnimation");
+                    coin.setActive(true);
+                    coin.getComponent(Rigidbody.class).getVel().y = -3;
+                    GameEngine.gameObjects.add(coin);
+                    Animator.marioGettingCoinFromItemBoxAnimation(coin);
                     SoundManager.playSound(Sounds.coinSound);
-                    Animator.marioGettingCoinFromItemBoxAnimation(this);
                     ScoreKeeper.coins++;
-                    super.changeImage(Animator.emptyItemBox);
-
                 } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
 
                     this.gameObject.addComponent(new Collider(this.gameObject,
@@ -78,11 +73,11 @@ public class ItemBox extends GameObject {
                     GameEngine.gameObjects.add(this.gameObject);
 
                     SoundManager.playSound(Sounds.itemBlockSound);
-                    super.changeImage(Animator.emptyItemBox);
                 }
 
                 this.isEmpty = true;
-
+                super.getComponent(ECS.Animator.Animator.class).getAnimationController().stop();
+                super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY).getSprites().get(3));
             } else {
                 SoundManager.playSound(Sounds.bumpSound);
             }

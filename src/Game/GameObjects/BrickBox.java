@@ -1,6 +1,5 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
@@ -8,7 +7,6 @@ import ECS.Rigidbody;
 import Game.GameObjects.Mario.Mario;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
-import javafx.scene.image.Image;
 
 public class BrickBox extends GameObject {
 
@@ -24,15 +22,8 @@ public class BrickBox extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.brickBox);
     }
 
     @Override

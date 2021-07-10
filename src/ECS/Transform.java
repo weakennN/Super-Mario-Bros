@@ -46,5 +46,4 @@ public class Transform extends Component {
 
         this.pos = pos;
     }
-
 }

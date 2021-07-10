@@ -1,12 +1,10 @@
 package Game.GameObjects;
 
 import ECS.Rigidbody;
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
-import javafx.scene.image.Image;
 
 public class Block extends GameObject {
 
@@ -21,15 +19,8 @@ public class Block extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.block);
     }
 
     @Override

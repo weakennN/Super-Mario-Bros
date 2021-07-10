@@ -29,7 +29,13 @@ public class AnimationController {
         this.current.play();
     }
 
-    public void stop(){
-        this.current.stop();
+    public void stop() {
+        if (this.current != null) {
+            this.current.stop();
+        }
+    }
+
+    public Animation getAnimation(String animation) {
+        return this.animations.get(animation);
     }
 }

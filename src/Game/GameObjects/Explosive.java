@@ -1,12 +1,10 @@
 package Game.GameObjects;
 
 import ECS.Transform;
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
-import javafx.scene.image.Image;
 
 public class Explosive extends GameObject {
 
@@ -21,15 +19,8 @@ public class Explosive extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.explosive);
     }
 
     @Override

@@ -1,13 +1,11 @@
 package Game.GameObjects.Mario;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.Mushroom;
-import javafx.scene.image.Image;
 
 public class Mario extends GameObject {
 
@@ -28,7 +26,6 @@ public class Mario extends GameObject {
 
         this.normal = true;
         this.bigMario = false;
-        super.changeImage(Animator.marioIdleFacingRight);
         MarioDir.marioIdleFacingRight = true;
         this.isDead = false;
         this.jumping = false;
@@ -45,17 +42,6 @@ public class Mario extends GameObject {
     public void update() {
 
         super.updateComponents();
-
-      /*  if (!this.marioManager.isHasInput()) {
-            ((Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag)).getVel().x -= ((Rigidbody) super.getComponent(GlobalVariables.rigidbodyTag)).getVel().x / 20;
-        }
-
-       */
-    }
-
-    @Override
-    public Image render() {
-        return super.getCurrentAnimation();
     }
 
     @Override
@@ -137,13 +123,6 @@ public class Mario extends GameObject {
             this.marioManager.checkMarioDead();
         } else if (collision.getHitDirection().y == 1) {
             this.marioManager.killGoomba(goomba);
-        }
-    }
-
-    @Override
-    public void changeImage(String image) {
-        if (!this.isJumping()) {
-            super.changeImage(image);
         }
     }
 

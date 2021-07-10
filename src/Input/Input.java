@@ -23,14 +23,12 @@ public class Input {
         Designer.scene.setOnKeyPressed(e -> {
             if (!locked) {
                 keyPressed.add(e.getCode());
-                System.out.println("pressed");
             }
         });
 
         Designer.scene.setOnKeyReleased(e -> {
             if (!locked) {
                 keyReleased.add(e.getCode());
-                System.out.println("released");
             }
         });
 

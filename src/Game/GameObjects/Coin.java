@@ -1,10 +1,8 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import Game.Score.ScoreKeeper;
-import javafx.scene.image.Image;
 
 public class Coin extends GameObject {
 
@@ -19,15 +17,8 @@ public class Coin extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.coin);
     }
 
     @Override

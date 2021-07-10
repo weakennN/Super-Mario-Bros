@@ -18,11 +18,13 @@ public class GameEngine extends Engine {
     private AnimationTimer gameLoop;
     private Input input;
     private Camera camera;
+    private RenderEngine renderEngine;
     private Game game;
 
     public GameEngine(Game game) {
 
         this.game = game;
+        this.renderEngine = new RenderEngine();
         this.input = new Input();
     }
 
@@ -48,8 +50,8 @@ public class GameEngine extends Engine {
                     if (gameObject.isActive()) {
 
                         gameObject.update();
-                        Image gameObjectImage = gameObject.render();
-                        RenderEngine.render(gameObjectImage, gameObject.getComponent(Transform.class));
+                        renderEngine.render();
+                       // RenderEngine.render(gameObjectImage, gameObject.getComponent(Transform.class));
                     }
 
                 }

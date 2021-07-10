@@ -1,9 +1,7 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
-import javafx.scene.image.Image;
 
 public class Pipe extends GameObject {
 
@@ -18,15 +16,8 @@ public class Pipe extends GameObject {
     }
 
     @Override
-    public Image render() {
-
-        return super.getCurrentAnimation();
-    }
-
-    @Override
     public void start() {
 
-        super.changeImage(Animator.pipe);
     }
 
     @Override

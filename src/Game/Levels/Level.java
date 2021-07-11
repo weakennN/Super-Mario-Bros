@@ -138,7 +138,7 @@ public abstract class Level {
 
                 String[] words = word.split("\\s+");
                 GameObject gameObject = null;
-                if (!words[0].equals("Pipe") && !words[0].equals("Castle")) {
+                if (!words[0].equals("Castle")) {
                     gameObject = GameObjectFactory.create(words, words[0]);
                     this.addGameObject(gameObject);
                 }

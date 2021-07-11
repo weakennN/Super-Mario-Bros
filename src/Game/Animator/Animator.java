@@ -21,23 +21,12 @@ public class Animator {
 
     private static AnimationTimer animator;
 
-    public final static String marioRunningRight = "/Game/Animator/ObjectsAnimations/MarioRunningRightDir.gif";
-    public final static String marioRunningLeft = "/Game/Animator/ObjectsAnimations/MarioRunningLeftDir.gif";
-    public final static String bigMarioRunningRight = "/Game/Animator/ObjectsAnimations/BigMarioRunningRightDir.gif";
-    public final static String bigMarioRunningLeft = "/Game/Animator/ObjectsAnimations/BigMarioRunningLeftDir.gif";
-    public final static String marioIdleFacingRight = "/Game/Animator/ObjectsAnimations/MarioIdleFacingRight.png";
-    public final static String marioIdleFacingLeft = "/Game/Animator/ObjectsAnimations/MarioIdleFacingLeft.png";
     public final static String background = "/Game/Animator/ObjectsAnimations/background.png";
-    public final static String bigMarioFacingRight = "/Game/Animator/ObjectsAnimations/bigMarioFacingRight.png";
-    public final static String bigMarioFacingLeft = "/Game/Animator/ObjectsAnimations/bigMarioFacingLeft.png";
-    public final static String fireMarioFacingRight = "/Game/Animator/ObjectsAnimations/fireMarioFacingRight.png";
-    public final static String fireMarioFacingLeft = "/Game/Animator/ObjectsAnimations/fireMarioFacingLeft.png";
-    public final static String fireMarioRunningRight = "/Game/Animator/ObjectsAnimations/fireMarioRunningRight.gif";
-    public final static String fireMarioRunningLeft = "/Game/Animator/ObjectsAnimations/fireMarioRunningLeft.gif";
     public final static String gameOver = "/Game/Animator/ObjectsAnimations/gameOver.jpg";
     public final static String BRICK_SPRITE = "/resources/images/brick_sprite.png";
     public final static String BLOCK_SPRITE = "/resources/images/block_sprite.png";
     public final static String MUSHROOM_SPRITE = "/resources/images/mushroom_sprite.png";
+    public final static String PIPE_SPRITE = "/resources/images/pipe_sprite.png";
     public final static String MARIO_SPRITE_SHEET = "mario_sprite_sheet.png";
     public final static String GOOMBA_SPRITE_SHEET = "goomba_sprite_sheet.png";
     public final static String ITEM_BOX_SPRITE_SHEET = "item_box_sprite_sheet.png";
@@ -50,7 +39,7 @@ public class Animator {
 
         //mario.changeImage(Animator.marioGrowing);
 
-        Input.lock();
+        // Input.lock();
         /*Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
 
@@ -59,12 +48,13 @@ public class Animator {
         animator = new AnimationTimer() {
 
             private int currentTime = 0;
+            private int finalTime = 0;
 
             @Override
             public void handle(long l) {
 
 
-                if (currentTime++ == 175) {
+               /* if (currentTime++ == 175) {
 
                     mario.initializeActions(mario.getComponent(Rigidbody.class));
                     Input.unlock();
@@ -75,8 +65,23 @@ public class Animator {
                     return;
                 }
 
+                */
+                if (currentTime++ >= 10) {
+                    mario.getComponent(Transform.class).getPos().x += 7;
+                    currentTime = 0;
+                }
+
+                System.out.println("in");
+
+                finalTime++;
+
+                if (finalTime >= 175) {
+                    this.stop();
+                }
             }
+
         };
+
 
         animator.start();
     }
@@ -126,10 +131,10 @@ public class Animator {
                     this.stop();
                 }
 
+
             }
 
         };
-
         animator.start();
     }
 

@@ -3,6 +3,7 @@ package Game.Levels.GameObjectFactory.GameObjectCreators;
 import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
+import ECS.Animator.SpriteAnimation;
 import ECS.Collider;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
@@ -33,8 +34,8 @@ public class ItemBoxCreator extends GameObjectCreator {
         SpriteSheet itemBoxSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY);
 
         AnimationController animationController = new AnimationController();
-        animationController.createAnimation("itemBoxAnimation", new Animation(List.of(itemBoxSpriteSheet.getSprites().get(0), itemBoxSpriteSheet.getSprites().get(2)
-                , itemBoxSpriteSheet.getSprites().get(1)), 26, itemBox));
+        animationController.createAnimation("itemBoxAnimation", new SpriteAnimation(List.of(itemBoxSpriteSheet.getSprites().get(0), itemBoxSpriteSheet.getSprites().get(2)
+                , itemBoxSpriteSheet.getSprites().get(1)), itemBox, true, 26));
         itemBox.addComponent(new Animator(itemBox, animationController));
 
         return itemBox;

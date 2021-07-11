@@ -3,6 +3,7 @@ package Game.Levels.GameObjectFactory.GameObjectCreators;
 import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
+import ECS.Animator.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
@@ -33,7 +34,7 @@ public class KoopaCreator extends GameObjectCreator {
         koopa.addComponent(new SpriteRenderer(koopa));
         SpriteSheet spriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY);
         AnimationController animationController = new AnimationController();
-        animationController.createAnimation("koopaAnimation", new Animation(List.of(spriteSheet.getSprites().get(0), spriteSheet.getSprites().get(1)), 20, koopa));
+        animationController.createAnimation("koopaAnimation", new SpriteAnimation(List.of(spriteSheet.getSprites().get(0), spriteSheet.getSprites().get(1)), koopa, true, 20));
         koopa.addComponent(new Animator(koopa, animationController));
         return koopa;
     }

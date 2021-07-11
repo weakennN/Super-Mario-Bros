@@ -3,6 +3,7 @@ package Game.Levels.GameObjectFactory.GameObjectCreators;
 import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
+import ECS.Animator.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
@@ -26,14 +27,15 @@ public class GoombaCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Goomba goomba = new Goomba(GlobalVariables.goombaTag);
 
-        Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]),goomba);
+        Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), goomba);
         goomba.addComponent(transform);
 
         goomba.addComponent(new Rigidbody(goomba, transform));
         goomba.addComponent(new SpriteRenderer(goomba));
         AnimationController animationController = new AnimationController();
         SpriteSheet goombaSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY);
-        animationController.createAnimation("goombaAnimation", new Animation(List.of(goombaSpriteSheet.getSprites().get(0), goombaSpriteSheet.getSprites().get(1)), 20, goomba));
+        animationController.createAnimation("goombaAnimation", new SpriteAnimation(List.of(goombaSpriteSheet.getSprites().get(0),
+                goombaSpriteSheet.getSprites().get(1)), goomba, true, 20));
         goomba.addComponent(new Animator(goomba, animationController));
         goomba.addComponent(new Collider(goomba,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));

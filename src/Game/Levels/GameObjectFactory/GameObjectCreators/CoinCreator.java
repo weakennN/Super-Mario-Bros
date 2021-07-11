@@ -3,6 +3,7 @@ package Game.Levels.GameObjectFactory.GameObjectCreators;
 import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
+import ECS.Animator.SpriteAnimation;
 import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
@@ -29,8 +30,8 @@ public class CoinCreator extends GameObjectCreator {
         SpriteSheet coinSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY);
         coin.addComponent(new Rigidbody(coin));
         AnimationController coinAnimationController = new AnimationController();
-        coinAnimationController.createAnimation("coinAnimation", new Animation(List.of(coinSpriteSheet.getSprites().get(0),
-                coinSpriteSheet.getSprites().get(1), coinSpriteSheet.getSprites().get(2), coinSpriteSheet.getSprites().get(3)), 7, coin));
+        coinAnimationController.createAnimation("coinAnimation", new SpriteAnimation(List.of(coinSpriteSheet.getSprites().get(0),
+                coinSpriteSheet.getSprites().get(1), coinSpriteSheet.getSprites().get(2), coinSpriteSheet.getSprites().get(3)), coin, true, 7));
         coin.addComponent(new SpriteRenderer(coin));
         coin.addComponent(new Animator(coin, coinAnimationController));
 

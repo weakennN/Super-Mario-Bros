@@ -32,8 +32,6 @@ public class Collisions {
                 mario.getMarioManager().setMarioAnimationAfterJump();
             }
         }
-
-
     }
 
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {

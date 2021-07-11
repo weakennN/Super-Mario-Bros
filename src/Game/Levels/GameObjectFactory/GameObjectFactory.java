@@ -22,6 +22,7 @@ public class GameObjectFactory {
         creators.put("Cloud", new CloudCreator(level));
         creators.put("Coin", new CoinCreator(level));
         creators.put("ItemBox", new ItemBoxCreator(level));
+        creators.put("Pipe", new PipeCreator(level));
     }
 
     public static GameObject create(String[] params, String creator) {

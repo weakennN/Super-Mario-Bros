@@ -15,5 +15,4 @@ public class Collision {
 
         this.hitDirection = hitDirection;
     }
-
 }

@@ -44,11 +44,11 @@ Goomba 950 882
 Goomba 2100 882
 Goomba 2650 882
 Goomba 2500 882
-Pipe 1250 800
+Pipe 1250 835
 Goomba 1400 882
-Pipe 1800 800
-Pipe 2300 800
-Pipe 2800 800
+Pipe 1800 835
+Pipe 2300 835
+Pipe 2800 835
 BrickBox 3900 740
 ItemBox 3950 740 Mushroom
 BrickBox 4000 740
@@ -124,7 +124,7 @@ Block 8000 782
 Block 8050 782
 Block 8000 732
 Block 8050 732
-Pipe 8700 800
+Pipe 8700 835
 Goomba 8600 882
 BrickBox 8950 740
 BrickBox 9000 740
@@ -133,7 +133,7 @@ BrickBox 9100 740
 Goomba 9600 882
 Goomba 9550 882 
 Goomba 9400 882
-Pipe 9700 800
+Pipe 9700 835
 Block 9800 882
 Block 9850 882
 Block 9900 882

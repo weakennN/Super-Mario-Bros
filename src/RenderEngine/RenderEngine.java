@@ -7,6 +7,7 @@ import ECS.Transform;
 import Game.GameObjects.GameObject;
 import UIEngine.Designer;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import mikera.vectorz.Vector2;
 
 public class RenderEngine {
@@ -79,7 +80,6 @@ public class RenderEngine {
 
         SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
         Transform transform = gameObject.getComponent(Transform.class);
-
         Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getPos().x, transform.getPos().y,
                 spriteRenderer.getSprite().getTexture().getWidth() * transform.getScale().x,
                 spriteRenderer.getSprite().getTexture().getHeight() * transform.getScale().y);

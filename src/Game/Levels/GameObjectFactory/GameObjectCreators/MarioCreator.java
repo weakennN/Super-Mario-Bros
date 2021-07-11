@@ -4,6 +4,7 @@ package Game.Levels.GameObjectFactory.GameObjectCreators;
 import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
+import ECS.Animator.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
@@ -45,18 +46,18 @@ public class MarioCreator extends GameObjectCreator {
         mario.addComponent(new SpriteRenderer(mario, marioSpriteSheet.getSprites().get(14)));
 
         AnimationController animationController = new AnimationController();
-        animationController.createAnimation("marioRunningRight", new Animation(List.of(marioSpriteSheet.getSprites().get(15),
-                marioSpriteSheet.getSprites().get(16), marioSpriteSheet.getSprites().get(17)), 20, mario));
-        animationController.createAnimation("marioRunningLeft", new Animation(List.of(marioSpriteSheet.getSprites().get(12),
-                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)), 20, mario));
-        animationController.createAnimation("bigMarioRunningRight", new Animation(List.of(bigMarioSpriteSheet.getSprites().get(22)
-                , bigMarioSpriteSheet.getSprites().get(23), bigMarioSpriteSheet.getSprites().get(24)), 20, mario));
-        animationController.createAnimation("bigMarioRunningLeft", new Animation(List.of(bigMarioSpriteSheet.getSprites().get(19), bigMarioSpriteSheet.getSprites().get(18)
-                , bigMarioSpriteSheet.getSprites().get(17)), 20, mario));
-        animationController.createAnimation("fireMarioRunningRight", new Animation(List.of(fireMarioSpriteSheet.getSprites().get(22)
-                , fireMarioSpriteSheet.getSprites().get(23), fireMarioSpriteSheet.getSprites().get(24)), 20, mario));
-        animationController.createAnimation("fireMarioRunningLeft", new Animation(List.of(fireMarioSpriteSheet.getSprites().get(19)
-                , fireMarioSpriteSheet.getSprites().get(18), fireMarioSpriteSheet.getSprites().get(17)), 20, mario));
+        animationController.createAnimation("marioRunningRight", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(15),
+                marioSpriteSheet.getSprites().get(16), marioSpriteSheet.getSprites().get(17)), mario, true, 20));
+        animationController.createAnimation("marioRunningLeft", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(12),
+                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)), mario, true, 20));
+        animationController.createAnimation("bigMarioRunningRight", new SpriteAnimation(List.of(bigMarioSpriteSheet.getSprites().get(22)
+                , bigMarioSpriteSheet.getSprites().get(23), bigMarioSpriteSheet.getSprites().get(24)), mario, true, 20));
+        animationController.createAnimation("bigMarioRunningLeft", new SpriteAnimation(List.of(bigMarioSpriteSheet.getSprites().get(19), bigMarioSpriteSheet.getSprites().get(18)
+                , bigMarioSpriteSheet.getSprites().get(17)), mario, true, 20));
+        animationController.createAnimation("fireMarioRunningRight", new SpriteAnimation(List.of(fireMarioSpriteSheet.getSprites().get(22)
+                , fireMarioSpriteSheet.getSprites().get(23), fireMarioSpriteSheet.getSprites().get(24)), mario, true, 20));
+        animationController.createAnimation("fireMarioRunningLeft", new SpriteAnimation(List.of(fireMarioSpriteSheet.getSprites().get(19)
+                , fireMarioSpriteSheet.getSprites().get(18), fireMarioSpriteSheet.getSprites().get(17)), mario, true, 20));
 
         mario.addComponent(new Animator(mario, animationController));
         Transform cameraPos = new Transform(new Vector2(960, 0));

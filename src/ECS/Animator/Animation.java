@@ -7,12 +7,14 @@ public abstract class Animation {
 
     private AnimationTimer animationTimer;
     private GameObject gameObject;
+    private boolean active;
     private boolean repeat;
 
     public Animation(GameObject gameObject, boolean repeat) {
 
         this.gameObject = gameObject;
         this.repeat = repeat;
+        this.active = false;
     }
 
     public abstract void play();
@@ -31,11 +33,20 @@ public abstract class Animation {
 
     public void stop() {
         if (this.animationTimer != null) {
+            this.active = false;
             this.animationTimer.stop();
         }
     }
 
     public void setAnimationTimer(AnimationTimer animationTimer) {
         this.animationTimer = animationTimer;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

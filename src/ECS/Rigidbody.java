@@ -1,5 +1,6 @@
 package ECS;
 
+import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 

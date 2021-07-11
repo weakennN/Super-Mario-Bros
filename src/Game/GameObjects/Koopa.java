@@ -1,9 +1,11 @@
 package Game.GameObjects;
 
 import ECS.Animator.Animator;
+import ECS.SprtieRenderer.SpriteRenderer;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
+import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.Mario.Mario;
 import Game.Score.ScoreKeeper;
 
@@ -59,15 +61,14 @@ public class Koopa extends GameObject {
 
                 rigidbody1.getVel().x = 0;
                 this.isTransformed = true;
-
+                super.getComponent(Animator.class).getAnimationController().stop();
+                super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY).getSprites().get(2));
             } else {
 
                 if (rigidbody1.getVel().x >= 0) {
-
                     rigidbody1.getVel().x = 4.5;
                     this.shellMoving = true;
                 } else {
-
                     rigidbody1.getVel().x = 0;
                     this.shellMoving = false;
                 }
@@ -81,29 +82,22 @@ public class Koopa extends GameObject {
                 (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) && this.shellMoving) {
 
             if (other.getTag().equals(GlobalVariables.marioTag)) {
-
                 Mario mario = (Mario) other;
                 mario.getMarioManager().checkMarioDead();
             } else if (this.isTransformed && this.shellMoving) {
-
                 other.destroy();
                 ScoreKeeper.incrementScore(100);
             }
 
         } else if (other.getTag().equals(GlobalVariables.marioTag) &&
                 (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) && !this.shellMoving) {
-
             Mario mario = (Mario) other;
-
             mario.getMarioManager().checkMarioDead();
-
         }
 
     }
 
     public boolean isTransformed() {
-
         return this.isTransformed;
     }
-
 }

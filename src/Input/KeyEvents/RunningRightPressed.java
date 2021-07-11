@@ -2,6 +2,7 @@ package Input.KeyEvents;
 
 import ECS.Animator.Animation;
 import ECS.Animator.Animator;
+import ECS.Transform;
 import Game.Game;
 import Game.GameObjects.Mario.MarioDir;
 import Game.SuperMarioBros;
@@ -34,6 +35,7 @@ public class RunningRightPressed extends KeyEvent {
                 } else if (mario.isFireMario()) {
                     mario.getComponent(Animator.class).getAnimationController().playAnimation("fireMarioRunningRight");
                 }
+
             }
 
             MarioDir.marioIdleFacingLeft = false;

@@ -2,6 +2,7 @@ package Input.KeyEvents;
 
 import ECS.Animator.Animator;
 import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.Game;
@@ -57,7 +58,6 @@ public class Jump extends KeyEvent {
                     mario.getComponent(Animator.class).getAnimationController().stop();
                     mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(15));
                 }
-
                 MarioDir.marioJumpingLeft = true;
             }
 

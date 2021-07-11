@@ -23,6 +23,7 @@ public class SpriteAnimation extends Animation {
     @Override
     public void play() {
 
+        super.setActive(true);
         AnimationTimer animationTimer = super.getAnimationTimer();
 
         if (animationTimer != null) {
@@ -44,7 +45,7 @@ public class SpriteAnimation extends Animation {
                     if (i >= sprites.size()) {
                         i = 0;
                     }
-                    if (getGameObject().getComponent(SpriteRenderer.class) != null) {
+                    if (getGameObject().getComponent(SpriteRenderer.class) != null && isActive()) {
                         getGameObject().getComponent(SpriteRenderer.class).setSprite(sprites.get(i));
                     }
                     passedTime = 0;
@@ -55,6 +56,4 @@ public class SpriteAnimation extends Animation {
         animationTimer.start();
         super.setAnimationTimer(animationTimer);
     }
-
-
 }

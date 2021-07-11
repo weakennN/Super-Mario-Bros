@@ -44,17 +44,11 @@ public class Collisions {
         }
 
         if (collision.getHitDirection().x == 1) {
-
             second.getComponent(Transform.class).getPos().x = first.getComponent(Transform.class).getPos().x - collider.getSize().x;
-
             checkFromEnemy(second);
-
         } else if (collision.getHitDirection().x == -1) {
-
             Collider collider1 = first.getComponent(Collider.class);
-
             second.getComponent(Transform.class).getPos().x = first.getComponent(Transform.class).getPos().x + collider1.getSize().x;
-
             checkFromEnemy(second);
         }
 

@@ -24,10 +24,8 @@ public class Pipe extends GameObject {
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (collision.getHitDirection().y == -1) {
-
             Collisions.defaultOnGroundCollision(this, other, collision);
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
-
             Collisions.defaultHorizontalCollision(this, other, collision);
         }
 

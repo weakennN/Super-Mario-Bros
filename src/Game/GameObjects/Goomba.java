@@ -31,10 +31,7 @@ public class Goomba extends GameObject {
 
         if ((collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)
                 && other.getTag().equals(GlobalVariables.goombaTag)) {
-
             this.getRigidbody().getVel().x *= -1;
-            Rigidbody rigidbody = other.getComponent(Rigidbody.class);
-            rigidbody.getVel().x *= -1;
         }
     }
 

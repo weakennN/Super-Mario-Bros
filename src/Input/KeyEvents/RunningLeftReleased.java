@@ -2,6 +2,7 @@ package Input.KeyEvents;
 
 import ECS.Animator.Animator;
 import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.Game;
@@ -34,10 +35,10 @@ public class RunningLeftReleased extends KeyEvent {
             }
         }
 
-            MarioDir.marioRunningLeft = false;
-            MarioDir.marioIdleFacingLeft = true;
-            mario.getRigidbody().getAcc().x = 0;
-            mario.getRigidbody().getAcc().y = 0;
+        MarioDir.marioRunningLeft = false;
+        MarioDir.marioIdleFacingLeft = true;
+        mario.getRigidbody().getAcc().x = 0;
+        mario.getRigidbody().getAcc().y = 0;
 
     }
 }

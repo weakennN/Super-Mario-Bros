@@ -44,12 +44,12 @@ public class MarioCreator extends GameObjectCreator {
         SpriteSheet fireMarioSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY);
 
         mario.addComponent(new SpriteRenderer(mario, marioSpriteSheet.getSprites().get(14)));
-
         AnimationController animationController = new AnimationController();
         animationController.createAnimation("marioRunningRight", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(15),
                 marioSpriteSheet.getSprites().get(16), marioSpriteSheet.getSprites().get(17)), mario, true, 20));
         animationController.createAnimation("marioRunningLeft", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(12),
-                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)), mario, true, 20));
+                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)),mario, true, 20));
+
         animationController.createAnimation("bigMarioRunningRight", new SpriteAnimation(List.of(bigMarioSpriteSheet.getSprites().get(22)
                 , bigMarioSpriteSheet.getSprites().get(23), bigMarioSpriteSheet.getSprites().get(24)), mario, true, 20));
         animationController.createAnimation("bigMarioRunningLeft", new SpriteAnimation(List.of(bigMarioSpriteSheet.getSprites().get(19), bigMarioSpriteSheet.getSprites().get(18)

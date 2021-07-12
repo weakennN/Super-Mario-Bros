@@ -1,8 +1,8 @@
 package Game.GameObjects;
 
+import ECS.Animator.Animator;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
@@ -31,7 +31,7 @@ public class ItemBox extends GameObject {
     @Override
     public void start() {
 
-        super.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("itemBoxAnimation");
+        super.getComponent(Animator.class).getAnimationController().playAnimation("itemBoxAnimation");
     }
 
     @Override
@@ -58,11 +58,12 @@ public class ItemBox extends GameObject {
 
                     String[] params = {super.getComponent(Transform.class).getPos().x + "", super.getComponent(Transform.class).getPos().y - 50 + ""};
                     Coin coin = (Coin) GameObjectFactory.create(params, this.gameObjectCreator);
-                    coin.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("coinAnimation");
+                    coin.getComponent(Animator.class).getAnimationController().playAnimation("coinSpriteAnimation");
+                    coin.getComponent(Animator.class).getAnimationController().playAnimation("coinAnimation");
                     coin.setActive(true);
-                    coin.getComponent(Rigidbody.class).getVel().y = -3;
+                    //coin.getComponent(Rigidbody.class).getVel().y = -3;
                     GameEngine.gameObjects.add(coin);
-                    Animator.marioGettingCoinFromItemBoxAnimation(coin);
+              //      Animator.marioGettingCoinFromItemBoxAnimation(coin);
                     SoundManager.playSound(Sounds.coinSound);
                     ScoreKeeper.coins++;
                 } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
@@ -76,7 +77,7 @@ public class ItemBox extends GameObject {
                 }
 
                 this.isEmpty = true;
-                super.getComponent(ECS.Animator.Animator.class).getAnimationController().stop();
+                super.getComponent(Animator.class).getAnimationController().stop();
                 super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY).getSprites().get(3));
             } else {
                 SoundManager.playSound(Sounds.bumpSound);

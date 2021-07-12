@@ -1,9 +1,7 @@
 package Game.GameObjects;
 
-import Game.Animator.Animator;
 import Game.Collision.Collision;
 import ECS.Rigidbody;
-import javafx.scene.image.Image;
 
 public class Mushroom extends GameObject {
 

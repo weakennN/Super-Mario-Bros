@@ -2,11 +2,10 @@ package Game;
 
 import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.Transform;
-import Game.Animator.Animator;
+import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.SoundEffects.Sounds;
 import Input.InputHandler;
-import RenderEngine.RenderEngine;
 import UIEngine.Designer;
 import Engine.GameEngine;
 import Game.GameObjects.GameObject;
@@ -60,10 +59,10 @@ public class SuperMarioBros extends Game {
         this.render();
         ScoreKeeper.updateScore();
 
-        for (GameObject gm : this.gameObjects) {
-            if (gm.getComponent(Transform.class) == null){
-                System.out.println();
-            }
+        for (int i = 0; i < this.gameObjects.size(); i++) {
+
+            GameObject gm = this.gameObjects.get(i);
+
             if ((gm.getComponent(Transform.class).getPos().x >= this.mario.getComponent(Transform.class).getPos().x
                     || gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x)
                     && gm.getComponent(Transform.class).getPos().x <= this.mario.getComponent(Transform.class).getPos().x + 2000
@@ -73,6 +72,10 @@ public class SuperMarioBros extends Game {
                 gm.setActive(true);
             }
 
+            if (!gm.getTag().equals(GlobalVariables.marioTag) && !gm.getTag().equals(GlobalVariables.invisibleWallTag) &&
+                    !gm.getTag().equals(GlobalVariables.groundTag) && gm.getComponent(Transform.class).getPos().x + 1000 < this.mario.getComponent(Transform.class).getPos().x) {
+                gm.destroy();
+            }
         }
 
         if (ScoreKeeper.lives == 0) {

@@ -1,10 +1,8 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
 
-import ECS.Animator.Animation;
-import ECS.Animator.AnimationController;
-import ECS.Animator.Animator;
-import ECS.Animator.SpriteAnimation;
+import ECS.Animator.*;
+import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
@@ -48,7 +46,7 @@ public class MarioCreator extends GameObjectCreator {
         animationController.createAnimation("marioRunningRight", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(15),
                 marioSpriteSheet.getSprites().get(16), marioSpriteSheet.getSprites().get(17)), mario, true, 20));
         animationController.createAnimation("marioRunningLeft", new SpriteAnimation(List.of(marioSpriteSheet.getSprites().get(12),
-                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)),mario, true, 20));
+                marioSpriteSheet.getSprites().get(11), marioSpriteSheet.getSprites().get(10)), mario, true, 20));
 
         animationController.createAnimation("bigMarioRunningRight", new SpriteAnimation(List.of(bigMarioSpriteSheet.getSprites().get(22)
                 , bigMarioSpriteSheet.getSprites().get(23), bigMarioSpriteSheet.getSprites().get(24)), mario, true, 20));

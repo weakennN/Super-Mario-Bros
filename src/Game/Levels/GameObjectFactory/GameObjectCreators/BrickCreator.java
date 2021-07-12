@@ -4,6 +4,7 @@ import ECS.Collider;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
+import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.BrickBox;
 import Game.GameObjects.GameObject;
@@ -23,7 +24,7 @@ public class BrickCreator extends GameObjectCreator {
         brickBox.addComponent(transform);
         brickBox.addComponent(new Collider(brickBox,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        brickBox.addComponent(new SpriteRenderer(brickBox, new Sprite(new Image(Game.Animator.Animator.BRICK_SPRITE))));
+        brickBox.addComponent(new SpriteRenderer(brickBox, new Sprite(new Image(GlobalAnimations.BRICK_SPRITE))));
         return brickBox;
     }
 }

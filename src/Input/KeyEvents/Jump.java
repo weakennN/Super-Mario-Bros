@@ -2,7 +2,6 @@ package Input.KeyEvents;
 
 import ECS.Animator.Animator;
 import ECS.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.Game;
@@ -33,7 +32,7 @@ public class Jump extends KeyEvent {
             }
 
             if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight) {
-
+                mario.getComponent(Animator.class).getAnimationController().stop();
                 if (mario.isBigMario()) {
                     mario.getComponent(Animator.class).getAnimationController().stop();
                     mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(26));
@@ -47,7 +46,7 @@ public class Jump extends KeyEvent {
 
                 MarioDir.marioJumpingRight = true;
             } else {
-
+                mario.getComponent(Animator.class).getAnimationController().stop();
                 if (mario.isBigMario()) {
                     mario.getComponent(Animator.class).getAnimationController().stop();
                     mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(15));

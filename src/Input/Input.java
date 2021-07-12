@@ -19,7 +19,6 @@ public class Input {
     }
 
     private void init() {
-
         Designer.scene.setOnKeyPressed(e -> {
             if (!locked) {
                 keyPressed.add(e.getCode());
@@ -31,11 +30,9 @@ public class Input {
                 keyReleased.add(e.getCode());
             }
         });
-
     }
 
     public void update() {
-
         this.keyPressed.clear();
         this.keyReleased.clear();
     }

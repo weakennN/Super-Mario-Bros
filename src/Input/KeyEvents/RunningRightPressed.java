@@ -1,8 +1,6 @@
 package Input.KeyEvents;
 
-import ECS.Animator.Animation;
 import ECS.Animator.Animator;
-import ECS.Transform;
 import Game.Game;
 import Game.GameObjects.Mario.MarioDir;
 import Game.SuperMarioBros;
@@ -28,8 +26,9 @@ public class RunningRightPressed extends KeyEvent {
             }
 
             if (!mario.isJumping()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
                 if (mario.isNormal()) {
-                    mario.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("marioRunningRight");
+                   mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunningRight");
                 } else if (mario.isBigMario()) {
                     mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunningRight");
                 } else if (mario.isFireMario()) {

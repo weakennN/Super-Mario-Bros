@@ -1,9 +1,8 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Animator.Animation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
-import ECS.Animator.SpriteAnimation;
+import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Collider;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;

@@ -4,7 +4,7 @@ import ECS.Animator.AnimationController;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.Animator;
+import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
@@ -44,7 +44,7 @@ public class MarioManager {
         this.mario.setBigMario(false);
         this.mario.setBreakable(false);
         this.mario.setNormal(true);
-        Animator.marioDecreasingAnimation(mario);
+        GlobalAnimations.marioDecreasingAnimation(mario);
         Collider collider = mario.getComponent(Collider.class);
         collider.resize(GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY);
 
@@ -120,7 +120,7 @@ public class MarioManager {
         Collider collider = this.mario.getComponent(Collider.class);
         Collider.removeCollider(collider);
         this.mario.removeComponent(Collider.class);
-        Animator.marioDeadAnimation(this);
+        GlobalAnimations.marioDeadAnimation(this);
     }
 
     private void afterJumpDirection(String animation, Sprite sprite, String animation2, AnimationController marioAnimationController) {
@@ -161,7 +161,7 @@ public class MarioManager {
             goomba.removeComponent(Rigidbody.class);
             Collider.removeCollider(goomba.getComponent(Collider.class));
             goomba.removeComponent(Collider.class);
-            Animator.goombaDeadAnimation(goomba);
+            GlobalAnimations.goombaDeadAnimation(goomba);
         }
     }
 
@@ -174,7 +174,7 @@ public class MarioManager {
         mario.getRigidbody().getAcc().y = 0;
         mario.getRigidbody().getAcc().x = 0;
 
-        Animator.marioGrowingAnimation(mario, mario.getMarioManager());
+        GlobalAnimations.marioGrowingAnimation(mario, mario.getMarioManager());
         mario.setBigMario(true);
         mario.setBreakable(true);
         mario.setNormal(false);

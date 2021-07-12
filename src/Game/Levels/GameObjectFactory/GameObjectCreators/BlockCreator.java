@@ -4,6 +4,7 @@ import ECS.Collider;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
+import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Block;
 import Game.GameObjects.GameObject;
@@ -23,7 +24,7 @@ public class BlockCreator extends GameObjectCreator {
         block.addComponent(transform);
         block.addComponent(new Collider(block,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        block.addComponent(new SpriteRenderer(block, new Sprite(new Image(Game.Animator.Animator.BLOCK_SPRITE))));
+        block.addComponent(new SpriteRenderer(block, new Sprite(new Image(GlobalAnimations.BLOCK_SPRITE))));
 
         return block;
     }

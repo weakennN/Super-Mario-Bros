@@ -1,5 +1,6 @@
-package ECS.Animator;
+package ECS.Animator.Animation;
 
+import ECS.Animator.Animation.Animation;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import Game.GameObjects.GameObject;

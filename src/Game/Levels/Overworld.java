@@ -1,6 +1,6 @@
 package Game.Levels;
 
-import Game.Animator.Animator;
+import Game.Animator.GlobalAnimations;
 
 public class Overworld extends World {
 
@@ -8,7 +8,7 @@ public class Overworld extends World {
 
         super();
 
-        super.setBackGround(Animator.background, 13440, 1080);
+        super.setBackGround(GlobalAnimations.background, 13440, 1080);
 
         super.addLevel(new Level1());
     }

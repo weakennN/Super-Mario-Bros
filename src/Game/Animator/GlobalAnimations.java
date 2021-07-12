@@ -1,5 +1,6 @@
 package Game.Animator;
 
+import ECS.Animator.Animator;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import ECS.Rigidbody;
@@ -17,7 +18,7 @@ import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
 import javafx.animation.AnimationTimer;
 
-public class Animator {
+public class GlobalAnimations {
 
     private static AnimationTimer animator;
 
@@ -71,8 +72,6 @@ public class Animator {
                     currentTime = 0;
                 }
 
-                System.out.println("in");
-
                 finalTime++;
 
                 if (finalTime >= 175) {
@@ -93,7 +92,7 @@ public class Animator {
         Designer.scene.setOnKeyPressed(null);
         Designer.scene.setOnKeyReleased(null);
 
-        marioManager.getMario().getComponent(ECS.Animator.Animator.class).getAnimationController().stop();
+        marioManager.getMario().getComponent(Animator.class).getAnimationController().stop();
         marioManager.getMario().getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(7));
 
         animator = new AnimationTimer() {
@@ -163,7 +162,7 @@ public class Animator {
     public static void goombaDeadAnimation(Goomba goomba) {
 
         goomba.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY).getSprites().get(2));
-        goomba.getComponent(ECS.Animator.Animator.class).getAnimationController().stop();
+        goomba.getComponent(Animator.class).getAnimationController().stop();
 
         animator = new AnimationTimer() {
 

@@ -28,8 +28,9 @@ public class RunningLeftPressed extends KeyEvent {
             }
 
             if (!mario.isJumping()) {
+                mario.getComponent(Animator.class).getAnimationController().stop();
                 if (mario.isNormal()) {
-                    mario.getComponent(ECS.Animator.Animator.class).getAnimationController().playAnimation("marioRunningLeft");
+                    mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunningLeft");
                 } else if (mario.isBigMario()) {
                     mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunningLeft");
                 } else if (mario.isFireMario()) {

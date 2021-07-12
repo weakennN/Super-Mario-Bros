@@ -4,7 +4,7 @@ import ECS.Collider;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.Animator;
+import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Pipe;
@@ -26,7 +26,7 @@ public class PipeCreator extends GameObjectCreator {
         Pipe pipe = new Pipe(GlobalVariables.pipeTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), pipe);
         pipe.addComponent(transform);
-        pipe.addComponent(new SpriteRenderer(pipe, new Sprite(new Image(Animator.PIPE_SPRITE))));
+        pipe.addComponent(new SpriteRenderer(pipe, new Sprite(new Image(GlobalAnimations.PIPE_SPRITE))));
 
         pipe.addComponent(new Collider(pipe, 100, 100, transform));
 

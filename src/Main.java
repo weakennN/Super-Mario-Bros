@@ -20,14 +20,12 @@ public class Main extends Application {
         superMarioBros.start();
 
         stage.setOnCloseRequest(e -> {
-
             superMarioBros.stop();
         });
 
     }
 
     public static void main(String[] args) {
-
         launch(args);
     }
 }

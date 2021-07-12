@@ -1,4 +1,4 @@
-package ECS.Animator;
+package ECS.Animator.Animation;
 
 import Game.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;

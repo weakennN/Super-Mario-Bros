@@ -36,9 +36,7 @@ public class Designer {
         gc = canvas.getGraphicsContext2D();
 
         try {
-
             File file = new File("./src/Game/Animator/Font/defaultFont.ttf");
-
             font = Font.loadFont(new FileInputStream(file), 33);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -95,12 +93,31 @@ public class Designer {
     public static void showLabels(boolean b) {
 
         Label[] labels = {scoreLabel, coinsLabel, worldLabel, timeLabel, livesLabel, score, coins, world, lives, time};
-
         for (Label label : labels) {
-
             label.setVisible(b);
         }
-
     }
 
+    public static void updateScore(int score, int coins, int world,
+                                   int level, int time, int lives) {
+        Designer.score.setText(score + "");
+        Designer.score.setLayoutX(Designer.scoreLabel.getLayoutX() + Designer.scoreLabel.getWidth() / 2 - Designer.score.getWidth() / 2 + 5);
+        Designer.score.setLayoutY(50);
+
+        Designer.coins.setText(coins + "");
+        Designer.coins.setLayoutX(Designer.coinsLabel.getLayoutX() + Designer.coinsLabel.getWidth() / 2 - Designer.coins.getWidth() / 2 + 5);
+        Designer.coins.setLayoutY(50);
+
+        Designer.world.setText(world + "-" + level);
+        Designer.world.setLayoutX(Designer.worldLabel.getLayoutX() + Designer.worldLabel.getWidth() / 2 - Designer.world.getWidth() / 2 + 5);
+        Designer.world.setLayoutY(50);
+
+        Designer.time.setText(time + "");
+        Designer.time.setLayoutX((Designer.timeLabel.getLayoutX() + Designer.timeLabel.getWidth() / 2 - Designer.time.getWidth() / 2) + 5);
+        Designer.time.setLayoutY(50);
+
+        Designer.lives.setText(lives + "");
+        Designer.lives.setLayoutX(Designer.livesLabel.getLayoutX() + Designer.livesLabel.getWidth() / 2 - Designer.lives.getWidth() / 2 + 5);
+        Designer.lives.setLayoutY(50);
+    }
 }

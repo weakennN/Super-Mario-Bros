@@ -14,14 +14,13 @@ public class RenderEngine {
 
     }
 
-
-
     public void renderImage(String strImage, double startX, double startY) {
         Image image = new Image(strImage);
         Designer.gc.drawImage(image, startX, startY);
     }
 
-    public void render() { ;
+    public void render() {
+        ;
         for (int i = 0; i < SortingLayersContainer.sortingLayers.size(); i++) {
 
             SortingLayer sortingLayer = SortingLayersContainer.sortingLayers.get(i);
@@ -38,7 +37,10 @@ public class RenderEngine {
 
         SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
         Transform transform = gameObject.getComponent(Transform.class);
-        Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getPos().x, transform.getPos().y,
+
+        Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getScale().x < 0 ?
+                        transform.getPos().x + spriteRenderer.getSprite().getTexture().getWidth()
+                        : transform.getPos().x, transform.getPos().y,
                 spriteRenderer.getSprite().getTexture().getWidth() * transform.getScale().x,
                 spriteRenderer.getSprite().getTexture().getHeight() * transform.getScale().y);
     }

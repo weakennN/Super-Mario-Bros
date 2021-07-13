@@ -1,6 +1,7 @@
 package Game.GameObjects.Mario;
 
 import ECS.Animator.AnimationController;
+import ECS.Animator.Animator;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
@@ -47,45 +48,22 @@ public class MarioManager {
         GlobalAnimations.marioDecreasingAnimation(mario);
         Collider collider = mario.getComponent(Collider.class);
         collider.resize(GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY);
-
-    }
-
-    public void initializeActions(Rigidbody rigidbody) {
     }
 
     public void setMarioAnimationAfterJump() {
         AnimationController marioAnimationController = this.mario.getComponent(ECS.Animator.Animator.class).getAnimationController();
 
-        if (MarioDir.marioJumpingRight) {
+        if (this.mario.isJumping()) {
             if (this.mario.isBigMario()) {
                 this.afterJumpDirection("bigMarioRunningLeft",
                         SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(21), "bigMarioRunningRight", marioAnimationController);
             } else if (this.mario.isNormal()) {
-                this.afterJumpDirection("marioRunningLeft", SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(14)
-                        , "marioRunningRight", marioAnimationController);
+                this.afterJumpDirection("marioRunning", SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(0), "marioRunning", marioAnimationController);
             } else if (this.mario.isFireMario()) {
                 this.afterJumpDirection("fireMarioRunningLeft",
                         SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(21), "fireMarioRunningRight", marioAnimationController);
             }
-
-            MarioDir.marioJumpingRight = false;
-
-        } else if (MarioDir.marioJumpingLeft) {
-            if (this.mario.isBigMario()) {
-                this.afterJumpDirection("bigMarioRunningLeft",
-                        SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(20), "bigMarioRunningRight", marioAnimationController);
-            } else if (this.mario.isNormal()) {
-                this.afterJumpDirection("marioRunningLeft", SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(13)
-                        , "marioRunningRight", marioAnimationController);
-            } else if (this.mario.isFireMario()) {
-                this.afterJumpDirection("fireMarioRunningLeft",
-                        SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(20), "fireMarioRunningRight", marioAnimationController);
-            }
-
-            MarioDir.marioJumpingLeft = false;
-
         }
-
     }
 
     public void shootFireBall() {
@@ -125,13 +103,28 @@ public class MarioManager {
 
     private void afterJumpDirection(String animation, Sprite sprite, String animation2, AnimationController marioAnimationController) {
 
+        mario.setJumping(false);
+        mario.setOnGround(true);
+
         if (mario.getRigidbody().getVel().x < 0) {
             marioAnimationController.playAnimation(animation);
+            if (this.mario.getComponent(Transform.class).getScale().x > 0) {
+                this.mario.getComponent(Transform.class).getScale().x *= -1;
+            }
         } else if (this.mario.getRigidbody().getVel().x == 0) {
             marioAnimationController.stop();
             this.mario.getComponent(SpriteRenderer.class).setSprite(sprite);
         } else {
             marioAnimationController.playAnimation(animation2);
+            if (this.mario.getComponent(Transform.class).getScale().x < 0) {
+                this.mario.getComponent(Transform.class).getScale().x *= -1;
+            }
+        }
+
+        if (MarioDir.marioJumpingRight) {
+            MarioDir.marioJumpingRight = false;
+        } else {
+            MarioDir.marioJumpingLeft = false;
         }
     }
 
@@ -169,15 +162,16 @@ public class MarioManager {
 
         SoundManager.playSound(Sounds.superMarioGrowingSound);
 
-        mario.getRigidbody().getVel().x = 0;
-        mario.getRigidbody().getVel().y = 0;
-        mario.getRigidbody().getAcc().y = 0;
-        mario.getRigidbody().getAcc().x = 0;
+        this.mario.getRigidbody().getVel().x = 0;
+        this.mario.getRigidbody().getVel().y = 0;
+        this.mario.getRigidbody().getAcc().y = 0;
+        this.mario.getRigidbody().getAcc().x = 0;
 
-        GlobalAnimations.marioGrowingAnimation(mario, mario.getMarioManager());
-        mario.setBigMario(true);
-        mario.setBreakable(true);
-        mario.setNormal(false);
+        //GlobalAnimations.marioGrowingAnimation(mario, mario.getMarioManager());
+        this.mario.getComponent(Animator.class).getAnimationController().playAnimation("marioGrowing");
+        this.mario.setBigMario(true);
+        this.mario.setBreakable(true);
+        this.mario.setNormal(false);
 
     }
 

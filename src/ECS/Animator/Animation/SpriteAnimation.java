@@ -1,11 +1,11 @@
 package ECS.Animator.Animation;
 
-import ECS.Animator.Animation.Animation;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import Game.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SpriteAnimation extends Animation {
@@ -14,10 +14,10 @@ public class SpriteAnimation extends Animation {
     private int time;
     private int i = 0;
 
-    public SpriteAnimation(List<Sprite> sprites, GameObject gameObject, boolean repeat, int time) {
+    public SpriteAnimation(GameObject gameObject, boolean repeat, int time, Sprite... sprites) {
         super(gameObject, repeat);
 
-        this.sprites = sprites;
+        this.sprites = Arrays.asList(sprites);
         this.time = time;
     }
 

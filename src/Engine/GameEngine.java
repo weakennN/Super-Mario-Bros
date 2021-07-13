@@ -1,10 +1,12 @@
 package Engine;
 
 import ECS.Collider;
+import ECS.Transform;
 import Game.GameObjects.GameObject;
 import Input.Input;
 import RenderEngine.RenderEngine;
 import Game.Game;
+import UIEngine.Designer;
 import javafx.animation.AnimationTimer;
 import Game.Camera;
 
@@ -50,6 +52,13 @@ public class GameEngine extends Engine {
             GameObject gameObject = gameObjects.get(i);
             if (gameObject.isActive()) {
                 gameObject.update();
+
+                /*if (gameObject.getComponent(Collider.class) != null) {
+                    Collider collider = gameObject.getComponent(Collider.class);
+                    Transform transform = gameObject.getComponent(Transform.class);
+                    Designer.gc.strokeRect(transform.getPos().x, transform.getPos().y, collider.getSize().x, collider.getSize().y);
+                }
+                 */
             }
         }
     }

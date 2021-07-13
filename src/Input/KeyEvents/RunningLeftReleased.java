@@ -25,10 +25,11 @@ public class RunningLeftReleased extends KeyEvent {
         if (!mario.isJumping()) {
             if (mario.isNormal()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
-                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(13));
+                //mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(13));
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(0));
             } else if (mario.isBigMario()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
-                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(20));
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(0));
             } else if (mario.isFireMario()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
                 mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(20));
@@ -39,6 +40,5 @@ public class RunningLeftReleased extends KeyEvent {
         MarioDir.marioIdleFacingLeft = true;
         mario.getRigidbody().getAcc().x = 0;
         mario.getRigidbody().getAcc().y = 0;
-
     }
 }

@@ -33,8 +33,8 @@ public class GoombaCreator extends GameObjectCreator {
         goomba.addComponent(new SpriteRenderer(goomba));
         AnimationController animationController = new AnimationController();
         SpriteSheet goombaSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY);
-        animationController.createAnimation("goombaAnimation", new SpriteAnimation(List.of(goombaSpriteSheet.getSprites().get(0),
-                goombaSpriteSheet.getSprites().get(1)), goomba, true, 20));
+        animationController.createAnimation("goombaAnimation", new SpriteAnimation(goomba, true, 20,goombaSpriteSheet.getSprites().get(0),
+                goombaSpriteSheet.getSprites().get(1)));
         goomba.addComponent(new Animator(goomba, animationController));
         goomba.addComponent(new Collider(goomba,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));

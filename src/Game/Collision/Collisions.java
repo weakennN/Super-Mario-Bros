@@ -27,8 +27,6 @@ public class Collisions {
             if (second.getTag().equals(GlobalVariables.marioTag)) {
 
                 Mario mario = (Mario) second;
-                mario.setJumping(false);
-                mario.setOnGround(true);
                 mario.getMarioManager().setMarioAnimationAfterJump();
             }
         }
@@ -59,6 +57,10 @@ public class Collisions {
         if (gameObject.getTag().equals(GlobalVariables.goombaTag)
                 || gameObject.getTag().equals(GlobalVariables.mushroomTag) ||
                 gameObject.getTag().equals(GlobalVariables.koopaTag)) {
+
+            if (gameObject.getTag().equals(GlobalVariables.koopaTag)){
+                gameObject.getComponent(Transform.class).getScale().x *= -1;
+            }
 
             Rigidbody rigidbody = gameObject.getComponent(Rigidbody.class);
             rigidbody.getVel().x *= -1;

@@ -3,11 +3,11 @@ package ECS.Animator.Animation.Frame;
 public abstract class Frame {
 
     private double start;
-    private double end;
 
-    public Frame(double start, double end) {
+    private double value;
+
+    public Frame(double start) {
         this.start = start;
-        this.end = end;
     }
 
     public abstract void play();
@@ -22,7 +22,11 @@ public abstract class Frame {
         return this.start;
     }
 
-    public double getEnd() {
-        return this.end;
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public double getValue() {
+        return this.value;
     }
 }

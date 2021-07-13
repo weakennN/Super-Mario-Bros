@@ -25,11 +25,12 @@ public class RunningRightReleased extends KeyEvent {
 
         if (!mario.isJumping()) {
             if (mario.isNormal()) {
-                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(14));
+                //mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(14));
                 mario.getComponent(Animator.class).getAnimationController().stop();
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(0));
             } else if (mario.isBigMario()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
-                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(21));
+                mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(0));
             } else if (mario.isFireMario()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
                 mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(21));

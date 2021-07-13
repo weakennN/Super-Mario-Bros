@@ -12,8 +12,8 @@ public class PositionFrame extends Frame {
     private double xValue;
     private double yValue;
 
-    public PositionFrame(double start, double end, Vector2 startPos, Vector2 endPos, Transform transform) {
-        super(start, end);
+    public PositionFrame(double start, Vector2 startPos, Vector2 endPos, Transform transform) {
+        super(start);
 
         this.startPos = startPos;
         this.endPos = endPos;
@@ -28,9 +28,7 @@ public class PositionFrame extends Frame {
 
     @Override
     public void onStart() {
-        double value = super.getEnd() - super.getStart();
-
-        this.xValue = (this.endPos.x - this.startPos.x) / value;
-        this.yValue = (this.endPos.y - this.startPos.y) / value;
+        this.xValue = (this.endPos.x - this.startPos.x) / super.getValue();
+        this.yValue = (this.endPos.y - this.startPos.y) / super.getValue();
     }
 }

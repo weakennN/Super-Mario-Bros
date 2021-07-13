@@ -45,11 +45,6 @@ public class Mario extends GameObject {
     }
 
     @Override
-    public void start() {
-        this.initializeActions(this.getRigidbody());
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (other.getTag().equals(GlobalVariables.mushroomTag)) {
@@ -66,10 +61,6 @@ public class Mario extends GameObject {
 
     public void setDead(boolean dead) {
         this.isDead = dead;
-    }
-
-    public void initializeActions(Rigidbody rigidbody) {
-        this.marioManager.initializeActions(rigidbody);
     }
 
     public void setBigMario(boolean b) {

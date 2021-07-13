@@ -33,8 +33,8 @@ public class ItemBoxCreator extends GameObjectCreator {
         SpriteSheet itemBoxSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY);
 
         AnimationController animationController = new AnimationController();
-        animationController.createAnimation("itemBoxAnimation", new SpriteAnimation(List.of(itemBoxSpriteSheet.getSprites().get(0), itemBoxSpriteSheet.getSprites().get(2)
-                , itemBoxSpriteSheet.getSprites().get(1)), itemBox, true, 26));
+        animationController.createAnimation("itemBoxAnimation", new SpriteAnimation(itemBox, true, 26,itemBoxSpriteSheet.getSprites().get(0), itemBoxSpriteSheet.getSprites().get(2)
+                , itemBoxSpriteSheet.getSprites().get(1)));
         itemBox.addComponent(new Animator(itemBox, animationController));
 
         return itemBox;

@@ -67,16 +67,6 @@ public class GlobalAnimations {
                 }
 
                 */
-                if (currentTime++ >= 10) {
-                    mario.getComponent(Transform.class).getPos().x += 7;
-                    currentTime = 0;
-                }
-
-                finalTime++;
-
-                if (finalTime >= 175) {
-                    this.stop();
-                }
             }
 
         };

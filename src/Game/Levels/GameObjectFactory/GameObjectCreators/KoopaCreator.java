@@ -14,8 +14,6 @@ import Game.GameObjects.GameObject;
 import Game.GameObjects.Koopa;
 import Game.Levels.Level;
 
-import java.util.List;
-
 public class KoopaCreator extends GameObjectCreator {
 
     public KoopaCreator(Level level) {
@@ -33,7 +31,7 @@ public class KoopaCreator extends GameObjectCreator {
         koopa.addComponent(new SpriteRenderer(koopa));
         SpriteSheet spriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY);
         AnimationController animationController = new AnimationController();
-        animationController.createAnimation("koopaAnimation", new SpriteAnimation(List.of(spriteSheet.getSprites().get(0), spriteSheet.getSprites().get(1)), koopa, true, 20));
+        animationController.createAnimation("koopaAnimation", new SpriteAnimation(koopa, true, 20, spriteSheet.getSprites().get(0), spriteSheet.getSprites().get(1)));
         koopa.addComponent(new Animator(koopa, animationController));
         return koopa;
     }

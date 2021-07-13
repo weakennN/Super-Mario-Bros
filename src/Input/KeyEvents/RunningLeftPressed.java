@@ -30,9 +30,10 @@ public class RunningLeftPressed extends KeyEvent {
             if (!mario.isJumping()) {
                 mario.getComponent(Animator.class).getAnimationController().stop();
                 if (mario.isNormal()) {
-                    mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunningLeft");
+                    //  mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunningLeft");
+                    mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunning");
                 } else if (mario.isBigMario()) {
-                    mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunningLeft");
+                    mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunning");
                 } else if (mario.isFireMario()) {
                     mario.getComponent(Animator.class).getAnimationController().playAnimation("fireMarioRunningLeft");
                 }
@@ -40,7 +41,9 @@ public class RunningLeftPressed extends KeyEvent {
 
             MarioDir.marioIdleFacingRight = false;
             MarioDir.marioRunningLeft = true;
-
+            if (mario.getComponent(Transform.class).getScale().x > 0 && !MarioDir.marioJumpingRight) {
+                mario.getComponent(Transform.class).getScale().x *= -1;
+            }
         }
     }
 }

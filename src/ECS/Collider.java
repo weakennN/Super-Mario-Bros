@@ -30,7 +30,6 @@ public class Collider extends Component {
     }
 
     public boolean checkCollision(Collider collider) {
-
         this.calculateCenter();
         collider.calculateCenter();
 
@@ -48,21 +47,17 @@ public class Collider extends Component {
             if (overLapX == overLapY && overLapX == 0) return false;
 
             if (overLapX >= overLapY) {
-
                 if (dy > 0) {
                     this.collision.setHitDirection(new Vector2(0, -1));
                 } else if (dy < 0) {
                     this.collision.setHitDirection(new Vector2(0, 1));
                 }
-
             } else {
-
                 if (dx < 0) {
                     this.collision.setHitDirection(new Vector2(-1, 0));
                 } else if (dx > 0) {
                     this.collision.setHitDirection(new Vector2(1, 0));
                 }
-
             }
 
             return true;
@@ -77,32 +72,26 @@ public class Collider extends Component {
     }
 
     private void calculateCenter() {
-
         this.center = new Vector2(this.pos.x + this.halfSize.x, this.pos.y + this.halfSize.y);
     }
 
     public Vector2 getCenter() {
-
         return this.center;
     }
 
     public Vector2 getHalfSize() {
-
         return this.halfSize;
     }
 
     public Vector2 getSize() {
-
         return this.size;
     }
 
     public Vector2 getPos() {
-
         return this.pos;
     }
 
     public void resize(double sizeX, double sizeY) {
-
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.size.x = sizeX;
         this.size.y = sizeY;

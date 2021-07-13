@@ -8,6 +8,7 @@ import ECS.Rigidbody;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
+import Event.EventListener;
 import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.Coin;
@@ -31,16 +32,23 @@ public class CoinCreator extends GameObjectCreator {
         SpriteSheet coinSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY);
         coin.addComponent(new Rigidbody(coin, false));
         AnimationController coinAnimationController = new AnimationController();
-        coinAnimationController.createAnimation("coinSpriteAnimation", new SpriteAnimation(List.of(coinSpriteSheet.getSprites().get(0),
-                coinSpriteSheet.getSprites().get(1), coinSpriteSheet.getSprites().get(2), coinSpriteSheet.getSprites().get(3)), coin, true, 10));
+        coinAnimationController.createAnimation("coinSpriteAnimation", new SpriteAnimation(coin, true, 10, coinSpriteSheet.getSprites().get(0),
+                coinSpriteSheet.getSprites().get(1), coinSpriteSheet.getSprites().get(2), coinSpriteSheet.getSprites().get(3)));
 
         coin.addComponent(new SpriteRenderer(coin));
 
-        PositionFrame positionFrame = new PositionFrame(51, 100
+        PositionFrame positionFrame = new PositionFrame(51
                 , new Vector2(transform.getPos().x, transform.getPos().y - 250), new Vector2(transform.getPos().x, transform.getPos().y), coin.getComponent(Transform.class));
-        coinAnimationController.createAnimation("coinAnimation", new FrameAnimation(coin, false, List.of(new PositionFrame(0, 50
-                , new Vector2(transform.getPos().x, transform.getPos().y), new Vector2(transform.getPos().x, transform.getPos().y - 250), coin.getComponent(Transform.class)), positionFrame), 100));
+        coinAnimationController.createAnimation("coinAnimation", new FrameAnimation(coin, false, 100, new PositionFrame(0
+                , new Vector2(transform.getPos().x, transform.getPos().y), new Vector2(transform.getPos().x, transform.getPos().y - 250), coin.getComponent(Transform.class)), positionFrame));
 
+        coinAnimationController.getAnimation("coinAnimation").getEvent().subscribe(new EventListener() {
+            @Override
+            public void invoke(Object arg) {
+                GameObject gm = (GameObject) arg;
+                gm.destroy();
+            }
+        });
         coin.addComponent(new Animator(coin, coinAnimationController));
 
         return coin;

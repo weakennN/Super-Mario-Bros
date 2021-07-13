@@ -4,17 +4,19 @@ import ECS.Animator.Animation.Frame.Frame;
 import Game.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class FrameAnimation extends Animation {
 
     private List<Frame> frames;
+    private Frame currentPlaying;
     private double time;
 
-    public FrameAnimation(GameObject gameObject, boolean repeat, List<Frame> frames, double time) {
+    public FrameAnimation(GameObject gameObject, boolean repeat, double time, Frame... frames) {
         super(gameObject, repeat);
 
-        this.frames = frames;
+        this.frames = Arrays.asList(frames);
         this.time = time;
     }
 
@@ -30,23 +32,34 @@ public class FrameAnimation extends Animation {
             @Override
             public void handle(long l) {
 
-                for (Frame frame : frames) {
-                    if (frame.getStart() <= this.passedTime && this.passedTime <= frame.getEnd()) {
-                        if (frame.getStart() == this.passedTime) {
-                            frame.onStart();
-                        }
-                        frame.play();
-                        if (frame.getEnd() == this.passedTime) {
-                            frame.onEnd();
-                        }
-                    }
-                }
-
                 if (this.passedTime >= time && !getRepeat()) {
+                    getEvent().invokeAll(getGameObject());
                     this.stop();
                     return;
                 } else if (this.passedTime >= time) {
                     this.passedTime = 0;
+                }
+
+                for (int i = 0; i < frames.size(); i++) {
+                    Frame frame = frames.get(i);
+
+                    if (frame.getStart() == this.passedTime) {
+                        if (frame.getStart() == this.passedTime) {
+                            currentPlaying = frame;
+                            double value = 0;
+                            if (frames.size() - 1 != i) {
+                                value = frames.get(i + 1).getStart();
+                            } else {
+                                value = time;
+                            }
+                            currentPlaying.setValue(Math.abs(currentPlaying.getStart() - value));
+                            frame.onStart();
+                        }
+                    }
+                }
+
+                if (currentPlaying != null) {
+                    currentPlaying.play();
                 }
 
                 this.passedTime++;

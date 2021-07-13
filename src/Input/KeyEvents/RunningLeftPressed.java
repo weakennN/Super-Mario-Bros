@@ -1,6 +1,5 @@
 package Input.KeyEvents;
 
-import ECS.Animator.Animator;
 import ECS.Transform;
 import Game.Game;
 import Game.GameObjects.Mario.Mario;
@@ -8,7 +7,7 @@ import Game.GameObjects.Mario.MarioDir;
 import Game.SuperMarioBros;
 import javafx.scene.input.KeyCode;
 
-public class RunningLeftPressed extends KeyEvent {
+public class RunningLeftPressed extends RunningPressed {
 
     public RunningLeftPressed(KeyCode key) {
         super(key);
@@ -27,17 +26,7 @@ public class RunningLeftPressed extends KeyEvent {
                 mario.getRigidbody().getVel().x = -0.7;
             }
 
-            if (!mario.isJumping()) {
-                mario.getComponent(Animator.class).getAnimationController().stop();
-                if (mario.isNormal()) {
-                    //  mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunningLeft");
-                    mario.getComponent(Animator.class).getAnimationController().playAnimation("marioRunning");
-                } else if (mario.isBigMario()) {
-                    mario.getComponent(Animator.class).getAnimationController().playAnimation("bigMarioRunning");
-                } else if (mario.isFireMario()) {
-                    mario.getComponent(Animator.class).getAnimationController().playAnimation("fireMarioRunningLeft");
-                }
-            }
+            super.run(mario);
 
             MarioDir.marioIdleFacingRight = false;
             MarioDir.marioRunningLeft = true;

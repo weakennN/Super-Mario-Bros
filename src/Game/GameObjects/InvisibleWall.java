@@ -17,14 +17,8 @@ public class InvisibleWall extends GameObject {
 
     @Override
     public void update() {
-
         super.getComponent(Transform.class).getPos().x = this.cameraPosition.getPos().x - 1010;
         super.updateComponents();
-    }
-
-    @Override
-    public void start() {
-
     }
 
     @Override
@@ -32,7 +26,6 @@ public class InvisibleWall extends GameObject {
 
         if (other.getTag().equals(GlobalVariables.marioTag) &&
                 (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)) {
-
             Collisions.defaultHorizontalCollision(this, other, collision);
         }
     }

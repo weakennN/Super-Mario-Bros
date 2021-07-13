@@ -12,13 +12,11 @@ public class Mushroom extends GameObject {
 
     @Override
     public void update() {
-
         super.updateComponents();
     }
 
     @Override
     public void start() {
-
         Rigidbody rigidbody = this.getRigidbody();
         rigidbody.getVel().x = 1;
     }
@@ -29,7 +27,6 @@ public class Mushroom extends GameObject {
     }
 
     public Rigidbody getRigidbody() {
-
         return super.getComponent(Rigidbody.class);
     }
 }

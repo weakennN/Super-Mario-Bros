@@ -23,20 +23,17 @@ public class ItemBox extends GameObject {
 
     public ItemBox(String tag, String gameObjectCreator) {
         super(tag);
-
         this.gameObjectCreator = gameObjectCreator;
         this.isEmpty = false;
     }
 
     @Override
     public void start() {
-
         super.getComponent(Animator.class).getAnimationController().playAnimation("itemBoxAnimation");
     }
 
     @Override
     public void update() {
-
         super.updateComponents();
     }
 

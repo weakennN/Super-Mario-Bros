@@ -12,7 +12,6 @@ public class Camera {
     private Mario mario;
 
     public Camera(Mario mario, Transform position) {
-
         this.position = position;
         this.vel = new Vector2(0, 0);
         this.mario = mario;
@@ -21,31 +20,24 @@ public class Camera {
     }
 
     public void follow() {
-
-        if (this.mario.getComponent(Transform.class).getPos().x > this.position.getPos().x) {
-
-            this.position.getPos().x = this.mario.getComponent(Transform.class).getPos().x;
-
-            this.vel.x = this.mario.getRigidbody().getVel().x;
-
-            Designer.gc.translate(-this.vel.x, this.vel.y);
+        if (!this.mario.isDead()) {
+            if (this.mario.getComponent(Transform.class).getPos().x > this.position.getPos().x) {
+                this.position.getPos().x = this.mario.getComponent(Transform.class).getPos().x;
+                this.vel.x = this.mario.getRigidbody().getVel().x;
+                Designer.gc.translate(-this.vel.x, this.vel.y);
+            }
         }
-
     }
 
     public void setMario(Mario mario) {
-
         this.mario = mario;
     }
 
     public Transform getPosition() {
-
         return this.position;
     }
 
     public void resetCamera() {
-
         Designer.gc.translate(this.position.getPos().x - 960, 0);
     }
-
 }

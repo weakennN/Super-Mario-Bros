@@ -5,6 +5,7 @@ import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.Common.SpriteSheetContainer;
 import Game.SoundEffects.Sounds;
+import Input.Input;
 import Input.InputHandler;
 import UIEngine.Designer;
 import Engine.GameEngine;
@@ -100,7 +101,7 @@ public class SuperMarioBros extends Game {
     private void restartLevel() {
 
         this.destroyGameObjects();
-
+        Input.unlock();
         this.engine.getCamera().resetCamera();
         this.engine.restartInput();
         this.inputHandler = new InputHandler(this, this.engine.getInput());

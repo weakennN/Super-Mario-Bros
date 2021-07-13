@@ -27,17 +27,10 @@ public class Koopa extends GameObject {
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
 
         if (!this.isTransformed) {
-
             if (rigidbody.getVel().x > 0) {
-
-
             } else {
-
-
             }
-
         }
-
         super.updateComponents();
     }
 
@@ -58,13 +51,11 @@ public class Koopa extends GameObject {
             Rigidbody rigidbody1 = this.getComponent(Rigidbody.class);
 
             if (!this.isTransformed) {
-
                 rigidbody1.getVel().x = 0;
                 this.isTransformed = true;
                 super.getComponent(Animator.class).getAnimationController().stop();
                 super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY).getSprites().get(2));
             } else {
-
                 if (rigidbody1.getVel().x >= 0) {
                     rigidbody1.getVel().x = 4.5;
                     this.shellMoving = true;
@@ -72,7 +63,6 @@ public class Koopa extends GameObject {
                     rigidbody1.getVel().x = 0;
                     this.shellMoving = false;
                 }
-
             }
 
             rigidbody.getVel().y *= -0.3;

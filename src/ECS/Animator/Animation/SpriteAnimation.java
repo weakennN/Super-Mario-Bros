@@ -45,6 +45,11 @@ public class SpriteAnimation extends Animation {
                     i++;
                     if (i >= sprites.size()) {
                         i = 0;
+                        if (!getRepeat()){
+                            this.stop();
+                            getEvent().invokeAll(getGameObject());
+                            return;
+                        }
                     }
                     if (getGameObject().getComponent(SpriteRenderer.class) != null && isActive()) {
                         getGameObject().getComponent(SpriteRenderer.class).setSprite(sprites.get(i));

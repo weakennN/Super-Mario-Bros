@@ -12,25 +12,15 @@ public class Flower extends GameObject {
 
     @Override
     public void update() {
-
         super.updateComponents();
-    }
-
-    @Override
-    public void start() {
-
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (other.getTag().equals(GlobalVariables.marioTag)) {
-
             Mario mario = (Mario) other;
             mario.getMarioManager().powerUpWithFireFireFlower(this);
-
         }
-
     }
-
 }

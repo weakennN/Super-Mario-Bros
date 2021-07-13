@@ -12,24 +12,15 @@ public class Coin extends GameObject {
 
     @Override
     public void update() {
-
         super.updateComponents();
-    }
-
-    @Override
-    public void start() {
-
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
         if (other.getTag().equals(GlobalVariables.marioTag)) {
-
             ScoreKeeper.coins++;
             this.destroy();
         }
-
     }
-
 }

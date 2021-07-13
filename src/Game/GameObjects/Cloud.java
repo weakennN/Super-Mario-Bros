@@ -11,17 +11,10 @@ public class Cloud extends GameObject {
 
     @Override
     public void update() {
-
         super.updateComponents();
     }
 
     @Override
-    public void start() {
-
-    }
-
-    @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
     }
 }

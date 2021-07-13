@@ -1,6 +1,7 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
 import ECS.Animator.*;
+import ECS.Animator.Animation.Frame.PositionFrame;
 import ECS.Animator.Animation.Frame.ScaleFrame;
 import ECS.Animator.Animation.FrameAnimation;
 import ECS.Animator.Animation.SpriteAnimation;
@@ -52,18 +53,14 @@ public class MarioCreator extends GameObjectCreator {
         animationController.createAnimation("bigMarioRunning", new SpriteAnimation(mario, true, 20, bigMarioSpriteSheet.getSprites().get(1), bigMarioSpriteSheet.getSprites().get(2),
                 bigMarioSpriteSheet.getSprites().get(3)));
 
-       /* animationController.createAnimation("bigMarioRunningRight", new SpriteAnimation(mario, true, 20, bigMarioSpriteSheet.getSprites().get(22)
-                , bigMarioSpriteSheet.getSprites().get(23), bigMarioSpriteSheet.getSprites().get(24)));
-        animationController.createAnimation("bigMarioRunningLeft", new SpriteAnimation(mario, true, 20, bigMarioSpriteSheet.getSprites().get(19), bigMarioSpriteSheet.getSprites().get(18)
-                , bigMarioSpriteSheet.getSprites().get(17)));
-        */
+        animationController.createAnimation("fireMarioRunning",new SpriteAnimation(mario,true,20,fireMarioSpriteSheet.getSprites().get(1),
+                fireMarioSpriteSheet.getSprites().get(2),fireMarioSpriteSheet.getSprites().get(3)));
 
-        animationController.createAnimation("fireMarioRunningRight", new SpriteAnimation(mario, true, 20, fireMarioSpriteSheet.getSprites().get(22)
-                , fireMarioSpriteSheet.getSprites().get(23), fireMarioSpriteSheet.getSprites().get(24)));
-        animationController.createAnimation("fireMarioRunningLeft", new SpriteAnimation(mario, true, 20, fireMarioSpriteSheet.getSprites().get(19)
-                , fireMarioSpriteSheet.getSprites().get(18), fireMarioSpriteSheet.getSprites().get(17)));
+        SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 10, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),
+                marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15), marioSpriteSheet.getSprites().get(0),
+                bigMarioSpriteSheet.getSprites().get(15), bigMarioSpriteSheet.getSprites().get(0), marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15)
+                , bigMarioSpriteSheet.getSprites().get(0));
 
-        FrameAnimation marioGrowing = new FrameAnimation(mario, false, 150, new ScaleFrame(0, new Vector2(1, 1.8), mario.getComponent(Transform.class)));
         animationController.createAnimation("marioGrowing", marioGrowing);
 
         mario.addComponent(new Animator(mario, animationController));

@@ -68,13 +68,13 @@ public class GameEngine extends Engine {
     private void detectCollision() {
         for (int i = 0; i < Collider.colliders.size(); i++) {
             Collider collider = Collider.colliders.get(i);
-            if (collider.isDisable()) {
+            if (!collider.isActive()) {
                 continue;
             }
             for (int j = 0; j < Collider.colliders.size(); j++) {
                 if (collider == Collider.colliders.get(j)) {
                     continue;
-                }else if (Collider.colliders.get(j).isDisable()){
+                }else if (!Collider.colliders.get(j).isActive()){
                     continue;
                 }
                 if (collider.checkCollision(Collider.colliders.get(j))) {

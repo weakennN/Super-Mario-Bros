@@ -10,6 +10,7 @@ import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
+import Event.EventListener;
 import Game.Camera;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
@@ -60,7 +61,14 @@ public class MarioCreator extends GameObjectCreator {
 
         animationController.createAnimation("marioGrowing", marioGrowing);
 
-        animationController.createAnimation("marioDecreasing", new FrameAnimation(mario, false, 1000, new ScaleFrame(0, new Vector2(0.5, 0.5), mario.getComponent(Transform.class))));
+        animationController.createAnimation("marioDecreasing", new FrameAnimation(mario, false, 100, new ScaleFrame(0, mario.getComponent(Transform.class).getScale(), mario.getComponent(Transform.class))));
+
+        animationController.getAnimation("marioDecreasing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
+            @Override
+            public void invoke(GameObject arg) {
+                mario.setImmune(false);
+            }
+        });
 
         mario.addComponent(new Animator(mario, animationController));
         Transform cameraPos = new Transform(new Vector2(960, 0));

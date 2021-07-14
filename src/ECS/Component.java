@@ -10,11 +10,10 @@ public abstract class Component {
     public Component(GameObject gameObject) {
 
         this.gameObject = gameObject;
-        this.active = false;
+        this.active = true;
     }
 
     public void start() {
-        this.active = true;
     }
 
     public void update() {

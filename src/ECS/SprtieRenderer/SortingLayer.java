@@ -10,7 +10,6 @@ public class SortingLayer {
     private int value;
 
     public SortingLayer(String sortingLayer) {
-
         this.sortingLayer = sortingLayer;
         this.spriteRenderers = new ArrayList<>();
         this.value = SortingLayersContainer.sortingLayers.size();

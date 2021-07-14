@@ -16,7 +16,6 @@ public class Camera {
         this.vel = new Vector2(0, 0);
         this.mario = mario;
         Designer.gc.translate(0, 0);
-
     }
 
     public void follow() {

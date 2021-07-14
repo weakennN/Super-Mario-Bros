@@ -58,13 +58,13 @@ public class ItemBox extends GameObject {
                             200,
                             new PositionFrame(0, mushroom.getComponent(Transform.class).getPos(), new Vector2(mushroom.getComponent(Transform.class).getPos().x,
                                     mushroom.getComponent(Transform.class).getPos().y - 50), mushroom.getComponent(Transform.class))));
-                    mushroom.getComponent(Rigidbody.class).setDisable(true);
-                    mushroom.getComponent(Collider.class).setDisable(true);
+                    mushroom.getComponent(Rigidbody.class).setActive(false);
+                    mushroom.getComponent(Collider.class).setActive(false);
                     mushroom.getComponent(Animator.class).getAnimationController().getAnimation("mushroomAnimation").getAnimationFinish().subscribe(new EventListener<GameObject>() {
                         @Override
                         public void invoke(GameObject arg) {
-                            arg.getComponent(Rigidbody.class).setDisable(false);
-                            arg.getComponent(Collider.class).setDisable(false);
+                            arg.getComponent(Rigidbody.class).setActive(true);
+                            arg.getComponent(Collider.class).setActive(true);
                         }
                     });
                     super.getComponent(Animator.class).getAnimationController().getAnimation("bump").getAnimationFinish().subscribe(new EventListener<GameObject>() {

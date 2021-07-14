@@ -9,7 +9,6 @@ public class Rigidbody extends Component {
     private Vector2 vel;
     private Vector2 acc;
     private boolean applyGravity = true;
-    private boolean disable = false;
 
     public Rigidbody(GameObject gameObject) {
         super(gameObject);
@@ -35,7 +34,7 @@ public class Rigidbody extends Component {
 
     @Override
     public void update() {
-        if (!this.disable) {
+        if (super.isActive()) {
             this.physicsUpdate();
         }
     }
@@ -64,13 +63,5 @@ public class Rigidbody extends Component {
 
     public Vector2 getPos() {
         return this.pos;
-    }
-
-    public boolean isDisable() {
-        return this.disable;
-    }
-
-    public void setDisable(boolean disable) {
-        this.disable = disable;
     }
 }

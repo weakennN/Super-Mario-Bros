@@ -170,13 +170,13 @@ public class MarioManager {
         if (this.mario.isNormal()) {
             SoundManager.playSound(Sounds.superMarioGrowingSound);
             MarioDir.disableDirs();
-            this.mario.getRigidbody().setDisable(true);
+            this.mario.getRigidbody().setActive(false);
             Input.lock();
 
             this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
                 @Override
                 public void invoke(GameObject arg) {
-                    mario.getRigidbody().setDisable(false);
+                    mario.getRigidbody().setActive(true);
                     Input.unlock();
                 }
             });

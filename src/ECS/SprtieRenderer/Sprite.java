@@ -7,7 +7,6 @@ public class Sprite {
     private Image texture;
 
     public Sprite(Image texture) {
-
         this.texture = texture;
     }
 

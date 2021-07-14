@@ -29,16 +29,11 @@ public class GlobalAnimations {
 
             @Override
             public void handle(long l) {
-
                 if (this.currentTime++ >= 175) {
-
                     mario.setImmune(false);
                     this.stop();
                 }
-
-
             }
-
         };
         animator.start();
     }

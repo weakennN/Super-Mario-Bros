@@ -12,7 +12,6 @@ public class AnimationController {
     private Map<String, Animation> currentPlaying;
 
     public AnimationController() {
-
         this.animations = new HashMap<>();
         this.currentPlaying = new LinkedHashMap<>();
     }

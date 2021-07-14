@@ -1,7 +1,10 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
+import ECS.Animator.AnimationController;
+import ECS.Animator.Animator;
 import ECS.Collider;
 import ECS.Rigidbody;
+import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
@@ -26,8 +29,8 @@ public class MushroomCreator extends GameObjectCreator {
         mushroom.addComponent(new Rigidbody(mushroom, transform));
         mushroom.addComponent(new Collider(mushroom,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        mushroom.addComponent(transform);
-        mushroom.addComponent(new SpriteRenderer(mushroom, new Sprite(new Image(GlobalAnimations.MUSHROOM_SPRITE))));
+        mushroom.addComponent(new SpriteRenderer(mushroom, new Sprite(new Image(GlobalAnimations.MUSHROOM_SPRITE)), SortingLayersContainer.getSortingLayerByName("item")));
+        mushroom.addComponent(new Animator(mushroom, new AnimationController()));
         return mushroom;
     }
 }

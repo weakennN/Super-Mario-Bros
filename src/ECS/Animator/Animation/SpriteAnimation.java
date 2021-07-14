@@ -2,6 +2,7 @@ package ECS.Animator.Animation;
 
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
+import Event.Event;
 import Game.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;
 
@@ -13,17 +14,18 @@ public class SpriteAnimation extends Animation {
     private List<Sprite> sprites;
     private int time;
     private int i = 0;
+    private Event<GameObject> spriteEvent;
 
     public SpriteAnimation(GameObject gameObject, boolean repeat, int time, Sprite... sprites) {
         super(gameObject, repeat);
 
         this.sprites = Arrays.asList(sprites);
         this.time = time;
+        this.spriteEvent = new Event<GameObject>();
     }
 
     @Override
     public void play() {
-
         super.setActive(true);
         AnimationTimer animationTimer = super.getAnimationTimer();
 
@@ -45,7 +47,7 @@ public class SpriteAnimation extends Animation {
                     i++;
                     if (i >= sprites.size()) {
                         i = 0;
-                        if (!getRepeat()){
+                        if (!getRepeat()) {
                             this.stop();
                             getAnimationFinish().invokeAll(getGameObject());
                             return;
@@ -53,6 +55,7 @@ public class SpriteAnimation extends Animation {
                     }
                     if (getGameObject().getComponent(SpriteRenderer.class) != null && isActive()) {
                         getGameObject().getComponent(SpriteRenderer.class).setSprite(sprites.get(i));
+                        spriteEvent.invokeAll(getGameObject());
                     }
                     passedTime = 0;
                 }
@@ -61,5 +64,9 @@ public class SpriteAnimation extends Animation {
 
         animationTimer.start();
         super.setAnimationTimer(animationTimer);
+    }
+
+    public Event<GameObject> getSpriteEvent() {
+        return this.spriteEvent;
     }
 }

@@ -10,10 +10,10 @@ import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.ItemBox;
 import Game.Levels.Level;
+import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
 public class ItemBoxCreator extends GameObjectCreator {
@@ -31,12 +31,11 @@ public class ItemBoxCreator extends GameObjectCreator {
         itemBox.addComponent(new Collider(itemBox,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         itemBox.addComponent(new SpriteRenderer(itemBox));
-        SpriteSheet itemBoxSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY);
+        SpriteSheet itemBoxSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY);
 
         AnimationController animationController = new AnimationController();
         animationController.createAnimation("itemBoxAnimation", new SpriteAnimation(itemBox, true, 26, itemBoxSpriteSheet.getSprites().get(0), itemBoxSpriteSheet.getSprites().get(2)
                 , itemBoxSpriteSheet.getSprites().get(1)));
-        itemBox.addComponent(new Animator(itemBox, animationController));
 
         animationController.createAnimation("bump", new FrameAnimation(itemBox, false, 30, new PositionFrame(0,
                 itemBox.getComponent(Transform.class).getPos(),

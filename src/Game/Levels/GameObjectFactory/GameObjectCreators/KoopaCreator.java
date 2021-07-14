@@ -9,10 +9,10 @@ import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Koopa;
 import Game.Levels.Level;
+import Util.AssetPool;
 
 public class KoopaCreator extends GameObjectCreator {
 
@@ -29,7 +29,7 @@ public class KoopaCreator extends GameObjectCreator {
         koopa.addComponent(new Collider(koopa,
                 GlobalVariables.defaultColliderSizeX, 75, transform));
         koopa.addComponent(new SpriteRenderer(koopa));
-        SpriteSheet spriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY);
+        SpriteSheet spriteSheet = AssetPool.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY);
         AnimationController animationController = new AnimationController();
         animationController.createAnimation("koopaAnimation", new SpriteAnimation(koopa, true, 20, spriteSheet.getSprites().get(0), spriteSheet.getSprites().get(1)));
         koopa.addComponent(new Animator(koopa, animationController));

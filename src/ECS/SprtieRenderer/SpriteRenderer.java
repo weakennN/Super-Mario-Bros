@@ -11,20 +11,23 @@ public class SpriteRenderer extends Component {
     private SortingLayer sortingLayer;
 
     public SpriteRenderer(GameObject gameObject, Sprite sprite) {
-        this(gameObject, SortingLayersContainer.getSortingLayerByName(GlobalVariables.DEFAULT_SORTING_LAYER));
-
-        this.sprite = sprite;
+        this(gameObject, sprite, SortingLayersContainer.getSortingLayerByName(GlobalVariables.DEFAULT_SORTING_LAYER));
     }
 
     public SpriteRenderer(GameObject gameObject, SortingLayer sortingLayer) {
-        super(gameObject);
-
-        this.orderInLayer = 0;
-        this.setSortingLayer(sortingLayer);
+        this(gameObject, null, sortingLayer);
     }
 
     public SpriteRenderer(GameObject gameObject) {
-        this(gameObject, SortingLayersContainer.getSortingLayerByName(GlobalVariables.DEFAULT_SORTING_LAYER));
+        this(gameObject, null, SortingLayersContainer.getSortingLayerByName(GlobalVariables.DEFAULT_SORTING_LAYER));
+    }
+
+    public SpriteRenderer(GameObject gameObject, Sprite sprite, SortingLayer sortingLayer) {
+        super(gameObject);
+        this.sprite = sprite;
+        this.sortingLayer = sortingLayer;
+        this.sortingLayer.addSpriteRenderer(this);
+        this.orderInLayer = 0;
     }
 
     public Sprite getSprite() {

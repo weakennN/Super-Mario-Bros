@@ -10,12 +10,10 @@ import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Event.EventListener;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Goomba;
 import Game.Levels.Level;
-
-import java.util.List;
+import Util.AssetPool;
 
 public class GoombaCreator extends GameObjectCreator {
 
@@ -33,7 +31,7 @@ public class GoombaCreator extends GameObjectCreator {
         goomba.addComponent(new Rigidbody(goomba, transform));
         goomba.addComponent(new SpriteRenderer(goomba));
         AnimationController animationController = new AnimationController();
-        SpriteSheet goombaSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY);
+        SpriteSheet goombaSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY);
         animationController.createAnimation("goombaAnimation", new SpriteAnimation(goomba, true, 20, goombaSpriteSheet.getSprites().get(0),
                 goombaSpriteSheet.getSprites().get(1)));
         goomba.addComponent(new Animator(goomba, animationController));

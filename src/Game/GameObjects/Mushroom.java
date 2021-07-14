@@ -7,7 +7,6 @@ public class Mushroom extends GameObject {
 
     public Mushroom(String tag) {
         super(tag);
-
     }
 
     @Override

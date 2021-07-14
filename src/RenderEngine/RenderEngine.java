@@ -19,7 +19,6 @@ public class RenderEngine {
     }
 
     public void render() {
-        ;
         for (int i = 0; i < SortingLayersContainer.sortingLayers.size(); i++) {
 
             SortingLayer sortingLayer = SortingLayersContainer.sortingLayers.get(i);
@@ -33,7 +32,6 @@ public class RenderEngine {
     }
 
     private void render(GameObject gameObject) {
-
         SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
         Transform transform = gameObject.getComponent(Transform.class);
 

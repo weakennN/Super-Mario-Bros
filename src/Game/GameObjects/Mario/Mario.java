@@ -35,24 +35,20 @@ public class Mario extends GameObject {
         this.fireMario = false;
         this.breakable = false;
         this.marioManager = new MarioManager(this);
-
     }
 
     @Override
     public void update() {
-
         super.updateComponents();
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
         if (other.getTag().equals(GlobalVariables.mushroomTag)) {
             this.marioManager.marioPowerUpWithMushroom((Mushroom) other);
         } else if (other.getTag().equals(GlobalVariables.goombaTag)) {
             this.marioAndGoombaCollision((Goomba) other, collision);
         }
-
     }
 
     public MarioManager getMarioManager() {
@@ -108,7 +104,6 @@ public class Mario extends GameObject {
     }
 
     private void marioAndGoombaCollision(Goomba goomba, Collision collision) {
-
         if (collision.getHitDirection().x > 0 && collision.getHitDirection().x > collision.getHitDirection().y
                 || collision.getHitDirection().x < 0) {
             this.marioManager.checkMarioDead();

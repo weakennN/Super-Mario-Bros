@@ -18,7 +18,6 @@ public abstract class Component {
     }
 
     public void update() {
-
     }
 
     public GameObject getGameObject() {

@@ -13,7 +13,7 @@ public class Collider extends Component {
     private Vector2 size;
     private Vector2 center;
     private Vector2 halfSize;
-    private boolean checked;
+    private boolean disable;
     private Collision collision;
     public static List<Collider> colliders = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class Collider extends Component {
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
         this.calculateCenter();
-        this.checked = false;
+        this.disable = false;
         this.collision = new Collision();
         colliders.add(this);
     }
@@ -40,7 +40,6 @@ public class Collider extends Component {
         double combinedHalfHeights = this.halfSize.y + collider.getHalfSize().y;
 
         if (Math.abs(dx) <= combinedHalfWidths && Math.abs(dy) <= combinedHalfHeights) {
-
             int overLapX = (int) (combinedHalfWidths - Math.abs(dx));
             int overLapY = (int) (combinedHalfHeights - Math.abs(dy));
 
@@ -64,7 +63,6 @@ public class Collider extends Component {
         }
 
         return false;
-
     }
 
     public static void removeCollider(Collider collider) {
@@ -98,15 +96,15 @@ public class Collider extends Component {
         this.calculateCenter();
     }
 
-    public boolean isChecked() {
-        return this.checked;
-    }
-
-    public void setChecked(boolean b) {
-        this.checked = b;
-    }
-
     public Collision getCollision() {
         return this.collision;
+    }
+
+    public boolean isDisable() {
+        return this.disable;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
     }
 }

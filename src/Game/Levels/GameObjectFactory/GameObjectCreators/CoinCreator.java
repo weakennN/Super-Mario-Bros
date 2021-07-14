@@ -10,10 +10,10 @@ import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Event.EventListener;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.Coin;
 import Game.GameObjects.GameObject;
 import Game.Levels.Level;
+import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
 public class CoinCreator extends GameObjectCreator {
@@ -27,7 +27,7 @@ public class CoinCreator extends GameObjectCreator {
         Coin coin = new Coin(GlobalVariables.coinTag);
         Transform transform = super.createTransform(Double.parseDouble(params[0]), Double.parseDouble(params[1]), coin);
         coin.addComponent(transform);
-        SpriteSheet coinSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY);
+        SpriteSheet coinSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY);
         coin.addComponent(new Rigidbody(coin, false));
         AnimationController coinAnimationController = new AnimationController();
         coinAnimationController.createAnimation("coinSpriteAnimation", new SpriteAnimation(coin, true, 10, coinSpriteSheet.getSprites().get(0),

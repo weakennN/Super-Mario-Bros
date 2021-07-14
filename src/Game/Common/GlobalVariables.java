@@ -6,8 +6,6 @@ public class GlobalVariables {
     public final static String mushroomTag = "Mushroom";
     public final static String goombaTag = "Goomba";
     public final static String brickBoxTag = "BrickBox";
-    public final static String rigidbodyTag = "Rigidbody";
-    public final static String colliderTag = "collider";
     public final static String groundTag = "ground";
     public final static String itemBoxTag = "itemBox";
     public final static String coinTag = "coin";
@@ -19,7 +17,7 @@ public class GlobalVariables {
     public final static String invisibleWallTag = "invisibleWall";
     public final static String castleTag = "castle";
     public final static String blockTag = "block";
-    public final static double defaultColliderSizeX = 40;
+    public final static double defaultColliderSizeX = 50;
     public final static double defaultColliderSizeY = 50;
     public final static double defaultMarioColliderX = 40;
     public final static double defaultMarioColliderY = 50;

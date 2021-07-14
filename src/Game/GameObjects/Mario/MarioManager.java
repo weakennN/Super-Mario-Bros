@@ -2,23 +2,23 @@ package Game.GameObjects.Mario;
 
 import ECS.Animator.Animation.Frame.PositionFrame;
 import ECS.Animator.Animation.FrameAnimation;
+import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
 import ECS.SprtieRenderer.Sprite;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import Event.EventListener;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.*;
 import Game.Score.ScoreKeeper;
 import Engine.GameEngine;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
 import Input.Input;
+import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
 public class MarioManager {
@@ -42,7 +42,8 @@ public class MarioManager {
         this.mario.setBigMario(false);
         this.mario.setBreakable(false);
         this.mario.setNormal(true);
-        GlobalAnimations.marioDecreasingAnimation(mario);
+        this.mario.getComponent(Animator.class).getAnimationController().stop();
+        this.mario.getComponent(Animator.class).getAnimationController().playAnimation("marioDecreasing");
         Collider collider = mario.getComponent(Collider.class);
         collider.resize(GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY);
     }
@@ -53,13 +54,13 @@ public class MarioManager {
         if (this.mario.isJumping()) {
             if (this.mario.isBigMario()) {
                 this.afterJumpDirection("bigMarioRunning",
-                        SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(0), "bigMarioRunning", marioAnimationController);
+                        AssetPool.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(0), "bigMarioRunning", marioAnimationController);
             } else if (this.mario.isNormal()) {
-                this.afterJumpDirection("marioRunning", SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(0)
+                this.afterJumpDirection("marioRunning", AssetPool.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(0)
                         , "marioRunning", marioAnimationController);
             } else if (this.mario.isFireMario()) {
                 this.afterJumpDirection("fireMarioRunning",
-                        SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(0), "fireMarioRunning", marioAnimationController);
+                        AssetPool.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(0), "fireMarioRunning", marioAnimationController);
             }
         }
     }
@@ -94,7 +95,7 @@ public class MarioManager {
         Collider collider = this.mario.getComponent(Collider.class);
         Collider.removeCollider(collider);
         this.mario.removeComponent(Collider.class);
-        this.mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(6));
+        this.mario.getComponent(SpriteRenderer.class).setSprite(AssetPool.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(6));
 
         FrameAnimation marioDead = new FrameAnimation(mario, false, 300, new PositionFrame(0, this.mario.getComponent(Transform.class).getPos(),
                 new Vector2(this.mario.getComponent(Transform.class).getPos().x, this.mario.getComponent(Transform.class).getPos().y - 100), mario.getComponent(Transform.class))
@@ -166,28 +167,35 @@ public class MarioManager {
     }
 
     public void powerUpWithMushroom() {
-        SoundManager.playSound(Sounds.superMarioGrowingSound);
-        Input.lock();
-        MarioDir.disableDirs();
-        this.mario.getRigidbody().getVel().x = 0;
-        this.mario.getRigidbody().getVel().y = 0;
-        this.mario.getRigidbody().getAcc().y = 0;
-        this.mario.getRigidbody().getAcc().x = 0;
-        this.mario.getRigidbody().setDisable(true);
+        if (this.mario.isNormal()) {
+            SoundManager.playSound(Sounds.superMarioGrowingSound);
+            MarioDir.disableDirs();
+            this.mario.getRigidbody().setDisable(true);
+            Input.lock();
 
-        this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
-            @Override
-            public void invoke(GameObject arg) {
-                mario.getRigidbody().setDisable(false);
-                Input.unlock();
-            }
-        });
-        this.mario.getComponent(Animator.class).getAnimationController().stop();
-        this.mario.getComponent(Animator.class).getAnimationController().playAnimation("marioGrowing");
-        this.mario.getComponent(Collider.class).resize(GlobalVariables.defaultBigMarioColliderSizeX, GlobalVariables.defaultBigMarioColliderSizeY);
-        this.mario.setBigMario(true);
-        this.mario.setBreakable(true);
-        this.mario.setNormal(false);
+            this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
+                @Override
+                public void invoke(GameObject arg) {
+                    mario.getRigidbody().setDisable(false);
+                    Input.unlock();
+                }
+            });
+
+            ((SpriteAnimation) this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing")).getSpriteEvent().subscribe(new EventListener<GameObject>() {
+                @Override
+                public void invoke(GameObject arg) {
+                    Collider collider = arg.getComponent(Collider.class);
+                    Sprite sprite = arg.getComponent(SpriteRenderer.class).getSprite();
+                    collider.resize(sprite.getTexture().getWidth(), sprite.getTexture().getHeight());
+                }
+            });
+
+            this.mario.getComponent(Animator.class).getAnimationController().stop();
+            this.mario.getComponent(Animator.class).getAnimationController().playAnimation("marioGrowing");
+            this.mario.setBigMario(true);
+            this.mario.setBreakable(true);
+            this.mario.setNormal(false);
+        }
     }
 
     public void powerUpWithFireFireFlower(Flower fireFlower) {
@@ -199,10 +207,9 @@ public class MarioManager {
     }
 
     public void marioPowerUpWithMushroom(Mushroom mushroom) {
-        this.powerUpWithMushroom();
-        mushroom.destroy();
-        ScoreKeeper.incrementScore(1000);
-
-        mushroom = null;
+            this.powerUpWithMushroom();
+            mushroom.destroy();
+            ScoreKeeper.incrementScore(1000);
+            mushroom = null;
     }
 }

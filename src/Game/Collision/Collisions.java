@@ -18,14 +18,12 @@ public class Collisions {
         }
 
         if (collision.getHitDirection().y == -1) {
-
             Collider collider = second.getComponent(Collider.class);
             second.getComponent(Transform.class).getPos().y = first.getComponent(Transform.class).getPos().y - collider.getSize().y;
             rigidbody.getAcc().y = 0;
             rigidbody.getVel().y = 0;
 
             if (second.getTag().equals(GlobalVariables.marioTag)) {
-
                 Mario mario = (Mario) second;
                 mario.getMarioManager().setMarioAnimationAfterJump();
             }
@@ -37,7 +35,6 @@ public class Collisions {
         Collider collider = second.getComponent(Collider.class);
 
         if (collider == null) {
-
             return;
         }
 

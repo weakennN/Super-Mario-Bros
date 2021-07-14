@@ -5,9 +5,9 @@ import ECS.SprtieRenderer.SpriteRenderer;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.Mario.Mario;
 import Game.Score.ScoreKeeper;
+import Util.AssetPool;
 
 public class Koopa extends GameObject {
 
@@ -54,7 +54,7 @@ public class Koopa extends GameObject {
                 rigidbody1.getVel().x = 0;
                 this.isTransformed = true;
                 super.getComponent(Animator.class).getAnimationController().stop();
-                super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY).getSprites().get(2));
+                super.getComponent(SpriteRenderer.class).setSprite(AssetPool.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY).getSprites().get(2));
             } else {
                 if (rigidbody1.getVel().x >= 0) {
                     rigidbody1.getVel().x = 4.5;

@@ -1,6 +1,8 @@
 package Game.Levels;
 
 import ECS.Collider;
+import ECS.SprtieRenderer.SortingLayer;
+import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.Transform;
 import Game.Camera;
 import Game.Common.GlobalVariables;
@@ -25,40 +27,38 @@ public abstract class Level {
     private Mario mario;
 
     public Level() {
-
         this.gameObjects = new ArrayList<>();
         GameObjectFactory.init(this);
     }
 
-    public abstract void initLevel();
+    public void initLevel() {
+        SortingLayer itemLayer = new SortingLayer("item");
+        SortingLayersContainer.setPriority(itemLayer,1);
+        SortingLayer playerLayer = new SortingLayer("player");
+        SortingLayersContainer.addSortingLayer(playerLayer);
+    }
 
     public List<GameObject> getGameObjects() {
-
         return gameObjects;
     }
 
     protected void addGameObject(GameObject gm) {
-
         this.gameObjects.add(gm);
     }
 
     protected void setBackGround(Image backGround) {
-
         this.backGround = backGround;
     }
 
     public void setCamera(Camera camera) {
-
         this.camera = camera;
     }
 
     public Camera getCamera() {
-
         return this.camera;
     }
 
     public Mario getMario() {
-
         return this.mario;
     }
 
@@ -123,7 +123,6 @@ public abstract class Level {
             this.createInvisibleWall();
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
 

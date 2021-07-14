@@ -1,25 +1,22 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
 import ECS.Animator.*;
-import ECS.Animator.Animation.Frame.PositionFrame;
 import ECS.Animator.Animation.Frame.ScaleFrame;
 import ECS.Animator.Animation.FrameAnimation;
 import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
+import ECS.SprtieRenderer.SortingLayersContainer;
 import ECS.SprtieRenderer.SpriteRenderer;
 import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
-import Event.EventListener;
 import Game.Camera;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mario.Mario;
 import Game.Levels.Level;
+import Util.AssetPool;
 import mikera.vectorz.Vector2;
-
-import java.util.List;
 
 public class MarioCreator extends GameObjectCreator {
 
@@ -40,11 +37,11 @@ public class MarioCreator extends GameObjectCreator {
                 GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY, transform));
         mario.addComponent(transform);
 
-        SpriteSheet marioSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET);
-        SpriteSheet bigMarioSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY);
-        SpriteSheet fireMarioSpriteSheet = SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY);
+        SpriteSheet marioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET);
+        SpriteSheet bigMarioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY);
+        SpriteSheet fireMarioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY);
 
-        mario.addComponent(new SpriteRenderer(mario, marioSpriteSheet.getSprites().get(0)));
+        mario.addComponent(new SpriteRenderer(mario, marioSpriteSheet.getSprites().get(0), SortingLayersContainer.getSortingLayerByName("player")));
         AnimationController animationController = new AnimationController();
 
         animationController.createAnimation("marioRunning", new SpriteAnimation(mario, true, 17, marioSpriteSheet.getSprites().get(1)
@@ -53,15 +50,17 @@ public class MarioCreator extends GameObjectCreator {
         animationController.createAnimation("bigMarioRunning", new SpriteAnimation(mario, true, 17, bigMarioSpriteSheet.getSprites().get(1), bigMarioSpriteSheet.getSprites().get(2),
                 bigMarioSpriteSheet.getSprites().get(3)));
 
-        animationController.createAnimation("fireMarioRunning",new SpriteAnimation(mario,true,17,fireMarioSpriteSheet.getSprites().get(1),
-                fireMarioSpriteSheet.getSprites().get(2),fireMarioSpriteSheet.getSprites().get(3)));
+        animationController.createAnimation("fireMarioRunning", new SpriteAnimation(mario, true, 17, fireMarioSpriteSheet.getSprites().get(1),
+                fireMarioSpriteSheet.getSprites().get(2), fireMarioSpriteSheet.getSprites().get(3)));
 
-        SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 10, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),
+        SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 7, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),
                 marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15), marioSpriteSheet.getSprites().get(0),
                 bigMarioSpriteSheet.getSprites().get(15), bigMarioSpriteSheet.getSprites().get(0), marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15)
                 , bigMarioSpriteSheet.getSprites().get(0));
 
         animationController.createAnimation("marioGrowing", marioGrowing);
+
+        animationController.createAnimation("marioDecreasing", new FrameAnimation(mario, false, 1000, new ScaleFrame(0, new Vector2(0.5, 0.5), mario.getComponent(Transform.class))));
 
         mario.addComponent(new Animator(mario, animationController));
         Transform cameraPos = new Transform(new Vector2(960, 0));

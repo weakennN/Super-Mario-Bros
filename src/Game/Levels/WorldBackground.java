@@ -9,7 +9,6 @@ public class WorldBackground {
     private double sizeY;
 
     public WorldBackground(String image1, double sizeX, double sizeY) {
-
         this.image = new Image(image1);
 
         this.sizeX = sizeX;
@@ -17,7 +16,6 @@ public class WorldBackground {
     }
 
     public Image getImage() {
-
         return this.image;
     }
 

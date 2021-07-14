@@ -1,9 +1,10 @@
 package Game;
 
 import ECS.SprtieRenderer.SortingLayersContainer;
+import ECS.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
+import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
 import Game.SoundEffects.Sounds;
 import Input.Input;
 import Input.InputHandler;
@@ -15,6 +16,7 @@ import Game.Levels.Overworld;
 import Game.Levels.World;
 import Game.Score.ScoreKeeper;
 import Game.SoundEffects.SoundManager;
+import Util.AssetPool;
 import javafx.animation.AnimationTimer;
 
 import java.util.List;
@@ -35,7 +37,13 @@ public class SuperMarioBros extends Game {
     public void start() {
 
         this.engine = new GameEngine(this);
-        SpriteSheetContainer.init();
+        AssetPool.addSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET, new SpriteSheet(GlobalAnimations.MARIO_SPRITE_SHEET, 50, 51, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.GOOMBA_SPRITE_SHEET, 50, 50, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.ITEM_BOX_SPRITE_SHEET, 50, 50, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.KOOPA_SPRITE_SHEET, 50, 75, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.BIG_MARIO_SPRITE_SHEET, 45, 90, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.FIRE_MARIO_SPRITE_SHEET, 45, 90, 0));
+        AssetPool.addSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.COIN_SPRITE_SHEET, 50, 47, 0));
         SortingLayersContainer.initContainer();
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();

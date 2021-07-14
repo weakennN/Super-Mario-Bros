@@ -87,6 +87,8 @@ public class MarioManager {
 
     public void marioDead() {
         this.mario.removeComponent(Rigidbody.class);
+        this.mario.getComponent(Animator.class).getAnimationController().stop();
+        MarioDir.disableDirs();
         Input.lock();
         SoundManager.playSound(Sounds.marioLosesLifeSound);
         Collider collider = this.mario.getComponent(Collider.class);
@@ -99,7 +101,7 @@ public class MarioManager {
                 , new PositionFrame(50, this.mario.getComponent(Transform.class).getPos()
                 , new Vector2(this.mario.getComponent(Transform.class).getPos().x, this.mario.getComponent(Transform.class).getPos().y + 300), mario.getComponent(Transform.class)));
 
-        marioDead.getEvent().subscribe(new EventListener<GameObject>() {
+        marioDead.getAnimationFinish().subscribe(new EventListener<GameObject>() {
             @Override
             public void invoke(GameObject arg) {
                 Mario mario = (Mario) arg;
@@ -158,24 +160,29 @@ public class MarioManager {
             goomba.removeComponent(Rigidbody.class);
             Collider.removeCollider(goomba.getComponent(Collider.class));
             goomba.removeComponent(Collider.class);
-            GlobalAnimations.goombaDeadAnimation(goomba);
+            goomba.getComponent(Animator.class).getAnimationController().stop();
+            goomba.getComponent(Animator.class).getAnimationController().playAnimation("goombaDead");
         }
     }
 
     public void powerUpWithMushroom() {
         SoundManager.playSound(Sounds.superMarioGrowingSound);
         Input.lock();
+        MarioDir.disableDirs();
         this.mario.getRigidbody().getVel().x = 0;
         this.mario.getRigidbody().getVel().y = 0;
         this.mario.getRigidbody().getAcc().y = 0;
         this.mario.getRigidbody().getAcc().x = 0;
+        this.mario.getRigidbody().setDisable(true);
 
-        this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing").getEvent().subscribe(new EventListener<GameObject>() {
+        this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
             @Override
             public void invoke(GameObject arg) {
+                mario.getRigidbody().setDisable(false);
                 Input.unlock();
             }
         });
+        this.mario.getComponent(Animator.class).getAnimationController().stop();
         this.mario.getComponent(Animator.class).getAnimationController().playAnimation("marioGrowing");
         this.mario.getComponent(Collider.class).resize(GlobalVariables.defaultBigMarioColliderSizeX, GlobalVariables.defaultBigMarioColliderSizeY);
         this.mario.setBigMario(true);

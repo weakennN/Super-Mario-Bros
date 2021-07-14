@@ -46,7 +46,7 @@ public class Input {
     }
 
     public KeyCode getKeyPressed() {
-        if (this.keyPressed.size() < 1) {
+        if (this.keyPressed.size() < 1 || locked) {
             return null;
         }
 
@@ -54,7 +54,7 @@ public class Input {
     }
 
     public KeyCode getKeyReleased() {
-        if (this.keyReleased.size() < 1) {
+        if (this.keyReleased.size() < 1 || locked) {
             return null;
         }
 

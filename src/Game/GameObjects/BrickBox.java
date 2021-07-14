@@ -1,5 +1,6 @@
 package Game.GameObjects;
 
+import ECS.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
@@ -38,6 +39,8 @@ public class BrickBox extends GameObject {
                     SoundManager.playSound(Sounds.blockDestructionSound);
                     this.destroy();
                 } else {
+                    super.getComponent(Animator.class).getAnimationController().stop();
+                    super.getComponent(Animator.class).getAnimationController().playAnimation("bump");
                     SoundManager.playSound(Sounds.bumpSound);
                 }
 

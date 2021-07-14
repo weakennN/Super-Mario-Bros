@@ -58,24 +58,21 @@ public class ItemBox extends GameObject {
                     coin.getComponent(Animator.class).getAnimationController().playAnimation("coinSpriteAnimation");
                     coin.getComponent(Animator.class).getAnimationController().playAnimation("coinAnimation");
                     coin.setActive(true);
-                    //coin.getComponent(Rigidbody.class).getVel().y = -3;
                     GameEngine.gameObjects.add(coin);
-              //      Animator.marioGettingCoinFromItemBoxAnimation(coin);
                     SoundManager.playSound(Sounds.coinSound);
                     ScoreKeeper.coins++;
                 } else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
-
                     this.gameObject.addComponent(new Collider(this.gameObject,
                             GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject.getComponent(Transform.class)));
-
                     GameEngine.gameObjects.add(this.gameObject);
-
                     SoundManager.playSound(Sounds.itemBlockSound);
                 }
 
                 this.isEmpty = true;
                 super.getComponent(Animator.class).getAnimationController().stop();
                 super.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY).getSprites().get(3));
+                super.getComponent(Animator.class).getAnimationController().stop();
+                super.getComponent(Animator.class).getAnimationController().playAnimation("bump");
             } else {
                 SoundManager.playSound(Sounds.bumpSound);
             }

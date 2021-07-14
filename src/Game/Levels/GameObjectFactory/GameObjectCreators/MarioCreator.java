@@ -47,13 +47,13 @@ public class MarioCreator extends GameObjectCreator {
         mario.addComponent(new SpriteRenderer(mario, marioSpriteSheet.getSprites().get(0)));
         AnimationController animationController = new AnimationController();
 
-        animationController.createAnimation("marioRunning", new SpriteAnimation(mario, true, 20, marioSpriteSheet.getSprites().get(1)
+        animationController.createAnimation("marioRunning", new SpriteAnimation(mario, true, 17, marioSpriteSheet.getSprites().get(1)
                 , marioSpriteSheet.getSprites().get(2), marioSpriteSheet.getSprites().get(3)));
 
-        animationController.createAnimation("bigMarioRunning", new SpriteAnimation(mario, true, 20, bigMarioSpriteSheet.getSprites().get(1), bigMarioSpriteSheet.getSprites().get(2),
+        animationController.createAnimation("bigMarioRunning", new SpriteAnimation(mario, true, 17, bigMarioSpriteSheet.getSprites().get(1), bigMarioSpriteSheet.getSprites().get(2),
                 bigMarioSpriteSheet.getSprites().get(3)));
 
-        animationController.createAnimation("fireMarioRunning",new SpriteAnimation(mario,true,20,fireMarioSpriteSheet.getSprites().get(1),
+        animationController.createAnimation("fireMarioRunning",new SpriteAnimation(mario,true,17,fireMarioSpriteSheet.getSprites().get(1),
                 fireMarioSpriteSheet.getSprites().get(2),fireMarioSpriteSheet.getSprites().get(3)));
 
         SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 10, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),

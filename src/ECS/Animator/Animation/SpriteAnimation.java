@@ -47,7 +47,7 @@ public class SpriteAnimation extends Animation {
                         i = 0;
                         if (!getRepeat()){
                             this.stop();
-                            getEvent().invokeAll(getGameObject());
+                            getAnimationFinish().invokeAll(getGameObject());
                             return;
                         }
                     }

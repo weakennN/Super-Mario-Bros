@@ -147,6 +147,7 @@ public class SuperMarioBros extends Game {
 
                     Designer.showLabels(true);
                     ScoreKeeper.restart();
+                    Input.unlock();
                     SuperMarioBros.this.start();
                     this.stop();
                 }

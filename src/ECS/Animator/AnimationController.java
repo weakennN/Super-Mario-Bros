@@ -9,7 +9,6 @@ import java.util.Map;
 public class AnimationController {
 
     private Map<String, Animation> animations;
-    private Animation current;
     private Map<String, Animation> currentPlaying;
 
     public AnimationController() {

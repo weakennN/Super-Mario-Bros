@@ -32,13 +32,10 @@ public class Jump extends KeyEvent {
             mario.getComponent(Animator.class).getAnimationController().stop();
 
             if (mario.isBigMario()) {
-                mario.getComponent(Animator.class).getAnimationController().stop();
                 mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY).getSprites().get(5));
             } else if (mario.isNormal()) {
-                mario.getComponent(Animator.class).getAnimationController().stop();
                 mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET).getSprites().get(5));
             } else if (mario.isFireMario()) {
-                mario.getComponent(Animator.class).getAnimationController().stop();
                 mario.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.FIRE_MARIO_SPRITE_SHEET_KEY).getSprites().get(26));
             }
 

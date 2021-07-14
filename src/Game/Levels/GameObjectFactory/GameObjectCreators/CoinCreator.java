@@ -16,8 +16,6 @@ import Game.GameObjects.GameObject;
 import Game.Levels.Level;
 import mikera.vectorz.Vector2;
 
-import java.util.List;
-
 public class CoinCreator extends GameObjectCreator {
 
     public CoinCreator(Level level) {
@@ -42,7 +40,7 @@ public class CoinCreator extends GameObjectCreator {
         coinAnimationController.createAnimation("coinAnimation", new FrameAnimation(coin, false, 100, new PositionFrame(0
                 , new Vector2(transform.getPos().x, transform.getPos().y), new Vector2(transform.getPos().x, transform.getPos().y - 250), coin.getComponent(Transform.class)), positionFrame));
 
-        coinAnimationController.getAnimation("coinAnimation").getEvent().subscribe(new EventListener() {
+        coinAnimationController.getAnimation("coinAnimation").getAnimationFinish().subscribe(new EventListener() {
             @Override
             public void invoke(Object arg) {
                 GameObject gm = (GameObject) arg;

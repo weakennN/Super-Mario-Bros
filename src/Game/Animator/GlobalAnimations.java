@@ -1,10 +1,5 @@
 package Game.Animator;
 
-import ECS.Animator.Animator;
-import ECS.SprtieRenderer.SpriteRenderer;
-import Game.Common.GlobalVariables;
-import Game.Common.SpriteSheetContainer;
-import Game.GameObjects.Goomba;
 import Game.GameObjects.Mario.Mario;
 import javafx.animation.AnimationTimer;
 
@@ -45,30 +40,6 @@ public class GlobalAnimations {
             }
 
         };
-        animator.start();
-    }
-
-    public static void goombaDeadAnimation(Goomba goomba) {
-
-        goomba.getComponent(SpriteRenderer.class).setSprite(SpriteSheetContainer.getSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY).getSprites().get(2));
-        goomba.getComponent(Animator.class).getAnimationController().stop();
-
-        animator = new AnimationTimer() {
-
-            private int currentTime = 0;
-
-            @Override
-            public void handle(long l) {
-
-                if (this.currentTime++ >= 50) {
-
-                    goomba.destroy();
-                    this.currentTime = 0;
-                    this.stop();
-                }
-            }
-        };
-
         animator.start();
     }
 }

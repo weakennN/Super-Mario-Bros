@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 public class RenderEngine {
 
     public RenderEngine() {
-
     }
 
     public void renderImage(String strImage, double startX, double startY) {

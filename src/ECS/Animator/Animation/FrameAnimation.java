@@ -22,7 +22,6 @@ public class FrameAnimation extends Animation {
 
     @Override
     public void play() {
-
         AnimationTimer animationTimer = super.getAnimationTimer();
 
         animationTimer = new AnimationTimer() {
@@ -33,7 +32,7 @@ public class FrameAnimation extends Animation {
             public void handle(long l) {
 
                 if (this.passedTime >= time && !getRepeat()) {
-                    getEvent().invokeAll(getGameObject());
+                    getAnimationFinish().invokeAll(getGameObject());
                     this.stop();
                     return;
                 } else if (this.passedTime >= time) {

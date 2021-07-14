@@ -9,4 +9,12 @@ public class MarioDir {
     public static boolean marioJumpingRight = false;
     public static boolean marioJumpingLeft = false;
 
+    public static void disableDirs() {
+        marioIdleFacingRight = false;
+        marioIdleFacingLeft = false;
+        marioRunningRight = false;
+        marioRunningLeft = false;
+        marioJumpingRight = false;
+        marioJumpingLeft = false;
+    }
 }

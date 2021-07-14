@@ -10,14 +10,13 @@ public abstract class Animation {
     private GameObject gameObject;
     private boolean active;
     private boolean repeat;
-    private Event<GameObject> event;
+    private Event<GameObject> animationFinish;
 
     public Animation(GameObject gameObject, boolean repeat) {
-
         this.gameObject = gameObject;
         this.repeat = repeat;
         this.active = false;
-        this.event = new Event<GameObject>();
+        this.animationFinish = new Event<GameObject>();
     }
 
     public abstract void play();
@@ -53,7 +52,7 @@ public abstract class Animation {
         this.active = active;
     }
 
-    public Event<GameObject> getEvent() {
-        return this.event;
+    public Event<GameObject> getAnimationFinish() {
+        return this.animationFinish;
     }
 }

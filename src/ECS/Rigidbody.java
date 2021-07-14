@@ -1,6 +1,5 @@
 package ECS;
 
-import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import mikera.vectorz.Vector2;
 
@@ -10,10 +9,9 @@ public class Rigidbody extends Component {
     private Vector2 vel;
     private Vector2 acc;
     private boolean applyGravity = true;
-    private int time = 0;
+    private boolean disable = false;
 
     public Rigidbody(GameObject gameObject) {
-
         super(gameObject);
 
         this.pos = gameObject.getComponent(Transform.class).getPos();
@@ -22,7 +20,6 @@ public class Rigidbody extends Component {
     }
 
     public Rigidbody(GameObject gameObject, Transform transform) {
-
         super(gameObject);
 
         this.pos = transform.getPos();
@@ -38,12 +35,12 @@ public class Rigidbody extends Component {
 
     @Override
     public void update() {
-
-        this.physicsUpdate();
+        if (!this.disable) {
+            this.physicsUpdate();
+        }
     }
 
     private void physicsUpdate() {
-
         if (this.applyGravity) {
             this.applyForce(new Vector2(0, 0.00125));
         }
@@ -67,5 +64,13 @@ public class Rigidbody extends Component {
 
     public Vector2 getPos() {
         return this.pos;
+    }
+
+    public boolean isDisable() {
+        return this.disable;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
     }
 }

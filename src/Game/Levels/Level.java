@@ -33,7 +33,7 @@ public abstract class Level {
 
     public void initLevel() {
         SortingLayer itemLayer = new SortingLayer("item");
-        SortingLayersContainer.setPriority(itemLayer,1);
+        SortingLayersContainer.setPriority(itemLayer, 1);
         SortingLayer playerLayer = new SortingLayer("player");
         SortingLayersContainer.addSortingLayer(playerLayer);
     }
@@ -63,9 +63,7 @@ public abstract class Level {
     }
 
     protected void initLevelObjects(String level) {
-
         try {
-
             File file = new File(level);
 
             FileReader fileReader = new FileReader(file);
@@ -79,31 +77,23 @@ public abstract class Level {
                 String[] words = line.split("\\s+");
 
                 if (words[0].equals("GameObjects")) {
-
                     this.initGameObjects(bufferedReader);
                 } else if (words[0].equals("Ground")) {
-
                     this.initGround(bufferedReader);
                 }
 
                 line = bufferedReader.readLine();
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void initGround(BufferedReader bufferedReader) {
-
         try {
-
             String word = bufferedReader.readLine();
 
             while (word != null && !word.equals("end")) {
-
                 String[] words = word.split("\\s+");
 
                 double x = Double.parseDouble(words[0]);
@@ -121,44 +111,34 @@ public abstract class Level {
             }
 
             this.createInvisibleWall();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void initGameObjects(BufferedReader bufferedReader) {
-
         try {
             String word = bufferedReader.readLine();
 
             while (word != null && !word.equals("end")) {
-
                 String[] words = word.split("\\s+");
-                GameObject gameObject = null;
-                if (!words[0].equals("Castle")) {
-                    gameObject = GameObjectFactory.create(words, words[0]);
-                    this.addGameObject(gameObject);
-                }
+
+                GameObject gameObject = GameObjectFactory.create(words, words[0]);
+                this.addGameObject(gameObject);
 
                 word = bufferedReader.readLine();
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void createInvisibleWall() {
-
         InvisibleWall invisibleWall = new InvisibleWall(GlobalVariables.invisibleWallTag, this.camera.getPosition());
         Transform transform = new Transform(new Vector2(0, 0), invisibleWall);
         invisibleWall.addComponent(new Collider(invisibleWall, 50, 1080, transform));
         invisibleWall.addComponent(transform);
         this.addGameObject(invisibleWall);
-
     }
 
     public void setMario(Mario mario) {

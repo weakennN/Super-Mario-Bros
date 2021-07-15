@@ -19,7 +19,6 @@ public class RunningLeftPressed extends RunningPressed {
         Mario mario = ((SuperMarioBros) game).getMario();
 
         if (!MarioDir.marioRunningLeft) {
-
             if (!MarioDir.marioJumpingRight) {
                 mario.getRigidbody().getVel().x = -2.5;
             } else {

@@ -32,4 +32,7 @@ public class GlobalVariables {
     public static final String BIG_MARIO_SPRITE_SHEET_KEY = "bigMarioSpriteSheet";
     public static final String FIRE_MARIO_SPRITE_SHEET_KEY = "fireMarioSpriteSheet";
     public static final String COIN_SPRITE_SHEET_KEY = "coinSpriteSheet";
+    public static final String FIRE_BALL_SPRITE_SHEET_KEY = "fireBallSpriteSheet";
+    public static final String FIRE_BALL_EXPLOSION_SPRITE_SHEET_KEY = "explosionSpriteSheet";
+    public static final String FLOWER_SPRITE_SHEET_KEY = "flowerSpriteSheet";
 }

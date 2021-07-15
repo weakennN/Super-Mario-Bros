@@ -49,19 +49,11 @@ public abstract class GameObject {
     }
 
     protected void updateComponents() {
-
-        try {
-            for (Component c : this.components) {
-
-                if (c == null) {
-
-                    continue;
-                }
-
-                c.update();
+        for (Component c : this.components) {
+            if (c == null) {
+                continue;
             }
-
-        } catch (Exception ignored) {
+            c.update();
         }
     }
 

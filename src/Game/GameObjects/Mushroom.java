@@ -22,7 +22,6 @@ public class Mushroom extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
     }
 
     public Rigidbody getRigidbody() {

@@ -15,21 +15,17 @@ public class SpriteSheet {
     private List<Sprite> sprites;
 
     public SpriteSheet(String sprite, double width, double height, double spacing) {
-
         this.spriteSheet = new Image(getClass().getResourceAsStream("/resources/images/" + sprite));
         this.initSprites(width, height, spacing, sprite);
     }
 
     private void initSprites(double width, double height, double spacing, String sprite) {
-
         this.sprites = new ArrayList<>();
 
         double x = 0;
 
         while (x < spriteSheet.getWidth()) {
-
             try {
-
                 BufferedImage bufferedImage = ImageIO.read(getClass().getResourceAsStream("/resources/images/" + sprite));
                 BufferedImage subImage = bufferedImage.getSubimage((int) x, 0, (int) width, (int) height);
                 Image image = SwingFXUtils.toFXImage(subImage, null);
@@ -37,17 +33,8 @@ public class SpriteSheet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             x += width + spacing;
         }
-
-        /*ImageView imageView = new ImageView(this.sprites.get(14).getTexture());
-        imageView.setLayoutX(100);
-        imageView.setLayoutY(200);
-        Designer.root.getChildren().add(imageView);
-
-         */
-
     }
 
     public Image getSpriteSheet() {

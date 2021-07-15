@@ -43,6 +43,10 @@ public class ItemBox extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
 
+        if(other.getTag().equals(GlobalVariables.invisibleWallTag)){
+          return;
+        }
+
         if (collision.getHitDirection().y == 1) {
 
             if (other.getTag().equals(GlobalVariables.marioTag) && !isEmpty) {
@@ -52,29 +56,7 @@ public class ItemBox extends GameObject {
                     String[] params = {super.getComponent(Transform.class).getPos().x + "", super.getComponent(Transform.class).getPos().y + ""};
                     Mushroom mushroom = (Mushroom) GameObjectFactory.create(params, "Mushroom");
 
-                    mushroom.getComponent(Animator.class).getAnimationController().createAnimation("mushroomAnimation", new FrameAnimation(
-                            mushroom,
-                            false,
-                            200,
-                            new PositionFrame(0, mushroom.getComponent(Transform.class).getPos(), new Vector2(mushroom.getComponent(Transform.class).getPos().x,
-                                    mushroom.getComponent(Transform.class).getPos().y - 50), mushroom.getComponent(Transform.class))));
-                    mushroom.getComponent(Rigidbody.class).setActive(false);
-                    mushroom.getComponent(Collider.class).setActive(false);
-                    mushroom.getComponent(Animator.class).getAnimationController().getAnimation("mushroomAnimation").getAnimationFinish().subscribe(new EventListener<GameObject>() {
-                        @Override
-                        public void invoke(GameObject arg) {
-                            arg.getComponent(Rigidbody.class).setActive(true);
-                            arg.getComponent(Collider.class).setActive(true);
-                        }
-                    });
-                    super.getComponent(Animator.class).getAnimationController().getAnimation("bump").getAnimationFinish().subscribe(new EventListener<GameObject>() {
-                        @Override
-                        public void invoke(GameObject arg) {
-                            GameEngine.gameObjects.add(mushroom);
-                            mushroom.getComponent(Animator.class).getAnimationController().getAnimation("mushroomAnimation").play();
-
-                        }
-                    });
+                    this.createItemAnimation(mushroom, "mushroomAnimation");
 
                     SoundManager.playSound(Sounds.itemBlockSound);
                 } else if (this.gameObjectCreator.equals("Coin")) {
@@ -87,13 +69,14 @@ public class ItemBox extends GameObject {
                     GameEngine.gameObjects.add(coin);
                     SoundManager.playSound(Sounds.coinSound);
                     ScoreKeeper.coins++;
-                } /* else if (this.gameObject.getTag().equals(GlobalVariables.fireFlowerTag)) {
-                    this.gameObject.addComponent(new Collider(this.gameObject,
-                            GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, this.gameObject.getComponent(Transform.class)));
-                    GameEngine.gameObjects.add(this.gameObject);
+                } else if (this.gameObjectCreator.equals("Flower")) {
+                    Flower flower = (Flower) GameObjectFactory.create(new String[]{super.getComponent(Transform.class).getPos().x + ""
+                            , super.getComponent(Transform.class).getPos().y + ""}, "Flower");
+
+                    this.createItemAnimation(flower, "flowerAnimation");
                     SoundManager.playSound(Sounds.itemBlockSound);
                 }
-             */
+
                 this.isEmpty = true;
                 super.getComponent(Animator.class).getAnimationController().stop();
                 super.getComponent(SpriteRenderer.class).setSprite(AssetPool.getSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY).getSprites().get(3));
@@ -111,6 +94,33 @@ public class ItemBox extends GameObject {
         } else if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1) {
             Collisions.defaultHorizontalCollision(this, other, collision);
         }
+    }
+
+    private void createItemAnimation(GameObject gameObject, String animation) {
+        gameObject.getComponent(Animator.class).getAnimationController().createAnimation(animation, new FrameAnimation(
+                gameObject,
+                false,
+                175,
+                new PositionFrame(0, gameObject.getComponent(Transform.class).getPos(), new Vector2(gameObject.getComponent(Transform.class).getPos().x,
+                        gameObject.getComponent(Transform.class).getPos().y - 50), gameObject.getComponent(Transform.class))));
+        gameObject.getComponent(Rigidbody.class).setActive(false);
+        gameObject.getComponent(Collider.class).setActive(false);
+        gameObject.getComponent(Animator.class).getAnimationController().getAnimation(animation).getAnimationFinish().subscribe(new EventListener<GameObject>() {
+            @Override
+            public void invoke(GameObject arg) {
+                arg.getComponent(Rigidbody.class).setActive(true);
+                arg.getComponent(Collider.class).setActive(true);
+            }
+        });
+
+        super.getComponent(Animator.class).getAnimationController().getAnimation("bump").getAnimationFinish().subscribe(new EventListener<GameObject>() {
+            @Override
+            public void invoke(GameObject arg) {
+                GameEngine.gameObjects.add(gameObject);
+                gameObject.getComponent(Animator.class).getAnimationController().playAnimation(animation);
+
+            }
+        });
     }
 
     public String getGameObjectCreator() {

@@ -2,7 +2,6 @@ package Game.GameObjects.Mario;
 
 import ECS.Animator.Animation.Frame.PositionFrame;
 import ECS.Animator.Animation.FrameAnimation;
-import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
 import ECS.SprtieRenderer.Sprite;
@@ -13,6 +12,7 @@ import Game.Common.GlobalVariables;
 import ECS.Collider;
 import ECS.Rigidbody;
 import Game.GameObjects.*;
+import Game.Levels.GameObjectFactory.GameObjectFactory;
 import Game.Score.ScoreKeeper;
 import Engine.GameEngine;
 import Game.SoundEffects.SoundManager;
@@ -30,8 +30,7 @@ public class MarioManager {
     }
 
     public void growMario() {
-        Collider collider = mario.getComponent(Collider.class);
-        collider.resize(GlobalVariables.defaultBigMarioColliderSizeX, GlobalVariables.defaultBigMarioColliderSizeY);
+        this.mario.getComponent(Collider.class).resize(GlobalVariables.defaultBigMarioColliderSizeX, GlobalVariables.defaultBigMarioColliderSizeY);
     }
 
     public Mario getMario() {
@@ -39,6 +38,9 @@ public class MarioManager {
     }
 
     public void decreaseMario() {
+        Input.lock();
+        this.mario.getRigidbody().getVel().x = 0;
+        this.mario.getRigidbody().getVel().y = 0;
         this.mario.setBigMario(false);
         this.mario.setBreakable(false);
         this.mario.setNormal(true);
@@ -68,22 +70,17 @@ public class MarioManager {
     public void shootFireBall() {
         if (MarioDir.marioIdleFacingRight || MarioDir.marioRunningRight
                 || MarioDir.marioJumpingRight) {
-            this.createExplosive(this.mario.getComponent(Transform.class).getPos().x + 20, this.mario.getComponent(Transform.class).getPos().y + 25, 2);
+            this.createExplosive(this.mario.getComponent(Transform.class).getPos().x + 20, this.mario.getComponent(Transform.class).getPos().y + 25, 3);
         } else {
-            this.createExplosive(this.mario.getComponent(Transform.class).getPos().x, this.mario.getComponent(Transform.class).getPos().y + 25, -2);
+            this.createExplosive(this.mario.getComponent(Transform.class).getPos().x, this.mario.getComponent(Transform.class).getPos().y + 25, -3);
         }
     }
 
     private void createExplosive(double xPos, double yPos, double xVel) {
-        Explosive explosive = new Explosive(GlobalVariables.explosiveTag);
-        explosive.addComponent(new Rigidbody(explosive));
-        explosive.addComponent(new Collider(explosive,
-                25, 25, explosive.getComponent(Transform.class)));
-        Rigidbody rigidbody = explosive.getComponent(Rigidbody.class);
-        rigidbody.getVel().x = xVel;
-        rigidbody.getVel().y = 1;
-        GameEngine.gameObjects.add(explosive);
-
+        FireBall fireBall = (FireBall) GameObjectFactory.create(new String[]{xPos + "", yPos + "", xVel + ""}, "FireBall");
+        fireBall.getComponent(Animator.class).getAnimationController().stop();
+        fireBall.getComponent(Animator.class).getAnimationController().playAnimation("fireBallAnimation");
+        GameEngine.gameObjects.add(fireBall);
     }
 
     public void marioDead() {
@@ -169,6 +166,7 @@ public class MarioManager {
     public void powerUpWithMushroom() {
         if (this.mario.isNormal()) {
             SoundManager.playSound(Sounds.superMarioGrowingSound);
+            this.growMario();
             MarioDir.disableDirs();
             this.mario.getRigidbody().setActive(false);
             Input.lock();
@@ -178,15 +176,6 @@ public class MarioManager {
                 public void invoke(GameObject arg) {
                     mario.getRigidbody().setActive(true);
                     Input.unlock();
-                }
-            });
-
-            ((SpriteAnimation) this.mario.getComponent(Animator.class).getAnimationController().getAnimation("marioGrowing")).getSpriteEvent().subscribe(new EventListener<GameObject>() {
-                @Override
-                public void invoke(GameObject arg) {
-                    Collider collider = arg.getComponent(Collider.class);
-                    Sprite sprite = arg.getComponent(SpriteRenderer.class).getSprite();
-                    collider.resize(sprite.getTexture().getWidth(), sprite.getTexture().getHeight());
                 }
             });
 
@@ -207,9 +196,9 @@ public class MarioManager {
     }
 
     public void marioPowerUpWithMushroom(Mushroom mushroom) {
-            this.powerUpWithMushroom();
-            mushroom.destroy();
-            ScoreKeeper.incrementScore(1000);
-            mushroom = null;
+        this.powerUpWithMushroom();
+        mushroom.destroy();
+        ScoreKeeper.incrementScore(1000);
+        mushroom = null;
     }
 }

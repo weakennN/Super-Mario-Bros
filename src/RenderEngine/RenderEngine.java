@@ -20,7 +20,6 @@ public class RenderEngine {
 
     public void render() {
         for (int i = 0; i < SortingLayersContainer.sortingLayers.size(); i++) {
-
             SortingLayer sortingLayer = SortingLayersContainer.sortingLayers.get(i);
             for (int j = 0; j < sortingLayer.getSpriteRenderers().size(); j++) {
                 GameObject gameObject = sortingLayer.getSpriteRenderers().get(j).getGameObject();

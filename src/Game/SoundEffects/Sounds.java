@@ -14,7 +14,5 @@ public class Sounds {
     public final static String goombaDeadSound = System.getProperty("user.dir") + "/src/Game/SoundEffects/Sounds/goombaDeadSound.mp3";
     public final static String bumpSound = System.getProperty("user.dir") + "/src/Game/SoundEffects/Sounds/bumpSound.mp3";
     public final static String timeWarningSound = System.getProperty("user.dir") + "/src/Game/SoundEffects/Sounds/timeWarningSound.mp3";
-
-
 }
 

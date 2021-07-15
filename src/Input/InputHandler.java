@@ -22,6 +22,7 @@ public class InputHandler {
         this.pressedEvents.put(KeyCode.D, new RunningRightPressed(KeyCode.D));
         this.pressedEvents.put(KeyCode.W, new Jump(KeyCode.W));
         this.pressedEvents.put(KeyCode.A, new RunningLeftPressed(KeyCode.A));
+        this.pressedEvents.put(KeyCode.SHIFT, new ShootFireBall(KeyCode.SHIFT));
         this.releasedEvents.put(KeyCode.D, new RunningRightReleased(KeyCode.D));
         this.releasedEvents.put(KeyCode.A, new RunningLeftReleased(KeyCode.A));
     }

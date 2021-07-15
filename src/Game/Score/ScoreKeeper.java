@@ -48,5 +48,4 @@ public class ScoreKeeper {
         level = 1;
         world = 1;
     }
-
 }

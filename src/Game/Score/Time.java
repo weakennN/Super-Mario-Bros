@@ -10,7 +10,6 @@ public class Time {
     private int seconds;
 
     public Time() {
-
         this.timer = new Timer();
 
         this.seconds = 400;
@@ -18,23 +17,18 @@ public class Time {
 
             @Override
             public void run() {
-
                 seconds--;
             }
-
         };
 
         timer.scheduleAtFixedRate(timerTask, 300, 650);
     }
 
     public int getSeconds() {
-
         return this.seconds;
     }
 
     public Timer getTimer() {
-
         return this.timer;
     }
-
 }

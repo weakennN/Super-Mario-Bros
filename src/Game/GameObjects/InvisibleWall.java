@@ -23,7 +23,6 @@ public class InvisibleWall extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
         if (other.getTag().equals(GlobalVariables.marioTag) &&
                 (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1)) {
             Collisions.defaultHorizontalCollision(this, other, collision);

@@ -8,7 +8,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-
         Scene scene = Designer.initializeNodes();
 
         SuperMarioBros superMarioBros = new SuperMarioBros();
@@ -22,7 +21,6 @@ public class Main extends Application {
         stage.setOnCloseRequest(e -> {
             superMarioBros.stop();
         });
-
     }
 
     public static void main(String[] args) {

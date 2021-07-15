@@ -33,5 +33,4 @@ public abstract class World {
     public WorldBackground getBackGround() {
         return this.backGround;
     }
-
 }

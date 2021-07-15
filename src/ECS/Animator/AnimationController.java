@@ -21,13 +21,16 @@ public class AnimationController {
     }
 
     public void playAnimation(String animation) {
+        if (this.animations.get(animation).isActive()) {
+            return;
+        }
         this.currentPlaying.put(animation, this.animations.get(animation));
         this.animations.get(animation).play();
     }
 
     public void stop() {
         for (Map.Entry<String, Animation> entry : this.currentPlaying.entrySet()) {
-            entry.getValue().stop();
+                entry.getValue().stop();
         }
     }
 

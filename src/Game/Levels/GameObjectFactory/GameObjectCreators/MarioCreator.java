@@ -16,6 +16,7 @@ import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mario.Mario;
 import Game.Levels.Level;
+import Input.Input;
 import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
@@ -35,7 +36,7 @@ public class MarioCreator extends GameObjectCreator {
         Transform transform = new Transform(new Vector2(x, y), mario);
         mario.addComponent(new Rigidbody(mario, transform));
         mario.addComponent(new Collider(mario,
-                GlobalVariables.defaultMarioColliderX, GlobalVariables.defaultMarioColliderY, transform));
+                GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         mario.addComponent(transform);
 
         SpriteSheet marioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET);
@@ -54,7 +55,7 @@ public class MarioCreator extends GameObjectCreator {
         animationController.createAnimation("fireMarioRunning", new SpriteAnimation(mario, true, 17, fireMarioSpriteSheet.getSprites().get(1),
                 fireMarioSpriteSheet.getSprites().get(2), fireMarioSpriteSheet.getSprites().get(3)));
 
-        SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 7, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),
+        SpriteAnimation marioGrowing = new SpriteAnimation(mario, false, 2, marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15),
                 marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15), marioSpriteSheet.getSprites().get(0),
                 bigMarioSpriteSheet.getSprites().get(15), bigMarioSpriteSheet.getSprites().get(0), marioSpriteSheet.getSprites().get(0), bigMarioSpriteSheet.getSprites().get(15)
                 , bigMarioSpriteSheet.getSprites().get(0));
@@ -66,6 +67,7 @@ public class MarioCreator extends GameObjectCreator {
         animationController.getAnimation("marioDecreasing").getAnimationFinish().subscribe(new EventListener<GameObject>() {
             @Override
             public void invoke(GameObject arg) {
+                Input.unlock();
                 mario.setImmune(false);
             }
         });

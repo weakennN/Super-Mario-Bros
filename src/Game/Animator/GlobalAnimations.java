@@ -21,4 +21,9 @@ public class GlobalAnimations {
     public static final String CASTLE_SPRITE = "/resources/images/castle.png";
     public static final String CLOUD_SPRITE = "/resources/images/cloud_sprite.png";
     public static final String GROUND_SPRITE = "/resources/images/ground_sprite.png";
+    public static final String BUSH_SPRITE_S = "/resources/images/bush_sprite_s.png";
+    public static final String BUSH_SPRITE_M = "/resources/images/bush_sprite_m.png";
+    public static final String BUSH_SPRITE_L = "/resources/images/bush_sprite_l.png";
+    public static final String MOUNTAIN_SPITE_S = "/resources/images/mountain_sprite_s.png";
+    public static final String MOUNTAIN_SPITE_M = "/resources/images/mountain_sprite_m.png";
 }

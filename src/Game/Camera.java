@@ -19,6 +19,10 @@ public class Camera {
     }
 
     public void follow() {
+        if (this.target.getComponent(Rigidbody.class) == null) {
+            return;
+        }
+
         if (this.target.getComponent(Transform.class).getPos().x > this.position.getPos().x) {
             this.position.getPos().x = this.target.getComponent(Transform.class).getPos().x;
             this.vel.x = this.target.getComponent(Rigidbody.class).getVel().x;

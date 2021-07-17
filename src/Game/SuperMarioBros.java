@@ -47,6 +47,11 @@ public class SuperMarioBros extends Game {
         AssetPool.addTexture("Mushroom", new Image(GlobalAnimations.MUSHROOM_SPRITE));
         AssetPool.addTexture("Pipe", new Image(GlobalAnimations.PIPE_SPRITE));
         AssetPool.addTexture("Ground", new Image(GlobalAnimations.GROUND_SPRITE));
+        AssetPool.addTexture("BushS", new Image(GlobalAnimations.BUSH_SPRITE_S));
+        AssetPool.addTexture("BushM", new Image(GlobalAnimations.BUSH_SPRITE_M));
+        AssetPool.addTexture("BushL", new Image(GlobalAnimations.BUSH_SPRITE_L));
+        AssetPool.addTexture("MountainS", new Image(GlobalAnimations.MOUNTAIN_SPITE_S));
+        AssetPool.addTexture("MountainM", new Image(GlobalAnimations.MOUNTAIN_SPITE_M));
         SortingLayersContainer.initContainer();
     }
 
@@ -67,7 +72,7 @@ public class SuperMarioBros extends Game {
     @Override
     public void render() {
         Designer.gc.setFill(Color.valueOf("42a7f5"));
-        Designer.gc.fillRect(0,0,this.world.getBackGround().getSizeX(), this.world.getBackGround().getSizeY());
+        Designer.gc.fillRect(0, 0, this.world.getBackGround().getSizeX(), this.world.getBackGround().getSizeY());
     }
 
     @Override
@@ -90,6 +95,7 @@ public class SuperMarioBros extends Game {
 
             if (!gm.getTag().equals(GlobalVariables.marioTag) && !gm.getTag().equals(GlobalVariables.invisibleWallTag) &&
                     !gm.getTag().equals(GlobalVariables.TILE_MAP_TAG) &&
+                    !gm.getTag().equals("deathWall") &&
                     !gm.getTag().equals(GlobalVariables.groundTag) && gm.getComponent(Transform.class).getPos().x + 1100 < this.mario.getComponent(Transform.class).getPos().x) {
                 gm.destroy();
             }
@@ -101,6 +107,7 @@ public class SuperMarioBros extends Game {
         }
 
         if (this.mario.isDead() || ScoreKeeper.time.getSeconds() == 0) {
+            ScoreKeeper.decreaseLives();
             this.restartLevel();
         }
 

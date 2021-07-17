@@ -27,6 +27,9 @@ public class GameObjectFactory {
         creators.put("Flower", new FlowerCreator(level));
         creators.put("Castle", new CastleCreator(level));
         creators.put("TileMap", new TileMapCreator(level));
+        creators.put("DeathWall", new DeathWallCreator(level));
+        creators.put("Bush", new BushCreator(level));
+        creators.put("Mountain", new MountainCreator(level));
     }
 
     public static GameObject create(String[] params, String creator) {

@@ -2,13 +2,14 @@ package Game.GameObjects;
 
 import Game.Collision.Collision;
 
-public class Cloud extends GameObject {
+public class Mountain extends GameObject{
 
-    public Cloud(String tag) {
+    public Mountain(String tag) {
         super(tag);
     }
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
+
     }
 }

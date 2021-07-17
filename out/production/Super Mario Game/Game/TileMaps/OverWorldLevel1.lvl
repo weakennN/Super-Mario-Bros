@@ -179,5 +179,13 @@ Block 10200 567
 Block 10150 517
 Block 10200 517
 Castle 11000 545
-TileMap 0 917 Tile Ground 0 917 250 2
+Mountain 0 802 m
+Bush 500 862 l
+Bush 2030 862 m
+Mountain 735 860 s
+Mountain 2400 802 m
+Bush 1060 862 s
+DeathWall 0 1700 13000 50
+TileMap 0 917 Tile Ground 0 917 100 2
+TileMap 5200 917 Tile Ground 5200 917 150 2
 end

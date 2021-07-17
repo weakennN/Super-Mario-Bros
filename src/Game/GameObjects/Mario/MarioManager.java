@@ -103,7 +103,6 @@ public class MarioManager {
             @Override
             public void invoke(GameObject arg) {
                 Mario mario = (Mario) arg;
-                ScoreKeeper.decreaseLives();
                 mario.setDead(true);
             }
         });

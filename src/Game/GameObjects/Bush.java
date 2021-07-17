@@ -2,9 +2,9 @@ package Game.GameObjects;
 
 import Game.Collision.Collision;
 
-public class Cloud extends GameObject {
+public class Bush extends GameObject{
 
-    public Cloud(String tag) {
+    public Bush(String tag) {
         super(tag);
     }
 

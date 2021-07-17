@@ -5,15 +5,14 @@ import ECS.Animator.Animation.FrameAnimation;
 import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
 import ECS.Collider;
-import ECS.SprtieRenderer.Sprite;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.Sprite;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.BrickBox;
 import Game.GameObjects.GameObject;
 import Game.Levels.Level;
-import javafx.scene.image.Image;
+import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
 public class BrickCreator extends GameObjectCreator {
@@ -29,7 +28,7 @@ public class BrickCreator extends GameObjectCreator {
         brickBox.addComponent(transform);
         brickBox.addComponent(new Collider(brickBox,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        brickBox.addComponent(new SpriteRenderer(brickBox, new Sprite(new Image(GlobalAnimations.BRICK_SPRITE))));
+        brickBox.addComponent(new SpriteRenderer(brickBox, new Sprite(AssetPool.getTexture("BrickBox"))));
 
         AnimationController brickController = new AnimationController();
         brickController.createAnimation("bump", new FrameAnimation(brickBox, false, 30, new PositionFrame(0,

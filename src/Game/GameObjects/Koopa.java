@@ -1,7 +1,8 @@
 package Game.GameObjects;
 
 import ECS.Animator.Animator;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import ECS.Transform;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import ECS.Rigidbody;
@@ -23,12 +24,17 @@ public class Koopa extends GameObject {
 
     @Override
     public void update() {
-
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
 
         if (!this.isTransformed) {
             if (rigidbody.getVel().x > 0) {
+                if (super.getComponent(Transform.class).getScale().x >= 0) {
+                    super.getComponent(Transform.class).getScale().x *= -1;
+                }
             } else {
+                if (super.getComponent(Transform.class).getScale().x < 0){
+                    super.getComponent(Transform.class).getScale().x *= -1;
+                }
             }
         }
         super.updateComponents();
@@ -36,7 +42,6 @@ public class Koopa extends GameObject {
 
     @Override
     public void start() {
-
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
         rigidbody.getVel().x = -1;
         super.getComponent(Animator.class).getAnimationController().playAnimation("koopaAnimation");
@@ -44,7 +49,6 @@ public class Koopa extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
         if (other.getTag().equals(GlobalVariables.marioTag) && collision.getHitDirection().y == -1) {
 
             Rigidbody rigidbody = other.getComponent(Rigidbody.class);
@@ -84,7 +88,6 @@ public class Koopa extends GameObject {
             Mario mario = (Mario) other;
             mario.getMarioManager().checkMarioDead();
         }
-
     }
 
     public boolean isTransformed() {

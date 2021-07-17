@@ -17,7 +17,6 @@ public class Coin extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
         if (other.getTag().equals(GlobalVariables.marioTag)) {
             ScoreKeeper.coins++;
             this.destroy();

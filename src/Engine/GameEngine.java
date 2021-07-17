@@ -1,12 +1,10 @@
 package Engine;
 
 import ECS.Collider;
-import ECS.Transform;
 import Game.GameObjects.GameObject;
 import Input.Input;
 import RenderEngine.RenderEngine;
 import Game.Game;
-import UIEngine.Designer;
 import javafx.animation.AnimationTimer;
 import Game.Camera;
 
@@ -31,10 +29,13 @@ public class GameEngine extends Engine {
     @Override
     public void start() {
 
+        this.renderEngine.setCamera(this.camera);
+
         this.gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long l) {
+                renderEngine.clear();
                 game.update();
                 updateGameObjects();
                 input.update();
@@ -74,7 +75,7 @@ public class GameEngine extends Engine {
             for (int j = 0; j < Collider.colliders.size(); j++) {
                 if (collider == Collider.colliders.get(j)) {
                     continue;
-                }else if (!Collider.colliders.get(j).isActive()){
+                } else if (!Collider.colliders.get(j).isActive()) {
                     continue;
                 }
                 if (collider.checkCollision(Collider.colliders.get(j))) {
@@ -96,6 +97,7 @@ public class GameEngine extends Engine {
 
     public void setCamera(Camera camera) {
         this.camera = camera;
+        this.renderEngine.setCamera(camera);
     }
 
     public Camera getCamera() {

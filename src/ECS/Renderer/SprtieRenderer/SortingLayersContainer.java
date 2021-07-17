@@ -1,4 +1,4 @@
-package ECS.SprtieRenderer;
+package ECS.Renderer.SprtieRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

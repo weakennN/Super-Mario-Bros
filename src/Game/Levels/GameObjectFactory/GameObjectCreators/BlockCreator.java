@@ -1,15 +1,14 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
 import ECS.Collider;
-import ECS.SprtieRenderer.Sprite;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.Sprite;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Block;
 import Game.GameObjects.GameObject;
 import Game.Levels.Level;
-import javafx.scene.image.Image;
+import Util.AssetPool;
 
 public class BlockCreator extends GameObjectCreator {
 
@@ -24,7 +23,7 @@ public class BlockCreator extends GameObjectCreator {
         block.addComponent(transform);
         block.addComponent(new Collider(block,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        block.addComponent(new SpriteRenderer(block, new Sprite(new Image(GlobalAnimations.BLOCK_SPRITE))));
+        block.addComponent(new SpriteRenderer(block, new Sprite(AssetPool.getTexture("Block"))));
 
         return block;
     }

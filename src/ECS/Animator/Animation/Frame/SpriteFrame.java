@@ -1,7 +1,7 @@
 package ECS.Animator.Animation.Frame;
 
-import ECS.SprtieRenderer.Sprite;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.Sprite;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 
 public class SpriteFrame extends Frame {
 

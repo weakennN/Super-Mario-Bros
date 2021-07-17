@@ -1,8 +1,8 @@
 package Game.Levels;
 
 import ECS.Collider;
-import ECS.SprtieRenderer.SortingLayer;
-import ECS.SprtieRenderer.SortingLayersContainer;
+import ECS.Renderer.SprtieRenderer.SortingLayer;
+import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
 import ECS.Transform;
 import Game.Camera;
 import Game.Common.GlobalVariables;
@@ -78,40 +78,13 @@ public abstract class Level {
 
                 if (words[0].equals("GameObjects")) {
                     this.initGameObjects(bufferedReader);
-                } else if (words[0].equals("Ground")) {
-                    this.initGround(bufferedReader);
                 }
 
                 line = bufferedReader.readLine();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initGround(BufferedReader bufferedReader) {
-        try {
-            String word = bufferedReader.readLine();
-
-            while (word != null && !word.equals("end")) {
-                String[] words = word.split("\\s+");
-
-                double x = Double.parseDouble(words[0]);
-                double y = Double.parseDouble(words[1]);
-                double sizeX = Double.parseDouble(words[2]);
-                double sizeY = Double.parseDouble(words[3]);
-
-                GameObject ground = new Ground(GlobalVariables.groundTag, false);
-                Transform transform = new Transform(new Vector2(x, y), ground);
-                ground.addComponent(new Collider(ground, sizeX, sizeY, transform));
-                ground.addComponent(transform);
-
-                this.addGameObject(ground);
-                word = bufferedReader.readLine();
-            }
 
             this.createInvisibleWall();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

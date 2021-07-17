@@ -16,7 +16,6 @@
       <element id="extracted-dir" path="D:/JavaFx/javafx-sdk-15.0.1/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/JavaFx/javafx-sdk-15.0.1/lib/javafx.controls.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/JavaFx/javafx-sdk-15.0.1/lib/javafx.graphics.jar" path-in-jar="/" />
-      <element id="library" level="project" name="lib" />
       <element id="library" level="project" name="net.mikera:vectorz:0.48.0" />
       <element id="file-copy" path="D:/JavaFx/javafx-sdk-15.0.1/bin/api-ms-win-core-console-l1-1-0.dll" />
       <element id="file-copy" path="D:/JavaFx/javafx-sdk-15.0.1/bin/api-ms-win-core-console-l1-2-0.dll" />

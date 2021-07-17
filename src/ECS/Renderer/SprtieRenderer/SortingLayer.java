@@ -1,4 +1,6 @@
-package ECS.SprtieRenderer;
+package ECS.Renderer.SprtieRenderer;
+
+import ECS.Renderer.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.util.List;
 public class SortingLayer {
 
     private String sortingLayer;
-    private List<SpriteRenderer> spriteRenderers;
+    private List<Renderer> spriteRenderers;
     private int value;
 
     public SortingLayer(String sortingLayer) {
@@ -15,19 +17,19 @@ public class SortingLayer {
         this.value = SortingLayersContainer.sortingLayers.size();
     }
 
-    public void addSpriteRenderer(SpriteRenderer spriteRenderer) {
-        this.spriteRenderers.add(spriteRenderer);
+    public void addRenderer(Renderer renderer) {
+        this.spriteRenderers.add(renderer);
     }
 
-    public void removeSpriteRenderer(SpriteRenderer spriteRenderer) {
-        this.spriteRenderers.remove(spriteRenderer);
+    public void removeRenderer(Renderer renderer) {
+        this.spriteRenderers.remove(renderer);
     }
 
     public String getSortingLayerName() {
         return this.sortingLayer;
     }
 
-    public List<SpriteRenderer> getSpriteRenderers() {
+    public List<Renderer> getRenderers() {
         return this.spriteRenderers;
     }
 

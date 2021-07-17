@@ -3,7 +3,7 @@ package Game.GameObjects;
 import ECS.Animator.Animation.Frame.PositionFrame;
 import ECS.Animator.Animation.FrameAnimation;
 import ECS.Animator.Animator;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import Event.EventListener;
 import Game.Collision.Collision;
@@ -42,7 +42,6 @@ public class ItemBox extends GameObject {
 
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
-
         if(other.getTag().equals(GlobalVariables.invisibleWallTag)){
           return;
         }

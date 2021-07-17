@@ -1,7 +1,8 @@
 package Game.GameObjects;
 
 import ECS.Animator.Animator;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.Renderer;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import Game.Collision.Collision;
 import ECS.Collider;
 import ECS.Component;
@@ -87,8 +88,8 @@ public abstract class GameObject {
             }
         }
 
-        if (this.getComponent(SpriteRenderer.class) != null) {
-            this.getComponent(SpriteRenderer.class).getSortingLayer().removeSpriteRenderer(this.getComponent(SpriteRenderer.class));
+        if (this.getComponent(Renderer.class) != null) {
+            this.getComponent(Renderer.class).getSortingLayer().removeRenderer(this.getComponent(Renderer.class));
         }
 
         this.active = false;

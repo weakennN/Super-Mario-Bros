@@ -1,14 +1,14 @@
-package ECS.SprtieRenderer;
+package ECS.Renderer.SprtieRenderer;
 
-import ECS.*;
+import ECS.Renderer.Renderer;
+import ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
+import UIEngine.Designer;
 
-public class SpriteRenderer extends Component {
+public class SpriteRenderer extends Renderer {
 
     private Sprite sprite;
-    private int orderInLayer;
-    private SortingLayer sortingLayer;
 
     public SpriteRenderer(GameObject gameObject, Sprite sprite) {
         this(gameObject, sprite, SortingLayersContainer.getSortingLayerByName(GlobalVariables.DEFAULT_SORTING_LAYER));
@@ -23,11 +23,8 @@ public class SpriteRenderer extends Component {
     }
 
     public SpriteRenderer(GameObject gameObject, Sprite sprite, SortingLayer sortingLayer) {
-        super(gameObject);
+        super(gameObject, 0, sortingLayer);
         this.sprite = sprite;
-        this.sortingLayer = sortingLayer;
-        this.sortingLayer.addSpriteRenderer(this);
-        this.orderInLayer = 0;
     }
 
     public Sprite getSprite() {
@@ -38,21 +35,16 @@ public class SpriteRenderer extends Component {
         this.sprite = sprite;
     }
 
-    public void setSortingLayer(SortingLayer sortingLayer) {
+    @Override
+    public void render() {
+        if (super.getGameObject().isActive()) {
+            Transform transform = super.getGameObject().getComponent(Transform.class);
 
-        if (this.sortingLayer != null) {
-            this.sortingLayer.removeSpriteRenderer(this);
+            Designer.gc.drawImage(this.sprite.getTexture(), transform.getScale().x < 0 ?
+                            transform.getPos().x + this.sprite.getTexture().getWidth()
+                            : transform.getPos().x, transform.getPos().y,
+                    this.sprite.getTexture().getWidth() * transform.getScale().x,
+                    this.sprite.getTexture().getHeight() * transform.getScale().y);
         }
-
-        this.sortingLayer = sortingLayer;
-        this.sortingLayer.addSpriteRenderer(this);
-    }
-
-    public SortingLayer getSortingLayer() {
-        return this.sortingLayer;
-    }
-
-    public void setOrderInLayer(int orderInLayer) {
-        this.orderInLayer = orderInLayer;
     }
 }

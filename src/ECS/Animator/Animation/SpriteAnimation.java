@@ -1,7 +1,7 @@
 package ECS.Animator.Animation;
 
-import ECS.SprtieRenderer.Sprite;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.Sprite;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import Event.Event;
 import Game.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;

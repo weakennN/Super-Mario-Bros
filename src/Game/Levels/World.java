@@ -14,8 +14,8 @@ public abstract class World {
         this.currentLevel = 0;
     }
 
-    protected void setBackGround(String backGround, double sizeX, double sizeY) {
-        this.backGround = new WorldBackground(backGround, sizeX, sizeY);
+    protected void setBackGround(double sizeX, double sizeY) {
+        this.backGround = new WorldBackground(sizeX, sizeY);
     }
 
     public Level getCurrentLevel() {

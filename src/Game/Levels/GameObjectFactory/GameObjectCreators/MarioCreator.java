@@ -6,9 +6,9 @@ import ECS.Animator.Animation.FrameAnimation;
 import ECS.Animator.Animation.SpriteAnimation;
 import ECS.Collider;
 import ECS.Rigidbody;
-import ECS.SprtieRenderer.SortingLayersContainer;
-import ECS.SprtieRenderer.SpriteRenderer;
-import ECS.SprtieRenderer.SpriteSheet;
+import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Event.EventListener;
 import Game.Camera;
@@ -18,6 +18,7 @@ import Game.GameObjects.Mario.Mario;
 import Game.Levels.Level;
 import Input.Input;
 import Util.AssetPool;
+import javafx.stage.Screen;
 import mikera.vectorz.Vector2;
 
 public class MarioCreator extends GameObjectCreator {
@@ -73,10 +74,11 @@ public class MarioCreator extends GameObjectCreator {
         });
 
         mario.addComponent(new Animator(mario, animationController));
-        Transform cameraPos = new Transform(new Vector2(960, 0));
+        Transform cameraPos = new Transform(new Vector2(Screen.getPrimary().getBounds().getWidth() / 2, 0));
         super.getLevel().setMario(mario);
 
-        super.getLevel().setCamera(new Camera(mario, cameraPos));
+        super.getLevel().setCamera(new Camera(cameraPos));
+        super.getLevel().getCamera().setTarget(mario);
 
         return mario;
     }

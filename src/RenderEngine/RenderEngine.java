@@ -1,43 +1,37 @@
 package RenderEngine;
 
-import ECS.SprtieRenderer.SortingLayer;
-import ECS.SprtieRenderer.SortingLayersContainer;
-import ECS.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
-import Game.GameObjects.GameObject;
+import ECS.Renderer.SprtieRenderer.SortingLayer;
+import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import Game.Camera;
 import UIEngine.Designer;
-import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 
 public class RenderEngine {
 
-    public RenderEngine() {
-    }
+    private Camera camera;
 
-    public void renderImage(String strImage, double startX, double startY) {
-        Image image = new Image(strImage);
-        Designer.gc.drawImage(image, startX, startY);
+    public RenderEngine() {
     }
 
     public void render() {
         for (int i = 0; i < SortingLayersContainer.sortingLayers.size(); i++) {
             SortingLayer sortingLayer = SortingLayersContainer.sortingLayers.get(i);
-            for (int j = 0; j < sortingLayer.getSpriteRenderers().size(); j++) {
-                GameObject gameObject = sortingLayer.getSpriteRenderers().get(j).getGameObject();
-                if (gameObject.isActive()) {
-                    this.render(gameObject);
-                }
+            for (int j = 0; j < sortingLayer.getRenderers().size(); j++) {
+                sortingLayer.getRenderers().get(j).render();
             }
         }
     }
 
-    private void render(GameObject gameObject) {
-        SpriteRenderer spriteRenderer = gameObject.getComponent(SpriteRenderer.class);
-        Transform transform = gameObject.getComponent(Transform.class);
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
 
-        Designer.gc.drawImage(spriteRenderer.getSprite().getTexture(), transform.getScale().x < 0 ?
-                        transform.getPos().x + spriteRenderer.getSprite().getTexture().getWidth()
-                        : transform.getPos().x, transform.getPos().y,
-                spriteRenderer.getSprite().getTexture().getWidth() * transform.getScale().x,
-                spriteRenderer.getSprite().getTexture().getHeight() * transform.getScale().y);
+    public void clear() {
+        Designer.gc.setFill(Color.BLACK);
+        double screenWidth = Screen.getPrimary().getBounds().getWidth();
+        double screenHeight = Screen.getPrimary().getBounds().getHeight();
+        Designer.gc.fillRect(this.camera.getPosition().getPos().x - screenWidth / 2, this.camera.getPosition().getPos().y
+                , this.camera.getPosition().getPos().x + screenWidth, this.camera.getPosition().getPos().y + screenHeight);
     }
 }

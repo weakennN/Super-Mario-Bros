@@ -1,4 +1,4 @@
-package ECS.SprtieRenderer;
+package ECS.Renderer.SprtieRenderer;
 
 import javafx.scene.image.Image;
 

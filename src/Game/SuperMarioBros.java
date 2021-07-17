@@ -1,7 +1,7 @@
 package Game;
 
-import ECS.SprtieRenderer.SortingLayersContainer;
-import ECS.SprtieRenderer.SpriteSheet;
+import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import ECS.Renderer.SprtieRenderer.SpriteSheet;
 import ECS.Transform;
 import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
@@ -18,6 +18,8 @@ import Game.Score.ScoreKeeper;
 import Game.SoundEffects.SoundManager;
 import Util.AssetPool;
 import javafx.animation.AnimationTimer;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -30,11 +32,6 @@ public class SuperMarioBros extends Game {
     private Mario mario;
 
     public SuperMarioBros() {
-    }
-
-    @Override
-    public void start() {
-        this.engine = new GameEngine(this);
         AssetPool.addSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET, new SpriteSheet(GlobalAnimations.MARIO_SPRITE_SHEET, 50, 51, 0));
         AssetPool.addSpriteSheet(GlobalVariables.GOOMBA_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.GOOMBA_SPRITE_SHEET, 50, 50, 0));
         AssetPool.addSpriteSheet(GlobalVariables.ITEM_BOX_SPITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.ITEM_BOX_SPRITE_SHEET, 50, 50, 0));
@@ -45,7 +42,17 @@ public class SuperMarioBros extends Game {
         AssetPool.addSpriteSheet(GlobalVariables.FIRE_BALL_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.FIREBALL_SPRITE_SHEET, 25, 25, 0));
         AssetPool.addSpriteSheet(GlobalVariables.FIRE_BALL_EXPLOSION_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.FIREBALL_EXPLOSION_SPRITE_SHEET, 35, 40, 0));
         AssetPool.addSpriteSheet(GlobalVariables.FLOWER_SPRITE_SHEET_KEY, new SpriteSheet(GlobalAnimations.FLOWER_SPRITE_SHEET, 50, 50, 0));
+        AssetPool.addTexture("BrickBox", new Image(GlobalAnimations.BRICK_SPRITE));
+        AssetPool.addTexture("Block", new Image(GlobalAnimations.BLOCK_SPRITE));
+        AssetPool.addTexture("Mushroom", new Image(GlobalAnimations.MUSHROOM_SPRITE));
+        AssetPool.addTexture("Pipe", new Image(GlobalAnimations.PIPE_SPRITE));
+        AssetPool.addTexture("Ground", new Image(GlobalAnimations.GROUND_SPRITE));
         SortingLayersContainer.initContainer();
+    }
+
+    @Override
+    public void start() {
+        this.engine = new GameEngine(this);
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();
         this.world.getCurrentLevel().initLevel();
@@ -59,8 +66,8 @@ public class SuperMarioBros extends Game {
 
     @Override
     public void render() {
-        Designer.gc.drawImage(this.world.getBackGround().getImage(), 0, 0, this.world.getBackGround().getSizeX(),
-                this.world.getBackGround().getSizeY());
+        Designer.gc.setFill(Color.valueOf("42a7f5"));
+        Designer.gc.fillRect(0,0,this.world.getBackGround().getSizeX(), this.world.getBackGround().getSizeY());
     }
 
     @Override
@@ -82,6 +89,7 @@ public class SuperMarioBros extends Game {
             }
 
             if (!gm.getTag().equals(GlobalVariables.marioTag) && !gm.getTag().equals(GlobalVariables.invisibleWallTag) &&
+                    !gm.getTag().equals(GlobalVariables.TILE_MAP_TAG) &&
                     !gm.getTag().equals(GlobalVariables.groundTag) && gm.getComponent(Transform.class).getPos().x + 1100 < this.mario.getComponent(Transform.class).getPos().x) {
                 gm.destroy();
             }

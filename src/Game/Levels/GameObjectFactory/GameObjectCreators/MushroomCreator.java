@@ -4,16 +4,15 @@ import ECS.Animator.AnimationController;
 import ECS.Animator.Animator;
 import ECS.Collider;
 import ECS.Rigidbody;
-import ECS.SprtieRenderer.SortingLayersContainer;
-import ECS.SprtieRenderer.Sprite;
-import ECS.SprtieRenderer.SpriteRenderer;
+import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import ECS.Renderer.SprtieRenderer.Sprite;
+import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
-import Game.Animator.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mushroom;
 import Game.Levels.Level;
-import javafx.scene.image.Image;
+import Util.AssetPool;
 
 public class MushroomCreator extends GameObjectCreator {
 
@@ -29,7 +28,7 @@ public class MushroomCreator extends GameObjectCreator {
         mushroom.addComponent(new Rigidbody(mushroom, transform));
         mushroom.addComponent(new Collider(mushroom,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        mushroom.addComponent(new SpriteRenderer(mushroom, new Sprite(new Image(GlobalAnimations.MUSHROOM_SPRITE)), SortingLayersContainer.getSortingLayerByName("item")));
+        mushroom.addComponent(new SpriteRenderer(mushroom, new Sprite(AssetPool.getTexture("Mushroom")), SortingLayersContainer.getSortingLayerByName("item")));
         mushroom.addComponent(new Animator(mushroom, new AnimationController()));
         return mushroom;
     }

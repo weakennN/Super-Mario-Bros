@@ -35,4 +35,5 @@ public class GlobalVariables {
     public static final String FIRE_BALL_SPRITE_SHEET_KEY = "fireBallSpriteSheet";
     public static final String FIRE_BALL_EXPLOSION_SPRITE_SHEET_KEY = "explosionSpriteSheet";
     public static final String FLOWER_SPRITE_SHEET_KEY = "flowerSpriteSheet";
+    public static final String TILE_MAP_TAG = "TileMap";
 }

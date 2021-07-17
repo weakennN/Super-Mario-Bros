@@ -20,4 +20,5 @@ public class GlobalAnimations {
     public static final String FLOWER_SPRITE_SHEET = "flower_sprite_sheet.png";
     public static final String CASTLE_SPRITE = "/resources/images/castle.png";
     public static final String CLOUD_SPRITE = "/resources/images/cloud_sprite.png";
+    public static final String GROUND_SPRITE = "/resources/images/ground_sprite.png";
 }

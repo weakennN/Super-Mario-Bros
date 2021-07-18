@@ -1,9 +1,9 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mountain;
 import Game.Levels.Level;

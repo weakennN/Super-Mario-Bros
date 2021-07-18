@@ -1,7 +1,7 @@
 package Game.GameObjects;
 
 import Game.Collision.Collision;
-import ECS.Rigidbody;
+import Engine.ECS.Rigidbody;
 
 public class Mushroom extends GameObject {
 

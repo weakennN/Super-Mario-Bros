@@ -1,4 +1,4 @@
-package Game.Animator;
+package Game.GameResources;
 
 public class GlobalAnimations {
 

@@ -1,6 +1,6 @@
 package Util;
 
-import ECS.Renderer.SprtieRenderer.SpriteSheet;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteSheet;
 import javafx.scene.image.Image;
 
 import java.util.HashMap;

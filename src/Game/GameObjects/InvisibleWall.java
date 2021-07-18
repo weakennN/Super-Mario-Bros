@@ -1,6 +1,6 @@
 package Game.GameObjects;
 
-import ECS.Transform;
+import Engine.ECS.Transform;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;

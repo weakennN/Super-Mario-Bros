@@ -1,6 +1,6 @@
 package Input.KeyEvents;
 
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import Game.Common.GlobalVariables;
 import Game.Game;
 import Game.SuperMarioBros;

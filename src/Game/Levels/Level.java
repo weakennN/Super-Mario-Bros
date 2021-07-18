@@ -1,9 +1,9 @@
 package Game.Levels;
 
-import ECS.Collider;
-import ECS.Renderer.SprtieRenderer.SortingLayer;
-import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
-import ECS.Transform;
+import Engine.ECS.Collider;
+import Engine.ECS.Renderer.SprtieRenderer.SortingLayer;
+import Engine.ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import Engine.ECS.Transform;
 import Game.Camera;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.*;

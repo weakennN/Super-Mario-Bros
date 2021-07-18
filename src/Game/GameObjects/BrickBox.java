@@ -1,10 +1,10 @@
 package Game.GameObjects;
 
-import ECS.Animator.Animator;
+import Engine.ECS.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.Common.GlobalVariables;
-import ECS.Rigidbody;
+import Engine.ECS.Rigidbody;
 import Game.GameObjects.Mario.Mario;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;

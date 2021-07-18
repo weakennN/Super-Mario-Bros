@@ -1,23 +1,23 @@
 package Game.GameObjects.Mario;
 
-import ECS.Animator.Animation.Frame.PositionFrame;
-import ECS.Animator.Animation.FrameAnimation;
-import ECS.Animator.AnimationController;
-import ECS.Animator.Animator;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Animator.Animation.Frame.PositionFrame;
+import Engine.ECS.Animator.Animation.FrameAnimation;
+import Engine.ECS.Animator.AnimationController;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Event.EventListener;
 import Game.Common.GlobalVariables;
-import ECS.Collider;
-import ECS.Rigidbody;
+import Engine.ECS.Collider;
+import Engine.ECS.Rigidbody;
 import Game.GameObjects.*;
 import Game.Levels.GameObjectFactory.GameObjectFactory;
 import Game.Score.ScoreKeeper;
-import Engine.GameEngine;
+import Engine.GameEngine.GameEngine;
 import Game.SoundEffects.SoundManager;
 import Game.SoundEffects.Sounds;
-import Input.Input;
+import Engine.Input.Input;
 import Util.AssetPool;
 import mikera.vectorz.Vector2;
 
@@ -51,7 +51,7 @@ public class MarioManager {
     }
 
     public void setMarioAnimationAfterJump() {
-        AnimationController marioAnimationController = this.mario.getComponent(ECS.Animator.Animator.class).getAnimationController();
+        AnimationController marioAnimationController = this.mario.getComponent(Engine.ECS.Animator.Animator.class).getAnimationController();
 
         if (this.mario.isJumping()) {
             if (this.mario.isBigMario()) {

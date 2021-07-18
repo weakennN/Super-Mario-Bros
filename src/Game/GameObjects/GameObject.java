@@ -1,12 +1,11 @@
 package Game.GameObjects;
 
-import ECS.Animator.Animator;
-import ECS.Renderer.Renderer;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Renderer.Renderer;
 import Game.Collision.Collision;
-import ECS.Collider;
-import ECS.Component;
-import Engine.GameEngine;
+import Engine.ECS.Collider;
+import Engine.ECS.Component;
+import Engine.GameEngine.GameEngine;
 
 import java.util.ArrayList;
 import java.util.List;

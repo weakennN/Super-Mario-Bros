@@ -1,11 +1,11 @@
 package Game.GameObjects;
 
-import ECS.Animator.Animator;
-import ECS.Transform;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Transform;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
-import ECS.Collider;
-import ECS.Rigidbody;
+import Engine.ECS.Collider;
+import Engine.ECS.Rigidbody;
 
 public class FireBall extends GameObject {
 

@@ -1,6 +1,6 @@
 package Game.GameObjects.TileMap;
 
-import ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
 import mikera.vectorz.Vector2;
 
 public class Tile {

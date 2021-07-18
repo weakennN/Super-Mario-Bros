@@ -1,9 +1,9 @@
 package Game.Collision;
 
-import ECS.Transform;
+import Engine.ECS.Transform;
 import Game.Common.GlobalVariables;
-import ECS.Collider;
-import ECS.Rigidbody;
+import Engine.ECS.Collider;
+import Engine.ECS.Rigidbody;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mario.Mario;
 

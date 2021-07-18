@@ -1,13 +1,13 @@
 package Game.GameObjects;
 
-import ECS.Animator.Animator;
-import ECS.Collider;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Collider;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
-import ECS.Rigidbody;
+import Engine.ECS.Rigidbody;
 import Game.GameObjects.Mario.Mario;
 import Game.Score.ScoreKeeper;
 import Util.AssetPool;

@@ -1,5 +1,6 @@
 package Input;
 
+import Engine.Input.Input;
 import Game.Game;
 import Input.KeyEvents.*;
 import javafx.scene.input.KeyCode;

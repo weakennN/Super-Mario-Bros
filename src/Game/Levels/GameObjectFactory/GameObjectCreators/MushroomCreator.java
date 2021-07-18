@@ -1,13 +1,13 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Animator.AnimationController;
-import ECS.Animator.Animator;
-import ECS.Collider;
-import ECS.Rigidbody;
-import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Animator.AnimationController;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Collider;
+import Engine.ECS.Rigidbody;
+import Engine.ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mushroom;

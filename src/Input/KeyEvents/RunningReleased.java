@@ -1,7 +1,7 @@
 package Input.KeyEvents;
 
-import ECS.Animator.Animator;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Mario.Mario;
 import Util.AssetPool;

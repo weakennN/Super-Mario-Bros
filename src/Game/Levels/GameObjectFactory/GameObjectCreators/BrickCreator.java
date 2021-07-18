@@ -1,13 +1,13 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Animator.Animation.Frame.PositionFrame;
-import ECS.Animator.Animation.FrameAnimation;
-import ECS.Animator.AnimationController;
-import ECS.Animator.Animator;
-import ECS.Collider;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Animator.Animation.Frame.PositionFrame;
+import Engine.ECS.Animator.Animation.FrameAnimation;
+import Engine.ECS.Animator.AnimationController;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Collider;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.BrickBox;
 import Game.GameObjects.GameObject;

@@ -2,7 +2,7 @@ package Game.GameObjects.Mario;
 
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
-import ECS.Rigidbody;
+import Engine.ECS.Rigidbody;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Goomba;
 import Game.GameObjects.Mushroom;

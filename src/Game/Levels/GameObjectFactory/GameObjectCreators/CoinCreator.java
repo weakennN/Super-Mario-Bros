@@ -1,13 +1,13 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Animator.*;
-import ECS.Animator.Animation.Frame.PositionFrame;
-import ECS.Animator.Animation.FrameAnimation;
-import ECS.Animator.Animation.SpriteAnimation;
-import ECS.Rigidbody;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Renderer.SprtieRenderer.SpriteSheet;
-import ECS.Transform;
+import Engine.ECS.Animator.*;
+import Engine.ECS.Animator.Animation.Frame.PositionFrame;
+import Engine.ECS.Animator.Animation.FrameAnimation;
+import Engine.ECS.Animator.Animation.SpriteAnimation;
+import Engine.ECS.Rigidbody;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteSheet;
+import Engine.ECS.Transform;
 import Event.EventListener;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Coin;

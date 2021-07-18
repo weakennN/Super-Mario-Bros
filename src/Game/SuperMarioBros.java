@@ -1,15 +1,15 @@
 package Game;
 
-import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
-import ECS.Renderer.SprtieRenderer.SpriteSheet;
-import ECS.Transform;
-import Game.Animator.GlobalAnimations;
+import Engine.ECS.Renderer.SprtieRenderer.SortingLayersContainer;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteSheet;
+import Engine.ECS.Transform;
+import Game.GameResources.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.SoundEffects.Sounds;
-import Input.Input;
+import Engine.Input.Input;
 import Input.InputHandler;
 import UIEngine.Designer;
-import Engine.GameEngine;
+import Engine.GameEngine.GameEngine;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.Mario.Mario;
 import Game.Levels.Overworld;
@@ -58,7 +58,7 @@ public class SuperMarioBros extends Game {
 
     @Override
     public void start() {
-        this.engine = new GameEngine(this);
+        this.engine = new GameEngine(this, Designer.gc);
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();
         this.world.getCurrentLevel().initLevel();
@@ -72,8 +72,8 @@ public class SuperMarioBros extends Game {
 
     @Override
     public void render() {
-        Designer.gc.setFill(Color.valueOf("42a7f5"));
-        Designer.gc.fillRect(0, 0, this.world.getBackGround().getSizeX(), this.world.getBackGround().getSizeY());
+        this.engine.getRenderEngine().getGc().setFill(Color.valueOf("42a7f5"));
+        this.engine.getRenderEngine().getGc().fillRect(0, 0, this.world.getBackGround().getSizeX(), this.world.getBackGround().getSizeY());
     }
 
     @Override
@@ -145,7 +145,6 @@ public class SuperMarioBros extends Game {
         this.engine.getRenderEngine().render(new Image(GlobalAnimations.GAME_OVER), this.engine.getCamera().getPosition().getPos().x - 960
                 , 0, 1920, 1080);
 
-
         this.engine.getCamera().resetCamera();
         this.world = null;
         this.mario = null;
@@ -171,7 +170,6 @@ public class SuperMarioBros extends Game {
         };
 
         animationTimer.start();
-
     }
 
     private void destroyGameObjects() {

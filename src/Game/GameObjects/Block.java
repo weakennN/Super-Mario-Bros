@@ -1,6 +1,6 @@
 package Game.GameObjects;
 
-import ECS.Rigidbody;
+import Engine.ECS.Rigidbody;
 import Game.Collision.Collision;
 import Game.Collision.Collisions;
 import Game.SoundEffects.SoundManager;

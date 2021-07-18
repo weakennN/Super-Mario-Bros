@@ -1,7 +1,7 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Collider;
-import ECS.Transform;
+import Engine.ECS.Collider;
+import Engine.ECS.Transform;
 import Game.GameObjects.DeathWall;
 import Game.GameObjects.GameObject;
 import Game.Levels.Level;

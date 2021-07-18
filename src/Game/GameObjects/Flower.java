@@ -1,6 +1,6 @@
 package Game.GameObjects;
 
-import ECS.Animator.Animator;
+import Engine.ECS.Animator.Animator;
 import Game.Collision.Collision;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Mario.Mario;

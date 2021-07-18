@@ -1,9 +1,9 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
-import Game.Animator.GlobalAnimations;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
+import Game.GameResources.GlobalAnimations;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Cloud;
 import Game.GameObjects.GameObject;

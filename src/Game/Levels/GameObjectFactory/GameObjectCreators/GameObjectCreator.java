@@ -1,6 +1,6 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Transform;
+import Engine.ECS.Transform;
 import Game.GameObjects.GameObject;
 import Game.Levels.Level;
 import mikera.vectorz.Vector2;

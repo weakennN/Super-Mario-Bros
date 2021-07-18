@@ -1,14 +1,14 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Animator.Animation.Frame.PositionFrame;
-import ECS.Animator.Animation.FrameAnimation;
-import ECS.Animator.AnimationController;
-import ECS.Animator.Animator;
-import ECS.Animator.Animation.SpriteAnimation;
-import ECS.Collider;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Renderer.SprtieRenderer.SpriteSheet;
-import ECS.Transform;
+import Engine.ECS.Animator.Animation.Frame.PositionFrame;
+import Engine.ECS.Animator.Animation.FrameAnimation;
+import Engine.ECS.Animator.AnimationController;
+import Engine.ECS.Animator.Animator;
+import Engine.ECS.Animator.Animation.SpriteAnimation;
+import Engine.ECS.Collider;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteSheet;
+import Engine.ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.GameObject;
 import Game.GameObjects.ItemBox;

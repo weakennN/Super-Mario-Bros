@@ -1,9 +1,9 @@
 package Game.Levels.GameObjectFactory.GameObjectCreators;
 
-import ECS.Collider;
-import ECS.Renderer.SprtieRenderer.Sprite;
-import ECS.Renderer.SprtieRenderer.SpriteRenderer;
-import ECS.Transform;
+import Engine.ECS.Collider;
+import Engine.ECS.Renderer.SprtieRenderer.Sprite;
+import Engine.ECS.Renderer.SprtieRenderer.SpriteRenderer;
+import Engine.ECS.Transform;
 import Game.Common.GlobalVariables;
 import Game.GameObjects.Block;
 import Game.GameObjects.GameObject;

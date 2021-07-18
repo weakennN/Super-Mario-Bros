@@ -1,6 +1,6 @@
 package Input.KeyEvents;
 
-import ECS.Animator.Animator;
+import Engine.ECS.Animator.Animator;
 import Game.GameObjects.Mario.Mario;
 import javafx.scene.input.KeyCode;
 

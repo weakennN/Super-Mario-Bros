@@ -25,7 +25,6 @@ public class BrickCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         BrickBox brickBox = new BrickBox(GlobalVariables.brickBoxTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), brickBox);
-        brickBox.addComponent(transform);
         brickBox.addComponent(new Collider(brickBox,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         brickBox.addComponent(new SpriteRenderer(brickBox, new Sprite(AssetPool.getTexture("BrickBox"))));

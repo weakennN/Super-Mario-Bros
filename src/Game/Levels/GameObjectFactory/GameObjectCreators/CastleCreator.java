@@ -20,7 +20,6 @@ public class CastleCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Castle castle = new Castle(GlobalVariables.castleTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), castle);
-        castle.addComponent(transform);
         castle.addComponent(new SpriteRenderer(castle, new Sprite(new Image(GlobalAnimations.CASTLE_SPRITE))));
 
         return castle;

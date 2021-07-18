@@ -25,7 +25,6 @@ public class FlowerCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Flower flower = new Flower(GlobalVariables.fireFlowerTag);
         Transform transform = super.createTransform(Double.parseDouble(params[0]), Double.parseDouble(params[1]), flower);
-        flower.addComponent(transform);
         flower.addComponent(new Rigidbody(flower, false));
         flower.addComponent(new Collider(flower, GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         SpriteSheet flowerSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.FLOWER_SPRITE_SHEET_KEY);

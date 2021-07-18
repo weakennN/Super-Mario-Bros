@@ -24,7 +24,6 @@ public class MushroomCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Mushroom mushroom = new Mushroom(GlobalVariables.mushroomTag);
         Transform transform = super.createTransform(Double.parseDouble(params[0]), Double.parseDouble(params[1]), mushroom);
-        mushroom.addComponent(transform);
         mushroom.addComponent(new Rigidbody(mushroom, transform));
         mushroom.addComponent(new Collider(mushroom,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));

@@ -27,7 +27,6 @@ public class ItemBoxCreator extends GameObjectCreator {
 
         ItemBox itemBox = new ItemBox(GlobalVariables.itemBoxTag, params[3]);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), itemBox);
-        itemBox.addComponent(transform);
         itemBox.addComponent(new Collider(itemBox,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         itemBox.addComponent(new SpriteRenderer(itemBox));

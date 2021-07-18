@@ -19,6 +19,7 @@ public class Mario extends GameObject {
     private boolean fireMario;
     private boolean isFalling;
     private boolean breakable;
+    private boolean crouch;
 
     public Mario(String tag) {
 
@@ -34,6 +35,7 @@ public class Mario extends GameObject {
         this.isFalling = false;
         this.fireMario = false;
         this.breakable = false;
+        this.crouch = false;
         this.marioManager = new MarioManager(this);
     }
 
@@ -130,5 +132,13 @@ public class Mario extends GameObject {
 
     public boolean isBreakable() {
         return this.breakable;
+    }
+
+    public boolean isCrouching() {
+        return this.crouch;
+    }
+
+    public void setCrouch(boolean crouch) {
+        this.crouch = crouch;
     }
 }

@@ -20,7 +20,6 @@ public class BlockCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Block block = new Block(GlobalVariables.blockTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), block);
-        block.addComponent(transform);
         block.addComponent(new Collider(block,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
         block.addComponent(new SpriteRenderer(block, new Sprite(AssetPool.getTexture("Block"))));

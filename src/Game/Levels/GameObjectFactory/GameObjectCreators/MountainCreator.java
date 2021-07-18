@@ -19,7 +19,6 @@ public class MountainCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Mountain mountain = new Mountain("mountain");
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), mountain);
-        mountain.addComponent(transform);
 
         Sprite sprite = new Sprite(AssetPool.getTexture("MountainS"));
         if (params[3].equals("m")) {

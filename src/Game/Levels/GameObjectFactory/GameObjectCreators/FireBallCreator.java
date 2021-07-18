@@ -26,7 +26,6 @@ public class FireBallCreator extends GameObjectCreator {
         FireBall fireBall = new FireBall(GlobalVariables.explosiveTag);
 
         Transform transform = super.createTransform(Double.parseDouble(params[0]), Double.parseDouble(params[1]), fireBall);
-        fireBall.addComponent(transform);
         fireBall.addComponent(new Rigidbody(fireBall));
         fireBall.addComponent(new Collider(fireBall, 25, 25, transform));
         SpriteSheet fireBallSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.FIRE_BALL_SPRITE_SHEET_KEY);

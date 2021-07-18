@@ -20,6 +20,8 @@ public abstract class GameObjectCreator {
     }
 
     protected Transform createTransform(double x, double y, GameObject gameObject) {
-        return new Transform(new Vector2(x, y), gameObject);
+        Transform transform = new Transform(new Vector2(x, y), gameObject);
+        gameObject.addComponent(transform);
+        return transform;
     }
 }

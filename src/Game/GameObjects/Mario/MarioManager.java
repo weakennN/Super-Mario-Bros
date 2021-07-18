@@ -116,6 +116,7 @@ public class MarioManager {
 
         if (mario.getRigidbody().getVel().x < 0) {
             marioAnimationController.playAnimation(animation);
+            this.mario.getRigidbody().getVel().x = -2.5;
             if (this.mario.getComponent(Transform.class).getScale().x > 0) {
                 this.mario.getComponent(Transform.class).getScale().x *= -1;
             }
@@ -124,6 +125,7 @@ public class MarioManager {
             this.mario.getComponent(SpriteRenderer.class).setSprite(sprite);
         } else {
             marioAnimationController.playAnimation(animation2);
+            this.mario.getRigidbody().getVel().x = 2.5;
             if (this.mario.getComponent(Transform.class).getScale().x < 0) {
                 this.mario.getComponent(Transform.class).getScale().x *= -1;
             }

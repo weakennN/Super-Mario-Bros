@@ -25,7 +25,6 @@ public class PipeCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Pipe pipe = new Pipe(GlobalVariables.pipeTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), pipe);
-        pipe.addComponent(transform);
         pipe.addComponent(new SpriteRenderer(pipe, new Sprite(new Image(GlobalAnimations.PIPE_SPRITE))));
 
         pipe.addComponent(new Collider(pipe, 100, 100, transform));

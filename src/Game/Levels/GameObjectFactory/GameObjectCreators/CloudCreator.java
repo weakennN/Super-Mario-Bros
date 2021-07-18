@@ -20,7 +20,6 @@ public class CloudCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Cloud cloud = new Cloud(GlobalVariables.cloudTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), cloud);
-        cloud.addComponent(transform);
         cloud.addComponent(new SpriteRenderer(cloud,new Sprite(new Image(GlobalAnimations.CLOUD_SPRITE))));
         return cloud;
     }

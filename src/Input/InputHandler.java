@@ -23,12 +23,13 @@ public class InputHandler {
         this.pressedEvents.put(KeyCode.W, new Jump(KeyCode.W));
         this.pressedEvents.put(KeyCode.A, new RunningLeftPressed(KeyCode.A));
         this.pressedEvents.put(KeyCode.SHIFT, new ShootFireBall(KeyCode.SHIFT));
+        this.pressedEvents.put(KeyCode.S, new CrouchPressed(KeyCode.S));
         this.releasedEvents.put(KeyCode.D, new RunningRightReleased(KeyCode.D));
         this.releasedEvents.put(KeyCode.A, new RunningLeftReleased(KeyCode.A));
+        this.releasedEvents.put(KeyCode.S, new CrouchReleased(KeyCode.S));
     }
 
     public void update() {
-
         KeyCode pressed = this.input.getKeyPressed();
         if (pressed != null) {
             if (this.pressedEvents.containsKey(pressed)) {
@@ -42,6 +43,5 @@ public class InputHandler {
                 this.releasedEvents.get(released).run(this.game);
             }
         }
-
     }
 }

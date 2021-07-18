@@ -26,7 +26,6 @@ public class GoombaCreator extends GameObjectCreator {
         Goomba goomba = new Goomba(GlobalVariables.goombaTag);
 
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), goomba);
-        goomba.addComponent(transform);
 
         goomba.addComponent(new Rigidbody(goomba, transform));
         goomba.addComponent(new SpriteRenderer(goomba));

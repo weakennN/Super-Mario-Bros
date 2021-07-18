@@ -26,7 +26,6 @@ public class CoinCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Coin coin = new Coin(GlobalVariables.coinTag);
         Transform transform = super.createTransform(Double.parseDouble(params[0]), Double.parseDouble(params[1]), coin);
-        coin.addComponent(transform);
         SpriteSheet coinSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.COIN_SPRITE_SHEET_KEY);
         coin.addComponent(new Rigidbody(coin, false));
         AnimationController coinAnimationController = new AnimationController();

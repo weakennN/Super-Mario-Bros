@@ -22,7 +22,6 @@ public class TileMapCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         TileMap tileMap = new TileMap(GlobalVariables.TILE_MAP_TAG);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), tileMap);
-        tileMap.addComponent(transform);
         Sprite sprite = new Sprite(AssetPool.getTexture(params[4]));
         double startX = Double.parseDouble(params[5]);
         double startY = Double.parseDouble(params[6]);

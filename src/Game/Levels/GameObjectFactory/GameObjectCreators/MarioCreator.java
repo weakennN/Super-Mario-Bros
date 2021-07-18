@@ -31,14 +31,10 @@ public class MarioCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Mario mario = new Mario(GlobalVariables.marioTag);
 
-        double x = Double.parseDouble(params[1]);
-        double y = Double.parseDouble(params[2]);
-
-        Transform transform = new Transform(new Vector2(x, y), mario);
+        Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), mario);
         mario.addComponent(new Rigidbody(mario, transform));
         mario.addComponent(new Collider(mario,
                 GlobalVariables.defaultColliderSizeX, GlobalVariables.defaultColliderSizeY, transform));
-        mario.addComponent(transform);
 
         SpriteSheet marioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.MARIO_SPRITE_SHEET);
         SpriteSheet bigMarioSpriteSheet = AssetPool.getSpriteSheet(GlobalVariables.BIG_MARIO_SPRITE_SHEET_KEY);

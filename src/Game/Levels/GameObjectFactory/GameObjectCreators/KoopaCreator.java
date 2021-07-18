@@ -24,7 +24,6 @@ public class KoopaCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         Koopa koopa = new Koopa(GlobalVariables.koopaTag);
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), koopa);
-        koopa.addComponent(transform);
         koopa.addComponent(new Rigidbody(koopa, transform));
         koopa.addComponent(new Collider(koopa,
                 GlobalVariables.defaultColliderSizeX, 75, transform));

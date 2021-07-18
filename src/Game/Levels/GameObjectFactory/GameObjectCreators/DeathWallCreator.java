@@ -16,7 +16,6 @@ public class DeathWallCreator extends GameObjectCreator {
     public GameObject create(String[] params) {
         DeathWall deathWall = new DeathWall("deathWall");
         Transform transform = super.createTransform(Double.parseDouble(params[1]), Double.parseDouble(params[2]), deathWall);
-        deathWall.addComponent(transform);
         deathWall.addComponent(new Collider(deathWall, Double.parseDouble(params[3]), Double.parseDouble(params[4]), transform));
 
         return deathWall;

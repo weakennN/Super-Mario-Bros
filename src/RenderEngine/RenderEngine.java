@@ -4,6 +4,7 @@ import ECS.Renderer.SprtieRenderer.SortingLayer;
 import ECS.Renderer.SprtieRenderer.SortingLayersContainer;
 import Game.Camera;
 import UIEngine.Designer;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
@@ -33,5 +34,9 @@ public class RenderEngine {
         double screenHeight = Screen.getPrimary().getBounds().getHeight();
         Designer.gc.fillRect(this.camera.getPosition().getPos().x - screenWidth / 2, this.camera.getPosition().getPos().y
                 , this.camera.getPosition().getPos().x + screenWidth, this.camera.getPosition().getPos().y + screenHeight);
+    }
+
+    public void render(Image image, double posX, double posY, double width, double height) {
+        Designer.gc.drawImage(image, posX, posY, width, height);
     }
 }

@@ -1,6 +1,8 @@
 package Game.GameObjects;
 
 import ECS.Animator.Animator;
+import ECS.Collider;
+import ECS.Renderer.SprtieRenderer.Sprite;
 import ECS.Renderer.SprtieRenderer.SpriteRenderer;
 import ECS.Transform;
 import Game.Collision.Collision;
@@ -25,14 +27,13 @@ public class Koopa extends GameObject {
     @Override
     public void update() {
         Rigidbody rigidbody = super.getComponent(Rigidbody.class);
-
         if (!this.isTransformed) {
             if (rigidbody.getVel().x > 0) {
                 if (super.getComponent(Transform.class).getScale().x >= 0) {
                     super.getComponent(Transform.class).getScale().x *= -1;
                 }
             } else {
-                if (super.getComponent(Transform.class).getScale().x < 0){
+                if (super.getComponent(Transform.class).getScale().x < 0) {
                     super.getComponent(Transform.class).getScale().x *= -1;
                 }
             }
@@ -52,15 +53,18 @@ public class Koopa extends GameObject {
         if (other.getTag().equals(GlobalVariables.marioTag) && collision.getHitDirection().y == -1) {
 
             Rigidbody rigidbody = other.getComponent(Rigidbody.class);
-            Rigidbody rigidbody1 = this.getComponent(Rigidbody.class);
+            Rigidbody rigidbody1 = super.getComponent(Rigidbody.class);
 
             if (!this.isTransformed) {
                 rigidbody1.getVel().x = 0;
                 this.isTransformed = true;
+                super.getComponent(Collider.class).resize(50, 50);
+                super.getComponent(Transform.class).getPos().y += 50;
                 super.getComponent(Animator.class).getAnimationController().stop();
-                super.getComponent(SpriteRenderer.class).setSprite(AssetPool.getSpriteSheet(GlobalVariables.KOOPA_SPRITE_SHEET_KEY).getSprites().get(2));
+                super.getComponent(SpriteRenderer.class).setSprite(new Sprite(AssetPool.getTexture("KoopaShell")));
             } else {
                 if (rigidbody1.getVel().x >= 0) {
+                    super.getComponent(Transform.class).getPos().x += 50;
                     rigidbody1.getVel().x = 4.5;
                     this.shellMoving = true;
                 } else {

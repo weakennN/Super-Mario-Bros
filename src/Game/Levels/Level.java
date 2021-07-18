@@ -9,7 +9,6 @@ import Game.Common.GlobalVariables;
 import Game.GameObjects.*;
 import Game.GameObjects.Mario.Mario;
 import Game.Levels.GameObjectFactory.GameObjectFactory;
-import javafx.scene.image.Image;
 import mikera.vectorz.Vector2;
 
 import java.io.BufferedReader;
@@ -22,7 +21,6 @@ import java.util.List;
 public abstract class Level {
 
     private List<GameObject> gameObjects;
-    private Image backGround;
     private Camera camera;
     private Mario mario;
 
@@ -44,10 +42,6 @@ public abstract class Level {
 
     protected void addGameObject(GameObject gm) {
         this.gameObjects.add(gm);
-    }
-
-    protected void setBackGround(Image backGround) {
-        this.backGround = backGround;
     }
 
     public void setCamera(Camera camera) {

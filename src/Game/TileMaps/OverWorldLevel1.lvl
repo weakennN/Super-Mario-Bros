@@ -39,7 +39,7 @@ Cloud 12500 85
 BrickBox 800 725
 BrickBox 900 725
 BrickBox 1000 725
-Koopa 2300 867
+Koopa 2300 842
 Goomba 950 867
 Goomba 2100 867
 Goomba 2650 867
@@ -184,6 +184,21 @@ Bush 500 862 l
 Bush 2030 862 m
 Mountain 735 860 s
 Mountain 2400 802 m
+Bush 3000 862 m
+Bush 3300 862 l
+Mountain 3800 802 m
+Bush 4150 862 s
+Mountain 4500 860 s
+Bush 4650 862 l
+Mountain 5400 802 m
+Mountain 5750 860 s
+Bush 6100 862 s
+Bush 6250 862 m
+Bush 6500 862 l
+Mountain 6850 860 s
+Bush 7635 862 l
+Mountain 8200 802 m
+Bush 8480 862 l
 Bush 1060 862 s
 DeathWall 0 1700 13000 50
 TileMap 0 917 Tile Ground 0 917 100 2

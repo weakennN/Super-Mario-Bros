@@ -52,6 +52,7 @@ public class SuperMarioBros extends Game {
         AssetPool.addTexture("BushL", new Image(GlobalAnimations.BUSH_SPRITE_L));
         AssetPool.addTexture("MountainS", new Image(GlobalAnimations.MOUNTAIN_SPITE_S));
         AssetPool.addTexture("MountainM", new Image(GlobalAnimations.MOUNTAIN_SPITE_M));
+        AssetPool.addTexture("KoopaShell", new Image(GlobalAnimations.KOOPA_SHELL_SPRITE));
         SortingLayersContainer.initContainer();
     }
 
@@ -141,10 +142,10 @@ public class SuperMarioBros extends Game {
 
     private void gaveOver() {
         Designer.showLabels(false);
-      /*  RenderEngine.renderImage(Animator.gameOver, this.engine.getCamera().getPosition().getPos().x - 960
+        this.engine.getRenderEngine().render(new Image(GlobalAnimations.GAME_OVER), this.engine.getCamera().getPosition().getPos().x - 960
                 , 0, 1920, 1080);
 
-       */
+
         this.engine.getCamera().resetCamera();
         this.world = null;
         this.mario = null;

@@ -17,8 +17,8 @@ public class Collider extends Component {
     public static List<Collider> colliders = new ArrayList<>();
 
     public Collider(GameObject gameObject, double sizeX, double sizeY, Transform transform) {
-
         super(gameObject);
+
         this.pos = transform.getPos();
         this.size = new Vector2(sizeX, sizeY);
         this.halfSize = new Vector2(sizeX / 2, sizeY / 2);
@@ -26,6 +26,14 @@ public class Collider extends Component {
         this.collision = new Collision();
         colliders.add(this);
     }
+
+    /*@Override
+    public void update(){
+        this.pos.x = super.getGameObject().getComponent(Transform.class).getPos().x;
+        this.pos.y = super.getGameObject().getComponent(Transform.class).getPos().y;
+    }
+
+     */
 
     public boolean checkCollision(Collider collider) {
         this.calculateCenter();
@@ -96,5 +104,9 @@ public class Collider extends Component {
 
     public Collision getCollision() {
         return this.collision;
+    }
+
+    public void setPos(Vector2 pos) {
+        this.pos = pos;
     }
 }

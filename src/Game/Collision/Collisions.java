@@ -10,7 +10,6 @@ import Game.GameObjects.Mario.Mario;
 public class Collisions {
 
     public static void defaultOnGroundCollision(GameObject first, GameObject second, Collision collision) {
-
         Rigidbody rigidbody = second.getComponent(Rigidbody.class);
 
         if (rigidbody == null) {
@@ -31,7 +30,6 @@ public class Collisions {
     }
 
     public static void defaultHorizontalCollision(GameObject first, GameObject second, Collision collision) {
-
         Collider collider = second.getComponent(Collider.class);
 
         if (collider == null) {
@@ -46,7 +44,6 @@ public class Collisions {
             second.getComponent(Transform.class).getPos().x = first.getComponent(Transform.class).getPos().x + collider1.getSize().x;
             checkFromEnemy(second);
         }
-
     }
 
     private static void checkFromEnemy(GameObject gameObject) {

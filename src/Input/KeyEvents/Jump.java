@@ -22,7 +22,7 @@ public class Jump extends KeyEvent {
         Mario mario = ((SuperMarioBros) game).getMario();
 
         if (!mario.isJumping()) {
-            mario.getRigidbody().getVel().y = -3.6;
+            mario.getRigidbody().getVel().y = -3.9;
             if (mario.isNormal()) {
                 SoundManager.playSound(Sounds.marioJumpingSound);
             } else {

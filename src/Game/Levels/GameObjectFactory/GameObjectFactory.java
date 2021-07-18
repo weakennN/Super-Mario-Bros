@@ -34,9 +34,6 @@ public class GameObjectFactory {
 
     public static GameObject create(String[] params, String creator) {
         GameObjectCreator gameObjectCreator = creators.get(creator);
-        if (gameObjectCreator == null) {
-            System.out.println();
-        }
         return gameObjectCreator.create(params);
     }
 }

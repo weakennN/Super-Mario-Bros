@@ -2,8 +2,7 @@ package Game.Animator;
 
 public class GlobalAnimations {
 
-    public static final String background = "/Game/Animator/ObjectsAnimations/background.png";
-    public static final String gameOver = "/Game/Animator/ObjectsAnimations/gameOver.jpg";
+    public static final String GAME_OVER = "/resources/images/gameOver.jpg";
     public static final String BRICK_SPRITE = "/resources/images/brick_sprite.png";
     public static final String BLOCK_SPRITE = "/resources/images/block_sprite.png";
     public static final String MUSHROOM_SPRITE = "/resources/images/mushroom_sprite.png";
@@ -26,4 +25,5 @@ public class GlobalAnimations {
     public static final String BUSH_SPRITE_L = "/resources/images/bush_sprite_l.png";
     public static final String MOUNTAIN_SPITE_S = "/resources/images/mountain_sprite_s.png";
     public static final String MOUNTAIN_SPITE_M = "/resources/images/mountain_sprite_m.png";
+    public static final String KOOPA_SHELL_SPRITE = "/resources/images/koopa_shell_sprite.png";
 }

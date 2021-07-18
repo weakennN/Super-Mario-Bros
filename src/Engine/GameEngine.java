@@ -56,14 +56,13 @@ public class GameEngine extends Engine {
             if (gameObject.isActive()) {
                 gameObject.update();
 
-               /* if (gameObject.getComponent(Collider.class) != null) {
+              /*  if (gameObject.getComponent(Collider.class) != null) {
                     Collider collider = gameObject.getComponent(Collider.class);
                     Transform transform = gameObject.getComponent(Transform.class);
                     Designer.gc.strokeRect(transform.getPos().x, transform.getPos().y, collider.getSize().x, collider.getSize().y);
+
                 }
-
-                */
-
+               */
             }
         }
     }
@@ -108,5 +107,9 @@ public class GameEngine extends Engine {
 
     public Input getInput() {
         return this.input;
+    }
+
+    public RenderEngine getRenderEngine() {
+        return this.renderEngine;
     }
 }

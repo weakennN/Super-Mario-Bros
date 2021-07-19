@@ -58,7 +58,7 @@ public class SuperMarioBros extends Game {
 
     @Override
     public void start() {
-        this.engine = new GameEngine(this, Designer.gc);
+        this.engine = new GameEngine(this, Designer.gc, Designer.scene);
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.world = new Overworld();
         this.world.getCurrentLevel().initLevel();
@@ -123,7 +123,6 @@ public class SuperMarioBros extends Game {
         this.destroyGameObjects();
         Input.unlock();
         this.engine.getCamera().resetCamera();
-        this.engine.restartInput();
         this.inputHandler = new InputHandler(this, this.engine.getInput());
         this.mario = null;
         this.world.getCurrentLevel().initLevel();

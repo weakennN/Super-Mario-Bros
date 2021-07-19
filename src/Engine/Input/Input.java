@@ -1,6 +1,6 @@
 package Engine.Input;
 
-import UIEngine.Designer;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
@@ -12,20 +12,20 @@ public class Input {
     private List<KeyCode> keyReleased;
     private static boolean locked = false;
 
-    public Input() {
+    public Input(Scene scene) {
         this.keyPressed = new ArrayList<>();
         this.keyReleased = new ArrayList<>();
-        this.init();
+        this.init(scene);
     }
 
-    private void init() {
-        Designer.scene.setOnKeyPressed(e -> {
+    private void init(Scene scene) {
+        scene.setOnKeyPressed(e -> {
             if (!locked) {
                 keyPressed.add(e.getCode());
             }
         });
 
-        Designer.scene.setOnKeyReleased(e -> {
+        scene.setOnKeyReleased(e -> {
             if (!locked) {
                 keyReleased.add(e.getCode());
             }

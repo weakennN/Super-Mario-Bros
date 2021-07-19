@@ -7,6 +7,7 @@ import RenderEngine.RenderEngine;
 import Game.Game;
 import javafx.animation.AnimationTimer;
 import Game.Camera;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public class GameEngine {
     private RenderEngine renderEngine;
     private Game game;
 
-    public GameEngine(Game game, GraphicsContext gc) {
+    public GameEngine(Game game, GraphicsContext gc, Scene scene) {
         this.game = game;
         this.renderEngine = new RenderEngine(gc);
-        this.input = new Input();
+        this.input = new Input(scene);
     }
 
     public void start() {
@@ -76,10 +77,6 @@ public class GameEngine {
     public void stop() {
         gameObjects.clear();
         this.gameLoop.stop();
-    }
-
-    public void restartInput() {
-        this.input = new Input();
     }
 
     public void setCamera(Camera camera) {

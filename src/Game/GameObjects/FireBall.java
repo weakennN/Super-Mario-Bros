@@ -21,7 +21,7 @@ public class FireBall extends GameObject {
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         if (other.getTag().equals(GlobalVariables.brickBoxTag) || other.getTag().equals(GlobalVariables.groundTag)
-                || other.getTag().equals(GlobalVariables.pipeTag) || other.getTag().equals(GlobalVariables.itemBoxTag)) {
+                || other.getTag().equals(GlobalVariables.pipeTag) || other.getTag().equals(GlobalVariables.itemBoxTag) || other.getTag().equals(GlobalVariables.TILE_MAP_TAG)) {
             if (collision.getHitDirection().x == 1 || collision.getHitDirection().x == -1
                     || collision.getHitDirection().y == -1) {
                 super.getComponent(Collider.class).setActive(false);

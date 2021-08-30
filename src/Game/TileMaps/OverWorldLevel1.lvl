@@ -4,6 +4,8 @@ ItemBox 600 725 Coin
 ItemBox 850 725 Mushroom
 ItemBox 950 725 Coin
 ItemBox 900 525 Coin
+TileMap 0 917 Tile Ground 0 917 100 2
+TileMap 5200 917 Tile Ground 5200 917 150 2
 Cloud 200 100
 Cloud 500 100
 Cloud 1000 75
@@ -201,6 +203,4 @@ Mountain 8200 802 m
 Bush 8480 862 l
 Bush 1060 862 s
 DeathWall 0 1700 13000 50
-TileMap 0 917 Tile Ground 0 917 100 2
-TileMap 5200 917 Tile Ground 5200 917 150 2
 end
